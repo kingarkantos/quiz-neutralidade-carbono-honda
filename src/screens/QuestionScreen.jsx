@@ -28,6 +28,9 @@ export default function QuestionScreen({
         style={{ backgroundImage: `url('/assets/bg/slice-quiz.png')` }}
       />
 
+      {/* Animated Foliage in Top Corners */}
+      <CornerFoliage corners={['top-left', 'top-right']} />
+
       {/* Top Stepper Area */}
       <div className="relative z-10 pt-4 px-4">
         <Stepper 
