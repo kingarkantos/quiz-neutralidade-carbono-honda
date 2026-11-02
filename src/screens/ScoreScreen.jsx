@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { motion, useSpring, useTransform } from 'framer-motion';
+import { motion, useSpring } from 'framer-motion';
 import ResultBanner from '../components/ResultBanner';
-import CornerFoliage from '../components/CornerFoliage';
 import { ChevronRight } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -43,41 +42,51 @@ export default function ScoreScreen({ correctCount, totalQuestions, onContinue }
     feedbackText = "Cada aprendizado é um passo a mais na construção de hábitos mais sustentáveis e um planeta melhor.";
   }
 
-  // Gauge calculations for SVG Arc (semi-circle / 240 degrees)
-  // Let's create an elegant, responsive SVG speedometer
+  // Symmetrical Tachometer Speedometer Arch:
+  // Starts at bottom-left (165°), peaks at top-center (270°), ends at bottom-right (15°).
+  // Symmetrical gap of 150° perfectly centered at 6 o'clock (90° bottom-center)!
   const radius = 80;
   const strokeWidth = 18;
-  const circumference = 2 * Math.PI * radius; // ~502
-  // We use 75% of the circle (270 degrees)
-  const maxArc = circumference * 0.75;
-  const currentArcOffset = maxArc - (maxArc * (displayScore / 100));
+  const circumference = 2 * Math.PI * radius; // 502.65
+  const arcAngle = 210; // 210 degrees arc dome
+  const totalArcLength = circumference * (arcAngle / 360); // ~293.21
+  const gapLength = circumference - totalArcLength; // ~209.44
+  const filledLength = totalArcLength * (displayScore / 100);
 
   return (
     <div className="relative w-full h-full flex flex-col justify-between overflow-hidden bg-[#ecdcc1]">
-      {/* Background Image: Foliage */}
+      {/* Background Image: Foliage (Slice 1 / slice-quiz.png) */}
       <div 
         className="absolute inset-0 bg-cover bg-center pointer-events-none z-0"
         style={{ backgroundImage: `url('/assets/bg/slice-quiz.png')` }}
       />
 
-      {/* Spacer top */}
-      <div className="pt-8 px-6 z-10 w-full flex justify-center">
-        {/* Banner "RESULTADO FINAL" */}
+      {/* Top Banner Area */}
+      <div className="pt-6 sm:pt-8 px-6 z-10 w-full flex justify-center">
         <ResultBanner type="result" text="RESULTADO FINAL" />
       </div>
 
       {/* Gauge / Velocímetro Area */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 max-w-lg mx-auto w-full">
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 max-w-lg mx-auto w-full my-2">
         {/* Gauge Container */}
         <motion.div
-          initial={{ scale: 0.6, opacity: 0 }}
+          initial={{ scale: 0.7, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 280, damping: 18, delay: 0.1 }}
           className="relative w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center"
         >
-          {/* Circular SVG Gauge */}
-          <svg className="w-full h-full transform -rotate-[135deg]" viewBox="0 0 200 200">
-            {/* Background Track */}
+          {/* Circular SVG Gauge - Rotated to place bottom-gap exactly at the bottom-center */}
+          <svg className="w-full h-full" viewBox="0 0 200 200">
+            <defs>
+              <linearGradient id="gaugeGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#1C3B24" />
+                <stop offset="35%" stopColor="#227734" />
+                <stop offset="70%" stopColor="#2EB85C" />
+                <stop offset="100%" stopColor="#7FD03F" />
+              </linearGradient>
+            </defs>
+
+            {/* Symmetrical Background Track (starts at bottom-left 165°, peaks at top, ends at bottom-right 15°) */}
             <circle
               cx="100"
               cy="100"
@@ -85,11 +94,13 @@ export default function ScoreScreen({ correctCount, totalQuestions, onContinue }
               fill="none"
               stroke="#d5c8b2"
               strokeWidth={strokeWidth}
-              strokeDasharray={maxArc}
+              strokeDasharray={`${totalArcLength} ${gapLength}`}
               strokeDashoffset="0"
               strokeLinecap="round"
+              transform="rotate(165 100 100)"
             />
-            {/* Animated Gradient Active Track */}
+
+            {/* Symmetrical Animated Active Track */}
             <circle
               cx="100"
               cy="100"
@@ -97,18 +108,12 @@ export default function ScoreScreen({ correctCount, totalQuestions, onContinue }
               fill="none"
               stroke="url(#gaugeGradient)"
               strokeWidth={strokeWidth}
-              strokeDasharray={maxArc}
-              strokeDashoffset={currentArcOffset}
+              strokeDasharray={`${filledLength} ${circumference}`}
+              strokeDashoffset="0"
               strokeLinecap="round"
-              className="transition-all duration-300"
+              transform="rotate(165 100 100)"
+              className="transition-all duration-300 ease-out"
             />
-            <defs>
-              <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#1C3B24" />
-                <stop offset="50%" stopColor="#2EB85C" />
-                <stop offset="100%" stopColor="#84cc16" />
-              </linearGradient>
-            </defs>
           </svg>
 
           {/* Central Inner Card */}
@@ -116,7 +121,7 @@ export default function ScoreScreen({ correctCount, totalQuestions, onContinue }
             <div className="w-44 h-44 sm:w-48 sm:h-48 rounded-full bg-[#FAF5EC] shadow-inner flex flex-col items-center justify-center border-4 border-white">
               {/* Green Leaf Icon */}
               <motion.img
-                animate={{ rotate: [-4, 4, -4], scale: [1, 1.05, 1] }}
+                animate={{ rotate: [-4, 4, -4], scale: [1, 1.06, 1] }}
                 transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
                 src="/assets/elements/folha.png"
                 alt="Folha"
@@ -141,19 +146,19 @@ export default function ScoreScreen({ correctCount, totalQuestions, onContinue }
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 300, damping: 22, delay: 0.3 }}
-          className="w-full bg-[#FAF5EC]/95 backdrop-blur-sm rounded-[24px] p-6 shadow-3d-card border border-white/60 mt-4 text-left"
+          className="w-full bg-[#FAF5EC]/95 backdrop-blur-sm rounded-[24px] p-5 sm:p-6 shadow-3d-card border border-white/60 mt-3 text-left"
         >
           <h3 className="text-[#1A2E1A] font-extrabold text-xl sm:text-2xl mb-1.5">
             {feedbackTitle}
           </h3>
-          <p className="text-[#3b4c3c] font-medium text-base leading-relaxed">
+          <p className="text-[#3b4c3c] font-medium text-sm sm:text-base leading-relaxed">
             {feedbackText}
           </p>
         </motion.div>
       </div>
 
-      {/* Bottom Continue Area */}
-      <div className="relative z-10 w-full px-8 pb-10 pt-3 flex justify-center max-w-lg mx-auto">
+      {/* Bottom Continue Area with Shimmer */}
+      <div className="relative z-10 w-full px-8 pb-10 pt-2 flex justify-center max-w-lg mx-auto">
         <motion.button
           initial={{ scale: 0.9, opacity: 0, y: 20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -170,4 +175,3 @@ export default function ScoreScreen({ correctCount, totalQuestions, onContinue }
     </div>
   );
 }
-
