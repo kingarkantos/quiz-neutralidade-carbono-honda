@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Header from '../components/Header';
 import { RotateCcw } from 'lucide-react';
 
 export default function FinalMessageScreen({ onRestart }) {
@@ -12,14 +11,27 @@ export default function FinalMessageScreen({ onRestart }) {
         style={{ backgroundImage: `url('/assets/bg/slice-home.png')` }}
       />
 
-      {/* Top Header (Honda Logo only, Tripla Ação is in the Hero section below) */}
-      <Header showTriplaAcao={false} />
-
-      {/* Center Content */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-between px-6 max-w-lg mx-auto w-full text-center py-2">
-        {/* 1. HERO TRIPLA AÇÃO PARA O ZERO LOGO (Filling the upper space with impact) */}
+      {/* Top Header - Honda Logo Centered in Row */}
+      <header className="w-full flex items-center justify-center pt-6 pb-2 z-20">
         <motion.div
-          initial={{ scale: 0.5, opacity: 0, y: -25 }}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="flex items-center justify-center"
+        >
+          <img
+            src="/assets/logos/honda.png"
+            alt="Honda - The Power of Dreams"
+            className="h-9 sm:h-11 object-contain drop-shadow-sm select-none pointer-events-none"
+          />
+        </motion.div>
+      </header>
+
+      {/* Main Content Area - Anchored in the Solid Upper Beige Zone */}
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-start px-6 max-w-lg mx-auto w-full text-center pt-2 sm:pt-4">
+        {/* 1. HERO TRIPLA AÇÃO PARA O ZERO LOGO (Bem maior e destacado) */}
+        <motion.div
+          initial={{ scale: 0.6, opacity: 0, y: -20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
           transition={{
             type: 'spring',
@@ -27,28 +39,28 @@ export default function FinalMessageScreen({ onRestart }) {
             damping: 18,
             delay: 0.15
           }}
-          className="relative my-2 sm:my-3 flex items-center justify-center"
+          className="relative my-2 sm:my-3 flex items-center justify-center w-full"
         >
-          {/* Subtle Eco Glow behind the Hero Logo */}
+          {/* Luminous Eco Glow Aura */}
           <motion.div
-            animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.6, 0.3] }}
+            animate={{ scale: [1, 1.25, 1], opacity: [0.35, 0.7, 0.35] }}
             transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut' }}
-            className="absolute w-48 h-20 bg-[#7FD03F]/25 blur-xl rounded-full -z-10 pointer-events-none"
+            className="absolute w-72 h-32 bg-[#7FD03F]/35 blur-2xl rounded-full -z-10 pointer-events-none"
           />
 
           <motion.img
             animate={{ 
               y: [0, -6, 0],
-              rotate: [0, 0.8, 0, -0.8, 0]
+              scale: [1, 1.03, 1]
             }}
             transition={{
               repeat: Infinity,
-              duration: 4.2,
+              duration: 4.0,
               ease: "easeInOut"
             }}
             src="/assets/logos/tripla-acao.png"
             alt="Tripla Ação Para o Zero"
-            className="h-14 sm:h-18 object-contain drop-shadow-md select-none pointer-events-none"
+            className="h-24 sm:h-32 max-w-[280px] sm:max-w-[340px] w-auto object-contain drop-shadow-xl select-none pointer-events-none"
           />
         </motion.div>
 
@@ -57,7 +69,7 @@ export default function FinalMessageScreen({ onRestart }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 280, damping: 20, delay: 0.25 }}
-          className="space-y-0.5 sm:space-y-1 my-1 select-none"
+          className="space-y-0.5 sm:space-y-1 my-2 select-none"
         >
           <h2 className="text-[#1A2E1A] font-black text-xl sm:text-2xl tracking-wide uppercase leading-tight">
             UM FUTURO COM
@@ -73,17 +85,17 @@ export default function FinalMessageScreen({ onRestart }) {
           </h1>
         </motion.div>
 
-        {/* 3. Supporting Paragraph */}
+        {/* 3. Supporting Paragraph - Positioned high in the solid beige background for maximum contrast */}
         <motion.p
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.35 }}
-          className="text-[#1E2D1D] font-semibold text-sm sm:text-base leading-relaxed max-w-sm select-none px-2 my-1 drop-shadow-sm"
+          className="text-[#142616] font-bold text-sm sm:text-base leading-relaxed max-w-sm select-none px-2 my-2 drop-shadow-[0_1px_1px_rgba(255,255,255,0.7)]"
         >
           A Honda trabalha por um mundo com menos emissões de carbono. E cada atitude consciente ajuda a construir esse caminho.
         </motion.p>
 
-        {/* 4. HIGHLIGHT CONTAINER: "Juntos, por um futuro mais sustentável" (High Contrast Badge) */}
+        {/* 4. Highlight Badge: "Juntos, por um futuro mais sustentável." */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -97,7 +109,7 @@ export default function FinalMessageScreen({ onRestart }) {
             alt="Folha" 
             className="w-5 h-5 sm:w-6 sm:h-6 object-contain drop-shadow-sm flex-shrink-0"
           />
-          <p className="text-[#1A2E1A] font-extrabold text-sm sm:text-base tracking-wide select-none whitespace-nowrap">
+          <p className="text-[#1A2E1A] font-black text-sm sm:text-base tracking-wide select-none whitespace-nowrap">
             Juntos, por um futuro mais sustentável.
           </p>
         </motion.div>
