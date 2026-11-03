@@ -164,7 +164,7 @@ export default function FeedbackScreen({
           ) : (
             /* --- SAD EARTH WITH FLOATING CO2 CLOUDS --- */
             <div className="relative w-full h-full flex items-center justify-center">
-              {/* Sad Earth Globe */}
+              {/* Sad Earth Globe (Face fully visible in the center) */}
               <motion.img
                 initial={{ scale: 0.3, opacity: 0, y: -15 }}
                 animate={{ 
@@ -184,30 +184,32 @@ export default function FeedbackScreen({
                 className="w-48 h-48 sm:w-56 sm:h-56 object-contain drop-shadow-[0_18px_30px_rgba(0,0,0,0.32)] z-20 select-none pointer-events-none"
               />
 
-              {/* CO2 Cloud Left */}
+              {/* CO2 Cloud Left - No canto superior esquerdo do planeta */}
+              <motion.img
+                src="/assets/elements/co2-cloud.png"
+                alt="Nuvem de CO2"
+                animate={{
+                  y: [0, -10, 0],
+                  x: [0, -4, 0],
+                  scale: [0.95, 1.05, 0.95],
+                  opacity: [0.9, 1, 0.9]
+                }}
+                transition={{ repeat: Infinity, duration: 3.2, ease: 'easeInOut' }}
+                className="absolute top-1 -left-3 sm:top-2 sm:-left-4 w-[74px] h-[74px] sm:w-[88px] sm:h-[88px] object-contain z-30 drop-shadow-lg pointer-events-none"
+              />
+
+              {/* CO2 Cloud Right - No canto superior direito do planeta */}
               <motion.img
                 src="/assets/elements/co2-cloud.png"
                 alt="Nuvem de CO2"
                 animate={{
                   y: [0, -12, 0],
-                  scale: [0.96, 1.06, 0.96],
-                  opacity: [0.85, 1, 0.85]
-                }}
-                transition={{ repeat: Infinity, duration: 2.9, ease: 'easeInOut' }}
-                className="absolute top-4 left-0 w-18 h-18 sm:w-22 sm:h-22 object-contain z-30 drop-shadow-lg pointer-events-none"
-              />
-
-              {/* CO2 Cloud Right */}
-              <motion.img
-                src="/assets/elements/co2-cloud.png"
-                alt="Nuvem de CO2"
-                animate={{
-                  y: [0, -14, 0],
-                  scale: [1.06, 0.96, 1.06],
+                  x: [0, 4, 0],
+                  scale: [1.05, 0.95, 1.05],
                   opacity: [0.9, 1, 0.9]
                 }}
-                transition={{ repeat: Infinity, duration: 3.3, delay: 0.5, ease: 'easeInOut' }}
-                className="absolute top-6 right-0 w-18 h-18 sm:w-22 sm:h-22 object-contain z-30 drop-shadow-lg pointer-events-none"
+                transition={{ repeat: Infinity, duration: 3.5, delay: 0.4, ease: 'easeInOut' }}
+                className="absolute top-3 -right-3 sm:top-4 sm:-right-4 w-[74px] h-[74px] sm:w-[88px] sm:h-[88px] object-contain z-30 drop-shadow-lg pointer-events-none"
               />
             </div>
           )}
