@@ -11,14 +11,14 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
     <div className="absolute inset-0 pointer-events-none z-10 select-none overflow-hidden">
       {/* ============================================================== */}
       {/* 1. TOP-LEFT FAN (Leque botânico de 3 folhas no canto superior)  */}
-      {/* As 3 folhas convergem em um único ponto no canto, abrindo em    */}
-      {/* leque perfeito. O talo fica discretamente 8px fora da borda.   */}
+      {/* Deslocado ligeiramente para a esquerda/topo para eliminar o      */}
+      {/* vão de fundo e esconder qualquer vestígio de talo.              */}
       {/* ============================================================== */}
       {showTopLeft && (
         <div className="absolute top-0 left-0 w-44 h-44 pointer-events-none">
           {/* Folha 1: Superior (110°) */}
           <div 
-            className="absolute -top-[98px] -left-[42px] w-[68px] h-[90px]"
+            className="absolute -top-[104px] -left-[50px] w-[68px] h-[90px]"
             style={{ transformOrigin: '50% 100%' }}
           >
             <motion.img
@@ -36,7 +36,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
 
           {/* Folha 3: Lateral (160°) */}
           <div 
-            className="absolute -top-[98px] -left-[42px] w-[68px] h-[90px]"
+            className="absolute -top-[104px] -left-[50px] w-[68px] h-[90px]"
             style={{ transformOrigin: '50% 100%' }}
           >
             <motion.img
@@ -54,7 +54,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
 
           {/* Folha 2: Central diagonal (135° - em destaque à frente) */}
           <div 
-            className="absolute -top-[106px] -left-[45px] w-[74px] h-[98px] z-10"
+            className="absolute -top-[112px] -left-[53px] w-[74px] h-[98px] z-10"
             style={{ transformOrigin: '50% 100%' }}
           >
             <motion.img
@@ -74,13 +74,12 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
 
       {/* ============================================================== */}
       {/* 2. TOP-RIGHT FAN (Leque superior direito - ESPELHO EXATO)       */}
-      {/* Espelho horizontal exato (scaleX: -1) do leque superior esquerdo */}
       {/* ============================================================== */}
       {showTopRight && (
         <div className="absolute top-0 right-0 w-44 h-44 pointer-events-none">
           {/* Folha 1: Superior (espelho de 110°) */}
           <div 
-            className="absolute -top-[98px] -right-[42px] w-[68px] h-[90px]"
+            className="absolute -top-[104px] -right-[50px] w-[68px] h-[90px]"
             style={{ transform: 'scaleX(-1)', transformOrigin: '50% 100%' }}
           >
             <motion.img
@@ -98,7 +97,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
 
           {/* Folha 3: Lateral (espelho de 160°) */}
           <div 
-            className="absolute -top-[98px] -right-[42px] w-[68px] h-[90px]"
+            className="absolute -top-[104px] -right-[50px] w-[68px] h-[90px]"
             style={{ transform: 'scaleX(-1)', transformOrigin: '50% 100%' }}
           >
             <motion.img
@@ -116,7 +115,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
 
           {/* Folha 2: Central diagonal (espelho de 135° - à frente) */}
           <div 
-            className="absolute -top-[106px] -right-[45px] w-[74px] h-[98px] z-10"
+            className="absolute -top-[112px] -right-[53px] w-[74px] h-[98px] z-10"
             style={{ transform: 'scaleX(-1)', transformOrigin: '50% 100%' }}
           >
             <motion.img
@@ -141,7 +140,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
         <div className="absolute bottom-0 left-0 w-44 h-44 pointer-events-none">
           {/* Haste lateral esquerda (20°) */}
           <div 
-            className="absolute -bottom-3 -left-[38px] w-[68px] h-[88px]"
+            className="absolute -bottom-4 -left-[42px] w-[68px] h-[88px]"
             style={{ transformOrigin: '50% 100%' }}
           >
             <motion.img
@@ -159,7 +158,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
 
           {/* Haste inferior (70°) */}
           <div 
-            className="absolute -bottom-3 -left-[38px] w-[68px] h-[88px]"
+            className="absolute -bottom-4 -left-[42px] w-[68px] h-[88px]"
             style={{ transformOrigin: '50% 100%' }}
           >
             <motion.img
@@ -177,7 +176,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
 
           {/* Haste central diagonal (45° - em destaque à frente) */}
           <div 
-            className="absolute -bottom-3 -left-[38px] w-[74px] h-[96px] z-10"
+            className="absolute -bottom-4 -left-[42px] w-[74px] h-[96px] z-10"
             style={{ transformOrigin: '50% 100%' }}
           >
             <motion.img
@@ -202,7 +201,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
         <div className="absolute bottom-0 right-0 w-44 h-44 pointer-events-none">
           {/* Haste lateral direita (espelho de 20°) */}
           <div 
-            className="absolute -bottom-3 -right-[38px] w-[68px] h-[88px]"
+            className="absolute -bottom-4 -right-[42px] w-[68px] h-[88px]"
             style={{ transform: 'scaleX(-1)', transformOrigin: '50% 100%' }}
           >
             <motion.img
@@ -220,7 +219,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
 
           {/* Haste inferior (espelho de 70°) */}
           <div 
-            className="absolute -bottom-3 -right-[38px] w-[68px] h-[88px]"
+            className="absolute -bottom-4 -right-[42px] w-[68px] h-[88px]"
             style={{ transform: 'scaleX(-1)', transformOrigin: '50% 100%' }}
           >
             <motion.img
@@ -238,7 +237,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
 
           {/* Haste central diagonal (espelho de 45° - à frente) */}
           <div 
-            className="absolute -bottom-3 -right-[38px] w-[74px] h-[96px] z-10"
+            className="absolute -bottom-4 -right-[42px] w-[74px] h-[96px] z-10"
             style={{ transform: 'scaleX(-1)', transformOrigin: '50% 100%' }}
           >
             <motion.img
