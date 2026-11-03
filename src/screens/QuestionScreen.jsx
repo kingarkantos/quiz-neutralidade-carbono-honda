@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Stepper from '../components/Stepper';
 import CornerFoliage from '../components/CornerFoliage';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X, Check } from 'lucide-react';
 
 export default function QuestionScreen({
   question,
@@ -13,11 +13,39 @@ export default function QuestionScreen({
   onBack
 }) {
   const [selectedOptionId, setSelectedOptionId] = useState(null);
+  const [evaluationState, setEvaluationState] = useState(null); // null | 'wrong' | 'correct'
+  const timerRef = useRef(null);
+
+  // Clean timer & reset selection when question changes or unmounts
+  useEffect(() => {
+    setSelectedOptionId(null);
+    setEvaluationState(null);
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, [question?.id]);
 
   const handleContinue = () => {
-    if (!selectedOptionId) return;
+    if (!selectedOptionId || evaluationState) return;
     const option = question.options.find(o => o.id === selectedOptionId);
-    onAnswer(option);
+    if (!option) return;
+
+    const isCorrect = option.id === question.correctOptionId || option.isCorrect;
+
+    if (!isCorrect) {
+      setEvaluationState('wrong');
+      // Espera 2 segundos com o card em vermelho antes de ir para FeedbackScreen
+      timerRef.current = setTimeout(() => {
+        onAnswer(option);
+      }, 2000);
+    } else {
+      setEvaluationState('correct');
+      timerRef.current = setTimeout(() => {
+        onAnswer(option);
+      }, 700);
+    }
   };
 
   return (
@@ -57,43 +85,106 @@ export default function QuestionScreen({
         <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5 w-full">
           {question.options.map((opt, idx) => {
             const isSelected = selectedOptionId === opt.id;
+            const isThisWrong = isSelected && evaluationState === 'wrong';
+            const isThisCorrect = isSelected && evaluationState === 'correct';
 
             return (
               <motion.div
                 key={opt.id}
                 initial={{ opacity: 0, scale: 0.88, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ 
-                  type: 'spring', 
-                  stiffness: 320, 
-                  damping: 24, 
-                  delay: 0.05 + idx * 0.08 
+                animate={
+                  isThisWrong
+                    ? {
+                        opacity: 1,
+                        scale: 1.02,
+                        y: -4,
+                        x: [-6, 6, -5, 5, -2, 2, 0]
+                      }
+                    : isThisCorrect
+                    ? {
+                        opacity: 1,
+                        scale: [1, 1.04, 1.02],
+                        y: -4,
+                        x: 0
+                      }
+                    : {
+                        opacity: 1,
+                        scale: isSelected ? 1.02 : 1,
+                        y: isSelected ? -4 : 0,
+                        x: 0
+                      }
+                }
+                transition={
+                  isThisWrong
+                    ? { x: { duration: 0.45, ease: 'easeInOut' } }
+                    : isThisCorrect
+                    ? { scale: { duration: 0.3 } }
+                    : { 
+                        type: 'spring', 
+                        stiffness: 320, 
+                        damping: 24, 
+                        delay: evaluationState ? 0 : 0.05 + idx * 0.08 
+                      }
+                }
+                whileHover={!evaluationState ? { scale: 1.02 } : {}}
+                whileTap={!evaluationState ? { scale: 0.97 } : {}}
+                onClick={() => {
+                  if (!evaluationState) {
+                    setSelectedOptionId(opt.id);
+                  }
                 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={() => setSelectedOptionId(opt.id)}
-                className={`card-quiz rounded-[18px] sm:rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between cursor-pointer select-none transition-all duration-200 h-[175px] xs:h-[195px] sm:h-[235px] ${
-                  isSelected ? 'selected' : ''
+                className={`card-quiz rounded-[18px] sm:rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between select-none transition-all duration-200 h-[175px] xs:h-[195px] sm:h-[235px] ${
+                  evaluationState ? 'cursor-default' : 'cursor-pointer'
+                } ${
+                  isThisWrong
+                    ? 'wrong'
+                    : isThisCorrect
+                    ? 'correct'
+                    : isSelected
+                    ? 'selected'
+                    : ''
                 }`}
               >
                 {/* Header of Card: Letter Badge + Text */}
                 <div className="flex items-start space-x-1.5 sm:space-x-2">
-                  <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex-shrink-0 flex items-center justify-center font-bold text-xs sm:text-sm shadow-sm transition-colors ${
-                    isSelected ? 'bg-[#2EB85C] text-white' : 'bg-[#1C3B24] text-white'
-                  }`}>
-                    {opt.id}
+                  <div
+                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex-shrink-0 flex items-center justify-center font-bold text-xs sm:text-sm shadow-sm transition-all duration-200 ${
+                      isThisWrong
+                        ? 'bg-red-600 text-white shadow-[0_0_12px_rgba(220,38,38,0.5)] scale-105'
+                        : isThisCorrect
+                        ? 'bg-[#2EB85C] text-white shadow-[0_0_12px_rgba(46,184,92,0.5)] scale-105'
+                        : isSelected
+                        ? 'bg-[#2EB85C] text-white'
+                        : 'bg-[#1C3B24] text-white'
+                    }`}
+                  >
+                    {isThisWrong ? (
+                      <X className="w-4 h-4 stroke-[3]" />
+                    ) : isThisCorrect ? (
+                      <Check className="w-4 h-4 stroke-[3]" />
+                    ) : (
+                      opt.id
+                    )}
                   </div>
-                  <p className="text-[#1A2E1A] font-semibold text-xs sm:text-sm leading-tight pt-0.5 line-clamp-3">
+                  <p
+                    className={`font-semibold text-xs sm:text-sm leading-tight pt-0.5 line-clamp-3 transition-colors ${
+                      isThisWrong ? 'text-red-900 font-bold' : 'text-[#1A2E1A]'
+                    }`}
+                  >
                     {opt.text}
                   </p>
                 </div>
 
                 {/* 3D Image inside Card */}
-                <div className="relative w-full flex-1 flex items-center justify-center overflow-hidden rounded-xl mt-1 sm:mt-2 bg-[#f4ece1]/50">
+                <div
+                  className={`relative w-full flex-1 flex items-center justify-center overflow-hidden rounded-xl mt-1 sm:mt-2 transition-colors ${
+                    isThisWrong ? 'bg-red-100/50' : isThisCorrect ? 'bg-green-100/50' : 'bg-[#f4ece1]/50'
+                  }`}
+                >
                   <img
                     src={opt.image}
                     alt={opt.text}
-                    className="w-full h-full object-contain max-h-[105px] xs:max-h-[120px] sm:max-h-[140px] drop-shadow-sm pointer-events-none transition-transform duration-300 group-hover:scale-105"
+                    className="w-full h-full object-contain max-h-[105px] xs:max-h-[120px] sm:max-h-[140px] drop-shadow-sm pointer-events-none transition-transform duration-300"
                   />
                 </div>
               </motion.div>
@@ -106,10 +197,13 @@ export default function QuestionScreen({
       <div className="relative z-10 w-full px-5 sm:px-6 pb-5 sm:pb-8 pt-2 max-w-xl mx-auto flex items-center justify-between space-x-3 sm:space-x-4 flex-shrink-0">
         {/* Back Button */}
         <motion.button
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.96 }}
+          whileHover={!evaluationState ? { scale: 1.03 } : {}}
+          whileTap={!evaluationState ? { scale: 0.96 } : {}}
           onClick={onBack}
-          className="flex-1 py-3.5 sm:py-4 px-3 sm:px-4 rounded-2xl btn-tactile-brown text-white font-bold text-sm sm:text-lg flex items-center justify-center space-x-1.5 uppercase select-none tracking-wide"
+          disabled={Boolean(evaluationState)}
+          className={`flex-1 py-3.5 sm:py-4 px-3 sm:px-4 rounded-2xl btn-tactile-brown text-white font-bold text-sm sm:text-lg flex items-center justify-center space-x-1.5 uppercase select-none tracking-wide transition-opacity duration-200 ${
+            evaluationState ? 'opacity-40 cursor-not-allowed' : ''
+          }`}
         >
           <ChevronLeft className="w-5 h-5" />
           <span>VOLTAR</span>
@@ -117,18 +211,36 @@ export default function QuestionScreen({
 
         {/* Continue Button */}
         <motion.button
-          whileHover={selectedOptionId ? { scale: 1.03 } : {}}
-          whileTap={selectedOptionId ? { scale: 0.96 } : {}}
+          whileHover={selectedOptionId && !evaluationState ? { scale: 1.03 } : {}}
+          whileTap={selectedOptionId && !evaluationState ? { scale: 0.96 } : {}}
           onClick={handleContinue}
-          disabled={!selectedOptionId}
+          disabled={!selectedOptionId || Boolean(evaluationState)}
           className={`flex-[1.4] py-3.5 sm:py-4 px-3 sm:px-4 rounded-2xl text-white font-black text-sm sm:text-lg flex items-center justify-center space-x-1.5 uppercase select-none tracking-wider transition-all duration-200 ${
-            selectedOptionId 
+            evaluationState === 'wrong'
+              ? 'bg-red-600 shadow-[0_6px_0_#991b1b,0_12px_24px_rgba(220,38,38,0.4)] cursor-wait'
+              : evaluationState === 'correct'
+              ? 'bg-[#2EB85C] shadow-[0_6px_0_#1e7e34,0_12px_24px_rgba(46,184,92,0.4)] cursor-wait'
+              : selectedOptionId 
               ? 'btn-tactile-green anim-shimmer cursor-pointer' 
               : 'bg-[#1C3B24]/40 cursor-not-allowed opacity-60'
           }`}
         >
-          <span>CONTINUAR</span>
-          <ChevronRight className="w-5 h-5" />
+          {evaluationState === 'wrong' ? (
+            <>
+              <X className="w-5 h-5 stroke-[3]" />
+              <span>INCORRETO</span>
+            </>
+          ) : evaluationState === 'correct' ? (
+            <>
+              <Check className="w-5 h-5 stroke-[3]" />
+              <span>CORRETO!</span>
+            </>
+          ) : (
+            <>
+              <span>CONTINUAR</span>
+              <ChevronRight className="w-5 h-5" />
+            </>
+          )}
         </motion.button>
       </div>
     </div>
