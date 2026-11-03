@@ -64,7 +64,7 @@ export default function FinalMessageScreen({ onRestart }) {
             }}
             src="/assets/logos/tripla-acao.png"
             alt="Tripla Ação Para o Zero"
-            className="h-16 sm:h-26 max-w-[220px] sm:max-w-[320px] w-auto object-contain drop-shadow-xl select-none pointer-events-none"
+            className="h-20 sm:h-28 max-w-[220px] sm:max-w-[280px] w-auto object-contain drop-shadow-xl select-none pointer-events-none"
           />
         </motion.div>
 

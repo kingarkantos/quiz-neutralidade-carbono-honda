@@ -32,7 +32,7 @@ export default function Header({
           <img
             src="/assets/logos/tripla-acao.png"
             alt="Tripla Ação Para o Zero"
-            className="h-7 sm:h-9 object-contain drop-shadow-md select-none pointer-events-none"
+            className="h-10 sm:h-12 w-auto object-contain drop-shadow-md select-none pointer-events-none"
           />
         </motion.div>
       ) : (
