@@ -119,39 +119,39 @@ export default function LpGameBoardScreen({ onFinish }) {
         </p>
       </div>
 
-      {/* Spotlight 3D Preview in the empty upper space */}
-      <div className="relative z-10 w-full px-4 flex flex-col items-center justify-center h-24 xs:h-28 sm:h-32 my-1 flex-shrink-0">
+      {/* Spotlight 3D Preview - Perfectly centered in the entire upper space */}
+      <div className="relative z-10 flex-1 min-h-[140px] xs:min-h-[160px] sm:min-h-[190px] w-full px-4 flex flex-col items-center justify-center my-auto select-none">
         <AnimatePresence mode="wait">
           {activeItem ? (
             <motion.div
               key={activeItem.id}
-              initial={{ scale: 0.65, opacity: 0, y: 10 }}
+              initial={{ scale: 0.7, opacity: 0, y: 12 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.75, opacity: 0, y: -6 }}
-              transition={{ type: 'spring', stiffness: 360, damping: 22 }}
+              exit={{ scale: 0.8, opacity: 0, y: -8 }}
+              transition={{ type: 'spring', stiffness: 340, damping: 22 }}
               className="relative flex flex-col items-center justify-center select-none"
             >
               {/* Radial Eco Aura */}
               <motion.div
-                animate={{ scale: [0.95, 1.2, 0.95], opacity: [0.35, 0.65, 0.35] }}
+                animate={{ scale: [0.95, 1.25, 0.95], opacity: [0.35, 0.7, 0.35] }}
                 transition={{ repeat: Infinity, duration: 3.2, ease: 'easeInOut' }}
-                className="absolute w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-[#3cd426]/35 blur-xl -z-10 pointer-events-none"
+                className="absolute w-36 h-36 xs:w-44 xs:h-44 sm:w-56 sm:h-56 rounded-full bg-[#3cd426]/35 blur-2xl -z-10 pointer-events-none"
               />
 
-              {/* 3D Highlighted Illustration */}
+              {/* 3D Highlighted Illustration - Much larger, perfectly centered, no distortion */}
               <motion.img
-                animate={{ y: [0, -4, 0] }}
+                animate={{ y: [0, -6, 0] }}
                 transition={{ repeat: Infinity, duration: 3.4, ease: 'easeInOut' }}
                 src={activeItem.actionThumb}
                 alt={activeItem.actionTitle}
-                className="h-16 xs:h-20 sm:h-24 w-auto object-contain drop-shadow-[0_12px_22px_rgba(0,0,0,0.3)] pointer-events-none"
+                className="h-24 xs:h-30 sm:h-38 max-h-[35vh] w-auto object-contain drop-shadow-[0_16px_28px_rgba(0,0,0,0.32)] pointer-events-none"
               />
 
               {/* Active Item Title Pill */}
               <motion.span 
                 initial={{ opacity: 0, y: 4 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-1 bg-white/95 backdrop-blur-sm text-[#1C3B24] font-black text-[10px] sm:text-xs uppercase px-3.5 py-0.5 rounded-full shadow-md border border-[#2EB85C]/35"
+                className="mt-2 bg-white/95 backdrop-blur-sm text-[#1C3B24] font-black text-xs sm:text-sm uppercase px-4 py-1 rounded-full shadow-md border border-[#2EB85C]/35"
               >
                 {activeItem.actionTitle}
               </motion.span>
@@ -162,16 +162,16 @@ export default function LpGameBoardScreen({ onFinish }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.65 }}
               exit={{ opacity: 0 }}
-              className="flex flex-col items-center justify-center text-center select-none py-1"
+              className="flex flex-col items-center justify-center text-center select-none py-2"
             >
-              <div className="w-12 h-12 rounded-full border-2 border-dashed border-[#2EB85C]/40 flex items-center justify-center bg-[#FAF5EC]/60 mb-1 shadow-sm">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-dashed border-[#2EB85C]/45 flex items-center justify-center bg-[#FAF5EC]/70 mb-1.5 shadow-sm">
                 <img
                   src="/assets/jogo2/ELEMENTOS/TELA INICIAL/ciclo-sustentavel-entre-maquina-e-natureza-1.png"
                   alt=""
-                  className="w-8 h-8 object-contain opacity-75 pointer-events-none"
+                  className="w-9 h-9 sm:w-11 sm:h-11 object-contain opacity-75 pointer-events-none"
                 />
               </div>
-              <span className="text-[#3b4f3c] font-bold text-[10px] sm:text-xs">
+              <span className="text-[#3b4f3c] font-bold text-[11px] sm:text-xs">
                 Toque em uma opção para destacar
               </span>
             </motion.div>
@@ -179,8 +179,8 @@ export default function LpGameBoardScreen({ onFinish }) {
         </AnimatePresence>
       </div>
 
-      {/* Main Board: 2 Columns */}
-      <div className="relative z-10 flex-1 min-h-0 px-3 sm:px-4 py-1 max-w-xl mx-auto w-full flex items-center justify-between gap-3 sm:gap-4 my-auto">
+      {/* Main Board: 2 Columns - Anchored comfortably at the lower zone */}
+      <div className="relative z-10 flex-shrink-0 px-3 sm:px-4 pt-1 pb-2 sm:pb-3 max-w-xl mx-auto w-full flex items-center justify-between gap-3 sm:gap-4">
         {/* Left Column: AÇÕES */}
         <div className="flex-1 flex flex-col space-y-2 sm:space-y-2.5 min-w-0">
           <div className="text-center font-black text-xs sm:text-sm text-[#1C3B24] uppercase tracking-wider pb-0.5">
