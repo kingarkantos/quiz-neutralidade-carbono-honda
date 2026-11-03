@@ -40,26 +40,27 @@ export default function LpFinishScreen({ onRestart }) {
           {/* Radial Aura */}
           <div className="absolute w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-[#3cd426]/40 blur-3xl pointer-events-none" />
 
-          {/* Floating Leaves decoration around the disk */}
+          {/* Floating Leaves decoration BEHIND the disk (z-10) */}
           <motion.img
-            animate={{ rotate: [-8, 8, -8], y: [0, -6, 0] }}
+            animate={{ rotate: [-10, 4, -10], y: [0, -6, 0], scale: [1, 1.05, 1] }}
             transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut' }}
             src="/assets/jogo2/ELEMENTOS/TELA FINAL/folha-verde-curvada-isolada-2.png"
             alt="Folha"
-            className="absolute -top-1 -left-1 w-18 h-18 sm:w-22 sm:h-22 object-contain pointer-events-none z-20"
+            className="absolute -top-4 -left-4 xs:-top-5 xs:-left-5 sm:-top-7 sm:-left-7 w-26 h-26 xs:w-32 xs:h-32 sm:w-36 sm:h-36 object-contain pointer-events-none z-10"
           />
           <motion.img
-            animate={{ rotate: [10, -10, 10], y: [0, 6, 0] }}
+            animate={{ rotate: [8, -8, 8], y: [0, 6, 0], scale: [1, 1.05, 1] }}
             transition={{ repeat: Infinity, duration: 4.0, delay: 0.2, ease: 'easeInOut' }}
             src="/assets/jogo2/ELEMENTOS/TELA FINAL/folha-verde-alongada-a-esquerda-4.png"
             alt="Folha"
-            className="absolute -bottom-1 -right-1 w-18 h-18 sm:w-22 sm:h-22 object-contain pointer-events-none z-20"
+            className="absolute -bottom-4 -right-4 xs:-bottom-5 xs:-right-5 sm:-bottom-7 sm:-right-7 w-26 h-26 xs:w-32 xs:h-32 sm:w-36 sm:h-36 object-contain pointer-events-none z-10"
           />
 
+          {/* Green Check Disk - IN FRONT OF LEAVES (z-20) */}
           <img
             src="/assets/jogo2/ELEMENTOS/TELA FINAL/disco-verde-com-marca-de-verificacao-branca-1.png"
             alt="Concluído com Sucesso"
-            className="w-48 h-48 xs:w-56 xs:h-56 sm:w-64 sm:h-64 object-contain drop-shadow-2xl pointer-events-none select-none z-10"
+            className="w-48 h-48 xs:w-56 xs:h-56 sm:w-64 sm:h-64 object-contain drop-shadow-2xl pointer-events-none select-none z-20"
           />
         </motion.div>
 
@@ -86,7 +87,7 @@ export default function LpFinishScreen({ onRestart }) {
           className="w-full bg-[#FAF5EC]/95 backdrop-blur-sm rounded-[22px] p-4 sm:p-5 shadow-3d-card border border-white/70 my-2"
         >
           <p className="text-[#1A2E1A] font-medium text-xs sm:text-sm leading-relaxed">
-            A circulação de recursos faz parte de um ciclo que reduz impactos ambientais e valoriza os materiais, contribuindo diretamente para um futuro de zero emissões de carbono.
+            A circulação dos recursos faz parte de um ciclo que reduz os impactos ambientais, valoriza os materiais e preserva os recursos naturais contribuindo para um futuro mais sustentável
           </p>
         </motion.div>
       </div>
