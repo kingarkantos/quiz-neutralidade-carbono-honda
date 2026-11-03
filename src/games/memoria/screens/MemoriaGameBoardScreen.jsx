@@ -121,7 +121,7 @@ export default function MemoriaGameBoardScreen({ onFinish }) {
   return (
     <div className="relative w-full h-full flex flex-col justify-between overflow-hidden bg-[#ecdcc1]">
       {/* Background Image */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-bottom pointer-events-none z-0 opacity-70"
         style={{ backgroundImage: `url('/assets/jogo3/FUNDOS/slice-1-1.png')` }}
       />
@@ -142,9 +142,8 @@ export default function MemoriaGameBoardScreen({ onFinish }) {
               {[0, 1, 2, 3, 4].map((idx) => (
                 <div
                   key={idx}
-                  className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${
-                    idx < matchedPairIds.size ? 'bg-[#2EB85C]' : 'bg-[#cfc3a7]'
-                  }`}
+                  className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${idx < matchedPairIds.size ? 'bg-[#2EB85C]' : 'bg-[#cfc3a7]'
+                    }`}
                 />
               ))}
             </div>
@@ -225,7 +224,7 @@ export default function MemoriaGameBoardScreen({ onFinish }) {
 // Individual 3D Flip Card Component
 function MemoryCard({ card, isFlipped, isMatched, onClick }) {
   return (
-    <div 
+    <div
       className="relative w-[78px] h-[112px] xs:w-[90px] xs:h-[128px] sm:w-[110px] sm:h-[154px] cursor-pointer select-none perspective-[1000px] flex-shrink-0"
       onClick={onClick}
     >
@@ -236,7 +235,7 @@ function MemoryCard({ card, isFlipped, isMatched, onClick }) {
         style={{ transformStyle: 'preserve-3d' }}
       >
         {/* CARD BACK (Embossed Leaf Image) */}
-        <div 
+        <div
           className="absolute inset-0 w-full h-full rounded-2xl overflow-hidden shadow-md border-2 border-white backface-hidden flex items-center justify-center bg-[#1C3B24]"
           style={{ backfaceVisibility: 'hidden' }}
         >
@@ -248,13 +247,12 @@ function MemoryCard({ card, isFlipped, isMatched, onClick }) {
         </div>
 
         {/* CARD FRONT (Photo + Title) */}
-        <div 
-          className={`absolute inset-0 w-full h-full rounded-2xl overflow-hidden shadow-lg border-2 p-1.5 xs:p-2 sm:p-2.5 flex flex-col justify-between items-center bg-[#FAF5EC] text-center backface-hidden ${
-            isMatched 
-              ? 'border-[#2EB85C] ring-2 ring-[#2EB85C]/40 bg-[#FAF5EC]' 
+        <div
+          className={`absolute inset-0 w-full h-full rounded-2xl overflow-hidden shadow-lg border-2 p-1.5 xs:p-2 sm:p-2.5 flex flex-col justify-between items-center bg-[#FAF5EC] text-center backface-hidden ${isMatched
+              ? 'border-[#2EB85C] ring-2 ring-[#2EB85C]/40 bg-[#FAF5EC]'
               : 'border-white'
-          }`}
-          style={{ 
+            }`}
+          style={{
             backfaceVisibility: 'hidden',
             transform: 'rotateY(180deg)'
           }}

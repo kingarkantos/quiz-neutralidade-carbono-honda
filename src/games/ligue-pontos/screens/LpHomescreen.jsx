@@ -29,12 +29,21 @@ export default function LpHomescreen({ onStart }) {
             initial={{ scale: 0.85, opacity: 0, y: -15 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             transition={{ type: 'spring', stiffness: 280, damping: 18, delay: 0.1 }}
-            className="flex flex-col items-center my-0.5"
+            className="relative flex flex-col items-center my-0.5"
           >
-            <img
+            {/* Eco Aura Glow */}
+            <div className="absolute w-64 h-32 rounded-full bg-[#3cd426]/30 blur-2xl -z-10 pointer-events-none" />
+
+            <motion.img
+              animate={{
+                y: [0, -6, 0],
+                rotate: [-0.8, 0.8, -0.8],
+                scale: [1, 1.02, 1]
+              }}
+              transition={{ repeat: Infinity, duration: 4.6, ease: 'easeInOut' }}
               src="/assets/jogo2/ELEMENTOS/TELA INICIAL/logo-3d-de-circulacao-de-recursos-4.png"
               alt="Circulação de Recursos - Ligue os Pontos"
-              className="w-full max-w-[280px] sm:max-w-[330px] object-contain drop-shadow-md pointer-events-none select-none"
+              className="w-full max-w-[290px] sm:max-w-[340px] object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.18)] pointer-events-none select-none"
             />
           </motion.div>
 
