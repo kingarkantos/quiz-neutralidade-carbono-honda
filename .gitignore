@@ -28,3 +28,5 @@ dist-ssr
 
 # Temp scripts
 check_slices.ps1
+
+.vercel

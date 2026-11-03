@@ -7,217 +7,258 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
   const showTopLeft = corners.includes('top-left');
   const showTopRight = corners.includes('top-right');
 
+  // Leaf dimensions:
+  // Base size: 70px width x 92px height (center leaf: 76px x 100px)
+  // In folha.png, stem is at bottom-center: (50%, 100%).
+
   return (
-    <div className="absolute inset-0 pointer-events-none z-30 select-none overflow-visible">
+    <div className="absolute inset-0 pointer-events-none z-30 select-none overflow-hidden">
       {/* ============================================================== */}
-      {/* TOP-LEFT FAN (LEQUE DE 3 FOLHAS NO CANTO SUPERIOR ESQUERDO)     */}
-      {/* Todas as 3 folhas saem do mesmo vértice (0,0) em leque de 30°   */}
+      {/* 1. TOP-LEFT FAN (Leque no canto superior esquerdo)               */}
+      {/* Hastes convergem no vértice superior esquerdo, apontando para  */}
+      {/* dentro da tela (para baixo e para a direita).                   */}
       {/* ============================================================== */}
       {showTopLeft && (
-        <div className="absolute top-0 left-0 w-36 h-36 sm:w-44 sm:h-44 pointer-events-none">
-          {/* Folha 1 do leque: Haste superior (108°) */}
-          <motion.img
-            src="/assets/elements/folha.png"
-            alt="Folha leque"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{
-              scale: [0.92, 0.98, 0.92],
-              opacity: 0.9,
-              rotate: [108, 102, 108]
-            }}
-            transition={{
-              scale: { duration: 0.4 },
-              opacity: { duration: 0.3 },
-              rotate: { repeat: Infinity, duration: 4.2, ease: "easeInOut" },
-              default: { repeat: Infinity, duration: 4.2, ease: "easeInOut" }
-            }}
-            className="absolute top-0 left-0 w-16 h-20 sm:w-18 sm:h-24 object-contain origin-top-left drop-shadow-sm"
-          />
+        <div className="absolute top-0 left-0 w-48 h-48 pointer-events-none">
+          {/* Haste 1: Folha próxima ao topo (115°) */}
+          <div 
+            className="absolute -top-[86px] -left-[31px] w-[68px] h-[90px]"
+            style={{ transformOrigin: '50% 100%' }}
+          >
+            <motion.img
+              src="/assets/elements/folha.png"
+              alt="Folha leque"
+              animate={{
+                scale: [0.93, 0.99, 0.93],
+                rotate: [115, 109, 115]
+              }}
+              transition={{ repeat: Infinity, duration: 4.2, ease: "easeInOut" }}
+              style={{ transformOrigin: '50% 100%' }}
+              className="w-full h-full object-contain drop-shadow-md opacity-95"
+            />
+          </div>
 
-          {/* Folha 3 do leque: Haste inferior (168°) */}
-          <motion.img
-            src="/assets/elements/folha.png"
-            alt="Folha leque"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{
-              scale: [0.92, 0.98, 0.92],
-              opacity: 0.9,
-              rotate: [168, 174, 168]
-            }}
-            transition={{
-              scale: { duration: 0.4, delay: 0.1 },
-              opacity: { duration: 0.3, delay: 0.1 },
-              rotate: { repeat: Infinity, duration: 4.2, ease: "easeInOut" },
-              default: { repeat: Infinity, duration: 4.2, ease: "easeInOut" }
-            }}
-            className="absolute top-0 left-0 w-16 h-20 sm:w-18 sm:h-24 object-contain origin-top-left drop-shadow-sm"
-          />
+          {/* Haste 3: Folha lateral esquerda (160°) */}
+          <div 
+            className="absolute -top-[86px] -left-[31px] w-[68px] h-[90px]"
+            style={{ transformOrigin: '50% 100%' }}
+          >
+            <motion.img
+              src="/assets/elements/folha.png"
+              alt="Folha leque"
+              animate={{
+                scale: [0.93, 0.99, 0.93],
+                rotate: [160, 166, 160]
+              }}
+              transition={{ repeat: Infinity, duration: 4.2, delay: 0.15, ease: "easeInOut" }}
+              style={{ transformOrigin: '50% 100%' }}
+              className="w-full h-full object-contain drop-shadow-md opacity-95"
+            />
+          </div>
 
-          {/* Folha 2 do leque: Haste central diagonal (138° - Destaque em cima das outras) */}
-          <motion.img
-            src="/assets/elements/folha.png"
-            alt="Folha leque"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{
-              scale: [1.02, 1.1, 1.02],
-              opacity: 1,
-              rotate: [138, 141, 138]
-            }}
-            transition={{
-              scale: { duration: 0.45, delay: 0.05 },
-              opacity: { duration: 0.3, delay: 0.05 },
-              rotate: { repeat: Infinity, duration: 4.2, ease: "easeInOut" },
-              default: { repeat: Infinity, duration: 4.2, ease: "easeInOut" }
-            }}
-            className="absolute top-0 left-0 w-18 h-22 sm:w-21 sm:h-26 object-contain origin-top-left drop-shadow-lg z-10"
-          />
+          {/* Haste 2: Folha central diagonal (138° - em destaque no meio) */}
+          <div 
+            className="absolute -top-[94px] -left-[35px] w-[76px] h-[100px] z-10"
+            style={{ transformOrigin: '50% 100%' }}
+          >
+            <motion.img
+              src="/assets/elements/folha.png"
+              alt="Folha leque"
+              animate={{
+                scale: [1.02, 1.08, 1.02],
+                rotate: [138, 142, 138]
+              }}
+              transition={{ repeat: Infinity, duration: 4.2, delay: 0.08, ease: "easeInOut" }}
+              style={{ transformOrigin: '50% 100%' }}
+              className="w-full h-full object-contain drop-shadow-lg"
+            />
+          </div>
         </div>
       )}
 
       {/* ============================================================== */}
-      {/* TOP-RIGHT FAN (LEQUE DE 3 FOLHAS NO CANTO SUPERIOR DIREITO)     */}
-      {/* Espelhado simetricamente a partir do vértice (top-0, right-0)    */}
+      {/* 2. TOP-RIGHT FAN (Leque no canto superior direito - ESPELHO)    */}
+      {/* Espelho horizontal exato (scaleX: -1) do leque superior esquerdo */}
       {/* ============================================================== */}
       {showTopRight && (
-        <div className="absolute top-0 right-0 w-36 h-36 sm:w-44 sm:h-44 pointer-events-none">
-          {/* Folha 1 do leque: Haste superior (-108°) */}
-          <motion.img
-            src="/assets/elements/folha.png"
-            alt="Folha leque"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{
-              scale: [0.92, 0.98, 0.92],
-              opacity: 0.9,
-              rotate: [-108, -102, -108]
-            }}
-            transition={{
-              scale: { duration: 0.4 },
-              opacity: { duration: 0.3 },
-              rotate: { repeat: Infinity, duration: 4.2, ease: "easeInOut" },
-              default: { repeat: Infinity, duration: 4.2, ease: "easeInOut" }
-            }}
-            style={{ transform: 'scaleX(-1)' }}
-            className="absolute top-0 right-0 w-16 h-20 sm:w-18 sm:h-24 object-contain origin-top-right drop-shadow-sm"
-          />
+        <div className="absolute top-0 right-0 w-48 h-48 pointer-events-none">
+          {/* Haste 1: Folha próxima ao topo (espelho) */}
+          <div 
+            className="absolute -top-[86px] -right-[31px] w-[68px] h-[90px]"
+            style={{ transform: 'scaleX(-1)', transformOrigin: '50% 100%' }}
+          >
+            <motion.img
+              src="/assets/elements/folha.png"
+              alt="Folha leque"
+              animate={{
+                scale: [0.93, 0.99, 0.93],
+                rotate: [115, 109, 115]
+              }}
+              transition={{ repeat: Infinity, duration: 4.2, ease: "easeInOut" }}
+              style={{ transformOrigin: '50% 100%' }}
+              className="w-full h-full object-contain drop-shadow-md opacity-95"
+            />
+          </div>
 
-          {/* Folha 3 do leque: Haste inferior (-168°) */}
-          <motion.img
-            src="/assets/elements/folha.png"
-            alt="Folha leque"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{
-              scale: [0.92, 0.98, 0.92],
-              opacity: 0.9,
-              rotate: [-168, -174, -168]
-            }}
-            transition={{
-              scale: { duration: 0.4, delay: 0.1 },
-              opacity: { duration: 0.3, delay: 0.1 },
-              rotate: { repeat: Infinity, duration: 4.2, ease: "easeInOut" },
-              default: { repeat: Infinity, duration: 4.2, ease: "easeInOut" }
-            }}
-            style={{ transform: 'scaleX(-1)' }}
-            className="absolute top-0 right-0 w-16 h-20 sm:w-18 sm:h-24 object-contain origin-top-right drop-shadow-sm"
-          />
+          {/* Haste 3: Folha lateral direita (espelho) */}
+          <div 
+            className="absolute -top-[86px] -right-[31px] w-[68px] h-[90px]"
+            style={{ transform: 'scaleX(-1)', transformOrigin: '50% 100%' }}
+          >
+            <motion.img
+              src="/assets/elements/folha.png"
+              alt="Folha leque"
+              animate={{
+                scale: [0.93, 0.99, 0.93],
+                rotate: [160, 166, 160]
+              }}
+              transition={{ repeat: Infinity, duration: 4.2, delay: 0.15, ease: "easeInOut" }}
+              style={{ transformOrigin: '50% 100%' }}
+              className="w-full h-full object-contain drop-shadow-md opacity-95"
+            />
+          </div>
 
-          {/* Folha 2 do leque: Haste central diagonal (-138° - Destaque em cima) */}
-          <motion.img
-            src="/assets/elements/folha.png"
-            alt="Folha leque"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{
-              scale: [1.02, 1.1, 1.02],
-              opacity: 1,
-              rotate: [-138, -141, -138]
-            }}
-            transition={{
-              scale: { duration: 0.45, delay: 0.05 },
-              opacity: { duration: 0.3, delay: 0.05 },
-              rotate: { repeat: Infinity, duration: 4.2, ease: "easeInOut" },
-              default: { repeat: Infinity, duration: 4.2, ease: "easeInOut" }
-            }}
-            style={{ transform: 'scaleX(-1)' }}
-            className="absolute top-0 right-0 w-18 h-22 sm:w-21 sm:h-26 object-contain origin-top-right drop-shadow-lg z-10"
-          />
+          {/* Haste 2: Folha central diagonal (espelho) */}
+          <div 
+            className="absolute -top-[94px] -right-[35px] w-[76px] h-[100px] z-10"
+            style={{ transform: 'scaleX(-1)', transformOrigin: '50% 100%' }}
+          >
+            <motion.img
+              src="/assets/elements/folha.png"
+              alt="Folha leque"
+              animate={{
+                scale: [1.02, 1.08, 1.02],
+                rotate: [138, 142, 138]
+              }}
+              transition={{ repeat: Infinity, duration: 4.2, delay: 0.08, ease: "easeInOut" }}
+              style={{ transformOrigin: '50% 100%' }}
+              className="w-full h-full object-contain drop-shadow-lg"
+            />
+          </div>
         </div>
       )}
 
       {/* ============================================================== */}
-      {/* BOTTOM-LEFT FAN (LEQUE NO CANTO INFERIOR ESQUERDO)             */}
+      {/* 3. BOTTOM-LEFT FAN (Leque no canto inferior esquerdo)           */}
+      {/* Aprovado pelo usuário ("esse ficou bom")                        */}
       {/* ============================================================== */}
       {showBottomLeft && (
-        <div className="absolute bottom-0 left-0 w-32 h-32 sm:w-36 sm:h-36 pointer-events-none">
-          <motion.img
-            src="/assets/elements/folha.png"
-            alt="Folha leque"
-            animate={{
-              scale: [0.92, 0.98, 0.92],
-              rotate: [-15, -10, -15]
-            }}
-            transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
-            className="absolute bottom-0 left-0 w-15 h-18 sm:w-17 sm:h-20 object-contain origin-bottom-left drop-shadow-sm opacity-90"
-          />
-          <motion.img
-            src="/assets/elements/folha.png"
-            alt="Folha leque"
-            animate={{
-              scale: [0.92, 0.98, 0.92],
-              rotate: [45, 50, 45]
-            }}
-            transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
-            className="absolute bottom-0 left-0 w-15 h-18 sm:w-17 sm:h-20 object-contain origin-bottom-left drop-shadow-sm opacity-90"
-          />
-          <motion.img
-            src="/assets/elements/folha.png"
-            alt="Folha leque"
-            animate={{
-              scale: [1.02, 1.08, 1.02],
-              rotate: [15, 20, 15]
-            }}
-            transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
-            className="absolute bottom-0 left-0 w-16 h-20 sm:w-19 sm:h-22 object-contain origin-bottom-left drop-shadow-md z-10"
-          />
+        <div className="absolute bottom-0 left-0 w-48 h-48 pointer-events-none">
+          {/* Haste lateral esquerda (20°) */}
+          <div 
+            className="absolute -bottom-2 -left-[35px] w-[68px] h-[88px]"
+            style={{ transformOrigin: '50% 100%' }}
+          >
+            <motion.img
+              src="/assets/elements/folha.png"
+              alt="Folha leque"
+              animate={{
+                scale: [0.92, 0.98, 0.92],
+                rotate: [20, 14, 20]
+              }}
+              transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
+              style={{ transformOrigin: '50% 100%' }}
+              className="w-full h-full object-contain drop-shadow-sm opacity-90"
+            />
+          </div>
+
+          {/* Haste inferior (70°) */}
+          <div 
+            className="absolute -bottom-2 -left-[35px] w-[68px] h-[88px]"
+            style={{ transformOrigin: '50% 100%' }}
+          >
+            <motion.img
+              src="/assets/elements/folha.png"
+              alt="Folha leque"
+              animate={{
+                scale: [0.92, 0.98, 0.92],
+                rotate: [70, 76, 70]
+              }}
+              transition={{ repeat: Infinity, duration: 4.5, delay: 0.2, ease: "easeInOut" }}
+              style={{ transformOrigin: '50% 100%' }}
+              className="w-full h-full object-contain drop-shadow-sm opacity-90"
+            />
+          </div>
+
+          {/* Haste central diagonal (45° - em destaque) */}
+          <div 
+            className="absolute -bottom-2 -left-[35px] w-[74px] h-[96px] z-10"
+            style={{ transformOrigin: '50% 100%' }}
+          >
+            <motion.img
+              src="/assets/elements/folha.png"
+              alt="Folha leque"
+              animate={{
+                scale: [1.02, 1.08, 1.02],
+                rotate: [45, 48, 45]
+              }}
+              transition={{ repeat: Infinity, duration: 4.5, delay: 0.1, ease: "easeInOut" }}
+              style={{ transformOrigin: '50% 100%' }}
+              className="w-full h-full object-contain drop-shadow-md"
+            />
+          </div>
         </div>
       )}
 
       {/* ============================================================== */}
-      {/* BOTTOM-RIGHT FAN (LEQUE NO CANTO INFERIOR DIREITO)            */}
+      {/* 4. BOTTOM-RIGHT FAN (Leque no canto inferior direito - ESPELHO) */}
+      {/* Espelho horizontal exato (scaleX: -1) do leque inferior esquerdo*/}
       {/* ============================================================== */}
       {showBottomRight && (
-        <div className="absolute bottom-0 right-0 w-32 h-32 sm:w-36 sm:h-36 pointer-events-none">
-          <motion.img
-            src="/assets/elements/folha.png"
-            alt="Folha leque"
-            animate={{
-              scale: [0.92, 0.98, 0.92],
-              rotate: [15, 10, 15]
-            }}
-            transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
-            style={{ transform: 'scaleX(-1)' }}
-            className="absolute bottom-0 right-0 w-15 h-18 sm:w-17 sm:h-20 object-contain origin-bottom-right drop-shadow-sm opacity-90"
-          />
-          <motion.img
-            src="/assets/elements/folha.png"
-            alt="Folha leque"
-            animate={{
-              scale: [0.92, 0.98, 0.92],
-              rotate: [-45, -50, -45]
-            }}
-            transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
-            style={{ transform: 'scaleX(-1)' }}
-            className="absolute bottom-0 right-0 w-15 h-18 sm:w-17 sm:h-20 object-contain origin-bottom-right drop-shadow-sm opacity-90"
-          />
-          <motion.img
-            src="/assets/elements/folha.png"
-            alt="Folha leque"
-            animate={{
-              scale: [1.02, 1.08, 1.02],
-              rotate: [-15, -20, -15]
-            }}
-            transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
-            style={{ transform: 'scaleX(-1)' }}
-            className="absolute bottom-0 right-0 w-16 h-20 sm:w-19 sm:h-22 object-contain origin-bottom-right drop-shadow-md z-10"
-          />
+        <div className="absolute bottom-0 right-0 w-48 h-48 pointer-events-none">
+          {/* Haste lateral direita (espelho de 20°) */}
+          <div 
+            className="absolute -bottom-2 -right-[35px] w-[68px] h-[88px]"
+            style={{ transform: 'scaleX(-1)', transformOrigin: '50% 100%' }}
+          >
+            <motion.img
+              src="/assets/elements/folha.png"
+              alt="Folha leque"
+              animate={{
+                scale: [0.92, 0.98, 0.92],
+                rotate: [20, 14, 20]
+              }}
+              transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
+              style={{ transformOrigin: '50% 100%' }}
+              className="w-full h-full object-contain drop-shadow-sm opacity-90"
+            />
+          </div>
+
+          {/* Haste inferior (espelho de 70°) */}
+          <div 
+            className="absolute -bottom-2 -right-[35px] w-[68px] h-[88px]"
+            style={{ transform: 'scaleX(-1)', transformOrigin: '50% 100%' }}
+          >
+            <motion.img
+              src="/assets/elements/folha.png"
+              alt="Folha leque"
+              animate={{
+                scale: [0.92, 0.98, 0.92],
+                rotate: [70, 76, 70]
+              }}
+              transition={{ repeat: Infinity, duration: 4.5, delay: 0.2, ease: "easeInOut" }}
+              style={{ transformOrigin: '50% 100%' }}
+              className="w-full h-full object-contain drop-shadow-sm opacity-90"
+            />
+          </div>
+
+          {/* Haste central diagonal (espelho de 45°) */}
+          <div 
+            className="absolute -bottom-2 -right-[35px] w-[74px] h-[96px] z-10"
+            style={{ transform: 'scaleX(-1)', transformOrigin: '50% 100%' }}
+          >
+            <motion.img
+              src="/assets/elements/folha.png"
+              alt="Folha leque"
+              animate={{
+                scale: [1.02, 1.08, 1.02],
+                rotate: [45, 48, 45]
+              }}
+              transition={{ repeat: Infinity, duration: 4.5, delay: 0.1, ease: "easeInOut" }}
+              style={{ transformOrigin: '50% 100%' }}
+              className="w-full h-full object-contain drop-shadow-md"
+            />
+          </div>
         </div>
       )}
     </div>

@@ -1,18 +1,22 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import CornerFoliage from '../components/CornerFoliage';
 import { RotateCcw } from 'lucide-react';
 
 export default function FinalMessageScreen({ onRestart }) {
   return (
     <div className="relative w-full h-full flex flex-col justify-between overflow-hidden bg-[#ecdcc1]">
       {/* Background Image: Motorcycle + Scenic road (Slice 2 / slice-home.png) */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center pointer-events-none z-0"
         style={{ backgroundImage: `url('/assets/bg/slice-home.png')` }}
       />
 
+      {/* Bush Foliage in Bottom Corners */}
+      <CornerFoliage corners={['bottom-left', 'bottom-right']} />
+
       {/* Top Header - Honda Logo Centered in Row */}
-      <header className="w-full flex items-center justify-center pt-6 pb-2 z-20">
+      <header className="w-full flex items-center justify-center pt-4 pb-1 z-20">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -22,13 +26,13 @@ export default function FinalMessageScreen({ onRestart }) {
           <img
             src="/assets/logos/honda.png"
             alt="Honda - The Power of Dreams"
-            className="h-9 sm:h-11 object-contain drop-shadow-sm select-none pointer-events-none"
+            className="h-8 sm:h-10 object-contain drop-shadow-sm select-none pointer-events-none"
           />
         </motion.div>
       </header>
 
       {/* Main Content Area - Anchored in the Solid Upper Beige Zone */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-start px-6 max-w-lg mx-auto w-full text-center pt-2 sm:pt-4">
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-start px-6 max-w-lg mx-auto w-full text-center pt-0 sm:pt-1">
         {/* 1. HERO TRIPLA AÇÃO PARA O ZERO LOGO (Bem maior e destacado) */}
         <motion.div
           initial={{ scale: 0.6, opacity: 0, y: -20 }}
@@ -39,7 +43,7 @@ export default function FinalMessageScreen({ onRestart }) {
             damping: 18,
             delay: 0.15
           }}
-          className="relative my-2 sm:my-3 flex items-center justify-center w-full"
+          className="relative my-1 sm:my-2 flex items-center justify-center w-full"
         >
           {/* Luminous Eco Glow Aura */}
           <motion.div
@@ -49,8 +53,8 @@ export default function FinalMessageScreen({ onRestart }) {
           />
 
           <motion.img
-            animate={{ 
-              y: [0, -6, 0],
+            animate={{
+              y: [0, -5, 0],
               scale: [1, 1.03, 1]
             }}
             transition={{
@@ -60,7 +64,7 @@ export default function FinalMessageScreen({ onRestart }) {
             }}
             src="/assets/logos/tripla-acao.png"
             alt="Tripla Ação Para o Zero"
-            className="h-24 sm:h-32 max-w-[280px] sm:max-w-[340px] w-auto object-contain drop-shadow-xl select-none pointer-events-none"
+            className="h-20 sm:h-28 max-w-[260px] sm:max-w-[320px] w-auto object-contain drop-shadow-xl select-none pointer-events-none"
           />
         </motion.div>
 
@@ -69,18 +73,18 @@ export default function FinalMessageScreen({ onRestart }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 280, damping: 20, delay: 0.25 }}
-          className="space-y-0.5 sm:space-y-1 my-2 select-none"
+          className="space-y-0.5 sm:space-y-1 my-1 select-none"
         >
-          <h2 className="text-[#1A2E1A] font-black text-xl sm:text-2xl tracking-wide uppercase leading-tight">
+          <h2 className="text-[#1A2E1A] font-black text-lg sm:text-xl tracking-wide uppercase leading-tight">
             UM FUTURO COM
           </h2>
-          <h1 className="text-[#27A844] font-black text-3xl sm:text-4xl tracking-tight uppercase leading-none drop-shadow-sm">
+          <h1 className="text-[#27A844] font-black text-2xl sm:text-3xl tracking-tight uppercase leading-none drop-shadow-sm">
             MENOS EMISSÕES
           </h1>
-          <h2 className="text-[#1A2E1A] font-black text-xl sm:text-2xl tracking-wide uppercase leading-tight pt-0.5">
+          <h2 className="text-[#1A2E1A] font-black text-lg sm:text-xl tracking-wide uppercase leading-tight pt-0.5">
             COMEÇA COM NOSSAS
           </h2>
-          <h1 className="text-[#27A844] font-black text-3xl sm:text-4xl tracking-tight uppercase leading-none drop-shadow-sm">
+          <h1 className="text-[#27A844] font-black text-2xl sm:text-3xl tracking-tight uppercase leading-none drop-shadow-sm">
             ATITUDES.
           </h1>
         </motion.div>
@@ -90,7 +94,7 @@ export default function FinalMessageScreen({ onRestart }) {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.35 }}
-          className="text-[#142616] font-bold text-sm sm:text-base leading-relaxed max-w-sm select-none px-2 my-2 drop-shadow-[0_1px_1px_rgba(255,255,255,0.7)]"
+          className="text-[#142616] font-bold text-xs sm:text-sm leading-relaxed max-w-sm select-none px-2 my-1 drop-shadow-[0_1px_1px_rgba(255,255,255,0.7)]"
         >
           A Honda trabalha por um mundo com menos emissões de carbono. E cada atitude consciente ajuda a construir esse caminho.
         </motion.p>
@@ -102,11 +106,11 @@ export default function FinalMessageScreen({ onRestart }) {
           transition={{ type: 'spring', stiffness: 300, damping: 20, delay: 0.45 }}
           className="my-2 bg-[#FAF5EC]/95 backdrop-blur-md px-6 py-3 rounded-full shadow-lg border border-white/80 flex items-center space-x-2.5 mx-auto"
         >
-          <motion.img 
+          <motion.img
             animate={{ rotate: [-6, 6, -6], scale: [1, 1.1, 1] }}
             transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
-            src="/assets/elements/folha.png" 
-            alt="Folha" 
+            src="/assets/elements/folha.png"
+            alt="Folha"
             className="w-5 h-5 sm:w-6 sm:h-6 object-contain drop-shadow-sm flex-shrink-0"
           />
           <p className="text-[#1A2E1A] font-black text-sm sm:text-base tracking-wide select-none whitespace-nowrap">

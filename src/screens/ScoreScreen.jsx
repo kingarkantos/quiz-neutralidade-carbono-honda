@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useSpring } from 'framer-motion';
 import ResultBanner from '../components/ResultBanner';
+import CornerFoliage from '../components/CornerFoliage';
 import { ChevronRight } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -60,6 +61,9 @@ export default function ScoreScreen({ correctCount, totalQuestions, onContinue }
         className="absolute inset-0 bg-cover bg-center pointer-events-none z-0"
         style={{ backgroundImage: `url('/assets/bg/slice-quiz.png')` }}
       />
+
+      {/* Top Corner Leaves Fan */}
+      <CornerFoliage corners={['top-left', 'top-right']} />
 
       {/* Top Banner Area */}
       <div className="pt-6 sm:pt-8 px-6 z-10 w-full flex justify-center">

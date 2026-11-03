@@ -30,6 +30,9 @@ export default function HowItWorksScreen({ onStart }) {
         style={{ backgroundImage: `url('/assets/bg/slice-quiz.png')` }}
       />
 
+      {/* Top Corner Leaves Fan */}
+      <CornerFoliage corners={['top-left', 'top-right']} />
+
       {/* Top Header */}
       <Header />
 

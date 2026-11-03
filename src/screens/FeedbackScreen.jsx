@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Stepper from '../components/Stepper';
 import ResultBanner from '../components/ResultBanner';
+import CornerFoliage from '../components/CornerFoliage';
 import { ChevronRight } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -36,6 +37,9 @@ export default function FeedbackScreen({
         className="absolute inset-0 bg-cover bg-center pointer-events-none z-0"
         style={{ backgroundImage: `url('/assets/bg/slice-quiz.png')` }}
       />
+
+      {/* Top Corner Leaves Fan */}
+      <CornerFoliage corners={['top-left', 'top-right']} />
 
       {/* Top Stepper Area */}
       <div className="relative z-10 pt-4 px-4">
