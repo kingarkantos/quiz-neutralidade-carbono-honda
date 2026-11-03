@@ -50,7 +50,7 @@ export const MEMORIA_ROUNDS = {
   2: {
     roundNumber: 2,
     title: "Fontes e Transição",
-    subtitle: "5 PARES DE CARTAS",
+    subtitle: "PARES DE CARTAS",
     thumb: "/assets/jogo3/TELA INICIAL/usina-industrial-ao-por-do-sol-2.png",
     cards: [
       {
@@ -58,40 +58,21 @@ export const MEMORIA_ROUNDS = {
         name: "Carvão Mineral",
         type: "Não renovável",
         image: "/assets/jogo3/IMAGENS ENERGIA NÃO RENOVÁVEL/carvao-e-caminhao-em-mina-aberta-7.png",
-        whatIs: "Combustível fóssil formado ao longo de milhões de anos a partir de florestas soterradas, utilizado em usinas termelétricas.",
-        didYouKnow: "É a fonte de energia que mais emite CO2 por unidade de eletricidade gerada, sendo o principal alvo de substituição na transição energética global."
-      },
-      {
-        id: "gas",
-        name: "Gás Natural",
-        type: "Não renovável",
-        image: "/assets/jogo3/IMAGENS ENERGIA RENOVÁVEL/usina-de-gas-natural-com-turbinas-3.png",
-        whatIs: "Mistura de hidrocarbonetos gasosos encontrada no subsolo, frequentemente associada ao petróleo.",
-        didYouKnow: "Sua queima libera cerca de 50% menos CO2 que o carvão, atuando como combustível de transição enquanto a matriz renovável se consolida."
+        whatIs: "Combustível fóssil formado ao longo de milhões de anos a partir de florestas soterradas, utilizado em usinas termelétricas."
       },
       {
         id: "petroleo",
         name: "Petróleo",
         type: "Não renovável",
         image: "/assets/jogo3/IMAGENS ENERGIA NÃO RENOVÁVEL/cavalete-de-bombeamento-no-deserto-4.png",
-        whatIs: "Líquido fóssil escuro rico em hidrocarbonetos, extraído de reservatórios profundos para produzir gasolina, diesel e derivados plásticos.",
-        didYouKnow: "A queima de combustíveis derivados do petróleo é uma das maiores responsáveis pelo aquecimento global e poluição atmosférica das cidades."
+        whatIs: "Líquido fóssil escuro rico em hidrocarbonetos, extraído de reservatórios profundos para produzir gasolina, diesel e derivados plásticos."
       },
       {
         id: "nuclear",
         name: "Energia Nuclear",
         type: "Não renovável",
         image: "/assets/jogo3/IMAGENS ENERGIA NÃO RENOVÁVEL/usina-nuclear-com-torres-de-resfriamento-8.png",
-        whatIs: "Energia liberada pela fissão controlada de núcleos de urânio em reatores nucleares de alta precisão.",
-        didYouKnow: "Não emite gases de efeito estufa durante sua geração diária, mas necessita de descarte e isolamento seguro de resíduos radioativos."
-      },
-      {
-        id: "xisto",
-        name: "Xisto Betuminoso",
-        type: "Não renovável",
-        image: "/assets/jogo3/IMAGENS ENERGIA NÃO RENOVÁVEL/estratos-de-xisto-betuminoso-10.png",
-        whatIs: "Rocha sedimentar impregnada com matéria orgânica sólida chamada querogênio, que pode ser processada para produzir óleo e gás.",
-        didYouKnow: "Sua extração e refino requerem consumo intensivo de água e energia térmica, gerando grande impacto ecológico local."
+        whatIs: "Energia liberada pela fissão controlada de núcleos de urânio em reatores nucleares de alta precisão."
       }
     ]
   }
@@ -113,9 +94,8 @@ export function getMixedMemoriaCards() {
   const renowables = shuffle([...MEMORIA_ROUNDS[1].cards]);
   const transition = shuffle([...MEMORIA_ROUNDS[2].cards]);
   
-  // 3 renováveis + 2 de transição (ou 2 renováveis + 3 de transição)
-  const isRenovavelMajority = Math.random() > 0.5;
-  const countRenovavel = isRenovavelMajority ? 3 : 2;
+  // 3 renováveis + 2 de transição (ou 4 renováveis + 1 de transição)
+  const countRenovavel = Math.random() > 0.4 ? 3 : 4;
   const countTransition = 5 - countRenovavel;
 
   const selected = [
