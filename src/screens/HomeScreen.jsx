@@ -22,7 +22,7 @@ export default function HomeScreen({ onStart }) {
 
         {/* Title and Subtitle - Anchored comfortably in the upper beige sky */}
         <div className="w-full flex flex-col items-center text-center px-6 pt-0 max-w-lg mx-auto">
-          {/* Animated Quiz 3D Title with Eco Aura + Organic 3D Float + Periodic Sunbeam Shimmer */}
+          {/* Animated Quiz 3D Title with Eco Aura + Organic 3D Float + Masked Sunbeam Shimmer */}
           <motion.div
             initial={{ scale: 0.75, opacity: 0, y: -25 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -51,8 +51,8 @@ export default function HomeScreen({ onStart }) {
             />
             <motion.div
               animate={{
-                scale: [1, 1.12, 1],
-                opacity: [0.3, 0.6, 0.3]
+                scale: [1, 1.14, 1],
+                opacity: [0.3, 0.65, 0.3]
               }}
               transition={{
                 repeat: Infinity,
@@ -60,28 +60,31 @@ export default function HomeScreen({ onStart }) {
                 delay: 0.3,
                 ease: "easeInOut"
               }}
-              className="absolute w-88 h-48 sm:w-96 sm:h-52 rounded-full bg-[#7FD03F]/25 blur-3xl -z-10 pointer-events-none"
+              className="absolute w-[340px] h-48 sm:w-[390px] sm:h-52 rounded-full bg-[#7FD03F]/30 blur-3xl -z-10 pointer-events-none"
             />
 
-            {/* 2. Container com Reflexo Solar (Sunbeam Shimmer) */}
-            <div className="relative rounded-3xl anim-logo-shine flex items-center justify-center">
-              {/* 3. Logo 3D com Flutuação Orgânica (Levitação + Inclinação 3D) */}
-              <motion.img
-                animate={{ 
-                  y: [0, -8, 0],
-                  rotate: [-1.2, 1.2, -1.2],
-                  scale: [1, 1.025, 1]
-                }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 4.6,
-                  ease: "easeInOut"
-                }}
+            {/* 2. Container com Flutuação Orgânica 3D (Levitação + Inclinação 3D) */}
+            <motion.div
+              animate={{ 
+                y: [0, -9, 0],
+                rotate: [-1.2, 1.2, -1.2],
+                scale: [1, 1.025, 1]
+              }}
+              transition={{
+                repeat: Infinity,
+                duration: 4.6,
+                ease: "easeInOut"
+              }}
+              className="relative logo-shine-wrapper"
+            >
+              <img
                 src="/assets/logos/quiz-logo.png"
                 alt="Quiz Neutralidade de Carbono"
                 className="w-full max-w-[340px] sm:max-w-[380px] drop-shadow-[0_16px_24px_rgba(0,0,0,0.22)] select-none pointer-events-none"
               />
-            </div>
+              {/* 3. Feixe Solar que varre exclusivamente os contornos das letras 3D */}
+              <div className="absolute inset-0 logo-shine-sweep pointer-events-none" />
+            </motion.div>
           </motion.div>
 
           {/* Subtitle - High in the solid sky with crisp contrast */}
