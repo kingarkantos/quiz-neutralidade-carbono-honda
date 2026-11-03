@@ -26,41 +26,30 @@ export default function LpFinishScreen({ onRestart }) {
       <CornerFoliage corners={['bottom-left', 'bottom-right']} />
 
       {/* Header */}
-      <Header className="pt-3 pb-1" />
+      <Header className="pt-3 pb-1" showTriplaAcao={false} />
 
       {/* Main Content - Anchored high in the solid beige sky */}
       <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-start pt-2 sm:pt-4 px-6 max-w-lg mx-auto w-full text-center">
-        {/* Celebration 3D Badge - Significantly Enlarged */}
+        {/* Celebration Triplo Zero Hero Badge */}
         <motion.div
-          initial={{ scale: 0.5, rotate: -15, opacity: 0 }}
-          animate={{ scale: 1, rotate: 0, opacity: 1 }}
+          initial={{ scale: 0.6, opacity: 0, y: -15 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 280, damping: 18, delay: 0.15 }}
-          className="relative w-56 h-56 xs:w-64 xs:h-64 sm:w-72 sm:h-72 flex items-center justify-center my-1 sm:my-2 flex-shrink-0"
+          className="relative w-56 h-48 xs:w-64 xs:h-54 sm:w-72 sm:h-60 flex items-center justify-center my-1 sm:my-2 flex-shrink-0"
         >
-          {/* Radial Aura */}
-          <div className="absolute w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-[#3cd426]/40 blur-3xl pointer-events-none" />
+          {/* Radial Eco Aura */}
+          <div className="absolute w-60 h-60 sm:w-72 sm:h-72 rounded-full bg-[#3cd426]/35 blur-3xl pointer-events-none" />
 
-          {/* Floating Leaves decoration BEHIND the disk (z-10) */}
+          {/* Triplo Zero Logo (Tripla Ação Para o Zero) */}
           <motion.img
-            animate={{ rotate: [-10, 4, -10], y: [0, -6, 0], scale: [1, 1.05, 1] }}
-            transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut' }}
-            src="/assets/jogo2/ELEMENTOS/TELA FINAL/folha-verde-curvada-isolada-2.png"
-            alt="Folha"
-            className="absolute -top-4 -left-4 xs:-top-5 xs:-left-5 sm:-top-7 sm:-left-7 w-26 h-26 xs:w-32 xs:h-32 sm:w-36 sm:h-36 object-contain pointer-events-none z-10"
-          />
-          <motion.img
-            animate={{ rotate: [8, -8, 8], y: [0, 6, 0], scale: [1, 1.05, 1] }}
-            transition={{ repeat: Infinity, duration: 4.0, delay: 0.2, ease: 'easeInOut' }}
-            src="/assets/jogo2/ELEMENTOS/TELA FINAL/folha-verde-alongada-a-esquerda-4.png"
-            alt="Folha"
-            className="absolute -bottom-4 -right-4 xs:-bottom-5 xs:-right-5 sm:-bottom-7 sm:-right-7 w-26 h-26 xs:w-32 xs:h-32 sm:w-36 sm:h-36 object-contain pointer-events-none z-10"
-          />
-
-          {/* Green Check Disk - IN FRONT OF LEAVES (z-20) */}
-          <img
-            src="/assets/jogo2/ELEMENTOS/TELA FINAL/disco-verde-com-marca-de-verificacao-branca-1.png"
-            alt="Concluído com Sucesso"
-            className="w-48 h-48 xs:w-56 xs:h-56 sm:w-64 sm:h-64 object-contain drop-shadow-2xl pointer-events-none select-none z-20"
+            animate={{
+              y: [0, -6, 0],
+              scale: [1, 1.025, 1]
+            }}
+            transition={{ repeat: Infinity, duration: 4.2, ease: 'easeInOut' }}
+            src="/assets/logos/tripla-acao.png"
+            alt="Tripla Ação Para o Zero"
+            className="w-full h-full object-contain drop-shadow-[0_16px_30px_rgba(0,0,0,0.18)] pointer-events-none select-none z-20"
           />
         </motion.div>
 
