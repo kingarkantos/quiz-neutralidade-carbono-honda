@@ -157,7 +157,7 @@ export default function LpInteractiveTutorial({ className = '' }) {
               </div>
             </motion.div>
 
-            {/* Action Card 2: Reciclagem de metais */}
+            {/* Action Card 2: Reciclagem de materiais */}
             <div className="relative flex items-center justify-between p-1 sm:p-1.5 rounded-xl border bg-white/80 border-white/90 shadow-xs opacity-75">
               <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#eadecc]/70 p-0.5 flex-shrink-0 flex items-center justify-center overflow-hidden">
                 <img

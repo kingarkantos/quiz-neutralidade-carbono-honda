@@ -12,14 +12,14 @@ export const LIGUE_PONTOS_ITEMS = [
   },
   {
     id: 2,
-    actionTitle: "Reciclagem de metais",
+    actionTitle: "Reciclagem de materiais",
     actionThumb: "/assets/jogo2/ELEMENTOS/ELEMENTOS AÇÕES/pilha-compacta-de-sucata-metalica-2.png",
     benefitId: "b2",
     benefitTitle: "Economiza matéria-prima e energia",
-    benefitShort: "Sucata metálica transformada em lingotes",
+    benefitShort: "Sucata metálica e materiais reaproveitados",
     modalImage: "/assets/jogo2/ELEMENTOS/CONEXÃO CORRETA/reciclagem-metalica_-sucata-vira-lingotes.png",
-    headline: "Reciclagem de metais",
-    explanation: "Metais nobres como alumínio e aço são 100% recicláveis. O processo consome até 95% menos energia do que a extração primária do minério."
+    headline: "Reciclagem de materiais",
+    explanation: "A reciclagem de materiais industriais e metais nobres consome até 95% menos energia do que a extração primária, evitando resíduos e economizando recursos essenciais."
   },
   {
     id: 3,
