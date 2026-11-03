@@ -249,3 +249,4 @@ function MemoryCard({ card, isFlipped, isMatched, onClick }) {
     </div>
   );
 }
+

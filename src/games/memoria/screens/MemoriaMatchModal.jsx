@@ -96,3 +96,4 @@ export default function MemoriaMatchModal({ card, onClose, isLast }) {
     </AnimatePresence>
   );
 }
+

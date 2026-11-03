@@ -119,3 +119,4 @@ export default function LpFinishScreen({ onRestart }) {
     </div>
   );
 }
+

@@ -255,3 +255,4 @@ export default function LpGameBoardScreen({ onFinish }) {
     </div>
   );
 }
+

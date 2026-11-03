@@ -55,3 +55,4 @@ export const LIGUE_PONTOS_ITEMS = [
     explanation: "Peças estruturais e mecânicas podem ser inspecionadas e restauradas com tecnologia avançada, evitando que materiais úteis sejam descartados."
   }
 ];
+

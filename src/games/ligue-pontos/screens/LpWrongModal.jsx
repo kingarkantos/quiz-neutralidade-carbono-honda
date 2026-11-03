@@ -50,3 +50,4 @@ export default function LpWrongModal({ onClose }) {
     </AnimatePresence>
   );
 }
+

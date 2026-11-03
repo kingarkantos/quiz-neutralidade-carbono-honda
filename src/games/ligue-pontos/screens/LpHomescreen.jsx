@@ -21,57 +21,46 @@ export default function LpHomescreen({ onStart }) {
 
       {/* Top Header & Title */}
       <div className="relative z-30 w-full flex flex-col items-center">
-        <Header className="pt-3 pb-0" />
+        <Header className="pt-2 sm:pt-3 pb-0" />
 
-        <div className="w-full flex flex-col items-center text-center px-6 pt-1 max-w-lg mx-auto select-none">
-          {/* Tag Pill */}
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0, y: -10 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            className="inline-block bg-[#1C3B24] text-[#FAF5EC] px-4 py-1 rounded-full text-xs font-black tracking-widest uppercase shadow-md mb-2"
-          >
-            LIGUE OS PONTOS
-          </motion.div>
-
-          {/* 3D Title */}
+        <div className="w-full flex flex-col items-center text-center px-6 pt-0 max-w-lg mx-auto select-none">
+          {/* 3D Official Logo Banner from Assets */}
           <motion.div
             initial={{ scale: 0.85, opacity: 0, y: -15 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             transition={{ type: 'spring', stiffness: 280, damping: 18, delay: 0.1 }}
-            className="flex flex-col items-center"
+            className="flex flex-col items-center my-0.5"
           >
-            <h1 className="text-[#1A2E1A] font-black text-2xl sm:text-3xl tracking-tight uppercase leading-none drop-shadow-sm">
-              CIRCULAÇÃO
-            </h1>
-            <h1 className="text-[#2EB85C] font-black text-3xl sm:text-4xl tracking-tight uppercase leading-none drop-shadow-sm mt-0.5">
-              DE RECURSOS
-            </h1>
+            <img
+              src="/assets/jogo2/ELEMENTOS/TELA INICIAL/logo-3d-de-circulacao-de-recursos-4.png"
+              alt="Circulação de Recursos - Ligue os Pontos"
+              className="w-full max-w-[280px] sm:max-w-[330px] object-contain drop-shadow-md pointer-events-none select-none"
+            />
           </motion.div>
 
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="text-[#1E2D1D] font-extrabold text-xs sm:text-sm leading-snug max-w-xs mt-2 drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)]"
+            className="text-[#1E2D1D] font-extrabold text-xs sm:text-sm leading-snug max-w-xs mt-1 drop-shadow-[0_1px_1px_rgba(255,255,255,0.85)]"
           >
             Descubra como os recursos podem ganhar novas possibilidades sustentáveis.
           </motion.p>
         </div>
       </div>
 
-      {/* Center 3D Hero Illustration */}
-      <div className="relative z-20 flex-1 min-h-0 flex items-center justify-center px-4 my-auto">
+      {/* Center 3D Hero Illustration - Posicionado bem mais para cima no céu bege */}
+      <div className="relative z-20 flex-1 min-h-0 flex flex-col items-center justify-start pt-2 sm:pt-4 px-4">
         <motion.div
           animate={{
             y: [0, -8, 0],
             rotate: [-1, 1, -1]
           }}
           transition={{ repeat: Infinity, duration: 4.5, ease: 'easeInOut' }}
-          className="relative w-64 h-64 sm:w-76 sm:h-76 flex items-center justify-center"
+          className="relative w-52 h-52 xs:w-56 xs:h-56 sm:w-64 sm:h-64 flex items-center justify-center -mt-1 sm:-mt-2"
         >
           {/* Radiant Glow behind hero asset */}
-          <div className="absolute w-56 h-56 rounded-full bg-[#3cd426]/35 blur-3xl -z-10 pointer-events-none" />
+          <div className="absolute w-44 h-44 sm:w-54 sm:h-54 rounded-full bg-[#3cd426]/35 blur-3xl -z-10 pointer-events-none" />
           
           <img
             src="/assets/jogo2/ELEMENTOS/TELA INICIAL/ciclo-sustentavel-entre-maquina-e-natureza-1.png"
@@ -98,3 +87,4 @@ export default function LpHomescreen({ onStart }) {
     </div>
   );
 }
+

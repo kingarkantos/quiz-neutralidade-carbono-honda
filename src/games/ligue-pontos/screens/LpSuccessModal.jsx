@@ -81,3 +81,4 @@ export default function LpSuccessModal({ item, onClose, isLast }) {
     </AnimatePresence>
   );
 }
+

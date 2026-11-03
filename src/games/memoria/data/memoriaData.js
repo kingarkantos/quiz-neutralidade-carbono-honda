@@ -96,3 +96,4 @@ export const MEMORIA_ROUNDS = {
     ]
   }
 };
+
