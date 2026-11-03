@@ -22,33 +22,64 @@ export default function HomeScreen({ onStart }) {
 
         {/* Title and Subtitle - Anchored comfortably in the upper beige sky */}
         <div className="w-full flex flex-col items-center text-center px-6 pt-0 max-w-lg mx-auto">
-          {/* Animated Quiz 3D Title with Bounce & Passing Shimmer Shine */}
+          {/* Animated Quiz 3D Title with Eco Aura + Organic 3D Float + Periodic Sunbeam Shimmer */}
           <motion.div
-            initial={{ scale: 0.8, opacity: 0, y: -20 }}
+            initial={{ scale: 0.75, opacity: 0, y: -25 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             transition={{ 
               type: 'spring', 
-              stiffness: 280, 
+              stiffness: 260, 
               damping: 18, 
               delay: 0.15 
             }}
-            className="w-full flex justify-center mb-1 cursor-pointer"
-            whileHover={{ scale: 1.03 }}
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.94, rotate: -0.8 }}
+            className="relative w-full flex items-center justify-center mb-1 cursor-pointer select-none"
           >
-            <div className="relative rounded-3xl anim-logo-shine">
+            {/* 1. Aura de Energia Limpa (Eco Glow Breathing) */}
+            <motion.div
+              animate={{
+                scale: [0.95, 1.18, 0.95],
+                opacity: [0.45, 0.78, 0.45]
+              }}
+              transition={{
+                repeat: Infinity,
+                duration: 4.2,
+                ease: "easeInOut"
+              }}
+              className="absolute w-72 h-36 sm:w-80 sm:h-44 rounded-full bg-[#3cd426]/40 blur-2xl -z-10 pointer-events-none"
+            />
+            <motion.div
+              animate={{
+                scale: [1, 1.12, 1],
+                opacity: [0.3, 0.6, 0.3]
+              }}
+              transition={{
+                repeat: Infinity,
+                duration: 5.0,
+                delay: 0.3,
+                ease: "easeInOut"
+              }}
+              className="absolute w-88 h-48 sm:w-96 sm:h-52 rounded-full bg-[#7FD03F]/25 blur-3xl -z-10 pointer-events-none"
+            />
+
+            {/* 2. Container com Reflexo Solar (Sunbeam Shimmer) */}
+            <div className="relative rounded-3xl anim-logo-shine flex items-center justify-center">
+              {/* 3. Logo 3D com Flutuação Orgânica (Levitação + Inclinação 3D) */}
               <motion.img
                 animate={{ 
-                  y: [0, -5, 0],
-                  rotate: [0, 0.3, 0, -0.3, 0]
+                  y: [0, -8, 0],
+                  rotate: [-1.2, 1.2, -1.2],
+                  scale: [1, 1.025, 1]
                 }}
                 transition={{
                   repeat: Infinity,
-                  duration: 4,
+                  duration: 4.6,
                   ease: "easeInOut"
                 }}
                 src="/assets/logos/quiz-logo.png"
                 alt="Quiz Neutralidade de Carbono"
-                className="w-full max-w-[340px] sm:max-w-[380px] drop-shadow-xl select-none pointer-events-none"
+                className="w-full max-w-[340px] sm:max-w-[380px] drop-shadow-[0_16px_24px_rgba(0,0,0,0.22)] select-none pointer-events-none"
               />
             </div>
           </motion.div>
