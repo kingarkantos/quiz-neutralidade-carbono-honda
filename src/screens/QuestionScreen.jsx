@@ -10,7 +10,8 @@ export default function QuestionScreen({
   totalQuestions,
   answers,
   onAnswer,
-  onBack
+  onBack,
+  timeLeft = null
 }) {
   const [selectedOptionId, setSelectedOptionId] = useState(null);
   const [evaluationState, setEvaluationState] = useState(null); // null | 'wrong' | 'correct'
@@ -65,6 +66,7 @@ export default function QuestionScreen({
           currentStep={questionIndex + 1} 
           totalSteps={totalQuestions} 
           answers={answers}
+          timeLeft={timeLeft}
         />
       </div>
 

@@ -1,8 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Check, X } from 'lucide-react';
+import GameTimer from './GameTimer';
 
-export default function Stepper({ currentStep, totalSteps = 3, answers = [] }) {
+export default function Stepper({ currentStep, totalSteps = 3, answers = [], timeLeft = null }) {
   return (
     <div className="w-full flex flex-col items-center justify-center my-3 z-10">
       {/* Circles and lines */}
@@ -49,16 +50,21 @@ export default function Stepper({ currentStep, totalSteps = 3, answers = [] }) {
         </div>
       </div>
 
-      {/* Badge "Pergunta X de Y" */}
-      <motion.div
-        key={currentStep}
-        initial={{ opacity: 0, y: -6 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-        className="mt-3 bg-[#1C3B24] text-white text-sm font-semibold tracking-wide px-5 py-1.5 rounded-full shadow-md"
-      >
-        Pergunta {currentStep} de {totalSteps}
-      </motion.div>
+      {/* Badges: "Pergunta X de Y" + Cronômetro regressivo */}
+      <div className="flex items-center justify-center space-x-2 mt-3 select-none">
+        <motion.div
+          key={currentStep}
+          initial={{ opacity: 0, y: -6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="bg-[#1C3B24] text-white text-xs sm:text-sm font-semibold tracking-wide px-4 py-1.5 rounded-full shadow-md"
+        >
+          Pergunta {currentStep} de {totalSteps}
+        </motion.div>
+        {typeof timeLeft === 'number' && (
+          <GameTimer secondsLeft={timeLeft} />
+        )}
+      </div>
     </div>
   );
 }

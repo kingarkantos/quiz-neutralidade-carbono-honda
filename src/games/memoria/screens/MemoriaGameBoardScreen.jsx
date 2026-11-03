@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Header from '../../../components/Header';
 import CornerFoliage from '../../../components/CornerFoliage';
+import GameTimer from '../../../components/GameTimer';
 import { MEMORIA_ROUNDS } from '../data/memoriaData';
 import MemoriaMatchModal from './MemoriaMatchModal';
 
@@ -43,6 +44,31 @@ export default function MemoriaGameBoardScreen({ roundNumber = 1, onFinish }) {
   const [matchedPairIds, setMatchedPairIds] = useState(new Set()); // set of item.id that are solved
   const [activeModalCard, setActiveModalCard] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(120); // 2 minutos (120s)
+
+  // Cronômetro regressivo: 2 minutos para o Jogo da Memória
+  // Pausa durante a exibição do modal explicativo (activeModalCard)
+  useEffect(() => {
+    if (activeModalCard !== null || matchedPairIds.size === 5) return;
+
+    if (timeLeft <= 0) {
+      onFinish();
+      return;
+    }
+
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          onFinish();
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [activeModalCard, matchedPairIds.size, timeLeft, onFinish]);
 
   // When cards are clicked
   const handleCardClick = (card) => {
@@ -125,9 +151,12 @@ export default function MemoriaGameBoardScreen({ roundNumber = 1, onFinish }) {
             </div>
           </div>
 
-          <span className="bg-[#1C3B24] text-white text-[10px] sm:text-xs font-black uppercase px-3.5 py-0.5 rounded-full shadow-sm">
-            Rodada {roundNumber} de 2
-          </span>
+          <div className="flex items-center justify-center space-x-2">
+            <span className="bg-[#1C3B24] text-white text-[10px] sm:text-xs font-black uppercase px-3.5 py-1 rounded-full shadow-sm">
+              Rodada {roundNumber} de 2
+            </span>
+            <GameTimer secondsLeft={timeLeft} />
+          </div>
         </div>
       </div>
 

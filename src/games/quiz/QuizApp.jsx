@@ -14,6 +14,35 @@ export default function QuizApp() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [lastSelectedOption, setLastSelectedOption] = useState(null);
+  const [timeLeft, setTimeLeft] = useState(60); // 1 minuto (60s)
+
+  // Cronômetro regressivo: 1 minuto para o Quiz
+  // Só roda durante a tela de pergunta ('question'). Fica pausado em feedbacks e transições.
+  useEffect(() => {
+    if (screen !== 'question') return;
+
+    if (timeLeft <= 0) {
+      handleTimeOut();
+      return;
+    }
+
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          handleTimeOut();
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [screen, timeLeft]);
+
+  const handleTimeOut = () => {
+    setScreen('score');
+  };
 
   // Inactivity timeout for Kiosk/Totem (60 seconds)
   useEffect(() => {
@@ -46,6 +75,7 @@ export default function QuizApp() {
     setQuestions(getRandomQuizQuestions());
     setCurrentQuestionIndex(0);
     setAnswers([]);
+    setTimeLeft(60);
     setScreen('question');
   };
 
@@ -96,6 +126,7 @@ export default function QuizApp() {
     setCurrentQuestionIndex(0);
     setAnswers([]);
     setLastSelectedOption(null);
+    setTimeLeft(60);
     setScreen('home');
   };
 
@@ -147,6 +178,7 @@ export default function QuizApp() {
               answers={answers}
               onAnswer={handleAnswer}
               onBack={handleBackQuestion}
+              timeLeft={timeLeft}
             />
           </motion.div>
         )}

@@ -1,7 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Header from '../../../components/Header';
 import CornerFoliage from '../../../components/CornerFoliage';
+import GameTimer from '../../../components/GameTimer';
 import { LIGUE_PONTOS_ITEMS } from '../data/liguePontosData';
 import LpSuccessModal from './LpSuccessModal';
 import LpWrongModal from './LpWrongModal';
@@ -23,6 +24,31 @@ export default function LpGameBoardScreen({ onFinish }) {
   const [matchedIds, setMatchedIds] = useState(new Set()); // set of action ids matched
   const [activeModalItem, setActiveModalItem] = useState(null);
   const [showWrongModal, setShowWrongModal] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(60); // 1 minuto (60s)
+
+  // Cronômetro regressivo: 1 minuto para o Ligue os Pontos
+  // Pausa durante modais explicativos ou modal de erro
+  useEffect(() => {
+    if (activeModalItem !== null || showWrongModal || matchedIds.size === actions.length) return;
+
+    if (timeLeft <= 0) {
+      onFinish();
+      return;
+    }
+
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          onFinish();
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [activeModalItem, showWrongModal, matchedIds.size, actions.length, timeLeft, onFinish]);
 
   // Active focused item for the 3D highlight spotlight preview
   const activeItem = actions.find(a => a.id === selectedActionId) || 
@@ -97,21 +123,24 @@ export default function LpGameBoardScreen({ onFinish }) {
 
       {/* Stepper & Instructions */}
       <div className="relative z-10 w-full px-4 flex flex-col items-center text-center select-none pt-1">
-        {/* Stepper Dots */}
-        <div className="flex items-center space-x-2 bg-[#FAF5EC]/90 px-4 py-1.5 rounded-full shadow-sm border border-white mb-1.5">
-          <span className="text-[#1A2E1A] font-extrabold text-xs uppercase tracking-wider">
-            Conexões: {matchedIds.size} de {actions.length}
-          </span>
-          <div className="flex items-center space-x-1.5">
-            {actions.map((_, i) => (
-              <div
-                key={i}
-                className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${
-                  i < matchedIds.size ? 'bg-[#2EB85C]' : 'bg-[#cfc3a7]'
-                }`}
-              />
-            ))}
+        {/* Stepper Dots & Timer */}
+        <div className="flex items-center justify-center space-x-2 mb-1.5">
+          <div className="flex items-center space-x-2 bg-[#FAF5EC]/90 px-3.5 py-1.5 rounded-full shadow-sm border border-white">
+            <span className="text-[#1A2E1A] font-extrabold text-xs uppercase tracking-wider">
+              Conexões: {matchedIds.size} de {actions.length}
+            </span>
+            <div className="flex items-center space-x-1.5">
+              {actions.map((_, i) => (
+                <div
+                  key={i}
+                  className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${
+                    i < matchedIds.size ? 'bg-[#2EB85C]' : 'bg-[#cfc3a7]'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
+          <GameTimer secondsLeft={timeLeft} />
         </div>
 
         <p className="text-[#1A2E1A] font-bold text-xs sm:text-sm">
