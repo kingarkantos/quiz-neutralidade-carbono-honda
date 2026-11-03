@@ -167,10 +167,22 @@ export const ALL_QUESTIONS = [
 ];
 
 /**
- * Retorna 3 perguntas sorteadas aleatoriamente do banco de 5 perguntas
+ * Embaralhamento Fisher-Yates robusto e uniforme
+ */
+function shuffleArray(array) {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+/**
+ * Retorna 3 perguntas sorteadas aleatoriamente do banco de perguntas
  */
 export function getRandomQuizQuestions() {
-  const shuffled = [...ALL_QUESTIONS].sort(() => 0.5 - Math.random());
+  const shuffled = shuffleArray(ALL_QUESTIONS);
   return shuffled.slice(0, 3);
 }
 
