@@ -41,7 +41,7 @@ export const LIGUE_PONTOS_ITEMS = [
     benefitShort: "Triagem correta na fonte de geração",
     modalImage: "/assets/jogo2/ELEMENTOS/CONEXÃO CORRETA/quatro-lixeiras-de-reciclagem-coloridas.png",
     headline: "Coleta seletiva",
-    explanation: "Separar os materiais na fonte garante a integridade dos materiais recicláveis e acelera a triagem para reintrodução na indústria."
+    explanation: "Separar os materiais na fonte, garante sua reciclagem."
   }
 ];
 
