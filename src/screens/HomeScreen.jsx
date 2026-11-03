@@ -13,8 +13,8 @@ export default function HomeScreen({ onStart }) {
         style={{ backgroundImage: `url('/assets/bg/slice-home.png')` }}
       />
 
-      {/* Falling Vector Leaves (Matrix effect behind the logo in the beige/brown zone) */}
-      <FallingLeavesMatrix count={22} className="absolute top-0 left-0 right-0 h-[48%] overflow-hidden pointer-events-none z-10" />
+      {/* Falling Vector Leaves (Matrix effect falling from sky, passing behind the logo) */}
+      <FallingLeavesMatrix count={24} className="absolute top-0 left-0 right-0 h-[56%] overflow-hidden pointer-events-none z-10" />
 
       {/* Discreet Bush Foliage in Bottom Corners */}
       <CornerFoliage corners={['bottom-left', 'bottom-right']} />

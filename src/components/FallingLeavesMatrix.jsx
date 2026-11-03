@@ -14,22 +14,22 @@ const LeafSvg = ({ className = "", style = {} }) => (
 );
 
 export default function FallingLeavesMatrix({ 
-  count = 18, 
-  className = "absolute top-0 left-0 right-0 h-[52%] overflow-hidden pointer-events-none z-10" 
+  count = 20, 
+  className = "absolute top-0 left-0 right-0 h-[55%] overflow-hidden pointer-events-none z-10" 
 }) {
   // Generate deterministic particles so re-renders don't cause sudden jumps
   const leaves = useMemo(() => {
     return Array.from({ length: count }, (_, i) => {
       // Columns spread horizontally
-      const left = ((i * 5.8) + (i % 3) * 2.2 + 3) % 94;
-      const duration = 4.8 + ((i * 1.3) % 4.2);
-      const delay = -((i * 1.9) % duration); // Negative delay so they are already mid-flight!
-      const size = 12 + ((i * 3.7) % 14); // 12px to 26px
-      const opacity = 0.18 + ((i * 0.08) % 0.32); // 0.18 to 0.50
-      const drift = 8 + ((i * 4) % 16);
+      const left = ((i * 5.4) + (i % 4) * 2.1 + 2) % 96;
+      const duration = 4.8 + ((i * 0.8) % 3.6); // 4.8s to 8.4s (queda suave e fluida)
+      const delay = -((i * 1.5) % duration); // Negative delay so they are already mid-flight down the screen
+      const size = 12 + ((i * 3.2) % 16); // 12px to 28px
+      const opacity = 0.25 + ((i * 0.09) % 0.45); // 0.25 to 0.70
+      const drift = 8 + ((i * 4) % 18);
       const rotStart = -40 + ((i * 25) % 80);
-      const rotEnd = rotStart + 120 + ((i * 35) % 180);
-      const color = i % 2 === 0 ? '#2EB85C' : '#57B836';
+      const rotEnd = rotStart + 140 + ((i * 35) % 220);
+      const color = i % 3 === 0 ? '#2EB85C' : i % 3 === 1 ? '#7FD03F' : '#1C3B24';
 
       return {
         id: i,
@@ -57,20 +57,14 @@ export default function FallingLeavesMatrix({
       {leaves.map((l) => (
         <motion.div
           key={l.id}
-          initial={{ 
-            y: '-10%', 
-            x: 0, 
-            rotate: l.rotStart,
-            opacity: 0
-          }}
           animate={{
-            y: ['0%', '115%'],
+            top: ['-10%', '110%'],
             x: [0, l.drift, -l.drift, 0],
             rotate: [l.rotStart, l.rotEnd],
             opacity: [0, l.opacity, l.opacity, 0]
           }}
           transition={{
-            y: {
+            top: {
               repeat: Infinity,
               duration: l.duration,
               delay: l.delay,
@@ -78,7 +72,7 @@ export default function FallingLeavesMatrix({
             },
             x: {
               repeat: Infinity,
-              duration: l.duration * 0.7,
+              duration: l.duration * 0.65,
               delay: l.delay,
               ease: 'easeInOut'
             },
@@ -92,15 +86,15 @@ export default function FallingLeavesMatrix({
               repeat: Infinity,
               duration: l.duration,
               delay: l.delay,
-              times: [0, 0.15, 0.8, 1],
+              times: [0, 0.1, 0.9, 1],
               ease: 'linear'
             }
           }}
-          className="absolute top-0 pointer-events-none flex items-center justify-center"
+          className="absolute pointer-events-none flex items-center justify-center"
           style={{
             left: l.left,
-            width: l.size,
-            height: l.size,
+            width: `${l.size}px`,
+            height: `${l.size}px`,
             color: l.color,
             filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.12))'
           }}
