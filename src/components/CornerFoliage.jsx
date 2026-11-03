@@ -7,29 +7,25 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
   const showTopLeft = corners.includes('top-left');
   const showTopRight = corners.includes('top-right');
 
-  // Leaf dimensions:
-  // Base size: 70px width x 92px height (center leaf: 76px x 100px)
-  // In folha.png, stem is at bottom-center: (50%, 100%).
-
   return (
     <div className="absolute inset-0 pointer-events-none z-10 select-none overflow-hidden">
       {/* ============================================================== */}
       {/* 1. TOP-LEFT FAN (Leque no canto superior esquerdo)               */}
-      {/* Hastes convergem no vértice superior esquerdo, apontando para  */}
-      {/* dentro da tela (para baixo e para a direita).                   */}
+      {/* O talo fica para fora da tela (cortado), mostrando as folhas    */}
+      {/* brotando com naturalidade a partir do canto externo.            */}
       {/* ============================================================== */}
       {showTopLeft && (
-        <div className="absolute top-0 left-0 w-48 h-48 pointer-events-none">
+        <div className="absolute top-0 left-0 w-52 h-52 pointer-events-none">
           {/* Haste 1: Folha próxima ao topo (115°) */}
           <div 
-            className="absolute -top-[86px] -left-[31px] w-[68px] h-[90px]"
+            className="absolute -top-[108px] -left-[54px] w-[78px] h-[104px]"
             style={{ transformOrigin: '50% 100%' }}
           >
             <motion.img
               src="/assets/elements/folha.png"
               alt="Folha leque"
               animate={{
-                scale: [0.93, 0.99, 0.93],
+                scale: [0.94, 1.0, 0.94],
                 rotate: [115, 109, 115]
               }}
               transition={{ repeat: Infinity, duration: 4.2, ease: "easeInOut" }}
@@ -40,14 +36,14 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
 
           {/* Haste 3: Folha lateral esquerda (160°) */}
           <div 
-            className="absolute -top-[86px] -left-[31px] w-[68px] h-[90px]"
+            className="absolute -top-[108px] -left-[54px] w-[78px] h-[104px]"
             style={{ transformOrigin: '50% 100%' }}
           >
             <motion.img
               src="/assets/elements/folha.png"
               alt="Folha leque"
               animate={{
-                scale: [0.93, 0.99, 0.93],
+                scale: [0.94, 1.0, 0.94],
                 rotate: [160, 166, 160]
               }}
               transition={{ repeat: Infinity, duration: 4.2, delay: 0.15, ease: "easeInOut" }}
@@ -56,9 +52,9 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
             />
           </div>
 
-          {/* Haste 2: Folha central diagonal (138° - em destaque no meio) */}
+          {/* Haste 2: Folha central diagonal (138° - em destaque) */}
           <div 
-            className="absolute -top-[94px] -left-[35px] w-[76px] h-[100px] z-10"
+            className="absolute -top-[118px] -left-[58px] w-[86px] h-[116px] z-10"
             style={{ transformOrigin: '50% 100%' }}
           >
             <motion.img
@@ -78,20 +74,20 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
 
       {/* ============================================================== */}
       {/* 2. TOP-RIGHT FAN (Leque no canto superior direito - ESPELHO)    */}
-      {/* Espelho horizontal exato (scaleX: -1) do leque superior esquerdo */}
+      {/* Espelho horizontal exato (scaleX: -1) com talo fora da tela     */}
       {/* ============================================================== */}
       {showTopRight && (
-        <div className="absolute top-0 right-0 w-48 h-48 pointer-events-none">
+        <div className="absolute top-0 right-0 w-52 h-52 pointer-events-none">
           {/* Haste 1: Folha próxima ao topo (espelho) */}
           <div 
-            className="absolute -top-[86px] -right-[31px] w-[68px] h-[90px]"
+            className="absolute -top-[108px] -right-[54px] w-[78px] h-[104px]"
             style={{ transform: 'scaleX(-1)', transformOrigin: '50% 100%' }}
           >
             <motion.img
               src="/assets/elements/folha.png"
               alt="Folha leque"
               animate={{
-                scale: [0.93, 0.99, 0.93],
+                scale: [0.94, 1.0, 0.94],
                 rotate: [115, 109, 115]
               }}
               transition={{ repeat: Infinity, duration: 4.2, ease: "easeInOut" }}
@@ -102,14 +98,14 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
 
           {/* Haste 3: Folha lateral direita (espelho) */}
           <div 
-            className="absolute -top-[86px] -right-[31px] w-[68px] h-[90px]"
+            className="absolute -top-[108px] -right-[54px] w-[78px] h-[104px]"
             style={{ transform: 'scaleX(-1)', transformOrigin: '50% 100%' }}
           >
             <motion.img
               src="/assets/elements/folha.png"
               alt="Folha leque"
               animate={{
-                scale: [0.93, 0.99, 0.93],
+                scale: [0.94, 1.0, 0.94],
                 rotate: [160, 166, 160]
               }}
               transition={{ repeat: Infinity, duration: 4.2, delay: 0.15, ease: "easeInOut" }}
@@ -120,7 +116,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
 
           {/* Haste 2: Folha central diagonal (espelho) */}
           <div 
-            className="absolute -top-[94px] -right-[35px] w-[76px] h-[100px] z-10"
+            className="absolute -top-[118px] -right-[58px] w-[86px] h-[116px] z-10"
             style={{ transform: 'scaleX(-1)', transformOrigin: '50% 100%' }}
           >
             <motion.img
@@ -140,13 +136,13 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
 
       {/* ============================================================== */}
       {/* 3. BOTTOM-LEFT FAN (Leque no canto inferior esquerdo)           */}
-      {/* Aprovado pelo usuário ("esse ficou bom")                        */}
+      {/* Talo discretamente fora da tela                                */}
       {/* ============================================================== */}
       {showBottomLeft && (
-        <div className="absolute bottom-0 left-0 w-48 h-48 pointer-events-none">
+        <div className="absolute bottom-0 left-0 w-52 h-52 pointer-events-none">
           {/* Haste lateral esquerda (20°) */}
           <div 
-            className="absolute -bottom-2 -left-[35px] w-[68px] h-[88px]"
+            className="absolute -bottom-5 -left-[45px] w-[74px] h-[96px]"
             style={{ transformOrigin: '50% 100%' }}
           >
             <motion.img
@@ -164,7 +160,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
 
           {/* Haste inferior (70°) */}
           <div 
-            className="absolute -bottom-2 -left-[35px] w-[68px] h-[88px]"
+            className="absolute -bottom-5 -left-[45px] w-[74px] h-[96px]"
             style={{ transformOrigin: '50% 100%' }}
           >
             <motion.img
@@ -182,7 +178,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
 
           {/* Haste central diagonal (45° - em destaque) */}
           <div 
-            className="absolute -bottom-2 -left-[35px] w-[74px] h-[96px] z-10"
+            className="absolute -bottom-5 -left-[45px] w-[80px] h-[104px] z-10"
             style={{ transformOrigin: '50% 100%' }}
           >
             <motion.img
@@ -202,13 +198,12 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
 
       {/* ============================================================== */}
       {/* 4. BOTTOM-RIGHT FAN (Leque no canto inferior direito - ESPELHO) */}
-      {/* Espelho horizontal exato (scaleX: -1) do leque inferior esquerdo*/}
       {/* ============================================================== */}
       {showBottomRight && (
-        <div className="absolute bottom-0 right-0 w-48 h-48 pointer-events-none">
+        <div className="absolute bottom-0 right-0 w-52 h-52 pointer-events-none">
           {/* Haste lateral direita (espelho de 20°) */}
           <div 
-            className="absolute -bottom-2 -right-[35px] w-[68px] h-[88px]"
+            className="absolute -bottom-5 -right-[45px] w-[74px] h-[96px]"
             style={{ transform: 'scaleX(-1)', transformOrigin: '50% 100%' }}
           >
             <motion.img
@@ -226,7 +221,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
 
           {/* Haste inferior (espelho de 70°) */}
           <div 
-            className="absolute -bottom-2 -right-[35px] w-[68px] h-[88px]"
+            className="absolute -bottom-5 -right-[45px] w-[74px] h-[96px]"
             style={{ transform: 'scaleX(-1)', transformOrigin: '50% 100%' }}
           >
             <motion.img
@@ -244,7 +239,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
 
           {/* Haste central diagonal (espelho de 45°) */}
           <div 
-            className="absolute -bottom-2 -right-[35px] w-[74px] h-[96px] z-10"
+            className="absolute -bottom-5 -right-[45px] w-[80px] h-[104px] z-10"
             style={{ transform: 'scaleX(-1)', transformOrigin: '50% 100%' }}
           >
             <motion.img
