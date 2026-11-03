@@ -30,21 +30,21 @@ const WindGustLine = ({ width = 120, strokeWidth = 2, opacity = 0.25 }) => (
 
 export default function WindLeavesStream({ 
   className = "absolute inset-0 pointer-events-none overflow-hidden z-20",
-  leafCount = 14
+  leafCount = 18
 }) {
   // Deterministic leaves so re-renders don't cause sudden jumps
   const particles = useMemo(() => {
     return Array.from({ length: leafCount }, (_, i) => {
-      // Y positions distributed across the middle/lower landscape (40% to 82% of screen)
-      const topPercent = 42 + ((i * 7.3 + (i % 3) * 4) % 40);
-      const duration = 5.2 + ((i * 1.4) % 3.8); // 5.2s to 9s (gentle, suave)
-      const delay = -((i * 1.7) % duration); // Negative delay so leaves are already mid-flight
-      const size = 14 + ((i * 3.5) % 18); // 14px to 32px
-      const opacity = 0.35 + ((i * 0.12) % 0.55); // 0.35 to 0.90
-      const waveAmplitude = 12 + ((i * 5) % 22); // vertical undulating wave
-      const rotSpeed = 240 + ((i * 70) % 260); // degrees rotated over the flight
+      // Y positions distributed across the middle/lower landscape (48% to 76% of screen)
+      const topPercent = 48 + ((i * 4.9) % 27);
+      const duration = 4.2 + ((i * 0.9) % 2.8); // 4.2s to 7.0s (brisa suave contínua)
+      const delay = -((i * 1.5) % duration); // Negative delay so leaves are already mid-flight
+      const size = 15 + ((i * 3.3) % 18); // 15px to 33px
+      const opacity = 0.4 + ((i * 0.11) % 0.55); // 0.40 to 0.95
+      const waveAmplitude = 12 + ((i * 5) % 20); // vertical undulating wave
+      const rotSpeed = 260 + ((i * 70) % 280); // degrees rotated over the flight
       const color = i % 3 === 0 ? '#2EB85C' : i % 3 === 1 ? '#7FD03F' : '#1C3B24';
-      const isImage = i % 4 === 0; // Every 4th leaf is the photo-realistic folha.png
+      const isImage = i % 3 === 0; // 1 in 3 is the photo-realistic folha.png
       const isType2 = i % 2 === 1;
 
       return {
@@ -65,9 +65,9 @@ export default function WindLeavesStream({
 
   // Wind gusts passing across
   const gusts = useMemo(() => [
-    { id: 1, top: '48%', duration: 4.8, delay: -1.2, width: 140, opacity: 0.3 },
-    { id: 2, top: '58%', duration: 5.6, delay: -3.5, width: 180, opacity: 0.22 },
-    { id: 3, top: '70%', duration: 5.0, delay: -2.1, width: 130, opacity: 0.28 },
+    { id: 1, top: '50%', duration: 4.2, delay: -1.0, width: 140, opacity: 0.35 },
+    { id: 2, top: '61%', duration: 4.8, delay: -2.8, width: 190, opacity: 0.28 },
+    { id: 3, top: '71%', duration: 4.4, delay: -1.8, width: 150, opacity: 0.32 },
   ], []);
 
   return (
@@ -76,42 +76,44 @@ export default function WindLeavesStream({
       {gusts.map((g) => (
         <motion.div
           key={`gust-${g.id}`}
-          initial={{ x: '-30%', opacity: 0 }}
           animate={{
-            x: ['-20%', '130%'],
+            left: ['-35%', '115%'],
             opacity: [0, g.opacity, g.opacity * 0.8, 0]
           }}
           transition={{
-            repeat: Infinity,
-            duration: g.duration,
-            delay: g.delay,
-            ease: [0.25, 0.1, 0.25, 1]
+            left: {
+              repeat: Infinity,
+              duration: g.duration,
+              delay: g.delay,
+              ease: 'linear'
+            },
+            opacity: {
+              repeat: Infinity,
+              duration: g.duration,
+              delay: g.delay,
+              times: [0, 0.15, 0.85, 1],
+              ease: 'linear'
+            }
           }}
           className="absolute pointer-events-none"
-          style={{ top: g.top, left: 0 }}
+          style={{ top: g.top }}
         >
           <WindGustLine width={g.width} opacity={g.opacity} />
         </motion.div>
       ))}
 
-      {/* Floating Leaves Drifting Left-to-Right */}
+      {/* Floating Leaves Drifting Completely Across Screen from Left (-15%) to Right (115%) */}
       {particles.map((p) => (
         <motion.div
           key={`leaf-${p.id}`}
-          initial={{
-            x: '-15%',
-            y: 0,
-            rotate: 0,
-            opacity: 0
-          }}
           animate={{
-            x: ['-10%', '115%'],
-            y: [0, -p.waveAmplitude, p.waveAmplitude * 0.7, -p.waveAmplitude * 0.5, 0],
+            left: ['-15%', '115%'],
+            y: [0, -p.waveAmplitude, p.waveAmplitude * 0.8, -p.waveAmplitude * 0.5, 0],
             rotate: [0, p.rotSpeed * 0.4, p.rotSpeed * 0.8, p.rotSpeed],
             opacity: [0, p.opacity, p.opacity, 0]
           }}
           transition={{
-            x: {
+            left: {
               repeat: Infinity,
               duration: p.duration,
               delay: p.delay,
@@ -133,14 +135,13 @@ export default function WindLeavesStream({
               repeat: Infinity,
               duration: p.duration,
               delay: p.delay,
-              times: [0, 0.12, 0.88, 1],
+              times: [0, 0.1, 0.9, 1],
               ease: 'linear'
             }
           }}
           className="absolute pointer-events-none flex items-center justify-center filter drop-shadow-sm"
           style={{
             top: p.top,
-            left: 0,
             width: `${p.size}px`,
             height: `${p.size}px`
           }}
