@@ -37,7 +37,7 @@ export const LIGUE_PONTOS_ITEMS = [
     actionTitle: "Separação de resíduos",
     actionThumb: "/assets/jogo2/ELEMENTOS/ELEMENTOS AÇÕES/quatro-lixeiras-coloridas-em-fila-4.png",
     benefitId: "b4",
-    benefitTitle: "Facilita e amplia a reciclagem",
+    benefitTitle: "Facilita a reciclagem",
     benefitShort: "Triagem correta na fonte de geração",
     modalImage: "/assets/jogo2/ELEMENTOS/CONEXÃO CORRETA/quatro-lixeiras-de-reciclagem-coloridas.png",
     headline: "Separação de resíduos",
