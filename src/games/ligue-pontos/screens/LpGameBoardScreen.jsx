@@ -8,6 +8,45 @@ import LpSuccessModal from './LpSuccessModal';
 import LpWrongModal from './LpWrongModal';
 import { Check } from 'lucide-react';
 
+// Cores únicas e distintas para cada par/conexão (sem vermelho)
+const PAIR_COLORS = {
+  1: {
+    border: 'border-[#2EB85C]',
+    bgMatched: 'bg-[#2EB85C]/15',
+    bgDot: 'bg-[#2EB85C]',
+    text: 'text-[#2EB85C]',
+    ring: 'ring-[#2EB85C]/35',
+  },
+  2: {
+    border: 'border-[#0284c7]',
+    bgMatched: 'bg-[#0284c7]/15',
+    bgDot: 'bg-[#0284c7]',
+    text: 'text-[#0284c7]',
+    ring: 'ring-[#0284c7]/35',
+  },
+  3: {
+    border: 'border-[#d97706]',
+    bgMatched: 'bg-[#d97706]/15',
+    bgDot: 'bg-[#d97706]',
+    text: 'text-[#d97706]',
+    ring: 'ring-[#d97706]/35',
+  },
+  4: {
+    border: 'border-[#7c3aed]',
+    bgMatched: 'bg-[#7c3aed]/15',
+    bgDot: 'bg-[#7c3aed]',
+    text: 'text-[#7c3aed]',
+    ring: 'ring-[#7c3aed]/35',
+  },
+  5: {
+    border: 'border-[#0d9488]',
+    bgMatched: 'bg-[#0d9488]/15',
+    bgDot: 'bg-[#0d9488]',
+    text: 'text-[#0d9488]',
+    ring: 'ring-[#0d9488]/35',
+  },
+};
+
 export default function LpGameBoardScreen({ onFinish }) {
   // 5 items
   const actions = useMemo(() => LIGUE_PONTOS_ITEMS, []);
@@ -130,14 +169,18 @@ export default function LpGameBoardScreen({ onFinish }) {
               Conexões: {matchedIds.size} de {actions.length}
             </span>
             <div className="flex items-center space-x-1.5">
-              {actions.map((_, i) => (
-                <div
-                  key={i}
-                  className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${
-                    i < matchedIds.size ? 'bg-[#2EB85C]' : 'bg-[#cfc3a7]'
-                  }`}
-                />
-              ))}
+              {actions.map((act, i) => {
+                const isActMatched = matchedIds.has(act.id);
+                const actColor = PAIR_COLORS[act.id] || PAIR_COLORS[1];
+                return (
+                  <div
+                    key={i}
+                    className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${
+                      isActMatched ? actColor.bgDot : 'bg-[#cfc3a7]'
+                    }`}
+                  />
+                );
+              })}
             </div>
           </div>
           <GameTimer secondsLeft={timeLeft} />
@@ -218,6 +261,7 @@ export default function LpGameBoardScreen({ onFinish }) {
           {actions.map((item) => {
             const isMatched = matchedIds.has(item.id);
             const isSelected = selectedActionId === item.id;
+            const pairColor = PAIR_COLORS[item.id] || PAIR_COLORS[1];
 
             return (
               <motion.div
@@ -227,9 +271,9 @@ export default function LpGameBoardScreen({ onFinish }) {
                 onClick={() => handleSelectAction(item.id)}
                 className={`relative flex items-center justify-between p-1.5 sm:p-2 rounded-[18px] transition-all duration-200 select-none cursor-pointer ${
                   isMatched
-                    ? 'bg-[#2EB85C]/20 border-2 border-[#2EB85C] opacity-90'
+                    ? `${pairColor.bgMatched} border-2 ${pairColor.border} opacity-95 shadow-sm`
                     : isSelected
-                    ? 'bg-white border-2 border-[#2EB85C] shadow-lg ring-4 ring-[#2EB85C]/30'
+                    ? `bg-white border-2 ${pairColor.border} shadow-lg ring-4 ${pairColor.ring}`
                     : 'bg-[#faf5ec]/95 border border-white/80 shadow-md hover:bg-white'
                 }`}
               >
@@ -252,9 +296,9 @@ export default function LpGameBoardScreen({ onFinish }) {
                 {/* Connector Dot */}
                 <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${
                   isMatched
-                    ? 'bg-[#2EB85C] text-white shadow-sm'
+                    ? `${pairColor.bgDot} text-white shadow-sm`
                     : isSelected
-                    ? 'bg-[#2EB85C] text-white animate-pulse'
+                    ? `${pairColor.bgDot} text-white animate-pulse`
                     : 'bg-[#d8ccb8] border border-white'
                 }`}>
                   {isMatched && <Check className="w-3.5 h-3.5 stroke-[3]" />}
@@ -270,10 +314,10 @@ export default function LpGameBoardScreen({ onFinish }) {
             BENEFÍCIOS
           </div>
           {benefits.map((b) => {
-            const isMatched = Array.from(matchedIds).some(
-              aId => actions.find(a => a.id === aId)?.benefitId === b.benefitId
-            );
+            const matchingAction = actions.find(a => a.benefitId === b.benefitId);
+            const isMatched = matchingAction ? matchedIds.has(matchingAction.id) : false;
             const isSelected = selectedBenefitId === b.benefitId;
+            const pairColor = matchingAction ? (PAIR_COLORS[matchingAction.id] || PAIR_COLORS[1]) : PAIR_COLORS[1];
 
             return (
               <motion.div
@@ -283,18 +327,18 @@ export default function LpGameBoardScreen({ onFinish }) {
                 onClick={() => handleSelectBenefit(b.benefitId)}
                 className={`relative flex items-center justify-between p-1.5 sm:p-2 rounded-[18px] transition-all duration-200 select-none cursor-pointer ${
                   isMatched
-                    ? 'bg-[#2EB85C]/20 border-2 border-[#2EB85C] opacity-90'
+                    ? `${pairColor.bgMatched} border-2 ${pairColor.border} opacity-95 shadow-sm`
                     : isSelected
-                    ? 'bg-white border-2 border-[#2EB85C] shadow-lg ring-4 ring-[#2EB85C]/30'
+                    ? `bg-white border-2 ${pairColor.border} shadow-lg ring-4 ${pairColor.ring}`
                     : 'bg-[#faf5ec]/95 border border-white/80 shadow-md hover:bg-white'
                 }`}
               >
                 {/* Connector Dot */}
                 <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${
                   isMatched
-                    ? 'bg-[#2EB85C] text-white shadow-sm'
+                    ? `${pairColor.bgDot} text-white shadow-sm`
                     : isSelected
-                    ? 'bg-[#2EB85C] text-white animate-pulse'
+                    ? `${pairColor.bgDot} text-white animate-pulse`
                     : 'bg-[#d8ccb8] border border-white'
                 }`}>
                   {isMatched && <Check className="w-3.5 h-3.5 stroke-[3]" />}
@@ -308,7 +352,7 @@ export default function LpGameBoardScreen({ onFinish }) {
                       alt="Folha" 
                       className="w-3 h-3 object-contain" 
                     />
-                    <span className="text-[#2EB85C] font-black text-[9px] uppercase tracking-wider">
+                    <span className={`font-black text-[9px] uppercase tracking-wider ${isMatched ? pairColor.text : 'text-[#2EB85C]'}`}>
                       IMPACTO
                     </span>
                   </div>

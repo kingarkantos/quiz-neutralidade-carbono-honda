@@ -34,3 +34,4 @@ export default function GameTimer({ secondsLeft = 60, className = '' }) {
     </motion.div>
   );
 }
+
