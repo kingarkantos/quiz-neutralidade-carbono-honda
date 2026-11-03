@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 import Header from '../../../components/Header';
 import CornerFoliage from '../../../components/CornerFoliage';
 import confetti from 'canvas-confetti';
-import { RotateCcw, ArrowRight } from 'lucide-react';
+import { RotateCcw } from 'lucide-react';
 
-export default function MemoriaFinishScreen({ roundNumber, onPlayNextRound, onRestartRound }) {
+export default function MemoriaFinishScreen({ onRestart }) {
   useEffect(() => {
     confetti({
       particleCount: 80,
@@ -14,8 +14,6 @@ export default function MemoriaFinishScreen({ roundNumber, onPlayNextRound, onRe
       colors: ['#2EB85C', '#7FD03F', '#1C3B24', '#FAF5EC']
     });
   }, []);
-
-  const hasNextRound = roundNumber === 1;
 
   return (
     <div className="relative w-full h-full flex flex-col justify-between overflow-hidden bg-[#ecdcc1]">
@@ -77,7 +75,7 @@ export default function MemoriaFinishScreen({ roundNumber, onPlayNextRound, onRe
           className="my-1 select-none"
         >
           <h1 className="text-[#1A2E1A] font-black text-3xl sm:text-4xl tracking-tight uppercase leading-none">
-            RODADA CONCLUÍDA!
+            DESAFIO CONCLUÍDO!
           </h1>
           <p className="text-[#2EB85C] font-black text-sm sm:text-base tracking-wider uppercase mt-1">
             VOCÊ ENCONTROU TODOS OS 5 PARES DE ENERGIA.
@@ -92,38 +90,23 @@ export default function MemoriaFinishScreen({ roundNumber, onPlayNextRound, onRe
           className="w-full bg-[#FAF5EC]/95 backdrop-blur-sm rounded-[22px] p-4 sm:p-5 shadow-3d-card border border-white/70 my-2"
         >
           <p className="text-[#1A2E1A] font-medium text-xs sm:text-sm leading-relaxed">
-            {roundNumber === 1
-              ? "As energias renováveis são fundamentais para zerar as emissões de carbono e garantir um fornecimento sustentável para as próximas gerações."
-              : "Compreender as fontes fósseis e seu impacto nos ajuda a valorizar e acelerar a transição ecológica rumo ao carbono zero."}
+            Conhecer as fontes renováveis e de transição nos ajuda a entender os caminhos para alcançar a neutralidade de carbono e um futuro mais sustentável.
           </p>
         </motion.div>
       </div>
 
       {/* Bottom Buttons - Isolated In-Game Flow */}
       <div className="relative z-10 w-full px-6 sm:px-8 pb-5 sm:pb-8 pt-1 flex justify-center max-w-lg mx-auto flex-shrink-0">
-        {hasNextRound ? (
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={onPlayNextRound}
-            className="w-full py-3.5 sm:py-4.5 rounded-full btn-tactile-green anim-shimmer text-white font-black text-base sm:text-xl tracking-wider select-none uppercase flex items-center justify-center space-x-2 shadow-xl"
-          >
-            <span>JOGAR RODADA 2</span>
-            <ArrowRight className="w-5 h-5 stroke-[2.5]" />
-          </motion.button>
-        ) : (
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={onRestartRound}
-            className="w-full py-3.5 sm:py-4.5 rounded-full btn-tactile-green anim-shimmer text-white font-black text-base sm:text-xl tracking-wider select-none uppercase flex items-center justify-center space-x-2 shadow-xl"
-          >
-            <RotateCcw className="w-5 h-5 stroke-[2.5]" />
-            <span>JOGAR NOVAMENTE</span>
-          </motion.button>
-        )}
+        <motion.button
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+          onClick={onRestart}
+          className="w-full py-3.5 sm:py-4.5 rounded-full btn-tactile-green anim-shimmer text-white font-black text-base sm:text-xl tracking-wider select-none uppercase flex items-center justify-center space-x-2 shadow-xl"
+        >
+          <RotateCcw className="w-5 h-5 stroke-[2.5]" />
+          <span>JOGAR NOVAMENTE</span>
+        </motion.button>
       </div>
     </div>
   );
 }
-

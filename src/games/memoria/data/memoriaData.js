@@ -97,3 +97,32 @@ export const MEMORIA_ROUNDS = {
   }
 };
 
+function shuffle(array) {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+/**
+ * Retorna 5 pares mistos balanceados: opções de fontes renováveis e de transição
+ */
+export function getMixedMemoriaCards() {
+  const renowables = shuffle([...MEMORIA_ROUNDS[1].cards]);
+  const transition = shuffle([...MEMORIA_ROUNDS[2].cards]);
+  
+  // 3 renováveis + 2 de transição (ou 2 renováveis + 3 de transição)
+  const isRenovavelMajority = Math.random() > 0.5;
+  const countRenovavel = isRenovavelMajority ? 3 : 2;
+  const countTransition = 5 - countRenovavel;
+
+  const selected = [
+    ...renowables.slice(0, countRenovavel),
+    ...transition.slice(0, countTransition)
+  ];
+
+  return shuffle(selected);
+}
+

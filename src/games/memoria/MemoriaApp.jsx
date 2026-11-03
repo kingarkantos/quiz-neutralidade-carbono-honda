@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import MemoriaHomeScreen from './screens/MemoriaHomeScreen';
-import MemoriaRoundSelectScreen from './screens/MemoriaRoundSelectScreen';
 import MemoriaGameBoardScreen from './screens/MemoriaGameBoardScreen';
 import MemoriaFinishScreen from './screens/MemoriaFinishScreen';
 
 export default function MemoriaApp() {
-  const [screen, setScreen] = useState('home'); // 'home' | 'round-select' | 'board' | 'finish'
-  const [selectedRound, setSelectedRound] = useState(1);
+  const [screen, setScreen] = useState('home'); // 'home' | 'board' | 'finish'
+  const [gameKey, setGameKey] = useState(0);
 
   const handleStart = () => {
-    setScreen('round-select');
-  };
-
-  const handleSelectRound = (roundNum) => {
-    setSelectedRound(roundNum);
+    setGameKey(prev => prev + 1);
     setScreen('board');
   };
 
@@ -22,13 +17,9 @@ export default function MemoriaApp() {
     setScreen('finish');
   };
 
-  const handlePlayNextRound = () => {
-    setSelectedRound(2);
+  const handleRestart = () => {
+    setGameKey(prev => prev + 1);
     setScreen('board');
-  };
-
-  const handleRestartRound = () => {
-    setScreen('round-select');
   };
 
   return (
@@ -47,22 +38,9 @@ export default function MemoriaApp() {
           </motion.div>
         )}
 
-        {screen === 'round-select' && (
-          <motion.div
-            key="memoria-round-select"
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -40 }}
-            transition={{ duration: 0.35 }}
-            className="w-full h-full flex flex-col min-h-0"
-          >
-            <MemoriaRoundSelectScreen onSelectRound={handleSelectRound} />
-          </motion.div>
-        )}
-
         {screen === 'board' && (
           <motion.div
-            key={`memoria-board-${selectedRound}`}
+            key={`memoria-board-${gameKey}`}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.05 }}
@@ -70,7 +48,6 @@ export default function MemoriaApp() {
             className="w-full h-full flex flex-col min-h-0"
           >
             <MemoriaGameBoardScreen
-              roundNumber={selectedRound}
               onFinish={handleFinishRound}
             />
           </motion.div>
@@ -86,9 +63,7 @@ export default function MemoriaApp() {
             className="w-full h-full flex flex-col min-h-0"
           >
             <MemoriaFinishScreen
-              roundNumber={selectedRound}
-              onPlayNextRound={handlePlayNextRound}
-              onRestartRound={handleRestartRound}
+              onRestart={handleRestart}
             />
           </motion.div>
         )}
@@ -96,4 +71,3 @@ export default function MemoriaApp() {
     </div>
   );
 }
-

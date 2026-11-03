@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Header from '../../../components/Header';
 import CornerFoliage from '../../../components/CornerFoliage';
 import GameTimer from '../../../components/GameTimer';
-import { MEMORIA_ROUNDS } from '../data/memoriaData';
+import { getMixedMemoriaCards } from '../data/memoriaData';
 import MemoriaMatchModal from './MemoriaMatchModal';
 
 // Fisher-Yates shuffle
@@ -16,13 +16,12 @@ function shuffle(array) {
   return arr;
 }
 
-export default function MemoriaGameBoardScreen({ roundNumber = 1, onFinish }) {
-  const roundData = MEMORIA_ROUNDS[roundNumber] || MEMORIA_ROUNDS[1];
-
-  // Build 10 cards (5 pairs) and shuffle them
+export default function MemoriaGameBoardScreen({ onFinish }) {
+  // Build 10 cards (5 pairs) mixed between Renováveis and Transição
   const initialCards = useMemo(() => {
+    const mixedCards = getMixedMemoriaCards();
     const pairs = [];
-    roundData.cards.forEach((item) => {
+    mixedCards.forEach((item) => {
       // Card A
       pairs.push({
         uniqueId: `${item.id}-a`,
@@ -37,7 +36,7 @@ export default function MemoriaGameBoardScreen({ roundNumber = 1, onFinish }) {
       });
     });
     return shuffle(pairs);
-  }, [roundData]);
+  }, []);
 
   const [cards, setCards] = useState(initialCards);
   const [flippedIds, setFlippedIds] = useState([]); // currently selected 1 or 2 card uniqueIds
@@ -153,7 +152,7 @@ export default function MemoriaGameBoardScreen({ roundNumber = 1, onFinish }) {
 
           <div className="flex items-center justify-center space-x-2">
             <span className="bg-[#1C3B24] text-white text-[10px] sm:text-xs font-black uppercase px-3.5 py-1 rounded-full shadow-sm">
-              Rodada {roundNumber} de 2
+              Renováveis & Transição
             </span>
             <GameTimer secondsLeft={timeLeft} />
           </div>
