@@ -16,6 +16,7 @@ export default function FeedbackScreen({
   onNext
 }) {
   const isLastQuestion = questionIndex + 1 >= totalQuestions;
+  const userOption = selectedOption || answers[answers.length - 1]?.selectedOption;
 
   // Trigger eco confetti when correct
   useEffect(() => {
@@ -53,7 +54,9 @@ export default function FeedbackScreen({
       {/* Center Feedback Area */}
       <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-center px-5 sm:px-6 max-w-lg mx-auto w-full my-auto">
         {/* Animated Planet with Floating Leaves Behind */}
-        <div className="relative w-44 h-44 sm:w-60 sm:h-60 flex items-center justify-center my-1 sm:my-2 flex-shrink-0">
+        <div className={`relative flex items-center justify-center my-1 sm:my-2 flex-shrink-0 ${
+          isCorrect ? 'w-44 h-44 sm:w-60 sm:h-60' : 'w-36 h-36 sm:w-48 sm:h-48'
+        }`}>
           {isCorrect ? (
             /* --- HAPPY EARTH WITH 4 LEAVES CAREFULLY SPROUTING FROM BEHIND --- */
             <div className="relative w-full h-full flex items-center justify-center">
@@ -176,7 +179,7 @@ export default function FeedbackScreen({
                 animate={{ 
                   scale: 1, 
                   opacity: 1,
-                  y: [0, 6, 0],
+                  y: [0, 5, 0],
                   rotate: [-2, 2, -2]
                 }}
                 transition={{
@@ -187,7 +190,7 @@ export default function FeedbackScreen({
                 }}
                 src="/assets/elements/earth-sad.png"
                 alt="Terra Triste"
-                className="w-36 h-36 sm:w-48 sm:h-48 object-contain drop-shadow-[0_16px_28px_rgba(0,0,0,0.3)] z-20 select-none pointer-events-none"
+                className="w-32 h-32 sm:w-42 sm:h-42 object-contain drop-shadow-[0_16px_28px_rgba(0,0,0,0.3)] z-20 select-none pointer-events-none"
               />
 
               {/* CO2 Cloud Left - No canto superior esquerdo do planeta */}
@@ -195,13 +198,13 @@ export default function FeedbackScreen({
                 src="/assets/elements/co2-cloud.png"
                 alt="Nuvem de CO2"
                 animate={{
-                  y: [0, -8, 0],
+                  y: [0, -7, 0],
                   x: [0, -3, 0],
                   scale: [0.95, 1.05, 0.95],
                   opacity: [0.9, 1, 0.9]
                 }}
                 transition={{ repeat: Infinity, duration: 3.2, ease: 'easeInOut' }}
-                className="absolute top-0 -left-2 sm:top-1 sm:-left-3 w-[58px] h-[58px] sm:w-[74px] sm:h-[74px] object-contain z-30 drop-shadow-lg pointer-events-none"
+                className="absolute top-0 -left-2 sm:top-1 sm:-left-3 w-[48px] h-[48px] sm:w-[62px] sm:h-[62px] object-contain z-30 drop-shadow-lg pointer-events-none"
               />
 
               {/* CO2 Cloud Right - No canto superior direito do planeta */}
@@ -209,13 +212,13 @@ export default function FeedbackScreen({
                 src="/assets/elements/co2-cloud.png"
                 alt="Nuvem de CO2"
                 animate={{
-                  y: [0, -9, 0],
+                  y: [0, -8, 0],
                   x: [0, 3, 0],
                   scale: [1.05, 0.95, 1.05],
                   opacity: [0.9, 1, 0.9]
                 }}
                 transition={{ repeat: Infinity, duration: 3.5, delay: 0.4, ease: 'easeInOut' }}
-                className="absolute top-1 -right-2 sm:top-2 sm:-right-3 w-[58px] h-[58px] sm:w-[74px] sm:h-[74px] object-contain z-30 drop-shadow-lg pointer-events-none"
+                className="absolute top-1 -right-2 sm:top-2 sm:-right-3 w-[48px] h-[48px] sm:w-[62px] sm:h-[62px] object-contain z-30 drop-shadow-lg pointer-events-none"
               />
             </div>
           )}
@@ -229,11 +232,48 @@ export default function FeedbackScreen({
           initial={{ opacity: 0, y: 25, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ type: 'spring', stiffness: 300, damping: 22, delay: 0.2 }}
-          className="w-full bg-[#FAF5EC]/95 backdrop-blur-sm rounded-[18px] sm:rounded-[24px] p-3.5 sm:p-5 shadow-3d-card border border-white/60 text-center my-1.5 sm:my-2 z-10"
+          className="w-full bg-[#FAF5EC]/95 backdrop-blur-sm rounded-[18px] sm:rounded-[24px] p-3 sm:p-4 shadow-3d-card border border-white/60 text-center my-1.5 sm:my-2 z-10"
         >
+          {/* Quadradinho da alternativa errada que o usuário marcou */}
+          {!isCorrect && userOption && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: -5 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ delay: 0.25 }}
+              className="bg-red-50/95 border-2 border-red-300 rounded-2xl p-2 sm:p-2.5 mb-2.5 text-left shadow-sm flex items-center space-x-2.5"
+            >
+              {/* Quadradinho com a imagem 3D e o badge X da alternativa */}
+              <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-white border border-red-200 flex-shrink-0 flex items-center justify-center p-1 shadow-inner overflow-hidden">
+                <img
+                  src={userOption.image}
+                  alt={userOption.text}
+                  className="w-full h-full object-contain pointer-events-none"
+                />
+                <div className="absolute top-0.5 right-0.5 w-4 h-4 rounded-full bg-red-600 text-white font-black text-[9px] flex items-center justify-center shadow">
+                  ✕
+                </div>
+              </div>
+
+              {/* Informações da alternativa marcada */}
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center space-x-1.5 mb-0.5">
+                  <span className="bg-red-600 text-white font-black text-[10px] sm:text-xs px-2 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
+                    Você marcou ({userOption.id})
+                  </span>
+                  <span className="text-red-600 font-bold text-[10px] sm:text-xs uppercase">
+                    Incorreta
+                  </span>
+                </div>
+                <p className="text-[#1A2E1A] font-bold text-xs sm:text-sm leading-tight line-clamp-2">
+                  {userOption.text}
+                </p>
+              </div>
+            </motion.div>
+          )}
+
           {!isCorrect && (
-            <p className="text-[#b91c1c] font-black text-xs sm:text-sm uppercase tracking-wider mb-1">
-              A resposta correta é a alternativa {question.correctOptionId}
+            <p className="text-[#15803d] font-black text-xs sm:text-sm uppercase tracking-wider mb-1">
+              ✓ A resposta correta é a alternativa {question.correctOptionId}
             </p>
           )}
           <p className="text-[#1A2E1A] font-medium text-xs sm:text-sm md:text-base leading-relaxed">
