@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Header from '../../../components/Header';
 import CornerFoliage from '../../../components/CornerFoliage';
 import FallingLeavesMatrix from '../../../components/FallingLeavesMatrix';
+import WindLeavesStream from '../../../components/WindLeavesStream';
 
 export default function MemoriaHomeScreen({ onStart }) {
   return (
@@ -13,8 +14,11 @@ export default function MemoriaHomeScreen({ onStart }) {
         style={{ backgroundImage: `url('/assets/jogo3/FUNDOS/slice-1-1.png')` }}
       />
 
-      {/* Falling Vector Leaves Matrix Animation */}
-      <FallingLeavesMatrix count={20} className="absolute top-0 left-0 right-0 h-[48%] overflow-hidden pointer-events-none z-10" />
+      {/* Falling Vector Leaves Matrix Animation in Top Zone */}
+      <FallingLeavesMatrix count={14} className="absolute top-0 left-0 right-0 h-[40%] overflow-hidden pointer-events-none z-10" />
+
+      {/* Gentle Wind Carrying Leaves from Left to Right across Landscape */}
+      <WindLeavesStream leafCount={15} className="absolute inset-0 pointer-events-none overflow-hidden z-20" />
 
       {/* Foliage in corners */}
       <CornerFoliage corners={['bottom-left', 'bottom-right']} />
