@@ -30,9 +30,9 @@ export default function MemoriaFinishScreen({ roundNumber, onPlayNextRound, onRe
       {/* Header */}
       <Header className="pt-3 pb-1" />
 
-      {/* Center Content */}
-      <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-center px-6 max-w-lg mx-auto w-full text-center my-auto">
-        {/* Celebration Trophy / Leaf Card */}
+      {/* Center Content - Anchored high in the solid beige sky */}
+      <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-start pt-2 sm:pt-4 px-6 max-w-lg mx-auto w-full text-center">
+        {/* Celebration Trophy / Leaf Card with Animated Thumbs-Up */}
         <motion.div
           initial={{ scale: 0.5, rotate: -15, opacity: 0 }}
           animate={{ scale: 1, rotate: 0, opacity: 1 }}
@@ -40,12 +40,33 @@ export default function MemoriaFinishScreen({ roundNumber, onPlayNextRound, onRe
           className="relative w-36 h-48 sm:w-44 sm:h-56 rounded-2xl overflow-hidden shadow-2xl border-4 border-white my-2 flex-shrink-0"
         >
           {/* Green aura */}
-          <div className="absolute inset-0 bg-[#3cd426]/30 blur-2xl pointer-events-none" />
+          <div className="absolute inset-0 bg-[#3cd426]/35 blur-2xl pointer-events-none" />
           <img
             src="/assets/jogo3/FUNDOS/cartao-verde-com-folha-em-relevo.png"
             alt="Parabéns"
             className="w-full h-full object-cover pointer-events-none select-none"
           />
+
+          {/* Animated 3D Thumbs-up Emoji - Girando curtamente de um lado para o outro */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+            {/* Soft inner glow behind emoji */}
+            <div className="absolute w-24 h-24 rounded-full bg-white/20 blur-md pointer-events-none" />
+            <motion.img
+              src="/assets/elements/thumbs-up-3d.png"
+              alt="Positivo"
+              animate={{
+                rotate: [-15, 15, -15],
+                scale: [1, 1.06, 1],
+                y: [0, -3, 0]
+              }}
+              transition={{
+                repeat: Infinity,
+                duration: 2.2,
+                ease: 'easeInOut'
+              }}
+              className="w-20 h-20 sm:w-26 sm:h-26 object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.45)] select-none"
+            />
+          </div>
         </motion.div>
 
         {/* Title */}
