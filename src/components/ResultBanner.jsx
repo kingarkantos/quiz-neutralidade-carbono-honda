@@ -18,10 +18,10 @@ export default function ResultBanner({ type = 'correct', text = '' }) {
       }}
       className="relative my-2 sm:my-3 flex items-center justify-center z-10"
     >
-      {/* 3D Plaque Image: ACERTOU! (Exact mockup cutout) */}
+      {/* 3D Plaque Image: ACERTOU! (Exact mockup cutout - cleaned) */}
       {isCorrect && !text && (
         <motion.img
-          src="/assets/elements/banner-acertou.png"
+          src="/assets/elements/banner-acertou.png?v=2"
           alt="ACERTOU!"
           animate={{ 
             scale: [1, 1.03, 1],
@@ -32,10 +32,10 @@ export default function ResultBanner({ type = 'correct', text = '' }) {
         />
       )}
 
-      {/* 3D Plaque Image: QUASE LÁ! (Exact mockup cutout) */}
+      {/* 3D Plaque Image: QUASE LÁ! (Exact mockup cutout - cleaned) */}
       {isWrong && !text && (
         <motion.img
-          src="/assets/elements/banner-quase-la.png"
+          src="/assets/elements/banner-quase-la.png?v=2"
           alt="QUASE LÁ!"
           animate={{ 
             scale: [1, 1.03, 1],
