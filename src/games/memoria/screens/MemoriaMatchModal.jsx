@@ -35,17 +35,26 @@ export default function MemoriaMatchModal({ card, onClose, isLast }) {
           </div>
 
           {/* Energy Title */}
-          <h2 className="text-[#1A2E1A] font-black text-xl sm:text-2xl uppercase tracking-tight mt-0.5">
-            {card.name}
-          </h2>
+          <div className="mt-0.5 text-center px-1">
+            <h2 className="text-[#1A2E1A] font-black text-xl sm:text-2xl uppercase tracking-tight leading-tight">
+              {card.name.split('(')[0].trim()}
+            </h2>
+            {card.name.includes('(') && (
+              <p className="text-[#3d523e] font-extrabold text-xs sm:text-sm tracking-normal mt-0.5">
+                ({card.name.split('(')[1]}
+              </p>
+            )}
+          </div>
 
-          {/* Type Tag (Renovável / Não renovável) */}
-          <div className="my-1.5">
-            <span className={`inline-block px-4 sm:px-5 py-1 sm:py-1.5 rounded-full text-sm sm:text-base font-black uppercase tracking-wider shadow-sm ${
-              isRenovavel 
-                ? 'bg-[#2EB85C]/20 text-[#166534] border-2 border-[#2EB85C]/45' 
-                : 'bg-[#d97706]/20 text-[#9a3412] border-2 border-[#d97706]/45'
-            }`}>
+          {/* Type Tag (Renovável / Não renovável) - TAMANHO GRANDE EM DESTAQUE */}
+          <div className="my-2 sm:my-2.5 w-full flex justify-center">
+            <span
+              className={`inline-flex items-center justify-center px-6 sm:px-8 py-2 sm:py-2.5 rounded-full text-lg sm:text-2xl font-black uppercase tracking-widest shadow-md border-2 border-white ${
+                isRenovavel
+                  ? 'bg-[#2EB85C] text-white ring-4 ring-[#2EB85C]/30'
+                  : 'bg-[#d97706] text-white ring-4 ring-[#d97706]/35'
+              }`}
+            >
               {card.type}
             </span>
           </div>

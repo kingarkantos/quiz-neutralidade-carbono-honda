@@ -151,7 +151,7 @@ export default function MemoriaGameBoardScreen({ onFinish }) {
 
           <div className="flex items-center justify-center space-x-2">
             <span className="bg-[#1C3B24] text-white text-[10px] sm:text-xs font-black uppercase px-3.5 py-1 rounded-full shadow-sm">
-              Renováveis & Transição
+              Renováveis & Não Renováveis
             </span>
             <GameTimer secondsLeft={timeLeft} />
           </div>
@@ -258,17 +258,25 @@ function MemoryCard({ card, isFlipped, isMatched, onClick }) {
           }}
         >
           {/* Photo */}
-          <div className="w-full flex-1 min-h-0 rounded-xl overflow-hidden bg-[#E5DAC6] mb-1">
+          <div className="w-full flex-1 min-h-0 rounded-xl overflow-hidden bg-[#E5DAC6] mb-1 relative">
             <img
               src={card.item.image}
               alt={card.item.name}
               className="w-full h-full object-cover pointer-events-none select-none"
             />
+            {/* Tag Renovável / Não Renovável discreta no card */}
+            <span
+              className={`absolute top-1 right-1 text-[6.5px] xs:text-[7.5px] sm:text-[9px] font-black uppercase px-1.5 py-0.5 rounded-full shadow-sm text-white ${
+                card.item.type === 'Renovável' ? 'bg-[#2EB85C]' : 'bg-[#d97706]'
+              }`}
+            >
+              {card.item.type}
+            </span>
           </div>
 
           {/* Name - Sempre visível, quebra de linha sem corte */}
-          <div className="w-full min-h-[22px] xs:min-h-[26px] sm:min-h-[30px] flex items-center justify-center px-0.5">
-            <p className="text-[#1A2E1A] font-black text-[8px] xs:text-[9.5px] sm:text-[11px] leading-[1.08] text-center w-full break-words hyphens-auto">
+          <div className="w-full min-h-[24px] xs:min-h-[28px] sm:min-h-[32px] flex items-center justify-center px-0.5">
+            <p className="text-[#1A2E1A] font-black text-[7.5px] xs:text-[9px] sm:text-[10px] leading-[1.1] text-center w-full break-words hyphens-auto">
               {card.item.name}
             </p>
           </div>
