@@ -60,22 +60,12 @@ export default function MemoriaMatchModal({ card, onClose, isLast }) {
           </div>
 
           {/* Box 1: O que é? */}
-          <div className="w-full bg-white/70 rounded-2xl p-2.5 sm:p-3 my-1 border border-[#E5DAC6] text-center">
-            <span className="inline-block bg-[#1C3B24] text-white text-[10px] sm:text-xs font-black uppercase px-3 py-0.5 rounded-full mb-1">
+          <div className="w-full bg-white/80 rounded-2xl p-3 sm:p-3.5 my-1.5 border border-[#E5DAC6] text-center shadow-sm">
+            <span className="inline-block bg-[#1C3B24] text-white text-[10px] sm:text-xs font-black uppercase px-3.5 py-0.5 rounded-full mb-1.5">
               O que é?
             </span>
             <p className="text-[#1A2E1A] font-medium text-xs sm:text-sm leading-relaxed px-1">
               {card.whatIs}
-            </p>
-          </div>
-
-          {/* Box 2: Você sabia? */}
-          <div className="w-full bg-[#E9E4DC] rounded-2xl p-2.5 sm:p-3 my-1 border border-[#D5CDBF] text-center">
-            <span className="inline-block bg-[#6B7280] text-white text-[10px] sm:text-xs font-black uppercase px-3 py-0.5 rounded-full mb-1">
-              Você sabia?
-            </span>
-            <p className="text-[#374151] font-medium text-xs sm:text-sm leading-relaxed px-1">
-              {card.didYouKnow}
             </p>
           </div>
 
@@ -87,7 +77,7 @@ export default function MemoriaMatchModal({ card, onClose, isLast }) {
               onClick={onClose}
               className="w-full py-3.5 sm:py-4 rounded-full btn-tactile-green anim-shimmer text-white font-black text-base sm:text-lg tracking-wider uppercase flex items-center justify-center space-x-2 shadow-lg"
             >
-              <span>{isLast ? 'FINALIZAR RODADA' : 'CONTINUAR JOGANDO'}</span>
+              <span>{isLast ? 'CONCLUIR DESAFIO' : 'CONTINUAR JOGANDO'}</span>
               <ChevronRight className="w-5 h-5 stroke-[3]" />
             </motion.button>
           </div>
