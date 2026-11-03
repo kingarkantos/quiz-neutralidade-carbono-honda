@@ -134,7 +134,7 @@ export default function MemoriaGameBoardScreen({ roundNumber = 1, onFinish }) {
       {/* Main Board: 3-4-3 Card Layout */}
       <div className="relative z-10 flex-1 min-h-0 px-3 py-2 max-w-lg mx-auto w-full flex flex-col justify-center items-center space-y-2 sm:space-y-3 my-auto">
         {/* Row 1 (3 cards) */}
-        <div className="flex items-center justify-center gap-2 sm:gap-3 w-full">
+        <div className="flex items-center justify-center gap-1.5 xs:gap-2 sm:gap-3 w-full">
           {row1.map((c) => (
             <MemoryCard
               key={c.uniqueId}
@@ -147,7 +147,7 @@ export default function MemoriaGameBoardScreen({ roundNumber = 1, onFinish }) {
         </div>
 
         {/* Row 2 (4 cards) */}
-        <div className="flex items-center justify-center gap-2 sm:gap-3 w-full">
+        <div className="flex items-center justify-center gap-1.5 xs:gap-2 sm:gap-3 w-full">
           {row2.map((c) => (
             <MemoryCard
               key={c.uniqueId}
@@ -160,7 +160,7 @@ export default function MemoriaGameBoardScreen({ roundNumber = 1, onFinish }) {
         </div>
 
         {/* Row 3 (3 cards) */}
-        <div className="flex items-center justify-center gap-2 sm:gap-3 w-full">
+        <div className="flex items-center justify-center gap-1.5 xs:gap-2 sm:gap-3 w-full">
           {row3.map((c) => (
             <MemoryCard
               key={c.uniqueId}
@@ -198,7 +198,7 @@ export default function MemoriaGameBoardScreen({ roundNumber = 1, onFinish }) {
 function MemoryCard({ card, isFlipped, isMatched, onClick }) {
   return (
     <div 
-      className="relative w-20 h-28 xs:w-22 xs:h-32 sm:w-26 sm:h-36 cursor-pointer select-none perspective-[1000px]"
+      className="relative w-[72px] h-[108px] xs:w-[84px] xs:h-[124px] sm:w-[102px] sm:h-[144px] cursor-pointer select-none perspective-[1000px] flex-shrink-0"
       onClick={onClick}
     >
       <motion.div
@@ -221,7 +221,7 @@ function MemoryCard({ card, isFlipped, isMatched, onClick }) {
 
         {/* CARD FRONT (Photo + Title) */}
         <div 
-          className={`absolute inset-0 w-full h-full rounded-2xl overflow-hidden shadow-lg border-2 p-1.5 flex flex-col justify-between items-center bg-[#FAF5EC] text-center backface-hidden ${
+          className={`absolute inset-0 w-full h-full rounded-2xl overflow-hidden shadow-lg border-2 p-1 xs:p-1.5 flex flex-col justify-between items-center bg-[#FAF5EC] text-center backface-hidden ${
             isMatched 
               ? 'border-[#2EB85C] ring-2 ring-[#2EB85C]/40 bg-[#FAF5EC]' 
               : 'border-white'
@@ -232,7 +232,7 @@ function MemoryCard({ card, isFlipped, isMatched, onClick }) {
           }}
         >
           {/* Photo */}
-          <div className="w-full flex-1 rounded-xl overflow-hidden bg-[#E5DAC6] mb-1">
+          <div className="w-full flex-1 min-h-0 rounded-xl overflow-hidden bg-[#E5DAC6] mb-0.5 sm:mb-1">
             <img
               src={card.item.image}
               alt={card.item.name}
@@ -240,10 +240,12 @@ function MemoryCard({ card, isFlipped, isMatched, onClick }) {
             />
           </div>
 
-          {/* Name */}
-          <p className="text-[#1A2E1A] font-extrabold text-[9px] sm:text-[11px] leading-tight line-clamp-1 w-full px-0.5">
-            {card.item.name}
-          </p>
+          {/* Name - Sempre visível, quebra de linha sem corte */}
+          <div className="w-full min-h-[22px] xs:min-h-[26px] sm:min-h-[30px] flex items-center justify-center px-0.5">
+            <p className="text-[#1A2E1A] font-black text-[7.5px] xs:text-[9px] sm:text-[10.5px] leading-[1.08] text-center w-full break-words hyphens-auto">
+              {card.item.name}
+            </p>
+          </div>
         </div>
       </motion.div>
     </div>

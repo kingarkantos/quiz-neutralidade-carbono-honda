@@ -151,7 +151,7 @@ export default function LpGameBoardScreen({ onFinish }) {
 
                 {/* Title */}
                 <div className="flex-1 px-2 text-left min-w-0">
-                  <p className="text-[#1A2E1A] font-bold text-[11px] sm:text-xs leading-tight line-clamp-2">
+                  <p className="text-[#1A2E1A] font-bold text-[10px] xs:text-[11px] sm:text-xs leading-tight break-words">
                     {item.actionTitle}
                   </p>
                 </div>
@@ -219,7 +219,7 @@ export default function LpGameBoardScreen({ onFinish }) {
                       IMPACTO
                     </span>
                   </div>
-                  <p className="text-[#1A2E1A] font-bold text-[11px] sm:text-xs leading-tight line-clamp-2">
+                  <p className="text-[#1A2E1A] font-bold text-[10px] xs:text-[11px] sm:text-xs leading-tight break-words">
                     {b.benefitTitle}
                   </p>
                 </div>
