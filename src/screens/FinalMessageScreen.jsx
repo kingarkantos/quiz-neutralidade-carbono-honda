@@ -98,25 +98,6 @@ export default function FinalMessageScreen({ onRestart }) {
         >
           A Honda trabalha por um mundo com menos emissões de carbono. E cada atitude consciente ajuda a construir esse caminho.
         </motion.p>
-
-        {/* 4. Highlight Badge: "Juntos, por um futuro mais sustentável." */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 15 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ type: 'spring', stiffness: 300, damping: 20, delay: 0.45 }}
-          className="my-1.5 sm:my-2 bg-[#FAF5EC]/95 backdrop-blur-md px-5 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg border border-white/80 flex items-center space-x-2 mx-auto"
-        >
-          <motion.img
-            animate={{ rotate: [-6, 6, -6], scale: [1, 1.1, 1] }}
-            transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
-            src="/assets/elements/folha.png"
-            alt="Folha"
-            className="w-4 h-4 sm:w-6 sm:h-6 object-contain drop-shadow-sm flex-shrink-0"
-          />
-          <p className="text-[#1A2E1A] font-black text-xs sm:text-base tracking-wide select-none whitespace-nowrap">
-            Juntos, por um futuro mais sustentável.
-          </p>
-        </motion.div>
       </div>
 
       {/* Bottom Button Area with Shimmer */}
