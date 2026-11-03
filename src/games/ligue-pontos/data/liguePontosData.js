@@ -8,7 +8,7 @@ export const LIGUE_PONTOS_ITEMS = [
     benefitShort: "Embalagens retornáveis evitam o descarte",
     modalImage: "/assets/jogo2/ELEMENTOS/CONEXÃO CORRETA/caixas-industriais-com-retorno-sustentavel.png",
     headline: "Reutilização de embalagens industriais",
-    explanation: "Embalagens industriais podem ser utilizadas diversas vezes na cadeia de suprimentos, reduzindo significativamente o consumo de plásticos virgens e evitando descartes."
+    explanation: "Embalagens industriais podem ser utilizadas diversas vezes na cadeia de suprimentos."
   },
   {
     id: 2,
