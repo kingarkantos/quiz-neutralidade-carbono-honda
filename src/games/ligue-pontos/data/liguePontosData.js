@@ -34,13 +34,13 @@ export const LIGUE_PONTOS_ITEMS = [
   },
   {
     id: 4,
-    actionTitle: "Separação de resíduos",
+    actionTitle: "Coleta seletiva",
     actionThumb: "/assets/jogo2/ELEMENTOS/ELEMENTOS AÇÕES/quatro-lixeiras-coloridas-em-fila-4.png",
     benefitId: "b4",
     benefitTitle: "Facilita a reciclagem",
     benefitShort: "Triagem correta na fonte de geração",
     modalImage: "/assets/jogo2/ELEMENTOS/CONEXÃO CORRETA/quatro-lixeiras-de-reciclagem-coloridas.png",
-    headline: "Separação de resíduos",
+    headline: "Coleta seletiva",
     explanation: "Separar os materiais na fonte garante a integridade dos materiais recicláveis e acelera a triagem para reintrodução na indústria."
   }
 ];
