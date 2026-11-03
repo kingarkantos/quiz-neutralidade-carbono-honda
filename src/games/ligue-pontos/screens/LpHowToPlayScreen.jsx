@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Header from '../../../components/Header';
 import CornerFoliage from '../../../components/CornerFoliage';
+import LpInteractiveTutorial from '../components/LpInteractiveTutorial';
 
 export default function LpHowToPlayScreen({ onStart }) {
   const steps = [
@@ -39,27 +40,32 @@ export default function LpHowToPlayScreen({ onStart }) {
       <Header className="pt-3 pb-1" />
 
       {/* Center Content */}
-      <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-center px-5 sm:px-6 max-w-lg mx-auto w-full my-auto">
+      <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-center px-4 sm:px-6 max-w-lg mx-auto w-full my-auto">
+        {/* Animated Tutorial Demonstration (Mostrando como jogar com animação de mãozinha e cliques) */}
+        <div className="w-full mb-2.5 sm:mb-3">
+          <LpInteractiveTutorial />
+        </div>
+
         {/* Badges */}
-        <div className="flex flex-col items-center space-y-1 mb-3 sm:mb-4 select-none">
+        <div className="flex flex-col items-center space-y-0.5 mb-2 sm:mb-2.5 select-none">
           <motion.div
             initial={{ scale: 0.8, opacity: 0, y: -15 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
-            className="bg-[#1C3B24] text-white font-extrabold text-xs sm:text-sm tracking-wider px-4 py-1 rounded-full shadow uppercase"
+            className="bg-[#1C3B24] text-white font-extrabold text-[10px] sm:text-xs tracking-wider px-3 py-0.5 rounded-full shadow uppercase"
           >
             CIRCULAÇÃO DE RECURSOS
           </motion.div>
           <motion.h2
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-[#1A2E1A] font-black text-xl sm:text-2xl uppercase tracking-wide"
+            className="text-[#1A2E1A] font-black text-lg sm:text-xl uppercase tracking-wide"
           >
             COMO JOGAR
           </motion.h2>
         </div>
 
         {/* 3 Steps */}
-        <div className="w-full space-y-2.5 sm:space-y-3.5">
+        <div className="w-full space-y-2 sm:space-y-2.5">
           {steps.map((st, idx) => (
             <motion.div
               key={st.num}
@@ -71,10 +77,10 @@ export default function LpHowToPlayScreen({ onStart }) {
                 damping: 24,
                 delay: 0.15 + idx * 0.12
               }}
-              className="bg-[#faf5ec]/95 backdrop-blur-sm rounded-[22px] p-3 sm:p-4 shadow-3d-card flex items-center space-x-3.5 border border-white/70"
+              className="bg-[#faf5ec]/95 backdrop-blur-sm rounded-[18px] sm:rounded-[22px] p-2.5 sm:p-3 shadow-3d-card flex items-center space-x-3 border border-white/70"
             >
               {/* Icon circle */}
-              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#EBE0CC]/80 flex-shrink-0 flex items-center justify-center p-2 shadow-inner border border-white/60">
+              <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-[#EBE0CC]/80 flex-shrink-0 flex items-center justify-center p-1.5 shadow-inner border border-white/60">
                 <img
                   src={st.icon}
                   alt={st.title}
@@ -84,10 +90,10 @@ export default function LpHowToPlayScreen({ onStart }) {
 
               {/* Text */}
               <div className="flex-1 text-left min-w-0">
-                <p className="text-[#1A2E1A] font-bold text-sm sm:text-base leading-snug">
+                <p className="text-[#1A2E1A] font-bold text-xs sm:text-sm leading-snug">
                   {st.title}
                 </p>
-                <p className="text-[#455A46] text-xs sm:text-sm font-medium leading-tight mt-0.5">
+                <p className="text-[#455A46] text-[10px] sm:text-xs font-medium leading-tight mt-0.5">
                   {st.desc}
                 </p>
               </div>
@@ -97,7 +103,7 @@ export default function LpHowToPlayScreen({ onStart }) {
       </div>
 
       {/* Bottom Button */}
-      <div className="relative z-10 w-full px-6 sm:px-8 pb-5 sm:pb-8 pt-2 flex justify-center flex-shrink-0">
+      <div className="relative z-10 w-full px-6 sm:px-8 pb-5 sm:pb-8 pt-1 flex justify-center flex-shrink-0">
         <motion.button
           initial={{ scale: 0.9, opacity: 0, y: 30 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -105,7 +111,7 @@ export default function LpHowToPlayScreen({ onStart }) {
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.96 }}
           onClick={onStart}
-          className="w-full max-w-md py-4 sm:py-5 rounded-full btn-tactile-light anim-shimmer text-[#1C3B24] font-black text-lg sm:text-2xl tracking-wider select-none uppercase shadow-lg"
+          className="w-full max-w-md py-3.5 sm:py-4.5 rounded-full btn-tactile-light anim-shimmer text-[#1C3B24] font-black text-base sm:text-xl tracking-wider select-none uppercase shadow-lg"
         >
           COMEÇAR
         </motion.button>
