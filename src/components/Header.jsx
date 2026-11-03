@@ -15,9 +15,9 @@ export default function Header({
         className="relative z-40 flex items-center"
       >
         <img
-          src="/assets/logos/honda.png"
-          alt="Honda - The Power of Dreams"
-          className="h-8 sm:h-10 object-contain drop-shadow-md select-none pointer-events-none"
+          src="/assets/logos/honda.svg"
+          alt="Honda"
+          className="h-8 sm:h-10 w-auto object-contain drop-shadow-sm select-none pointer-events-none"
         />
       </motion.div>
 
