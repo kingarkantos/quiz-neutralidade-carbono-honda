@@ -54,25 +54,11 @@ export const MEMORIA_ROUNDS = {
     thumb: "/assets/jogo3/TELA INICIAL/usina-industrial-ao-por-do-sol-2.png",
     cards: [
       {
-        id: "carvao",
-        name: "Carvão Mineral",
-        type: "Não renovável",
-        image: "/assets/jogo3/IMAGENS ENERGIA NÃO RENOVÁVEL/carvao-e-caminhao-em-mina-aberta-7.png",
-        whatIs: "Combustível fóssil formado ao longo de milhões de anos a partir de florestas soterradas, utilizado em usinas termelétricas."
-      },
-      {
         id: "petroleo",
         name: "Petróleo",
         type: "Não renovável",
         image: "/assets/jogo3/IMAGENS ENERGIA NÃO RENOVÁVEL/cavalete-de-bombeamento-no-deserto-4.png",
         whatIs: "Líquido fóssil escuro rico em hidrocarbonetos, extraído de reservatórios profundos para produzir gasolina, diesel e derivados plásticos."
-      },
-      {
-        id: "nuclear",
-        name: "Energia Nuclear",
-        type: "Não renovável",
-        image: "/assets/jogo3/IMAGENS ENERGIA NÃO RENOVÁVEL/usina-nuclear-com-torres-de-resfriamento-8.png",
-        whatIs: "Energia liberada pela fissão controlada de núcleos de urânio em reatores nucleares de alta precisão."
       }
     ]
   }
@@ -94,9 +80,9 @@ export function getMixedMemoriaCards() {
   const renowables = shuffle([...MEMORIA_ROUNDS[1].cards]);
   const transition = shuffle([...MEMORIA_ROUNDS[2].cards]);
   
-  // 3 renováveis + 2 de transição (ou 4 renováveis + 1 de transição)
-  const countRenovavel = Math.random() > 0.4 ? 3 : 4;
-  const countTransition = 5 - countRenovavel;
+  // Utiliza as 5 fontes renováveis ou 4 renováveis + 1 de transição se houver
+  const countTransition = transition.length > 0 && Math.random() > 0.6 ? 1 : 0;
+  const countRenovavel = 5 - countTransition;
 
   const selected = [
     ...renowables.slice(0, countRenovavel),
