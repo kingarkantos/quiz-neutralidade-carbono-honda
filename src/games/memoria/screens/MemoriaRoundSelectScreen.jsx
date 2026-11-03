@@ -21,32 +21,13 @@ export default function MemoriaRoundSelectScreen({ onSelectRound }) {
       {/* Header */}
       <Header className="pt-3 pb-1" />
 
-      {/* Main Content - Generous spacing across the column */}
-      <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-evenly px-5 sm:px-6 max-w-lg mx-auto w-full py-2 sm:py-4">
-        {/* Top Logo & Title Area */}
-        <motion.div
-          initial={{ scale: 0.85, opacity: 0, y: -15 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="flex flex-col items-center text-center select-none pt-1"
-        >
-          {/* Eco Aura Glow */}
-          <div className="relative flex items-center justify-center">
-            <div className="absolute w-56 h-20 rounded-full bg-[#3cd426]/30 blur-2xl -z-10 pointer-events-none" />
-            <img
-              src="/assets/jogo3/TELA INICIAL/logo-energia-limpa-jogo-da-memoria.png"
-              alt="Energia Limpa"
-              className="h-14 sm:h-18 object-contain drop-shadow-md pointer-events-none select-none"
-            />
-          </div>
-        </motion.div>
-
+      {/* Main Content - Anchored higher up */}
+      <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-start pt-4 sm:pt-8 px-5 sm:px-6 max-w-lg mx-auto w-full">
         {/* Badge & Instruction Card */}
-        <div className="flex flex-col items-center text-center select-none w-full max-w-sm px-2">
+        <div className="flex flex-col items-center text-center select-none w-full max-w-sm px-2 mb-4 sm:mb-6">
           <motion.div
             initial={{ scale: 0.8, opacity: 0, y: -10 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
             className="inline-block bg-[#1C3B24] text-[#FAF5EC] font-black text-xs sm:text-sm tracking-widest px-5 py-2 rounded-full shadow-md uppercase mb-2.5"
           >
             ESCOLHA A RODADA
@@ -55,7 +36,7 @@ export default function MemoriaRoundSelectScreen({ onSelectRound }) {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.18 }}
+            transition={{ delay: 0.1 }}
             className="w-full bg-[#FAF5EC]/95 backdrop-blur-sm rounded-2xl p-3 sm:p-4 border border-white/80 shadow-3d-card"
           >
             <p className="text-[#1A2E1A] font-extrabold text-xs sm:text-sm uppercase tracking-wide leading-relaxed">
@@ -65,12 +46,12 @@ export default function MemoriaRoundSelectScreen({ onSelectRound }) {
         </div>
 
         {/* 2 Round Cards - Larger, taller, and nicely spaced */}
-        <div className="w-full flex flex-row items-center justify-center gap-4 sm:gap-6 px-1 my-2">
+        <div className="w-full flex flex-row items-center justify-center gap-4 sm:gap-6 px-1">
           {/* Round 1 Card */}
           <motion.div
             initial={{ opacity: 0, x: -30, scale: 0.92 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 22, delay: 0.25 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 22, delay: 0.2 }}
             whileHover={{ scale: 1.04, y: -4 }}
             whileTap={{ scale: 0.96 }}
             onClick={() => onSelectRound(1)}
@@ -100,7 +81,7 @@ export default function MemoriaRoundSelectScreen({ onSelectRound }) {
           <motion.div
             initial={{ opacity: 0, x: 30, scale: 0.92 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 22, delay: 0.35 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 22, delay: 0.3 }}
             whileHover={{ scale: 1.04, y: -4 }}
             whileTap={{ scale: 0.96 }}
             onClick={() => onSelectRound(2)}
