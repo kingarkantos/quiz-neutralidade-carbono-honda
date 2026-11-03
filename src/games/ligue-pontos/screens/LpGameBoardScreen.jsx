@@ -47,16 +47,38 @@ const PAIR_COLORS = {
   },
 };
 
+// Fisher-Yates shuffle
+function shuffle(array) {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+// Retorna ações e benefícios embaralhados aleatoriamente a cada partida
+// Garantindo que nenhum benefício fique alinhado horizontalmente na mesma linha da sua ação
+function getShuffledBoard() {
+  const actions = shuffle(LIGUE_PONTOS_ITEMS);
+  let benefits = shuffle(LIGUE_PONTOS_ITEMS);
+
+  let attempts = 0;
+  while (attempts < 20 && actions.some((act, idx) => act.benefitId === benefits[idx]?.benefitId)) {
+    benefits = shuffle(LIGUE_PONTOS_ITEMS);
+    attempts++;
+  }
+
+  if (actions.some((act, idx) => act.benefitId === benefits[idx]?.benefitId)) {
+    benefits = [...benefits.slice(1), benefits[0]];
+  }
+
+  return { actions, benefits };
+}
+
 export default function LpGameBoardScreen({ onFinish }) {
-  // 5 items
-  const actions = useMemo(() => LIGUE_PONTOS_ITEMS, []);
-  
-  // Shuffled benefits so they don't appear in the exact same order as actions
-  const benefits = useMemo(() => {
-    // Fixed deterministic shuffle for 4 items: [3, 1, 4, 2] in 1-based -> [2, 0, 3, 1] in 0-based
-    const order = [2, 0, 3, 1];
-    return order.map(i => LIGUE_PONTOS_ITEMS[i]);
-  }, []);
+  // Ações e Benefícios sempre aleatórios a cada nova partida
+  const { actions, benefits } = useMemo(() => getShuffledBoard(), []);
 
   const [selectedActionId, setSelectedActionId] = useState(null);
   const [selectedBenefitId, setSelectedBenefitId] = useState(null);

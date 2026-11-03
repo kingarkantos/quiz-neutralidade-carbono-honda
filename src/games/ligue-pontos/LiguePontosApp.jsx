@@ -7,12 +7,14 @@ import LpFinishScreen from './screens/LpFinishScreen';
 
 export default function LiguePontosApp() {
   const [screen, setScreen] = useState('home'); // 'home' | 'how-to-play' | 'board' | 'finish'
+  const [gameKey, setGameKey] = useState(0);
 
   const handleStart = () => {
     setScreen('how-to-play');
   };
 
   const handleStartGame = () => {
+    setGameKey(prev => prev + 1);
     setScreen('board');
   };
 
@@ -21,7 +23,8 @@ export default function LiguePontosApp() {
   };
 
   const handleRestart = () => {
-    setScreen('home');
+    setGameKey(prev => prev + 1);
+    setScreen('board');
   };
 
   return (
@@ -55,7 +58,7 @@ export default function LiguePontosApp() {
 
         {screen === 'board' && (
           <motion.div
-            key="lp-board"
+            key={`lp-board-${gameKey}`}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.05 }}
