@@ -30,7 +30,7 @@ export const LIGUE_PONTOS_ITEMS = [
     benefitShort: "Tratamento e recirculação em circuito fechado",
     modalImage: "/assets/jogo2/ELEMENTOS/CONEXÃO CORRETA/ciclo-de-reuso-industrial-da-agua.png",
     headline: "Reaproveitamento de água",
-    explanation: "A água tratada recircula nos processos industriais, diminuindo a captação de água doce e mantendo os ecossistemas protegidos."
+    explanation: "Reduz a captação da água doce protegendo o ecossistema."
   },
   {
     id: 4,
