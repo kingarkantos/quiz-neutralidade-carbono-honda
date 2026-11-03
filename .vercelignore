@@ -1,3 +1,4 @@
-# Ignore raw asset archives from build uploads
-assets
-
+# Ignore ONLY the raw source assets folder in root
+/assets
+!/public/
+!/public/**
