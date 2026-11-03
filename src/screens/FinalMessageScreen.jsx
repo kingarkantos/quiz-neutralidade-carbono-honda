@@ -16,23 +16,23 @@ export default function FinalMessageScreen({ onRestart }) {
       <CornerFoliage corners={['bottom-left', 'bottom-right']} />
 
       {/* Top Header - Honda Logo Centered in Row */}
-      <header className="w-full flex items-center justify-center pt-4 pb-1 z-20">
+      <header className="relative w-full flex items-center justify-center pt-4 pb-1 z-40">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="flex items-center justify-center"
+          className="relative z-40 flex items-center justify-center"
         >
           <img
             src="/assets/logos/honda.png"
             alt="Honda - The Power of Dreams"
-            className="h-8 sm:h-10 object-contain drop-shadow-sm select-none pointer-events-none"
+            className="h-8 sm:h-10 object-contain drop-shadow-md select-none pointer-events-none"
           />
         </motion.div>
       </header>
 
       {/* Main Content Area - Anchored in the Solid Upper Beige Zone */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-start px-6 max-w-lg mx-auto w-full text-center pt-0 sm:pt-1">
+      <div className="relative z-30 flex-1 flex flex-col items-center justify-start px-6 max-w-lg mx-auto w-full text-center pt-0 sm:pt-1">
         {/* 1. HERO TRIPLA AÇÃO PARA O ZERO LOGO (Bem maior e destacado) */}
         <motion.div
           initial={{ scale: 0.6, opacity: 0, y: -20 }}

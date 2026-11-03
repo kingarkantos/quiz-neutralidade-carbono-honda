@@ -16,7 +16,7 @@ export default function HomeScreen({ onStart }) {
       <CornerFoliage corners={['bottom-left', 'bottom-right']} />
 
       {/* Top Area: Header + 3D Logo + Subtitle (Moved high into the solid beige sky) */}
-      <div className="relative z-10 w-full flex flex-col items-center">
+      <div className="relative z-30 w-full flex flex-col items-center">
         {/* Top Header */}
         <Header className="pt-3 pb-0" />
 

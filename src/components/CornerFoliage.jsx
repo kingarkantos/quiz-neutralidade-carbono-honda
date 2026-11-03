@@ -12,7 +12,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
   // In folha.png, stem is at bottom-center: (50%, 100%).
 
   return (
-    <div className="absolute inset-0 pointer-events-none z-30 select-none overflow-hidden">
+    <div className="absolute inset-0 pointer-events-none z-10 select-none overflow-hidden">
       {/* ============================================================== */}
       {/* 1. TOP-LEFT FAN (Leque no canto superior esquerdo)               */}
       {/* Hastes convergem no vértice superior esquerdo, apontando para  */}
