@@ -24,6 +24,10 @@ export default function LpGameBoardScreen({ onFinish }) {
   const [activeModalItem, setActiveModalItem] = useState(null);
   const [showWrongModal, setShowWrongModal] = useState(false);
 
+  // Active focused item for the 3D highlight spotlight preview
+  const activeItem = actions.find(a => a.id === selectedActionId) || 
+    (selectedBenefitId ? actions.find(a => a.benefitId === selectedBenefitId) : null);
+
   // Handle action click
   const handleSelectAction = (id) => {
     if (matchedIds.has(id)) return;
@@ -113,6 +117,66 @@ export default function LpGameBoardScreen({ onFinish }) {
         <p className="text-[#1A2E1A] font-bold text-xs sm:text-sm">
           Toque em uma ação e depois no benefício correspondente.
         </p>
+      </div>
+
+      {/* Spotlight 3D Preview in the empty upper space */}
+      <div className="relative z-10 w-full px-4 flex flex-col items-center justify-center h-24 xs:h-28 sm:h-32 my-1 flex-shrink-0">
+        <AnimatePresence mode="wait">
+          {activeItem ? (
+            <motion.div
+              key={activeItem.id}
+              initial={{ scale: 0.65, opacity: 0, y: 10 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.75, opacity: 0, y: -6 }}
+              transition={{ type: 'spring', stiffness: 360, damping: 22 }}
+              className="relative flex flex-col items-center justify-center select-none"
+            >
+              {/* Radial Eco Aura */}
+              <motion.div
+                animate={{ scale: [0.95, 1.2, 0.95], opacity: [0.35, 0.65, 0.35] }}
+                transition={{ repeat: Infinity, duration: 3.2, ease: 'easeInOut' }}
+                className="absolute w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-[#3cd426]/35 blur-xl -z-10 pointer-events-none"
+              />
+
+              {/* 3D Highlighted Illustration */}
+              <motion.img
+                animate={{ y: [0, -4, 0] }}
+                transition={{ repeat: Infinity, duration: 3.4, ease: 'easeInOut' }}
+                src={activeItem.actionThumb}
+                alt={activeItem.actionTitle}
+                className="h-16 xs:h-20 sm:h-24 w-auto object-contain drop-shadow-[0_12px_22px_rgba(0,0,0,0.3)] pointer-events-none"
+              />
+
+              {/* Active Item Title Pill */}
+              <motion.span 
+                initial={{ opacity: 0, y: 4 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-1 bg-white/95 backdrop-blur-sm text-[#1C3B24] font-black text-[10px] sm:text-xs uppercase px-3.5 py-0.5 rounded-full shadow-md border border-[#2EB85C]/35"
+              >
+                {activeItem.actionTitle}
+              </motion.span>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="placeholder"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.65 }}
+              exit={{ opacity: 0 }}
+              className="flex flex-col items-center justify-center text-center select-none py-1"
+            >
+              <div className="w-12 h-12 rounded-full border-2 border-dashed border-[#2EB85C]/40 flex items-center justify-center bg-[#FAF5EC]/60 mb-1 shadow-sm">
+                <img
+                  src="/assets/jogo2/ELEMENTOS/TELA INICIAL/ciclo-sustentavel-entre-maquina-e-natureza-1.png"
+                  alt=""
+                  className="w-8 h-8 object-contain opacity-75 pointer-events-none"
+                />
+              </div>
+              <span className="text-[#3b4f3c] font-bold text-[10px] sm:text-xs">
+                Toque em uma opção para destacar
+              </span>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Main Board: 2 Columns */}
