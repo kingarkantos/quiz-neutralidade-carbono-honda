@@ -24,9 +24,13 @@ dist-ssr
 *.sw?
 
 # Vercel
-.vercel
+# Raw assets directory
+/assets
+
 
 # Temp scripts
 check_slices.ps1
 
-.vercel
+# Raw assets directory
+/assets
+

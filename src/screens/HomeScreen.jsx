@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Header from '../components/Header';
 import CornerFoliage from '../components/CornerFoliage';
+import FallingLeavesMatrix from '../components/FallingLeavesMatrix';
 
 export default function HomeScreen({ onStart }) {
   return (
@@ -11,6 +12,9 @@ export default function HomeScreen({ onStart }) {
         className="absolute inset-0 bg-cover bg-center pointer-events-none z-0"
         style={{ backgroundImage: `url('/assets/bg/slice-home.png')` }}
       />
+
+      {/* Falling Vector Leaves (Matrix effect behind the logo in the beige/brown zone) */}
+      <FallingLeavesMatrix count={22} className="absolute top-0 left-0 right-0 h-[48%] overflow-hidden pointer-events-none z-10" />
 
       {/* Discreet Bush Foliage in Bottom Corners */}
       <CornerFoliage corners={['bottom-left', 'bottom-right']} />
