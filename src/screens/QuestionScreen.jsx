@@ -135,7 +135,7 @@ export default function QuestionScreen({
                     setSelectedOptionId(opt.id);
                   }
                 }}
-                className={`card-quiz rounded-[18px] sm:rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between select-none transition-all duration-200 h-[175px] xs:h-[195px] sm:h-[235px] ${
+                className={`card-quiz rounded-[18px] sm:rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between select-none transition-all duration-200 h-[185px] xs:h-[205px] sm:h-[245px] ${
                   evaluationState ? 'cursor-default' : 'cursor-pointer'
                 } ${
                   isThisWrong
@@ -150,7 +150,7 @@ export default function QuestionScreen({
                 {/* Header of Card: Letter Badge + Text */}
                 <div className="flex items-start space-x-1.5 sm:space-x-2">
                   <div
-                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex-shrink-0 flex items-center justify-center font-bold text-xs sm:text-sm shadow-sm transition-all duration-200 ${
+                    className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex-shrink-0 flex items-center justify-center font-black text-[11px] sm:text-xs shadow-sm transition-all duration-200 ${
                       isThisWrong
                         ? 'bg-red-600 text-white shadow-[0_0_12px_rgba(220,38,38,0.5)] scale-105'
                         : isThisCorrect
@@ -161,15 +161,21 @@ export default function QuestionScreen({
                     }`}
                   >
                     {isThisWrong ? (
-                      <X className="w-4 h-4 stroke-[3]" />
+                      <X className="w-3.5 h-3.5 stroke-[3]" />
                     ) : isThisCorrect ? (
-                      <Check className="w-4 h-4 stroke-[3]" />
+                      <Check className="w-3.5 h-3.5 stroke-[3]" />
                     ) : (
                       opt.id
                     )}
                   </div>
                   <p
-                    className={`font-semibold text-xs sm:text-sm leading-tight pt-0.5 line-clamp-3 transition-colors ${
+                    className={`font-semibold leading-tight pt-0.5 break-words transition-colors ${
+                      opt.text.length > 50
+                        ? 'text-[10px] xs:text-[11px] sm:text-xs leading-[1.18]'
+                        : opt.text.length > 32
+                        ? 'text-[11.5px] xs:text-xs sm:text-sm leading-tight'
+                        : 'text-xs sm:text-sm leading-tight'
+                    } ${
                       isThisWrong ? 'text-red-900 font-bold' : 'text-[#1A2E1A]'
                     }`}
                   >
@@ -179,14 +185,14 @@ export default function QuestionScreen({
 
                 {/* 3D Image inside Card */}
                 <div
-                  className={`relative w-full flex-1 flex items-center justify-center overflow-hidden rounded-xl mt-1 sm:mt-2 transition-colors ${
+                  className={`relative w-full flex-1 min-h-0 flex items-center justify-center overflow-hidden rounded-xl mt-1 sm:mt-1.5 transition-colors ${
                     isThisWrong ? 'bg-red-100/50' : isThisCorrect ? 'bg-green-100/50' : 'bg-[#f4ece1]/50'
                   }`}
                 >
                   <img
                     src={opt.image}
                     alt={opt.text}
-                    className="w-full h-full object-contain max-h-[105px] xs:max-h-[120px] sm:max-h-[140px] drop-shadow-sm pointer-events-none transition-transform duration-300"
+                    className="w-full h-full object-contain max-h-[100px] xs:max-h-[115px] sm:max-h-[135px] drop-shadow-sm pointer-events-none transition-transform duration-300"
                   />
                 </div>
               </motion.div>

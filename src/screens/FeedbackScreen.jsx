@@ -264,7 +264,7 @@ export default function FeedbackScreen({
                     Incorreta
                   </span>
                 </div>
-                <p className="text-[#1A2E1A] font-bold text-xs sm:text-sm leading-tight line-clamp-2">
+                <p className="text-[#1A2E1A] font-bold text-xs sm:text-sm leading-tight break-words">
                   {userOption.text}
                 </p>
               </div>
