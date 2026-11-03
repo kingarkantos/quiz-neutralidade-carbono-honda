@@ -56,9 +56,6 @@ export default function LpHowToPlayScreen({ onStart }) {
           >
             COMO JOGAR
           </motion.h2>
-          <p className="text-[#3b4c3c] font-semibold text-xs sm:text-sm text-center max-w-xs">
-            Selecione uma ação e em seguida descubra como os recursos ganham novas possibilidades.
-          </p>
         </div>
 
         {/* 3 Steps */}
