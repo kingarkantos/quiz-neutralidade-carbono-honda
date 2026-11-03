@@ -53,8 +53,8 @@ export default function LpGameBoardScreen({ onFinish }) {
   
   // Shuffled benefits so they don't appear in the exact same order as actions
   const benefits = useMemo(() => {
-    // Fixed deterministic shuffle for great puzzle flow: [3, 1, 5, 2, 4]
-    const order = [2, 0, 4, 1, 3];
+    // Fixed deterministic shuffle for 4 items: [3, 1, 4, 2] in 1-based -> [2, 0, 3, 1] in 0-based
+    const order = [2, 0, 3, 1];
     return order.map(i => LIGUE_PONTOS_ITEMS[i]);
   }, []);
 
@@ -269,7 +269,7 @@ export default function LpGameBoardScreen({ onFinish }) {
                 whileHover={!isMatched ? { scale: 1.02 } : {}}
                 whileTap={!isMatched ? { scale: 0.98 } : {}}
                 onClick={() => handleSelectAction(item.id)}
-                className={`relative flex items-center justify-between p-1.5 sm:p-2 rounded-[18px] transition-all duration-200 select-none cursor-pointer ${
+                className={`relative flex items-center justify-between p-2 sm:p-2.5 rounded-[18px] transition-all duration-200 select-none cursor-pointer ${
                   isMatched
                     ? `${pairColor.bgMatched} border-2 ${pairColor.border} opacity-95 shadow-sm`
                     : isSelected
@@ -278,7 +278,7 @@ export default function LpGameBoardScreen({ onFinish }) {
                 }`}
               >
                 {/* Thumb */}
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#eadecc]/70 p-1 flex-shrink-0 flex items-center justify-center overflow-hidden">
+                <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-xl bg-[#eadecc]/70 p-1 flex-shrink-0 flex items-center justify-center overflow-hidden">
                   <img
                     src={item.actionThumb}
                     alt={item.actionTitle}
@@ -287,8 +287,8 @@ export default function LpGameBoardScreen({ onFinish }) {
                 </div>
 
                 {/* Title */}
-                <div className="flex-1 px-2 text-left min-w-0">
-                  <p className="text-[#1A2E1A] font-bold text-[10px] xs:text-[11px] sm:text-xs leading-tight break-words">
+                <div className="flex-1 px-2.5 text-left min-w-0">
+                  <p className="text-[#1A2E1A] font-bold text-xs sm:text-sm leading-tight break-words">
                     {item.actionTitle}
                   </p>
                 </div>
@@ -325,7 +325,7 @@ export default function LpGameBoardScreen({ onFinish }) {
                 whileHover={!isMatched ? { scale: 1.02 } : {}}
                 whileTap={!isMatched ? { scale: 0.98 } : {}}
                 onClick={() => handleSelectBenefit(b.benefitId)}
-                className={`relative flex items-center justify-between p-1.5 sm:p-2 rounded-[18px] transition-all duration-200 select-none cursor-pointer ${
+                className={`relative flex items-center justify-between p-2 sm:p-2.5 rounded-[18px] transition-all duration-200 select-none cursor-pointer ${
                   isMatched
                     ? `${pairColor.bgMatched} border-2 ${pairColor.border} opacity-95 shadow-sm`
                     : isSelected
@@ -345,7 +345,7 @@ export default function LpGameBoardScreen({ onFinish }) {
                 </div>
 
                 {/* Leaf Icon + Benefit Title */}
-                <div className="flex-1 px-2 text-left min-w-0">
+                <div className="flex-1 px-2.5 text-left min-w-0">
                   <div className="flex items-center space-x-1 mb-0.5">
                     <img 
                       src="/assets/elements/folha.png" 
@@ -356,7 +356,7 @@ export default function LpGameBoardScreen({ onFinish }) {
                       IMPACTO
                     </span>
                   </div>
-                  <p className="text-[#1A2E1A] font-bold text-[10px] xs:text-[11px] sm:text-xs leading-tight break-words">
+                  <p className="text-[#1A2E1A] font-bold text-xs sm:text-sm leading-tight break-words">
                     {b.benefitTitle}
                   </p>
                 </div>

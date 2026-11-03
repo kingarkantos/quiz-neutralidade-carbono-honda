@@ -42,17 +42,6 @@ export const LIGUE_PONTOS_ITEMS = [
     modalImage: "/assets/jogo2/ELEMENTOS/CONEXÃO CORRETA/quatro-lixeiras-de-reciclagem-coloridas.png",
     headline: "Separação de resíduos",
     explanation: "Separar os materiais na fonte garante a integridade dos materiais recicláveis e acelera a triagem para reintrodução na indústria."
-  },
-  {
-    id: 5,
-    actionTitle: "Recuperação de componentes",
-    actionThumb: "/assets/jogo2/ELEMENTOS/ELEMENTOS AÇÕES/carcaca-de-motor-metalica-detalhada-5.png",
-    benefitId: "b5",
-    benefitTitle: "Prolonga o ciclo de vida dos produtos",
-    benefitShort: "Remanufatura com padrão original de fábrica",
-    modalImage: "/assets/jogo2/ELEMENTOS/CONEXÃO CORRETA/recuperacao-de-carcacas-de-motor.png",
-    headline: "Recuperação de peças e componentes",
-    explanation: "Peças estruturais e mecânicas podem ser inspecionadas e restauradas com tecnologia avançada, evitando que materiais úteis sejam descartados."
   }
 ];
 
