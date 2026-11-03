@@ -57,12 +57,18 @@ export default function FeedbackScreen({
           {isCorrect ? (
             /* --- HAPPY EARTH WITH 4 LEAVES CAREFULLY SPROUTING FROM BEHIND --- */
             <div className="relative w-full h-full flex items-center justify-center">
-              {/* Soft Ambient Glow behind the Earth */}
+              {/* Vibrant Radiant Green Aura behind Earth and Leaves (Inspired by user mockup) */}
               <motion.div
                 initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: [1, 1.12, 1], opacity: [0.3, 0.55, 0.3] }}
+                animate={{ scale: [1, 1.15, 1], opacity: [0.65, 0.88, 0.65] }}
                 transition={{ repeat: Infinity, duration: 3.2, ease: 'easeInOut' }}
-                className="absolute w-52 h-52 sm:w-60 sm:h-60 rounded-full bg-[#7FD03F]/25 blur-xl z-0 pointer-events-none"
+                className="absolute w-64 h-64 sm:w-72 sm:h-72 rounded-full bg-[#3cd426]/50 blur-2xl z-0 pointer-events-none"
+              />
+              <motion.div
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: [1, 1.1, 1], opacity: [0.45, 0.7, 0.45] }}
+                transition={{ repeat: Infinity, duration: 4.0, delay: 0.2, ease: 'easeInOut' }}
+                className="absolute w-80 h-80 sm:w-96 sm:h-96 rounded-full bg-[#7FD03F]/40 blur-3xl z-0 pointer-events-none"
               />
 
               {/* Leaf 1: Top-Left (Pointing Up-Left from behind Earth) */}

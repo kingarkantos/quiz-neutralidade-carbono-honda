@@ -3,23 +3,12 @@ import { motion } from 'framer-motion';
 
 export default function ResultBanner({ type = 'correct', text = '' }) {
   const isCorrect = type === 'correct';
+  const isWrong = type === 'wrong' || type === 'incorrect';
   const isResult = type === 'result';
-
-  const defaultText = isResult 
-    ? 'RESULTADO FINAL' 
-    : isCorrect 
-      ? 'ACERTOU!' 
-      : 'QUASE LÁ!';
-
-  const displayText = text || defaultText;
-
-  const bgStyle = (isCorrect || isResult)
-    ? 'banner-wood-green'
-    : 'banner-wood-grey';
 
   return (
     <motion.div
-      initial={{ scale: 0.3, opacity: 0, rotate: isCorrect ? -4 : 4 }}
+      initial={{ scale: 0.3, opacity: 0, rotate: isCorrect ? -3 : 3 }}
       animate={{ scale: 1, opacity: 1, rotate: 0 }}
       transition={{ 
         type: 'spring', 
@@ -27,14 +16,44 @@ export default function ResultBanner({ type = 'correct', text = '' }) {
         damping: 18,
         bounce: 0.6 
       }}
-      className="relative my-3 flex items-center justify-center z-10"
+      className="relative my-2 sm:my-3 flex items-center justify-center z-10"
     >
-      <div className={`px-8 py-3 rounded-2xl min-w-[280px] sm:min-w-[320px] text-center ${bgStyle}`}>
-        <h2 className="text-3xl sm:text-4xl font-black tracking-wider text-3d-wood uppercase select-none">
-          {displayText}
-        </h2>
-      </div>
+      {/* 3D Plaque Image: ACERTOU! (Exact mockup cutout) */}
+      {isCorrect && !text && (
+        <motion.img
+          src="/assets/elements/banner-acertou.png"
+          alt="ACERTOU!"
+          animate={{ 
+            scale: [1, 1.03, 1],
+            y: [0, -2, 0]
+          }}
+          transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut' }}
+          className="w-full max-w-[280px] sm:max-w-[320px] h-auto object-contain drop-shadow-xl select-none pointer-events-none"
+        />
+      )}
+
+      {/* 3D Plaque Image: QUASE LÁ! (Exact mockup cutout) */}
+      {isWrong && !text && (
+        <motion.img
+          src="/assets/elements/banner-quase-la.png"
+          alt="QUASE LÁ!"
+          animate={{ 
+            scale: [1, 1.03, 1],
+            y: [0, -2, 0]
+          }}
+          transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut' }}
+          className="w-full max-w-[280px] sm:max-w-[320px] h-auto object-contain drop-shadow-xl select-none pointer-events-none"
+        />
+      )}
+
+      {/* Fallback for RESULTADO FINAL or custom text */}
+      {(isResult || text) && (
+        <div className={`px-8 py-3 rounded-2xl min-w-[280px] sm:min-w-[320px] text-center ${isCorrect || isResult ? 'banner-wood-green' : 'banner-wood-grey'}`}>
+          <h2 className="text-3xl sm:text-4xl font-black tracking-wider text-3d-wood uppercase select-none">
+            {text || 'RESULTADO FINAL'}
+          </h2>
+        </div>
+      )}
     </motion.div>
   );
 }
-
