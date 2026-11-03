@@ -103,12 +103,12 @@ export default function App() {
   const correctCount = answers.filter(a => a.isCorrect).length;
 
   return (
-    <div className="w-screen h-screen flex items-center justify-center bg-[#111812] overflow-hidden">
+    <div className="w-full h-full min-h-[100dvh] max-h-[100dvh] flex items-center justify-center bg-[#111812] overflow-hidden">
       {/* 
         Totem Display Container (9:16 portrait kiosk layout)
-        Fills screen vertically on desktop, fits full screen on kiosk totens
+        Fills screen vertically on desktop, fits full screen on kiosk totens and mobile devices
       */}
-      <main className="relative w-full h-full max-w-[540px] max-h-[960px] sm:rounded-[36px] overflow-hidden shadow-2xl bg-[#ecdcc1] flex flex-col">
+      <main className="relative w-full h-full max-w-[540px] max-h-[100dvh] sm:max-h-[960px] sm:rounded-[36px] overflow-hidden shadow-2xl bg-[#ecdcc1] flex flex-col">
         <AnimatePresence mode="wait">
           {screen === 'home' && (
             <motion.div
@@ -117,7 +117,7 @@ export default function App() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.35 }}
-              className="w-full h-full"
+              className="w-full h-full flex flex-col min-h-0"
             >
               <HomeScreen onStart={handleStart} />
             </motion.div>
@@ -130,7 +130,7 @@ export default function App() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -40 }}
               transition={{ duration: 0.35 }}
-              className="w-full h-full"
+              className="w-full h-full flex flex-col min-h-0"
             >
               <HowItWorksScreen onStart={handleStartQuestions} />
             </motion.div>
@@ -143,7 +143,7 @@ export default function App() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -30 }}
               transition={{ duration: 0.3 }}
-              className="w-full h-full"
+              className="w-full h-full flex flex-col min-h-0"
             >
               <QuestionScreen
                 question={questions[currentQuestionIndex]}
@@ -163,7 +163,7 @@ export default function App() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.05 }}
               transition={{ duration: 0.35 }}
-              className="w-full h-full"
+              className="w-full h-full flex flex-col min-h-0"
             >
               <FeedbackScreen
                 isCorrect={answers[answers.length - 1]?.isCorrect}
@@ -184,7 +184,7 @@ export default function App() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, x: -30 }}
               transition={{ duration: 0.35 }}
-              className="w-full h-full"
+              className="w-full h-full flex flex-col min-h-0"
             >
               <ScoreScreen
                 correctCount={correctCount}
@@ -201,7 +201,7 @@ export default function App() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.35 }}
-              className="w-full h-full"
+              className="w-full h-full flex flex-col min-h-0"
             >
               <FinalMessageScreen onRestart={handleRestart} />
             </motion.div>

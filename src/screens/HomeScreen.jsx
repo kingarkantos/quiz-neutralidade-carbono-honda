@@ -100,7 +100,7 @@ export default function HomeScreen({ onStart }) {
       </div>
 
       {/* Bottom Button Area with Shimmer Beam Passing Through */}
-      <div className="relative z-10 w-full px-8 pb-10 pt-4 flex justify-center max-w-md mx-auto">
+      <div className="relative z-10 w-full px-6 sm:px-8 pb-5 sm:pb-8 pt-2 flex justify-center max-w-md mx-auto flex-shrink-0">
         <motion.button
           initial={{ scale: 0.9, opacity: 0, y: 30 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -113,7 +113,7 @@ export default function HomeScreen({ onStart }) {
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.96 }}
           onClick={onStart}
-          className="w-full py-4 sm:py-5 rounded-full btn-tactile-green anim-shimmer text-white font-black text-xl sm:text-2xl tracking-wider select-none uppercase shadow-2xl"
+          className="w-full py-4 sm:py-5 rounded-full btn-tactile-green anim-shimmer text-white font-black text-lg sm:text-2xl tracking-wider select-none uppercase shadow-2xl"
         >
           INICIAR QUIZ
         </motion.button>

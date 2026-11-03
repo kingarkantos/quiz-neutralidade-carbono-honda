@@ -71,13 +71,13 @@ export default function ScoreScreen({ correctCount, totalQuestions, onContinue }
       </div>
 
       {/* Gauge / Velocímetro Area */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 max-w-lg mx-auto w-full my-2">
+      <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-center px-5 sm:px-6 max-w-lg mx-auto w-full my-auto">
         {/* Gauge Container */}
         <motion.div
           initial={{ scale: 0.7, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 280, damping: 18, delay: 0.1 }}
-          className="relative w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center"
+          className="relative w-52 h-52 xs:w-60 xs:h-60 sm:w-76 sm:h-76 flex items-center justify-center flex-shrink-0"
         >
           {/* Circular SVG Gauge - Rotated to place bottom-gap exactly at the bottom-center */}
           <svg className="w-full h-full" viewBox="0 0 200 200">
@@ -122,23 +122,23 @@ export default function ScoreScreen({ correctCount, totalQuestions, onContinue }
 
           {/* Central Inner Card */}
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-            <div className="w-44 h-44 sm:w-48 sm:h-48 rounded-full bg-[#FAF5EC] shadow-inner flex flex-col items-center justify-center border-4 border-white">
+            <div className="w-32 h-32 xs:w-38 xs:h-38 sm:w-48 sm:h-48 rounded-full bg-[#FAF5EC] shadow-inner flex flex-col items-center justify-center border-4 border-white">
               {/* Green Leaf Icon */}
               <motion.img
                 animate={{ rotate: [-4, 4, -4], scale: [1, 1.06, 1] }}
                 transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
                 src="/assets/elements/folha.png"
                 alt="Folha"
-                className="w-10 h-10 object-contain drop-shadow-sm mb-1"
+                className="w-7 h-7 sm:w-10 sm:h-10 object-contain drop-shadow-sm mb-0.5 sm:mb-1"
               />
 
               {/* Score Number */}
-              <span className="text-[#1A2E1A] font-black text-5xl sm:text-6xl tracking-tight leading-none">
+              <span className="text-[#1A2E1A] font-black text-4xl xs:text-5xl sm:text-6xl tracking-tight leading-none">
                 {displayScore}
               </span>
 
               {/* "PONTOS" */}
-              <span className="text-[#455A46] font-extrabold text-sm sm:text-base tracking-widest uppercase mt-1">
+              <span className="text-[#455A46] font-extrabold text-xs sm:text-base tracking-widest uppercase mt-0.5 sm:mt-1">
                 PONTOS
               </span>
             </div>
@@ -150,19 +150,19 @@ export default function ScoreScreen({ correctCount, totalQuestions, onContinue }
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 300, damping: 22, delay: 0.3 }}
-          className="w-full bg-[#FAF5EC]/95 backdrop-blur-sm rounded-[24px] p-5 sm:p-6 shadow-3d-card border border-white/60 mt-3 text-left"
+          className="w-full bg-[#FAF5EC]/95 backdrop-blur-sm rounded-[18px] sm:rounded-[24px] p-3.5 sm:p-5 shadow-3d-card border border-white/60 mt-2 sm:mt-3 text-left"
         >
-          <h3 className="text-[#1A2E1A] font-extrabold text-xl sm:text-2xl mb-1.5">
+          <h3 className="text-[#1A2E1A] font-extrabold text-lg sm:text-2xl mb-1">
             {feedbackTitle}
           </h3>
-          <p className="text-[#3b4c3c] font-medium text-sm sm:text-base leading-relaxed">
+          <p className="text-[#3b4c3c] font-medium text-xs sm:text-base leading-relaxed">
             {feedbackText}
           </p>
         </motion.div>
       </div>
 
       {/* Bottom Continue Area with Shimmer */}
-      <div className="relative z-10 w-full px-8 pb-10 pt-2 flex justify-center max-w-lg mx-auto">
+      <div className="relative z-10 w-full px-6 sm:px-8 pb-5 sm:pb-8 pt-1 flex justify-center max-w-lg mx-auto flex-shrink-0">
         <motion.button
           initial={{ scale: 0.9, opacity: 0, y: 20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -170,10 +170,10 @@ export default function ScoreScreen({ correctCount, totalQuestions, onContinue }
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.96 }}
           onClick={onContinue}
-          className="w-full py-5 rounded-full btn-tactile-green anim-shimmer text-white font-black text-lg sm:text-xl tracking-wider select-none uppercase flex items-center justify-center space-x-2 shadow-xl"
+          className="w-full py-3.5 sm:py-4.5 rounded-full btn-tactile-green anim-shimmer text-white font-black text-base sm:text-xl tracking-wider select-none uppercase flex items-center justify-center space-x-2 shadow-xl"
         >
           <span>CONTINUAR</span>
-          <ChevronRight className="w-6 h-6 stroke-[3]" />
+          <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3]" />
         </motion.button>
       </div>
     </div>

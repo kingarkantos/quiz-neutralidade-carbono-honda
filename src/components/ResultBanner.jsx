@@ -16,7 +16,7 @@ export default function ResultBanner({ type = 'correct', text = '' }) {
         damping: 18,
         bounce: 0.6 
       }}
-      className="relative my-2 sm:my-3 flex items-center justify-center z-10"
+      className="relative my-1 sm:my-2 flex items-center justify-center z-10"
     >
       {/* 3D Plaque Image: ACERTOU! (Exact mockup cutout - cleaned) */}
       {isCorrect && !text && (
@@ -28,7 +28,7 @@ export default function ResultBanner({ type = 'correct', text = '' }) {
             y: [0, -2, 0]
           }}
           transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut' }}
-          className="w-full max-w-[280px] sm:max-w-[320px] h-auto object-contain drop-shadow-xl select-none pointer-events-none"
+          className="w-full max-w-[240px] sm:max-w-[300px] h-auto object-contain drop-shadow-xl select-none pointer-events-none"
         />
       )}
 
@@ -42,14 +42,14 @@ export default function ResultBanner({ type = 'correct', text = '' }) {
             y: [0, -2, 0]
           }}
           transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut' }}
-          className="w-full max-w-[280px] sm:max-w-[320px] h-auto object-contain drop-shadow-xl select-none pointer-events-none"
+          className="w-full max-w-[240px] sm:max-w-[300px] h-auto object-contain drop-shadow-xl select-none pointer-events-none"
         />
       )}
 
       {/* Fallback for RESULTADO FINAL or custom text */}
       {(isResult || text) && (
-        <div className={`px-8 py-3 rounded-2xl min-w-[280px] sm:min-w-[320px] text-center ${isCorrect || isResult ? 'banner-wood-green' : 'banner-wood-grey'}`}>
-          <h2 className="text-3xl sm:text-4xl font-black tracking-wider text-3d-wood uppercase select-none">
+        <div className={`px-6 py-2.5 sm:px-8 sm:py-3 rounded-2xl min-w-[240px] sm:min-w-[300px] text-center ${isCorrect || isResult ? 'banner-wood-green' : 'banner-wood-grey'}`}>
+          <h2 className="text-2xl sm:text-4xl font-black tracking-wider text-3d-wood uppercase select-none">
             {text || 'RESULTADO FINAL'}
           </h2>
         </div>

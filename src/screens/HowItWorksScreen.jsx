@@ -37,19 +37,19 @@ export default function HowItWorksScreen({ onStart }) {
       <Header />
 
       {/* Center Content */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 max-w-lg mx-auto w-full">
+      <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-center px-5 sm:px-6 max-w-lg mx-auto w-full my-auto">
         {/* "COMO FUNCIONA" Badge */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0, y: -20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 350, damping: 22 }}
-          className="bg-[#1C3B24] text-white font-extrabold text-xl tracking-wider px-8 py-3 rounded-full shadow-lg mb-8 uppercase select-none"
+          className="bg-[#1C3B24] text-white font-extrabold text-lg sm:text-xl tracking-wider px-6 sm:px-8 py-2.5 sm:py-3 rounded-full shadow-lg mb-4 sm:mb-8 uppercase select-none"
         >
           COMO FUNCIONA
         </motion.div>
 
         {/* 3 Step Cards with Staggered Bounce Animation */}
-        <div className="w-full space-y-4">
+        <div className="w-full space-y-2.5 sm:space-y-4">
           {steps.map((step, idx) => (
             <motion.div
               key={step.number}
@@ -62,19 +62,19 @@ export default function HowItWorksScreen({ onStart }) {
                 delay: 0.15 + idx * 0.15 
               }}
               whileHover={{ scale: 1.02 }}
-              className="bg-[#faf5ec]/95 backdrop-blur-sm rounded-[24px] p-5 shadow-3d-card flex items-center space-x-4 border border-white/60"
+              className="bg-[#faf5ec]/95 backdrop-blur-sm rounded-[20px] sm:rounded-[24px] p-3.5 sm:p-5 shadow-3d-card flex items-center space-x-3.5 sm:space-x-4 border border-white/60"
             >
               {/* Number Circle */}
-              <div className="w-14 h-14 rounded-full bg-[#1C3B24] text-white flex-shrink-0 flex items-center justify-center font-black text-2xl shadow-md">
+              <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-[#1C3B24] text-white flex-shrink-0 flex items-center justify-center font-black text-xl sm:text-2xl shadow-md">
                 {step.number}
               </div>
 
               {/* Text */}
               <div className="flex-1">
-                <p className="text-[#1A2E1A] font-bold text-lg sm:text-xl leading-snug">
+                <p className="text-[#1A2E1A] font-bold text-base sm:text-xl leading-snug">
                   {step.title}
                 </p>
-                <p className="text-[#455A46] text-sm sm:text-base font-medium leading-tight mt-0.5">
+                <p className="text-[#455A46] text-xs sm:text-base font-medium leading-tight mt-0.5">
                   {step.text}
                 </p>
               </div>
@@ -84,7 +84,7 @@ export default function HowItWorksScreen({ onStart }) {
       </div>
 
       {/* Bottom Button Area */}
-      <div className="relative z-10 w-full px-8 pb-12 pt-6 flex justify-center">
+      <div className="relative z-10 w-full px-6 sm:px-8 pb-5 sm:pb-8 pt-2 flex justify-center flex-shrink-0">
         <motion.button
           initial={{ scale: 0.9, opacity: 0, y: 30 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -92,7 +92,7 @@ export default function HowItWorksScreen({ onStart }) {
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.96 }}
           onClick={onStart}
-          className="w-full max-w-md py-5 rounded-full btn-tactile-light anim-shimmer text-[#1C3B24] font-black text-xl sm:text-2xl tracking-wider select-none uppercase shadow-lg"
+          className="w-full max-w-md py-4 sm:py-5 rounded-full btn-tactile-light anim-shimmer text-[#1C3B24] font-black text-lg sm:text-2xl tracking-wider select-none uppercase shadow-lg"
         >
           INICIAR QUIZ
         </motion.button>
