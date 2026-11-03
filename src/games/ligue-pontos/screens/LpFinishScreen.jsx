@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import Header from '../../../components/Header';
 import CornerFoliage from '../../../components/CornerFoliage';
 import confetti from 'canvas-confetti';
-import { RotateCcw, LayoutGrid } from 'lucide-react';
+import { RotateCcw } from 'lucide-react';
 
 export default function LpFinishScreen({ onRestart }) {
-  const navigate = useNavigate();
-
   useEffect(() => {
     confetti({
       particleCount: 75,
@@ -31,17 +28,17 @@ export default function LpFinishScreen({ onRestart }) {
       {/* Header */}
       <Header className="pt-3 pb-1" />
 
-      {/* Main Content */}
-      <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-center px-6 max-w-lg mx-auto w-full text-center my-auto">
-        {/* Celebration 3D Badge */}
+      {/* Main Content - Anchored high in the solid beige sky */}
+      <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-start pt-2 sm:pt-4 px-6 max-w-lg mx-auto w-full text-center">
+        {/* Celebration 3D Badge - Significantly Enlarged */}
         <motion.div
           initial={{ scale: 0.5, rotate: -15, opacity: 0 }}
           animate={{ scale: 1, rotate: 0, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 280, damping: 18, delay: 0.15 }}
-          className="relative w-44 h-44 sm:w-56 sm:h-56 flex items-center justify-center my-2 flex-shrink-0"
+          className="relative w-56 h-56 xs:w-64 xs:h-64 sm:w-72 sm:h-72 flex items-center justify-center my-1 sm:my-2 flex-shrink-0"
         >
           {/* Radial Aura */}
-          <div className="absolute w-48 h-48 sm:w-60 sm:h-60 rounded-full bg-[#3cd426]/40 blur-3xl pointer-events-none" />
+          <div className="absolute w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-[#3cd426]/40 blur-3xl pointer-events-none" />
 
           {/* Floating Leaves decoration around the disk */}
           <motion.img
@@ -49,20 +46,20 @@ export default function LpFinishScreen({ onRestart }) {
             transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut' }}
             src="/assets/jogo2/ELEMENTOS/TELA FINAL/folha-verde-curvada-isolada-2.png"
             alt="Folha"
-            className="absolute -top-2 -left-2 w-14 h-14 sm:w-18 sm:h-18 object-contain pointer-events-none"
+            className="absolute -top-1 -left-1 w-18 h-18 sm:w-22 sm:h-22 object-contain pointer-events-none z-20"
           />
           <motion.img
             animate={{ rotate: [10, -10, 10], y: [0, 6, 0] }}
             transition={{ repeat: Infinity, duration: 4.0, delay: 0.2, ease: 'easeInOut' }}
             src="/assets/jogo2/ELEMENTOS/TELA FINAL/folha-verde-alongada-a-esquerda-4.png"
             alt="Folha"
-            className="absolute -bottom-2 -right-2 w-14 h-14 sm:w-18 sm:h-18 object-contain pointer-events-none"
+            className="absolute -bottom-1 -right-1 w-18 h-18 sm:w-22 sm:h-22 object-contain pointer-events-none z-20"
           />
 
           <img
             src="/assets/jogo2/ELEMENTOS/TELA FINAL/disco-verde-com-marca-de-verificacao-branca-1.png"
             alt="Concluído com Sucesso"
-            className="w-36 h-36 sm:w-44 sm:h-44 object-contain drop-shadow-2xl pointer-events-none select-none z-10"
+            className="w-48 h-48 xs:w-56 xs:h-56 sm:w-64 sm:h-64 object-contain drop-shadow-2xl pointer-events-none select-none z-10"
           />
         </motion.div>
 
@@ -94,26 +91,16 @@ export default function LpFinishScreen({ onRestart }) {
         </motion.div>
       </div>
 
-      {/* Bottom Buttons */}
-      <div className="relative z-10 w-full px-6 sm:px-8 pb-5 sm:pb-8 pt-1 flex flex-col sm:flex-row items-center justify-center gap-2.5 max-w-lg mx-auto flex-shrink-0">
+      {/* Bottom Button Area - Only In-Game Restart */}
+      <div className="relative z-10 w-full px-6 sm:px-8 pb-5 sm:pb-8 pt-1 flex justify-center max-w-lg mx-auto flex-shrink-0">
         <motion.button
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
           onClick={onRestart}
-          className="w-full sm:flex-1 py-3.5 sm:py-4 rounded-full btn-tactile-green anim-shimmer text-white font-black text-base sm:text-lg tracking-wider select-none uppercase flex items-center justify-center space-x-2 shadow-xl"
+          className="w-full py-3.5 sm:py-4.5 rounded-full btn-tactile-green anim-shimmer text-white font-black text-base sm:text-xl tracking-wider select-none uppercase flex items-center justify-center space-x-2 shadow-xl"
         >
           <RotateCcw className="w-5 h-5 stroke-[2.5]" />
           <span>JOGAR NOVAMENTE</span>
-        </motion.button>
-
-        <motion.button
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
-          onClick={() => navigate('/')}
-          className="w-full sm:w-auto px-6 py-3.5 sm:py-4 rounded-full btn-tactile-brown text-white font-black text-sm sm:text-base tracking-wider select-none uppercase flex items-center justify-center space-x-2 shadow-xl"
-        >
-          <LayoutGrid className="w-4 h-4 stroke-[2.5]" />
-          <span>OUTROS JOGOS</span>
         </motion.button>
       </div>
     </div>

@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import Header from '../../../components/Header';
 import CornerFoliage from '../../../components/CornerFoliage';
 import confetti from 'canvas-confetti';
-import { RotateCcw, LayoutGrid, ArrowRight } from 'lucide-react';
+import { RotateCcw, ArrowRight } from 'lucide-react';
 
 export default function MemoriaFinishScreen({ roundNumber, onPlayNextRound, onRestartRound }) {
-  const navigate = useNavigate();
-
   useEffect(() => {
     confetti({
       particleCount: 80,
@@ -81,14 +78,14 @@ export default function MemoriaFinishScreen({ roundNumber, onPlayNextRound, onRe
         </motion.div>
       </div>
 
-      {/* Bottom Buttons */}
-      <div className="relative z-10 w-full px-6 sm:px-8 pb-5 sm:pb-8 pt-1 flex flex-col sm:flex-row items-center justify-center gap-2.5 max-w-lg mx-auto flex-shrink-0">
+      {/* Bottom Buttons - Isolated In-Game Flow */}
+      <div className="relative z-10 w-full px-6 sm:px-8 pb-5 sm:pb-8 pt-1 flex justify-center max-w-lg mx-auto flex-shrink-0">
         {hasNextRound ? (
           <motion.button
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             onClick={onPlayNextRound}
-            className="w-full sm:flex-1 py-3.5 sm:py-4 rounded-full btn-tactile-green anim-shimmer text-white font-black text-base sm:text-lg tracking-wider select-none uppercase flex items-center justify-center space-x-2 shadow-xl"
+            className="w-full py-3.5 sm:py-4.5 rounded-full btn-tactile-green anim-shimmer text-white font-black text-base sm:text-xl tracking-wider select-none uppercase flex items-center justify-center space-x-2 shadow-xl"
           >
             <span>JOGAR RODADA 2</span>
             <ArrowRight className="w-5 h-5 stroke-[2.5]" />
@@ -98,22 +95,12 @@ export default function MemoriaFinishScreen({ roundNumber, onPlayNextRound, onRe
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             onClick={onRestartRound}
-            className="w-full sm:flex-1 py-3.5 sm:py-4 rounded-full btn-tactile-green anim-shimmer text-white font-black text-base sm:text-lg tracking-wider select-none uppercase flex items-center justify-center space-x-2 shadow-xl"
+            className="w-full py-3.5 sm:py-4.5 rounded-full btn-tactile-green anim-shimmer text-white font-black text-base sm:text-xl tracking-wider select-none uppercase flex items-center justify-center space-x-2 shadow-xl"
           >
             <RotateCcw className="w-5 h-5 stroke-[2.5]" />
             <span>JOGAR NOVAMENTE</span>
           </motion.button>
         )}
-
-        <motion.button
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
-          onClick={() => navigate('/')}
-          className="w-full sm:w-auto px-6 py-3.5 sm:py-4 rounded-full btn-tactile-brown text-white font-black text-sm sm:text-base tracking-wider select-none uppercase flex items-center justify-center space-x-2 shadow-xl"
-        >
-          <LayoutGrid className="w-4 h-4 stroke-[2.5]" />
-          <span>OUTROS JOGOS</span>
-        </motion.button>
       </div>
     </div>
   );
