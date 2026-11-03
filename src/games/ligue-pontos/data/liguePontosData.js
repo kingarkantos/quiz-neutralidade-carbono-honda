@@ -19,7 +19,7 @@ export const LIGUE_PONTOS_ITEMS = [
     benefitShort: "Sucata metálica e materiais reaproveitados",
     modalImage: "/assets/jogo2/ELEMENTOS/CONEXÃO CORRETA/reciclagem-metalica_-sucata-vira-lingotes.png",
     headline: "Reciclagem de materiais",
-    explanation: "A reciclagem de materiais industriais e metais nobres consome até 95% menos energia do que a extração primária, evitando resíduos e economizando recursos essenciais."
+    explanation: "O processo consome até 95% menos energia do que a extração primária do minério."
   },
   {
     id: 3,
