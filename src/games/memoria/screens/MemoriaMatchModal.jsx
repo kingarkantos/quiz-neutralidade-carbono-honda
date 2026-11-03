@@ -40,11 +40,11 @@ export default function MemoriaMatchModal({ card, onClose, isLast }) {
           </h2>
 
           {/* Type Tag (Renovável / Não renovável) */}
-          <div className="my-1">
-            <span className={`inline-block px-3 py-0.5 rounded-full text-xs font-black uppercase tracking-wider ${
+          <div className="my-1.5">
+            <span className={`inline-block px-4 sm:px-5 py-1 sm:py-1.5 rounded-full text-sm sm:text-base font-black uppercase tracking-wider shadow-sm ${
               isRenovavel 
-                ? 'bg-[#2EB85C]/18 text-[#1b7e3b] border border-[#2EB85C]/30' 
-                : 'bg-[#d97706]/18 text-[#b45309] border border-[#d97706]/30'
+                ? 'bg-[#2EB85C]/20 text-[#166534] border-2 border-[#2EB85C]/45' 
+                : 'bg-[#d97706]/20 text-[#9a3412] border-2 border-[#d97706]/45'
             }`}>
               {card.type}
             </span>
