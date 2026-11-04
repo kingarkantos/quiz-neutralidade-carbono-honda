@@ -221,8 +221,33 @@ export default function MemoriaGameBoardScreen({ onFinish }) {
   );
 }
 
+// Formata o nome do card para quebra de linhas sem corte de palavras
+function formatCardLines(name) {
+  if (name.includes("Hidroelétrica") || name.includes("Hidrelétrica")) {
+    return ["Energia", "Hidroelétrica"];
+  }
+  if (name.includes("Geotérmica")) {
+    return ["Energia", "Geotérmica", "(vapor)"];
+  }
+  if (name.includes("Termoelétrica")) {
+    return ["Termoelétrica", "(gasolina e", "diesel)"];
+  }
+  if (name.includes("Biomassa")) {
+    return ["Biomassa", "(bagaço de", "cana)"];
+  }
+  if (name.includes("Solar")) {
+    return ["Energia", "Solar"];
+  }
+  if (name.includes("Eólica")) {
+    return ["Energia", "Eólica"];
+  }
+  return name.split(" ");
+}
+
 // Individual 3D Flip Card Component
 function MemoryCard({ card, isFlipped, isMatched, onClick }) {
+  const cardLines = formatCardLines(card.item.name);
+
   return (
     <div
       className="relative w-[78px] h-[112px] xs:w-[90px] xs:h-[128px] sm:w-[110px] sm:h-[154px] cursor-pointer select-none perspective-[1000px] flex-shrink-0"
@@ -248,7 +273,7 @@ function MemoryCard({ card, isFlipped, isMatched, onClick }) {
 
         {/* CARD FRONT (Photo + Title) */}
         <div
-          className={`absolute inset-0 w-full h-full rounded-2xl overflow-hidden shadow-lg border-2 p-1.5 xs:p-2 sm:p-2.5 flex flex-col justify-between items-center bg-[#FAF5EC] text-center backface-hidden ${isMatched
+          className={`absolute inset-0 w-full h-full rounded-2xl overflow-hidden shadow-lg border-2 p-1 xs:p-1.5 sm:p-2 flex flex-col justify-between items-center bg-[#FAF5EC] text-center backface-hidden ${isMatched
               ? 'border-[#2EB85C] ring-2 ring-[#2EB85C]/40 bg-[#FAF5EC]'
               : 'border-white'
             }`}
@@ -274,11 +299,16 @@ function MemoryCard({ card, isFlipped, isMatched, onClick }) {
             </span>
           </div>
 
-          {/* Name - Sempre visível, quebra de linha sem corte */}
-          <div className="w-full min-h-[24px] xs:min-h-[28px] sm:min-h-[32px] flex items-center justify-center px-0.5">
-            <p className="text-[#1A2E1A] font-black text-[7.5px] xs:text-[9px] sm:text-[10px] leading-[1.1] text-center w-full break-words hyphens-auto">
-              {card.item.name}
-            </p>
+          {/* Name - Palavras inteiras em cada linha, sem hífen ou cortes */}
+          <div className="w-full min-h-[26px] xs:min-h-[30px] sm:min-h-[34px] flex flex-col items-center justify-center px-0.5 py-0.5">
+            {cardLines.map((line, idx) => (
+              <span
+                key={idx}
+                className="text-[#1A2E1A] font-black text-[6.8px] xs:text-[7.8px] sm:text-[9.5px] leading-[1.12] text-center w-full whitespace-nowrap overflow-hidden text-ellipsis hyphens-none select-none tracking-tight"
+              >
+                {line}
+              </span>
+            ))}
           </div>
         </div>
       </motion.div>
