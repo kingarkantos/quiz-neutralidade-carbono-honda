@@ -291,7 +291,7 @@ export default function LpGameBoardScreen({ onFinish }) {
                 whileHover={!isMatched ? { scale: 1.02 } : {}}
                 whileTap={!isMatched ? { scale: 0.98 } : {}}
                 onClick={() => handleSelectAction(item.id)}
-                className={`relative flex items-center justify-between p-1.5 xs:p-2 sm:p-2.5 rounded-[18px] transition-all duration-200 select-none cursor-pointer ${
+                className={`relative flex items-center justify-between p-1.5 xs:p-2 sm:p-2.5 min-h-[56px] xs:min-h-[62px] sm:min-h-[70px] rounded-[18px] transition-all duration-200 select-none cursor-pointer ${
                   isMatched
                     ? `${pairColor.bgMatched} border-2 ${pairColor.border} opacity-95 shadow-sm`
                     : isSelected
@@ -347,7 +347,7 @@ export default function LpGameBoardScreen({ onFinish }) {
                 whileHover={!isMatched ? { scale: 1.02 } : {}}
                 whileTap={!isMatched ? { scale: 0.98 } : {}}
                 onClick={() => handleSelectBenefit(b.benefitId)}
-                className={`relative flex items-center justify-between p-1.5 xs:p-2 sm:p-2.5 rounded-[18px] transition-all duration-200 select-none cursor-pointer ${
+                className={`relative flex items-center justify-between p-1.5 xs:p-2 sm:p-2.5 min-h-[56px] xs:min-h-[62px] sm:min-h-[70px] rounded-[18px] transition-all duration-200 select-none cursor-pointer ${
                   isMatched
                     ? `${pairColor.bgMatched} border-2 ${pairColor.border} opacity-95 shadow-sm`
                     : isSelected
@@ -378,7 +378,7 @@ export default function LpGameBoardScreen({ onFinish }) {
                       IMPACTO
                     </span>
                   </div>
-                  <p className="text-[#1A2E1A] font-bold text-[10.5px] xs:text-[11.5px] sm:text-sm leading-tight hyphens-none break-normal [word-break:keep-all] [overflow-wrap:normal]">
+                  <p className="text-[#1A2E1A] font-bold text-[10px] xs:text-[11px] sm:text-sm leading-tight hyphens-none break-normal [word-break:keep-all] [overflow-wrap:normal]">
                     {b.benefitTitle}
                   </p>
                 </div>

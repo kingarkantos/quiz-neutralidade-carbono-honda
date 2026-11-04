@@ -157,7 +157,7 @@ export default function LpInteractiveTutorial({ className = '' }) {
               </div>
             </motion.div>
 
-            {/* Action Card 2: Reciclagem de materiais */}
+            {/* Action Card 2: Logística reversa */}
             <div className="relative flex items-center justify-between p-1 sm:p-1.5 rounded-xl border bg-white/80 border-white/90 shadow-xs opacity-75">
               <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#eadecc]/70 p-0.5 flex-shrink-0 flex items-center justify-center overflow-hidden">
                 <img
@@ -167,7 +167,7 @@ export default function LpInteractiveTutorial({ className = '' }) {
                 />
               </div>
               <p className="flex-1 px-1 text-[9px] sm:text-[10px] font-bold text-[#1A2E1A] leading-tight truncate">
-                Reciclagem
+                Logística reversa
               </p>
               <div className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-[#cfc3a7] flex-shrink-0" />
             </div>

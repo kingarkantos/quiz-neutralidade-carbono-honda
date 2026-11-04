@@ -12,14 +12,14 @@ export const LIGUE_PONTOS_ITEMS = [
   },
   {
     id: 2,
-    actionTitle: "Reciclagem de\u00A0materiais",
+    actionTitle: "Logística reversa",
     actionThumb: "/assets/jogo2/ELEMENTOS/ELEMENTOS AÇÕES/pilha-compacta-de-sucata-metalica-2.png",
     benefitId: "b2",
-    benefitTitle: "Economiza matéria-prima e\u00A0energia",
-    benefitShort: "Sucata metálica e materiais reaproveitados",
+    benefitTitle: "Retorno da matéria-prima para a cadeia produtiva",
+    benefitShort: "Retorno da matéria-prima para a cadeia produtiva",
     modalImage: "/assets/jogo2/ELEMENTOS/CONEXÃO CORRETA/reciclagem-metalica_-sucata-vira-lingotes.png",
-    headline: "Reciclagem de materiais",
-    explanation: "O processo consome até 95% menos energia do que a extração primária do minério."
+    headline: "Logística reversa",
+    explanation: "Garante o retorno de materiais e peças para a cadeia produtiva, reduzindo o impacto ambiental e a extração de recursos."
   },
   {
     id: 3,
