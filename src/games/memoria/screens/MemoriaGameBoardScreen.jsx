@@ -51,7 +51,7 @@ export default function MemoriaGameBoardScreen({ onFinish }) {
     if (activeModalCard !== null || matchedPairIds.size === 5) return;
 
     if (timeLeft <= 0) {
-      onFinish();
+      onFinish({ isTimeUp: true, pairsFound: matchedPairIds.size });
       return;
     }
 
@@ -59,7 +59,7 @@ export default function MemoriaGameBoardScreen({ onFinish }) {
       setTimeLeft(prev => {
         if (prev <= 1) {
           clearInterval(timer);
-          onFinish();
+          onFinish({ isTimeUp: true, pairsFound: matchedPairIds.size });
           return 0;
         }
         return prev - 1;
@@ -109,7 +109,7 @@ export default function MemoriaGameBoardScreen({ onFinish }) {
     const isCompleted = matchedPairIds.size === 5;
     setActiveModalCard(null);
     if (isCompleted) {
-      onFinish();
+      onFinish({ isTimeUp: false, pairsFound: 5 });
     }
   };
 

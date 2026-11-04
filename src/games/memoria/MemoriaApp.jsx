@@ -7,13 +7,15 @@ import MemoriaFinishScreen from './screens/MemoriaFinishScreen';
 export default function MemoriaApp() {
   const [screen, setScreen] = useState('home'); // 'home' | 'board' | 'finish'
   const [gameKey, setGameKey] = useState(0);
+  const [finishData, setFinishData] = useState({ isTimeUp: false, pairsFound: 5 });
 
   const handleStart = () => {
     setGameKey(prev => prev + 1);
     setScreen('board');
   };
 
-  const handleFinishRound = () => {
+  const handleFinishRound = (data = { isTimeUp: false, pairsFound: 5 }) => {
+    setFinishData(data);
     setScreen('finish');
   };
 
@@ -64,6 +66,8 @@ export default function MemoriaApp() {
           >
             <MemoriaFinishScreen
               onRestart={handleRestart}
+              isTimeUp={finishData?.isTimeUp}
+              pairsFound={finishData?.pairsFound}
             />
           </motion.div>
         )}
