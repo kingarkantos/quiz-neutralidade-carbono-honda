@@ -51,9 +51,9 @@ export default function HubScreen() {
       route: '/plantando-o-futuro',
       badge: 'AÇÃO SOCIAL • MEIO AMBIENTE',
       title: 'Plantando o Futuro',
-      desc: 'Assine seu compromisso verde e retire sua muda de árvore nativa.',
+      desc: 'Conheça as espécies nativas e escolha a sua muda de árvore.',
       image: '/assets/plantando-futuro/icones/muda-kraft.png',
-      btnText: 'RETIRAR MUDA',
+      btnText: 'ESCOLHER MUDA',
       btnColor: 'btn-tactile-green',
       icon: Sprout,
       accentGlow: 'rgba(34, 197, 94, 0.45)'

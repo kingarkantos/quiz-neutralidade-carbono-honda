@@ -78,10 +78,10 @@ export default function PfCatalogScreen({ onBack, colaboradorInfo, onResgateSucc
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={onBack}
-            className="flex items-center space-x-1.5 bg-[#FAF5EC]/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm border border-[#2EB85C]/30 text-[#1C3B24] font-bold text-xs hover:bg-white"
+            className="flex items-center space-x-1.5 bg-[#FAF5EC]/90 backdrop-blur-sm px-3.5 py-1.5 rounded-full shadow-sm border border-[#2EB85C]/30 text-[#1C3B24] font-black text-xs hover:bg-white"
           >
             <ArrowLeft className="w-4 h-4 text-[#2EB85C]" />
-            <span>VOLTAR</span>
+            <span>INÍCIO</span>
           </motion.button>
 
           <img 
@@ -92,8 +92,8 @@ export default function PfCatalogScreen({ onBack, colaboradorInfo, onResgateSucc
         </div>
 
         {/* Module Header Brand - Transparent, elegant serif & living animated tree */}
-        <div className="flex items-center justify-between px-4 sm:px-5 py-1.5">
-          <PfHeaderBrand compact={true} showSubtitle={true} treeSize={42} />
+        <div className="flex items-center justify-between px-4 sm:px-5 py-2">
+          <PfHeaderBrand compact={false} showSubtitle={true} treeSize={54} />
 
           <button
             onClick={fetchStock}
@@ -243,13 +243,13 @@ export default function PfCatalogScreen({ onBack, colaboradorInfo, onResgateSucc
               </div>
 
               <span className="text-[10px] font-black uppercase tracking-wider text-[#2EB85C] mb-0.5">
-                CONFIRMAÇÃO DO RESGATE
+                ESCOLHA DA MUDA
               </span>
 
-              <h3 className="text-[#1A2E1A] font-black text-xl leading-tight">
+              <h3 className="text-[#1A2E1A] font-black text-xl leading-tight font-serif">
                 {selectedMuda.nome}
               </h3>
-              <p className="text-gray-500 italic text-xs mb-3">
+              <p className="text-gray-500 italic text-xs mb-2">
                 {selectedMuda.cientifico}
               </p>
 
@@ -258,16 +258,16 @@ export default function PfCatalogScreen({ onBack, colaboradorInfo, onResgateSucc
                 <img 
                   src={selectedMuda.imagemMuda} 
                   alt={selectedMuda.nome} 
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-contain drop-shadow-sm"
                 />
               </div>
 
-              <div className="my-3 px-3 py-2 bg-white/90 rounded-2xl border border-gray-200 text-xs text-[#2c3b2d] leading-relaxed">
+              <div className="my-2.5 px-3 py-2 bg-white/90 rounded-2xl border border-gray-200 text-xs text-[#2c3b2d] leading-relaxed">
                 <p>
-                  Você está prestes a retirar <strong>1 muda de {selectedMuda.nome}</strong>.
+                  Confirme para escolher <strong>1 muda de {selectedMuda.nome}</strong>.
                 </p>
                 <p className="text-[11px] text-[#2EB85C] font-bold mt-1">
-                  Estoque atual: {selectedMuda.estoque} unidades
+                  Estoque disponível: {selectedMuda.estoque} unidades
                 </p>
               </div>
 

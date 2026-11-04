@@ -1,63 +1,38 @@
 import React, { useState } from 'react';
-import PfWelcomeScreen from './screens/PfWelcomeScreen';
-import PfSignatureScreen from './screens/PfSignatureScreen';
+import { useNavigate } from 'react-router-dom';
 import PfCatalogScreen from './screens/PfCatalogScreen';
-import PfVoucherScreen from './screens/PfVoucherScreen';
+import PfSuccessScreen from './screens/PfSuccessScreen';
 
 export default function PlantandoFuturoApp() {
-  const [currentStep, setCurrentStep] = useState('welcome'); // welcome | signature | catalog | voucher
-  const [colaboradorInfo, setColaboradorInfo] = useState({ nome: '', signatureData: '' });
+  const navigate = useNavigate();
+  const [currentStep, setCurrentStep] = useState('catalog'); // Starts directly on catalog
   const [resgateData, setResgateData] = useState(null);
-
-  const handleStart = () => {
-    setCurrentStep('signature');
-  };
-
-  const handleSignatureConfirmed = (info) => {
-    setColaboradorInfo(info);
-    setCurrentStep('catalog');
-  };
 
   const handleResgateSuccess = (data) => {
     setResgateData(data);
-    setCurrentStep('voucher');
+    setCurrentStep('success');
   };
 
   const handleFinish = () => {
-    setCurrentStep('welcome');
-    setColaboradorInfo({ nome: '', signatureData: '' });
-    setResgateData(null);
+    // Return to main Hub screen
+    navigate('/');
   };
 
   return (
     <div className="w-full h-full relative">
-      {currentStep === 'welcome' && (
-        <PfWelcomeScreen onStart={handleStart} />
-      )}
-
-      {currentStep === 'signature' && (
-        <PfSignatureScreen 
-          onBack={() => setCurrentStep('welcome')}
-          onConfirm={handleSignatureConfirmed}
-        />
-      )}
-
       {currentStep === 'catalog' && (
         <PfCatalogScreen 
-          onBack={() => setCurrentStep('signature')}
-          colaboradorInfo={colaboradorInfo}
+          onBack={() => navigate('/')}
           onResgateSuccess={handleResgateSuccess}
         />
       )}
 
-      {currentStep === 'voucher' && (
-        <PfVoucherScreen 
+      {currentStep === 'success' && (
+        <PfSuccessScreen 
           resgateData={resgateData}
-          colaboradorInfo={colaboradorInfo}
           onFinish={handleFinish}
         />
       )}
     </div>
   );
 }
-
