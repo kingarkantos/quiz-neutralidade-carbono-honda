@@ -4,6 +4,7 @@ import { ArrowLeft, Sparkles } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../../components/Header';
 import CornerFoliage from '../../../components/CornerFoliage';
+import PfHeaderBrand from '../components/PfHeaderBrand';
 
 export default function PfWelcomeScreen({ onStart }) {
   const navigate = useNavigate();
@@ -72,33 +73,8 @@ export default function PfWelcomeScreen({ onStart }) {
           transition={{ duration: 0.5 }}
           className="w-full flex flex-col items-center text-center px-4 pt-2 sm:pt-4"
         >
-          {/* Logo Brand Lockup */}
-          <div className="flex items-center justify-center space-x-3 bg-white/70 backdrop-blur-sm px-5 py-2.5 rounded-[22px] shadow-sm border border-white/80">
-            {/* Tree with hand graphic icon */}
-            <div className="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 flex items-center justify-center">
-              <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-sm">
-                {/* Stylized Tree Trunk Hand */}
-                <path d="M42 95 L58 95 L56 60 C58 55 62 48 64 35 C64 30 60 28 58 32 C56 25 51 22 49 28 C47 20 42 18 40 25 C38 22 34 22 33 28 C32 38 35 48 37 55 L42 95 Z" fill="#784b24" />
-                {/* Lush Foliage Leaves Ring */}
-                <circle cx="50" cy="30" r="28" fill="#2EB85C" fillOpacity="0.88" />
-                <circle cx="36" cy="22" r="16" fill="#7FD03F" fillOpacity="0.95" />
-                <circle cx="64" cy="22" r="16" fill="#7FD03F" fillOpacity="0.95" />
-                <circle cx="50" cy="14" r="14" fill="#249647" />
-                {/* Palm shape cut into trunk */}
-                <path d="M48 62 L48 40 C48 36 52 36 52 40 L52 62 Z" fill="#8d5b2d" />
-              </svg>
-            </div>
-
-            <div className="text-left">
-              <h1 className="text-[#1A2E1A] font-black text-2xl sm:text-3xl leading-none font-serif tracking-tight">
-                Plantando<br />
-                <span className="text-[#1A2E1A]">o futuro</span>
-              </h1>
-              <p className="text-[#2EB85C] font-bold text-[10px] sm:text-xs mt-0.5 tracking-wide">
-                Uma ação da Honda pelo meio ambiente
-              </p>
-            </div>
-          </div>
+          {/* Logo Brand Lockup - Transparent, elegant serif & living animated tree */}
+          <PfHeaderBrand showSubtitle={true} treeSize={64} />
         </motion.div>
       </div>
 

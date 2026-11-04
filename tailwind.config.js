@@ -23,7 +23,9 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['"Montserrat"', '"Outfit"', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['"Montserrat"', '"Outfit"', '"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+        serif: ['"Playfair Display"', 'Georgia', 'Cambria', 'serif'],
+        display: ['"Playfair Display"', 'serif'],
       },
       boxShadow: {
         '3d-btn': '0 8px 0 #0E1F12, 0 12px 25px rgba(0,0,0,0.3)',

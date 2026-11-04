@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Check, AlertCircle, Sparkles, RefreshCw, X, ChevronRight } from 'lucide-react';
 import { getMudas, resgatarMuda } from '../../../services/mudasService';
 import CornerFoliage from '../../../components/CornerFoliage';
+import PfHeaderBrand from '../components/PfHeaderBrand';
 
 export default function PfCatalogScreen({ onBack, colaboradorInfo, onResgateSuccess }) {
   const [mudas, setMudas] = useState([]);
@@ -90,31 +91,14 @@ export default function PfCatalogScreen({ onBack, colaboradorInfo, onResgateSucc
           />
         </div>
 
-        {/* Module Header Brand */}
-        <div className="flex items-center justify-between px-5 py-2">
-          <div className="flex items-center space-x-2.5">
-            <div className="w-9 h-9 rounded-xl bg-white/80 p-1 flex items-center justify-center shadow-xs">
-              <svg viewBox="0 0 100 100" className="w-full h-full">
-                <path d="M42 95 L58 95 L56 60 C58 55 62 48 64 35 C64 30 60 28 58 32 C56 25 51 22 49 28 C47 20 42 18 40 25 C38 22 34 22 33 28 C32 38 35 48 37 55 L42 95 Z" fill="#784b24" />
-                <circle cx="50" cy="30" r="28" fill="#2EB85C" fillOpacity="0.88" />
-                <circle cx="36" cy="22" r="16" fill="#7FD03F" fillOpacity="0.95" />
-                <circle cx="64" cy="22" r="16" fill="#7FD03F" fillOpacity="0.95" />
-              </svg>
-            </div>
-            <div>
-              <h2 className="text-[#1A2E1A] font-black text-base sm:text-lg leading-tight font-serif">
-                Plantando o futuro
-              </h2>
-              <p className="text-[#2EB85C] font-bold text-[9px] sm:text-[10px] tracking-wide">
-                Uma ação da Honda pelo meio ambiente
-              </p>
-            </div>
-          </div>
+        {/* Module Header Brand - Transparent, elegant serif & living animated tree */}
+        <div className="flex items-center justify-between px-4 sm:px-5 py-1.5">
+          <PfHeaderBrand compact={true} showSubtitle={true} treeSize={42} />
 
           <button
             onClick={fetchStock}
             disabled={loading}
-            className="p-1.5 rounded-full bg-white/60 hover:bg-white text-[#1C3B24] transition-colors"
+            className="p-2 rounded-full bg-white/70 hover:bg-white text-[#1C3B24] transition-all shadow-xs"
             title="Atualizar estoque"
           >
             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin text-[#2EB85C]' : ''}`} />

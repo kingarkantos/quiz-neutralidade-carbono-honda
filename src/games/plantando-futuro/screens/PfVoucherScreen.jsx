@@ -4,6 +4,7 @@ import { Check, Sparkles, Home, Ticket, Calendar, User, Clock } from 'lucide-rea
 import confetti from 'canvas-confetti';
 import { useNavigate } from 'react-router-dom';
 import CornerFoliage from '../../../components/CornerFoliage';
+import AnimatedPlantandoFuturoTree from '../../../components/AnimatedPlantandoFuturoTree';
 
 export default function PfVoucherScreen({ resgateData, colaboradorInfo, onFinish }) {
   const navigate = useNavigate();
@@ -39,14 +40,7 @@ export default function PfVoucherScreen({ resgateData, colaboradorInfo, onFinish
       {/* Top Header */}
       <div className="relative z-30 w-full flex items-center justify-between px-5 pt-3 pb-1">
         <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 rounded-lg bg-white/80 p-1 flex items-center justify-center">
-            <svg viewBox="0 0 100 100" className="w-full h-full">
-              <path d="M42 95 L58 95 L56 60 C58 55 62 48 64 35 C64 30 60 28 58 32 C56 25 51 22 49 28 C47 20 42 18 40 25 C38 22 34 22 33 28 C32 38 35 48 37 55 L42 95 Z" fill="#784b24" />
-              <circle cx="50" cy="30" r="28" fill="#2EB85C" fillOpacity="0.88" />
-              <circle cx="36" cy="22" r="16" fill="#7FD03F" fillOpacity="0.95" />
-              <circle cx="64" cy="22" r="16" fill="#7FD03F" fillOpacity="0.95" />
-            </svg>
-          </div>
+          <AnimatedPlantandoFuturoTree size={34} interactive={false} animate={true} />
           <span className="font-serif font-black text-sm text-[#1A2E1A]">Plantando o futuro</span>
         </div>
 
