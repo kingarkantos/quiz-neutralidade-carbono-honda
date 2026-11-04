@@ -13,11 +13,11 @@ export const LIGUE_PONTOS_ITEMS = [
   {
     id: 2,
     actionTitle: "Logística reversa",
-    actionThumb: "/assets/jogo2/ELEMENTOS/ELEMENTOS AÇÕES/pilha-compacta-de-sucata-metalica-2.png",
+    actionThumb: "/assets/jogo2/ELEMENTOS/ELEMENTOS AÇÕES/logistica-reversa-thumb.png",
     benefitId: "b2",
     benefitTitle: "Retorno da matéria-prima para a cadeia produtiva",
     benefitShort: "Retorno da matéria-prima para a cadeia produtiva",
-    modalImage: "/assets/jogo2/ELEMENTOS/CONEXÃO CORRETA/reciclagem-metalica_-sucata-vira-lingotes.png",
+    modalImage: "/assets/jogo2/ELEMENTOS/CONEXÃO CORRETA/logistica-reversa-ciclo.png",
     headline: "Logística reversa",
     explanation: "A logística reversa reaproveita materiais usados, evitando que virem lixo."
   },
