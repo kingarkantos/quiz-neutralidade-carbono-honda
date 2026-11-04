@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import CornerFoliage from '../components/CornerFoliage';
 import FallingLeavesMatrix from '../components/FallingLeavesMatrix';
-import { ChevronRight, HelpCircle, GitFork, Sparkles } from 'lucide-react';
+import { ChevronRight, HelpCircle, GitFork, Sparkles, Sprout, BarChart3 } from 'lucide-react';
 
 export default function HubScreen() {
   const navigate = useNavigate();
@@ -45,6 +45,18 @@ export default function HubScreen() {
       btnColor: 'btn-tactile-green',
       icon: Sparkles,
       accentGlow: 'rgba(127, 208, 63, 0.4)'
+    },
+    {
+      id: 'plantando-futuro',
+      route: '/plantando-o-futuro',
+      badge: 'AÇÃO SOCIAL • MEIO AMBIENTE',
+      title: 'Plantando o Futuro',
+      desc: 'Assine seu compromisso verde e retire sua muda de árvore nativa.',
+      image: '/assets/plantando-futuro/icones/muda-kraft.png',
+      btnText: 'RETIRAR MUDA',
+      btnColor: 'btn-tactile-green',
+      icon: Sprout,
+      accentGlow: 'rgba(34, 197, 94, 0.45)'
     }
   ];
 
@@ -64,24 +76,15 @@ export default function HubScreen() {
 
       {/* Header */}
       <div className="relative z-30 w-full flex flex-col items-center">
-        <Header className="pt-3 pb-1" showMenuButton={false} />
+        <Header className="pt-2 sm:pt-3 pb-0" showMenuButton={false} />
 
         {/* Portal Headline */}
         <div className="w-full flex flex-col items-center text-center px-4 pt-1 max-w-lg mx-auto select-none">
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0, y: -15 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            transition={{ type: 'spring', stiffness: 320, damping: 20 }}
-            className="inline-flex items-center space-x-2 bg-[#1C3B24] text-[#FAF5EC] px-4 py-1.5 rounded-full text-xs font-black tracking-widest uppercase shadow-md mb-1.5"
-          >
-            <span>ESCOLHA UMA ATIVIDADE</span>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="text-[#1A2E1A] font-black text-xl sm:text-2xl tracking-tight uppercase leading-none drop-shadow-sm"
+            className="text-[#1A2E1A] font-black text-lg sm:text-xl tracking-tight uppercase leading-none drop-shadow-sm"
           >
             EXPERIÊNCIAS SUSTENTÁVEIS
           </motion.h1>
@@ -89,39 +92,39 @@ export default function HubScreen() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="text-[#3b4c3c] font-semibold text-xs sm:text-sm mt-0.5"
+            className="text-[#3b4c3c] font-semibold text-[11px] sm:text-xs mt-0.5"
           >
-            Toque em um jogo para iniciar a experiência interativa.
+            Toque em uma opção para iniciar a experiência.
           </motion.p>
         </div>
       </div>
 
-      {/* Main List of 3 Games */}
-      <div className="relative z-30 flex-1 min-h-0 flex flex-col justify-center px-4 sm:px-6 py-2 max-w-lg mx-auto w-full space-y-3 sm:space-y-3.5 my-auto">
+      {/* Main List of 4 Modules */}
+      <div className="relative z-30 flex-1 min-h-0 flex flex-col justify-center px-3.5 sm:px-6 py-1.5 max-w-lg mx-auto w-full space-y-2 sm:space-y-2.5 my-auto overflow-y-auto">
         {games.map((g, idx) => (
           <motion.div
             key={g.id}
-            initial={{ opacity: 0, x: -35, scale: 0.94 }}
+            initial={{ opacity: 0, x: -30, scale: 0.95 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{
               type: 'spring',
               stiffness: 300,
               damping: 24,
-              delay: 0.15 + idx * 0.12
+              delay: 0.1 + idx * 0.08
             }}
-            whileHover={{ scale: 1.025, y: -2 }}
+            whileHover={{ scale: 1.02, y: -1 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => navigate(g.route)}
-            className="group relative bg-[#FAF5EC]/95 backdrop-blur-md rounded-[24px] p-3.5 sm:p-4 shadow-3d-card border border-white/80 cursor-pointer flex items-center justify-between transition-all duration-200 overflow-hidden"
+            className="group relative bg-[#FAF5EC]/95 backdrop-blur-md rounded-[22px] p-2.5 sm:p-3 shadow-md border border-white/80 cursor-pointer flex items-center justify-between transition-all duration-200 overflow-hidden"
           >
             {/* Subtle glow accent on hover */}
             <div 
-              className="absolute -right-10 -bottom-10 w-36 h-36 rounded-full blur-2xl pointer-events-none opacity-40 group-hover:opacity-75 transition-opacity"
+              className="absolute -right-10 -bottom-10 w-32 h-32 rounded-full blur-2xl pointer-events-none opacity-35 group-hover:opacity-70 transition-opacity"
               style={{ backgroundColor: g.accentGlow }}
             />
 
             {/* Left Thumbnail Illustration */}
-            <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-[#EBE0CC]/60 flex items-center justify-center p-1.5 flex-shrink-0 overflow-hidden shadow-inner border border-white/60">
+            <div className="relative w-15 h-15 xs:w-16 xs:h-16 sm:w-18 sm:h-18 rounded-2xl bg-[#EBE0CC]/60 flex items-center justify-center p-1.5 flex-shrink-0 overflow-hidden shadow-inner border border-white/60">
               <img
                 src={g.image}
                 alt={g.title}
@@ -130,35 +133,39 @@ export default function HubScreen() {
             </div>
 
             {/* Middle Info */}
-            <div className="flex-1 px-3 sm:px-4 text-left min-w-0">
-              <span className="inline-block text-[10px] sm:text-[11px] font-black uppercase tracking-wider text-[#2EB85C] bg-[#2EB85C]/12 px-2.5 py-0.5 rounded-full mb-1">
+            <div className="flex-1 px-3 sm:px-3.5 text-left min-w-0">
+              <span className="inline-block text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-[#2EB85C] bg-[#2EB85C]/12 px-2 py-0.5 rounded-full mb-0.5">
                 {g.badge}
               </span>
-              <h2 className="text-[#1A2E1A] font-extrabold text-base sm:text-lg leading-tight truncate">
+              <h2 className="text-[#1A2E1A] font-extrabold text-sm sm:text-base leading-tight truncate">
                 {g.title}
               </h2>
-              <p className="text-[#4b5d4c] font-medium text-xs leading-snug line-clamp-2 mt-0.5">
+              <p className="text-[#4b5d4c] font-medium text-[11px] leading-snug line-clamp-2 mt-0.5">
                 {g.desc}
               </p>
             </div>
 
             {/* Right Action Button Arrow */}
             <div className="flex-shrink-0 pl-1">
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full btn-tactile-green flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform">
-                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3]" />
+              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full btn-tactile-green flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform">
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 stroke-[3]" />
               </div>
             </div>
           </motion.div>
         ))}
       </div>
 
-      {/* Footer Info */}
-      <div className="relative z-30 w-full px-6 pb-4 pt-1 text-center select-none flex-shrink-0">
-        <p className="text-[#1A2E1A]/60 font-semibold text-[11px] sm:text-xs">
-          Honda • Tripla Ação Para o Zero • 50 Anos no Brasil
-        </p>
+      {/* Footer Info & Link to /plantas Dashboard */}
+      <div className="relative z-30 w-full px-5 pb-3 pt-1 text-center select-none flex-shrink-0 flex items-center justify-between max-w-lg mx-auto text-[10.5px] sm:text-xs text-[#1A2E1A]/70">
+        <span>Honda • 50 Anos no Brasil</span>
+        <button 
+          onClick={() => navigate('/plantas')}
+          className="flex items-center space-x-1 font-bold text-[#2EB85C] hover:underline"
+        >
+          <BarChart3 className="w-3.5 h-3.5" />
+          <span>Painel /plantas</span>
+        </button>
       </div>
     </div>
   );
 }
-

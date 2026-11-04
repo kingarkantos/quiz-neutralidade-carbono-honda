@@ -1,0 +1,329 @@
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowLeft, Check, AlertCircle, Sparkles, RefreshCw, X, ChevronRight } from 'lucide-react';
+import { getMudas, resgatarMuda } from '../../../services/mudasService';
+import CornerFoliage from '../../../components/CornerFoliage';
+
+export default function PfCatalogScreen({ onBack, colaboradorInfo, onResgateSuccess }) {
+  const [mudas, setMudas] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedMuda, setSelectedMuda] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const fetchStock = async () => {
+    setLoading(true);
+    const data = await getMudas();
+    setMudas(data);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchStock();
+    // Poll every 12 seconds so if other totens decrement, this screen updates in real time
+    const interval = setInterval(fetchStock, 12000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleSelectMuda = (muda) => {
+    if (muda.estoque <= 0) return;
+    setErrorMessage('');
+    setSelectedMuda(muda);
+  };
+
+  const handleConfirmOrder = async () => {
+    if (!selectedMuda || submitting) return;
+    setSubmitting(true);
+    setErrorMessage('');
+
+    try {
+      const res = await resgatarMuda(
+        selectedMuda.id,
+        colaboradorInfo?.nome || 'Colaborador Honda',
+        colaboradorInfo?.signatureData || ''
+      );
+
+      if (res.success) {
+        // Update local list
+        setMudas(prev => prev.map(m => m.id === selectedMuda.id ? { ...m, estoque: res.novoEstoque, saidas: (m.saidas || 0) + 1 } : m));
+        onResgateSuccess({
+          muda: selectedMuda,
+          voucherCode: res.voucherCode,
+          novoEstoque: res.novoEstoque
+        });
+      } else {
+        setErrorMessage(res.error || 'Erro ao confirmar pedido.');
+      }
+    } catch (err) {
+      setErrorMessage(err.message || 'Erro de conexão.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="relative w-full h-full flex flex-col justify-between overflow-hidden bg-[#e9decb] select-none">
+      {/* Background with Nature Foliage Texture */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center pointer-events-none z-0 opacity-70"
+        style={{ backgroundImage: `url('/assets/bg/slice-quiz.png')` }}
+      />
+      <CornerFoliage corners={['top-left', 'top-right']} />
+
+      {/* Top Header */}
+      <div className="relative z-30 w-full flex flex-col bg-[#e9decb]/90 backdrop-blur-md border-b border-[#2EB85C]/20 shadow-xs">
+        <div className="w-full flex items-center justify-between px-4 pt-3 pb-1">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={onBack}
+            className="flex items-center space-x-1.5 bg-[#FAF5EC]/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm border border-[#2EB85C]/30 text-[#1C3B24] font-bold text-xs hover:bg-white"
+          >
+            <ArrowLeft className="w-4 h-4 text-[#2EB85C]" />
+            <span>VOLTAR</span>
+          </motion.button>
+
+          <img 
+            src="/assets/logos/honda.svg" 
+            alt="Honda" 
+            className="h-7 w-auto object-contain" 
+          />
+        </div>
+
+        {/* Module Header Brand */}
+        <div className="flex items-center justify-between px-5 py-2">
+          <div className="flex items-center space-x-2.5">
+            <div className="w-9 h-9 rounded-xl bg-white/80 p-1 flex items-center justify-center shadow-xs">
+              <svg viewBox="0 0 100 100" className="w-full h-full">
+                <path d="M42 95 L58 95 L56 60 C58 55 62 48 64 35 C64 30 60 28 58 32 C56 25 51 22 49 28 C47 20 42 18 40 25 C38 22 34 22 33 28 C32 38 35 48 37 55 L42 95 Z" fill="#784b24" />
+                <circle cx="50" cy="30" r="28" fill="#2EB85C" fillOpacity="0.88" />
+                <circle cx="36" cy="22" r="16" fill="#7FD03F" fillOpacity="0.95" />
+                <circle cx="64" cy="22" r="16" fill="#7FD03F" fillOpacity="0.95" />
+              </svg>
+            </div>
+            <div>
+              <h2 className="text-[#1A2E1A] font-black text-base sm:text-lg leading-tight font-serif">
+                Plantando o futuro
+              </h2>
+              <p className="text-[#2EB85C] font-bold text-[9px] sm:text-[10px] tracking-wide">
+                Uma ação da Honda pelo meio ambiente
+              </p>
+            </div>
+          </div>
+
+          <button
+            onClick={fetchStock}
+            disabled={loading}
+            className="p-1.5 rounded-full bg-white/60 hover:bg-white text-[#1C3B24] transition-colors"
+            title="Atualizar estoque"
+          >
+            <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin text-[#2EB85C]' : ''}`} />
+          </button>
+        </div>
+      </div>
+
+      {/* Catalog List (Exact Reference Layout from media_1793821012842_65b7afe3.jpg) */}
+      <div className="relative z-20 flex-1 overflow-y-auto px-3 sm:px-4 py-3 space-y-3 sm:space-y-4 max-w-lg mx-auto w-full">
+        <div className="text-center pb-1">
+          <p className="text-[#1A2E1A] font-black text-xs uppercase tracking-wider bg-white/60 inline-block px-4 py-1 rounded-full shadow-xs">
+            Toque na muda desejada para retirá-la
+          </p>
+        </div>
+
+        {mudas.map((muda, idx) => {
+          const isAvailable = muda.estoque > 0;
+
+          return (
+            <motion.div
+              key={muda.id}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: idx * 0.08 }}
+              onClick={() => isAvailable && handleSelectMuda(muda)}
+              className={`relative overflow-hidden rounded-[26px] border-2 transition-all duration-200 select-none ${
+                isAvailable
+                  ? 'bg-gradient-to-r from-white via-[#FAF5EC] to-white/90 border-white shadow-md hover:shadow-xl hover:scale-[1.01] cursor-pointer'
+                  : 'bg-[#e5ded0]/70 border-[#c5baa7] opacity-60 cursor-not-allowed grayscale-[40%]'
+              }`}
+            >
+              <div className="flex items-center justify-between p-2.5 sm:p-3">
+                {/* 1. Left Column: Muda Seedling in pot + Detail fallen flowers/fruit */}
+                <div className="w-20 xs:w-24 sm:w-28 flex-shrink-0 flex flex-col items-center justify-center relative">
+                  <div className="relative w-16 h-20 xs:w-20 xs:h-24 sm:w-24 sm:h-28 flex items-center justify-center">
+                    <img 
+                      src={muda.imagemMuda} 
+                      alt={`Muda de ${muda.nome}`} 
+                      className="w-full h-full object-contain drop-shadow-md pointer-events-none"
+                    />
+                    {/* Floating Detail Petals / Fruit below muda */}
+                    {muda.imagemDetalhe && (
+                      <img 
+                        src={muda.imagemDetalhe} 
+                        alt="" 
+                        className="absolute -bottom-2 -left-1 w-11 h-11 object-contain drop-shadow-sm pointer-events-none"
+                      />
+                    )}
+                  </div>
+                </div>
+
+                {/* 2. Middle Column: Info & Specs (Exact typography & layout) */}
+                <div className="flex-1 px-2.5 sm:px-3 text-left min-w-0">
+                  {/* Name */}
+                  <h3 className="text-[#1A2E1A] font-black text-sm xs:text-base sm:text-lg leading-none uppercase tracking-tight">
+                    {muda.nome}
+                  </h3>
+
+                  {/* Scientific Name Pill */}
+                  <div className="inline-block my-1 bg-[#2EB85C]/20 px-2.5 py-0.5 rounded-full border border-[#2EB85C]/35">
+                    <span className="text-[#1C3B24] italic font-semibold text-[9.5px] xs:text-[10.5px]">
+                      {muda.cientifico}
+                    </span>
+                  </div>
+
+                  {/* Spec Sheet Table */}
+                  <div className="space-y-0.5 text-[8.5px] xs:text-[9.5px] sm:text-[10px] text-[#2c3b2d] leading-tight">
+                    <p><strong className="text-[#1A2E1A]">Origem:</strong> {muda.origem}</p>
+                    <p><strong className="text-[#1A2E1A]">Tipo:</strong> {muda.tipo}</p>
+                    <p><strong className="text-[#1A2E1A]">Clima:</strong> {muda.clima}</p>
+                    <p><strong className="text-[#1A2E1A]">Crescimento:</strong> {muda.crescimento}</p>
+                    <p><strong className="text-[#1A2E1A]">Altura adulta:</strong> {muda.alturaAdulta}</p>
+                    <p><strong className="text-[#1A2E1A]">Floração:</strong> {muda.floracao}</p>
+                    {muda.frutificacao && (
+                      <p><strong className="text-[#1A2E1A]">Frutificação:</strong> {muda.frutificacao}</p>
+                    )}
+                    <p><strong className="text-[#1A2E1A]">Característica:</strong> {muda.caracteristica}</p>
+                  </div>
+
+                  {/* Live Stock Indicator */}
+                  <div className="mt-2 flex items-center space-x-2">
+                    {isAvailable ? (
+                      <span className="inline-flex items-center space-x-1 bg-[#2EB85C]/15 text-[#1C3B24] font-black text-[9.5px] xs:text-[10px] px-2.5 py-0.5 rounded-full border border-[#2EB85C]/30">
+                        <span>🌱</span>
+                        <span>{muda.estoque} mudas disponíveis</span>
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center space-x-1 bg-red-100 text-red-700 font-black text-[9.5px] xs:text-[10px] px-2.5 py-0.5 rounded-full border border-red-300">
+                        <AlertCircle className="w-3 h-3 text-red-600" />
+                        <span>MUDAS ESGOTADAS</span>
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* 3. Right Column: Blooming Tree Artwork with subtle vignette blend */}
+                <div className="w-24 xs:w-28 sm:w-32 h-28 xs:h-32 sm:h-36 flex-shrink-0 rounded-2xl overflow-hidden shadow-inner relative flex items-center justify-center bg-[#E5D7BF]/60">
+                  <img 
+                    src={muda.imagemArvore} 
+                    alt={`Árvore ${muda.nome}`} 
+                    className="w-full h-full object-cover pointer-events-none"
+                  />
+                  {/* Subtle fade overlay into background on the left */}
+                  <div className="absolute inset-y-0 left-0 w-6 bg-gradient-to-r from-[#FAF5EC] to-transparent pointer-events-none" />
+                </div>
+              </div>
+
+              {/* Status Ribbon if Sold Out */}
+              {!isAvailable && (
+                <div className="absolute inset-0 bg-black/20 backdrop-blur-[1px] flex items-center justify-center">
+                  <span className="bg-red-600 text-white font-black text-xs xs:text-sm uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg border-2 border-white rotate-[-6deg]">
+                    INDISPONÍVEL • ESGOTADO
+                  </span>
+                </div>
+              )}
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Confirmation Modal */}
+      <AnimatePresence>
+        {selectedMuda && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-sm bg-[#FAF5EC] rounded-[28px] p-5 shadow-2xl border-2 border-white flex flex-col items-center text-center overflow-hidden"
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedMuda(null)}
+                disabled={submitting}
+                className="absolute top-3.5 right-3.5 p-1.5 rounded-full bg-white/80 hover:bg-white text-gray-500 hover:text-black transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <div className="w-10 h-10 rounded-full bg-[#2EB85C]/20 text-[#2EB85C] flex items-center justify-center mb-2">
+                <Sparkles className="w-5 h-5 stroke-[2.5]" />
+              </div>
+
+              <span className="text-[10px] font-black uppercase tracking-wider text-[#2EB85C] mb-0.5">
+                CONFIRMAÇÃO DO RESGATE
+              </span>
+
+              <h3 className="text-[#1A2E1A] font-black text-xl leading-tight">
+                {selectedMuda.nome}
+              </h3>
+              <p className="text-gray-500 italic text-xs mb-3">
+                {selectedMuda.cientifico}
+              </p>
+
+              {/* Preview image */}
+              <div className="relative w-36 h-28 my-1 flex items-center justify-center bg-white rounded-2xl p-2 shadow-inner border border-[#2EB85C]/20">
+                <img 
+                  src={selectedMuda.imagemMuda} 
+                  alt={selectedMuda.nome} 
+                  className="w-full h-full object-contain"
+                />
+              </div>
+
+              <div className="my-3 px-3 py-2 bg-white/90 rounded-2xl border border-gray-200 text-xs text-[#2c3b2d] leading-relaxed">
+                <p>
+                  Você está prestes a retirar <strong>1 muda de {selectedMuda.nome}</strong>.
+                </p>
+                <p className="text-[11px] text-[#2EB85C] font-bold mt-1">
+                  Estoque atual: {selectedMuda.estoque} unidades
+                </p>
+              </div>
+
+              {errorMessage && (
+                <div className="w-full p-2 mb-2 bg-red-100 border border-red-300 rounded-xl text-red-700 text-xs font-bold">
+                  {errorMessage}
+                </div>
+              )}
+
+              {/* Action Buttons */}
+              <div className="w-full flex space-x-2 pt-1">
+                <button
+                  type="button"
+                  onClick={() => setSelectedMuda(null)}
+                  disabled={submitting}
+                  className="flex-1 py-3 rounded-full bg-white border border-gray-300 text-gray-700 font-bold text-xs uppercase hover:bg-gray-50"
+                >
+                  VOLTAR
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleConfirmOrder}
+                  disabled={submitting}
+                  className="flex-1 py-3 rounded-full btn-tactile-green anim-shimmer text-white font-black text-xs uppercase shadow-md flex items-center justify-center space-x-1"
+                >
+                  {submitting ? (
+                    <RefreshCw className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <>
+                      <span>CONFIRMAR</span>
+                      <ChevronRight className="w-4 h-4 stroke-[3]" />
+                    </>
+                  )}
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
