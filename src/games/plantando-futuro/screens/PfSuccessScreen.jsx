@@ -27,7 +27,7 @@ export default function PfSuccessScreen({ resgateData, onFinish }) {
         if (prev <= 1) {
           clearInterval(timer);
           if (onFinish) onFinish();
-          else navigate('/');
+          else navigate('/plantando-o-futuro');
           return 0;
         }
         return prev - 1;
@@ -39,7 +39,7 @@ export default function PfSuccessScreen({ resgateData, onFinish }) {
 
   const handleReturn = () => {
     if (onFinish) onFinish();
-    else navigate('/');
+    else navigate('/plantando-o-futuro');
   };
 
   return (
@@ -137,11 +137,11 @@ export default function PfSuccessScreen({ resgateData, onFinish }) {
             className="w-full py-3.5 px-6 rounded-full btn-tactile-green anim-shimmer text-white font-black text-sm uppercase tracking-wider shadow-lg flex items-center justify-center space-x-2"
           >
             <Home className="w-4 h-4 stroke-[2.5]" />
-            <span>CONCLUIR E VOLTAR AO INÍCIO</span>
+            <span>VOLTAR AO INÍCIO</span>
           </motion.button>
 
           <p className="text-[11px] text-gray-500 font-semibold mt-2.5">
-            Voltando automaticamente ao início em {countdown}s
+            Voltando automaticamente ao catálogo em {countdown}s
           </p>
         </motion.div>
       </div>

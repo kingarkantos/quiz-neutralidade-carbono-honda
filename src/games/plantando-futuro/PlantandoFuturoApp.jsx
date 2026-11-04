@@ -14,8 +14,9 @@ export default function PlantandoFuturoApp() {
   };
 
   const handleFinish = () => {
-    // Return to main Hub screen
-    navigate('/');
+    // Return to mudas catalog screen instead of the modules hub
+    setCurrentStep('catalog');
+    setResgateData(null);
   };
 
   return (
