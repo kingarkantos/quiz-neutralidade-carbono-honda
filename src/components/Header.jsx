@@ -12,12 +12,12 @@ export default function Header({
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="relative z-40 flex items-center"
+        className="relative z-40 flex items-center p-0.5"
       >
         <img
           src="/assets/logos/honda.svg"
           alt="Honda"
-          className="h-8 sm:h-10 w-auto object-contain drop-shadow-sm select-none pointer-events-none"
+          className="h-9 sm:h-11 w-auto max-w-[120px] object-contain drop-shadow-sm select-none pointer-events-none"
         />
       </motion.div>
 
