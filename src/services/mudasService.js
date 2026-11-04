@@ -66,9 +66,9 @@ export const DEFAULT_MUDAS = [
     alturaAdulta: '15 a 25 m',
     floracao: 'Setembro a dezembro',
     caracteristica: 'Frutos roxos em cachos ricos em antioxidantes',
-    imagemMuda: '/assets/plantando-futuro/mudas/acai/muda.png',
-    imagemDetalhe: '/assets/plantando-futuro/mudas/acai/detalhe.png',
-    imagemArvore: '/assets/plantando-futuro/mudas/acai/arvore.png',
+    imagemMuda: '/assets/plantando-futuro/mudas/acai/muda-acai.png?v=3',
+    imagemDetalhe: '/assets/plantando-futuro/mudas/acai/detalhe-acai.png?v=3',
+    imagemArvore: '/assets/plantando-futuro/mudas/acai/arvore-acai.png?v=3',
     totalInicial: 500,
     estoque: 500,
     saidas: 0
@@ -95,14 +95,30 @@ export const DEFAULT_MUDAS = [
 
 const LOCAL_STORAGE_KEY = 'plantando_futuro_mudas_cache';
 
+function sanitizeMudas(list) {
+  if (!Array.isArray(list)) return DEFAULT_MUDAS;
+  return list.map(m => {
+    if (m.id === 'acai') {
+      return {
+        ...m,
+        imagemMuda: '/assets/plantando-futuro/mudas/acai/muda-acai.png?v=3',
+        imagemDetalhe: '/assets/plantando-futuro/mudas/acai/detalhe-acai.png?v=3',
+        imagemArvore: '/assets/plantando-futuro/mudas/acai/arvore-acai.png?v=3'
+      };
+    }
+    return m;
+  });
+}
+
 export async function getMudas() {
   try {
-    const res = await fetch('/api/mudas');
+    const res = await fetch(`/api/mudas?t=${Date.now()}`);
     if (!res.ok) throw new Error('Falha ao carregar mudas');
     const json = await res.json();
     if (json.success && json.mudas) {
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(json.mudas));
-      return json.mudas;
+      const sanitized = sanitizeMudas(json.mudas);
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(sanitized));
+      return sanitized;
     }
   } catch (err) {
     console.warn('Usando cache local para mudas:', err);
@@ -111,7 +127,7 @@ export async function getMudas() {
   const cached = localStorage.getItem(LOCAL_STORAGE_KEY);
   if (cached) {
     try {
-      return JSON.parse(cached);
+      return sanitizeMudas(JSON.parse(cached));
     } catch {}
   }
 

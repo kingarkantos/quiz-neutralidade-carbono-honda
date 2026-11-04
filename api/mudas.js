@@ -150,9 +150,9 @@ const DEFAULT_MUDAS = [
     alturaAdulta: '15 a 25 m',
     floracao: 'Setembro a dezembro',
     caracteristica: 'Frutos roxos em cachos ricos em antioxidantes',
-    imagemMuda: '/assets/plantando-futuro/mudas/acai/muda.png',
-    imagemDetalhe: '/assets/plantando-futuro/mudas/acai/detalhe.png',
-    imagemArvore: '/assets/plantando-futuro/mudas/acai/arvore.png',
+    imagemMuda: '/assets/plantando-futuro/mudas/acai/muda-acai.png?v=3',
+    imagemDetalhe: '/assets/plantando-futuro/mudas/acai/detalhe-acai.png?v=3',
+    imagemArvore: '/assets/plantando-futuro/mudas/acai/arvore-acai.png?v=3',
     totalInicial: 500,
     estoque: 500,
     saidas: 0
