@@ -19,7 +19,7 @@ export const LIGUE_PONTOS_ITEMS = [
     benefitShort: "Retorno da matéria-prima para a cadeia produtiva",
     modalImage: "/assets/jogo2/ELEMENTOS/CONEXÃO CORRETA/reciclagem-metalica_-sucata-vira-lingotes.png",
     headline: "Logística reversa",
-    explanation: "Garante o retorno de materiais e peças para a cadeia produtiva, reduzindo o impacto ambiental e a extração de recursos."
+    explanation: "A logística reversa reaproveita materiais usados, evitando que virem lixo."
   },
   {
     id: 3,

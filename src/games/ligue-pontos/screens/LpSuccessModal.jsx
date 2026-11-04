@@ -48,13 +48,13 @@ export default function LpSuccessModal({ item, onClose, isLast }) {
           </h3>
 
           {/* Benefit Badge */}
-          <div className="my-2 inline-flex items-center space-x-2 bg-[#2EB85C]/15 px-3.5 py-1.5 rounded-full border border-[#2EB85C]/30">
+          <div className="my-2 inline-flex items-center justify-center space-x-2 bg-[#2EB85C]/15 px-3.5 py-1.5 rounded-2xl border border-[#2EB85C]/30 max-w-full">
             <img 
               src="/assets/elements/folha.png" 
               alt="Folha" 
-              className="w-4 h-4 object-contain" 
+              className="w-4 h-4 object-contain flex-shrink-0" 
             />
-            <span className="text-[#1A2E1A] font-extrabold text-xs sm:text-sm">
+            <span className="text-[#1A2E1A] font-extrabold text-xs sm:text-sm text-center leading-snug">
               {item.benefitTitle}
             </span>
           </div>
