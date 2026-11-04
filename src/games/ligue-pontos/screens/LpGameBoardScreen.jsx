@@ -274,7 +274,7 @@ export default function LpGameBoardScreen({ onFinish }) {
       </div>
 
       {/* Main Board: 2 Columns - Anchored comfortably at the lower zone */}
-      <div className="relative z-10 flex-shrink-0 px-3 sm:px-4 pt-1 pb-2 sm:pb-3 max-w-xl mx-auto w-full flex items-center justify-between gap-3 sm:gap-4">
+      <div className="relative z-10 flex-shrink-0 px-2 xs:px-3 sm:px-4 pt-1 pb-2 sm:pb-3 max-w-xl mx-auto w-full flex items-center justify-between gap-2 xs:gap-3 sm:gap-4">
         {/* Left Column: AÇÕES */}
         <div className="flex-1 flex flex-col space-y-2 sm:space-y-2.5 min-w-0">
           <div className="text-center font-black text-xs sm:text-sm text-[#1C3B24] uppercase tracking-wider pb-0.5">
@@ -291,7 +291,7 @@ export default function LpGameBoardScreen({ onFinish }) {
                 whileHover={!isMatched ? { scale: 1.02 } : {}}
                 whileTap={!isMatched ? { scale: 0.98 } : {}}
                 onClick={() => handleSelectAction(item.id)}
-                className={`relative flex items-center justify-between p-2 sm:p-2.5 rounded-[18px] transition-all duration-200 select-none cursor-pointer ${
+                className={`relative flex items-center justify-between p-1.5 xs:p-2 sm:p-2.5 rounded-[18px] transition-all duration-200 select-none cursor-pointer ${
                   isMatched
                     ? `${pairColor.bgMatched} border-2 ${pairColor.border} opacity-95 shadow-sm`
                     : isSelected
@@ -300,7 +300,7 @@ export default function LpGameBoardScreen({ onFinish }) {
                 }`}
               >
                 {/* Thumb */}
-                <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-xl bg-[#eadecc]/70 p-1 flex-shrink-0 flex items-center justify-center overflow-hidden">
+                <div className="w-8 h-8 xs:w-9 xs:h-9 sm:w-11 sm:h-11 rounded-xl bg-[#eadecc]/70 p-1 flex-shrink-0 flex items-center justify-center overflow-hidden">
                   <img
                     src={item.actionThumb}
                     alt={item.actionTitle}
@@ -309,21 +309,21 @@ export default function LpGameBoardScreen({ onFinish }) {
                 </div>
 
                 {/* Title */}
-                <div className="flex-1 px-2.5 text-left min-w-0">
-                  <p className="text-[#1A2E1A] font-bold text-xs sm:text-sm leading-tight break-words">
+                <div className="flex-1 px-1.5 xs:px-2 text-left min-w-0">
+                  <p className="text-[#1A2E1A] font-bold text-[10.5px] xs:text-[11.5px] sm:text-sm leading-tight hyphens-none break-normal [word-break:keep-all] [overflow-wrap:normal]">
                     {item.actionTitle}
                   </p>
                 </div>
 
                 {/* Connector Dot */}
-                <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${
+                <div className={`w-4.5 h-4.5 xs:w-5 xs:h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${
                   isMatched
                     ? `${pairColor.bgDot} text-white shadow-sm`
                     : isSelected
                     ? `${pairColor.bgDot} text-white animate-pulse`
                     : 'bg-[#d8ccb8] border border-white'
                 }`}>
-                  {isMatched && <Check className="w-3.5 h-3.5 stroke-[3]" />}
+                  {isMatched && <Check className="w-3 h-3 stroke-[3]" />}
                 </div>
               </motion.div>
             );
@@ -347,7 +347,7 @@ export default function LpGameBoardScreen({ onFinish }) {
                 whileHover={!isMatched ? { scale: 1.02 } : {}}
                 whileTap={!isMatched ? { scale: 0.98 } : {}}
                 onClick={() => handleSelectBenefit(b.benefitId)}
-                className={`relative flex items-center justify-between p-2 sm:p-2.5 rounded-[18px] transition-all duration-200 select-none cursor-pointer ${
+                className={`relative flex items-center justify-between p-1.5 xs:p-2 sm:p-2.5 rounded-[18px] transition-all duration-200 select-none cursor-pointer ${
                   isMatched
                     ? `${pairColor.bgMatched} border-2 ${pairColor.border} opacity-95 shadow-sm`
                     : isSelected
@@ -356,29 +356,29 @@ export default function LpGameBoardScreen({ onFinish }) {
                 }`}
               >
                 {/* Connector Dot */}
-                <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${
+                <div className={`w-4.5 h-4.5 xs:w-5 xs:h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${
                   isMatched
                     ? `${pairColor.bgDot} text-white shadow-sm`
                     : isSelected
                     ? `${pairColor.bgDot} text-white animate-pulse`
                     : 'bg-[#d8ccb8] border border-white'
                 }`}>
-                  {isMatched && <Check className="w-3.5 h-3.5 stroke-[3]" />}
+                  {isMatched && <Check className="w-3 h-3 stroke-[3]" />}
                 </div>
 
                 {/* Leaf Icon + Benefit Title */}
-                <div className="flex-1 px-2.5 text-left min-w-0">
+                <div className="flex-1 px-1.5 xs:px-2 text-left min-w-0">
                   <div className="flex items-center space-x-1 mb-0.5">
                     <img 
                       src="/assets/elements/folha.png" 
                       alt="Folha" 
                       className="w-3 h-3 object-contain" 
                     />
-                    <span className={`font-black text-[9px] uppercase tracking-wider ${isMatched ? pairColor.text : 'text-[#2EB85C]'}`}>
+                    <span className={`font-black text-[8.5px] xs:text-[9px] uppercase tracking-wider ${isMatched ? pairColor.text : 'text-[#2EB85C]'}`}>
                       IMPACTO
                     </span>
                   </div>
-                  <p className="text-[#1A2E1A] font-bold text-xs sm:text-sm leading-tight break-words">
+                  <p className="text-[#1A2E1A] font-bold text-[10.5px] xs:text-[11.5px] sm:text-sm leading-tight hyphens-none break-normal [word-break:keep-all] [overflow-wrap:normal]">
                     {b.benefitTitle}
                   </p>
                 </div>
