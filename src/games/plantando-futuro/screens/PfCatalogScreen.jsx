@@ -238,11 +238,7 @@ export default function PfCatalogScreen({ onBack, colaboradorInfo, onResgateSucc
                 <X className="w-5 h-5" />
               </button>
 
-              <div className="w-10 h-10 rounded-full bg-[#2EB85C]/20 text-[#2EB85C] flex items-center justify-center mb-2">
-                <Sparkles className="w-5 h-5 stroke-[2.5]" />
-              </div>
-
-              <span className="text-[10px] font-black uppercase tracking-wider text-[#2EB85C] mb-0.5">
+              <span className="text-[10px] font-black uppercase tracking-wider text-[#2EB85C] mt-1 mb-0.5">
                 ESCOLHA DA MUDA
               </span>
 
