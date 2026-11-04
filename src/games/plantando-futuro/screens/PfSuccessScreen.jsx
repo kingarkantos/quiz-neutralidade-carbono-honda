@@ -88,7 +88,7 @@ export default function PfSuccessScreen({ resgateData, onFinish }) {
             </h2>
             {muda?.cientifico && (
               <div className="inline-flex items-center my-1 bg-[#A9D39C] px-3.5 py-0.5 rounded-full shadow-[0_2px_4px_rgba(25,60,20,0.14)]">
-                <span className="text-[#153B18] font-bold text-xs tracking-normal font-sans">
+                <span className="text-[#153B18] font-bold text-[11px] sm:text-xs tracking-normal font-sans whitespace-nowrap">
                   {muda.cientifico}
                 </span>
               </div>

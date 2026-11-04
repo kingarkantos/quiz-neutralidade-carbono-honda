@@ -157,9 +157,9 @@ export default function PfCatalogScreen({ onBack, colaboradorInfo, onResgateSucc
                     {muda.nome}
                   </h3>
 
-                  {/* Scientific Name Pill - Soft sage background matching poster design */}
-                  <div className="inline-flex items-center my-1 bg-[#A9D39C] px-3.5 py-0.5 rounded-full shadow-[0_2px_4px_rgba(25,60,20,0.14)]">
-                    <span className="text-[#153B18] font-bold text-[9.5px] xs:text-[10.5px] tracking-normal font-sans">
+                  {/* Scientific Name Pill - Single line always, reduced font size */}
+                  <div className="inline-flex items-center my-1 bg-[#A9D39C] px-2.5 xs:px-3 py-0.5 rounded-full shadow-[0_2px_4px_rgba(25,60,20,0.14)] max-w-full">
+                    <span className="text-[#153B18] font-bold text-[8px] xs:text-[9px] sm:text-[9.5px] tracking-tight font-sans whitespace-nowrap">
                       {muda.cientifico}
                     </span>
                   </div>
@@ -250,7 +250,7 @@ export default function PfCatalogScreen({ onBack, colaboradorInfo, onResgateSucc
                 {selectedMuda.nome}
               </h3>
               <div className="inline-flex items-center my-1 bg-[#A9D39C] px-3.5 py-0.5 rounded-full shadow-[0_2px_4px_rgba(25,60,20,0.14)]">
-                <span className="text-[#153B18] font-bold text-xs tracking-normal font-sans">
+                <span className="text-[#153B18] font-bold text-[11px] sm:text-xs tracking-normal font-sans whitespace-nowrap">
                   {selectedMuda.cientifico}
                 </span>
               </div>
