@@ -30,9 +30,8 @@ export default function PfHeaderBrand({
       {/* 2. Main Title: Plantando o futuro */}
       <div className="flex flex-col justify-center text-left pl-2.5 sm:pl-3.5">
         <h1
-          className={`font-serif font-black text-[#142315] tracking-tight leading-[0.92] ${
-            compact ? 'text-lg sm:text-xl' : 'text-2xl sm:text-[28px]'
-          }`}
+          className={`font-serif font-black text-[#142315] tracking-tight leading-[0.92] ${compact ? 'text-lg sm:text-xl' : 'text-2xl sm:text-[28px]'
+            }`}
         >
           Plantando<br />
           <span className="text-[#142315]">o futuro</span>
@@ -47,9 +46,8 @@ export default function PfHeaderBrand({
 
           <div className="flex flex-col justify-center text-left">
             <p
-              className={`text-[#2B3F2E] font-medium tracking-normal leading-[1.24] font-sans ${
-                compact ? 'text-[9.5px] sm:text-[10px]' : 'text-[11px] sm:text-[12px]'
-              }`}
+              className={`text-[#2B3F2E] font-medium tracking-normal leading-[1.24] font-sans ${compact ? 'text-[9.5px] sm:text-[10px]' : 'text-[11px] sm:text-[12px]'
+                }`}
             >
               Uma ação da<br />
               <strong className="font-bold text-[#162718]">Honda</strong> pelo meio<br />

@@ -157,9 +157,9 @@ export default function PfCatalogScreen({ onBack, colaboradorInfo, onResgateSucc
                     {muda.nome}
                   </h3>
 
-                  {/* Scientific Name Pill */}
-                  <div className="inline-block my-1 bg-[#2EB85C]/20 px-2.5 py-0.5 rounded-full border border-[#2EB85C]/35">
-                    <span className="text-[#1C3B24] italic font-semibold text-[9.5px] xs:text-[10.5px]">
+                  {/* Scientific Name Pill - Soft sage background matching poster design */}
+                  <div className="inline-flex items-center my-1 bg-[#A9D39C] px-3.5 py-0.5 rounded-full shadow-[0_2px_4px_rgba(25,60,20,0.14)]">
+                    <span className="text-[#153B18] font-bold text-[9.5px] xs:text-[10.5px] tracking-normal font-sans">
                       {muda.cientifico}
                     </span>
                   </div>
@@ -246,12 +246,14 @@ export default function PfCatalogScreen({ onBack, colaboradorInfo, onResgateSucc
                 ESCOLHA DA MUDA
               </span>
 
-              <h3 className="text-[#1A2E1A] font-black text-xl leading-tight font-serif">
+              <h3 className="text-[#1A2E1A] font-black text-xl leading-tight font-serif uppercase tracking-tight">
                 {selectedMuda.nome}
               </h3>
-              <p className="text-gray-500 italic text-xs mb-2">
-                {selectedMuda.cientifico}
-              </p>
+              <div className="inline-flex items-center my-1 bg-[#A9D39C] px-3.5 py-0.5 rounded-full shadow-[0_2px_4px_rgba(25,60,20,0.14)]">
+                <span className="text-[#153B18] font-bold text-xs tracking-normal font-sans">
+                  {selectedMuda.cientifico}
+                </span>
+              </div>
 
               {/* Preview image */}
               <div className="relative w-36 h-28 my-1 flex items-center justify-center bg-white rounded-2xl p-2 shadow-inner border border-[#2EB85C]/20">
