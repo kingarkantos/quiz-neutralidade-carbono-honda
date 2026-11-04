@@ -327,3 +327,4 @@ export default function PfCatalogScreen({ onBack, colaboradorInfo, onResgateSucc
     </div>
   );
 }
+

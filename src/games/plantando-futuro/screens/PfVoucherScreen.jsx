@@ -168,3 +168,4 @@ export default function PfVoucherScreen({ resgateData, colaboradorInfo, onFinish
     </div>
   );
 }
+

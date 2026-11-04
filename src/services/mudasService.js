@@ -195,3 +195,4 @@ export async function resetEstoque(mudaId = null) {
   });
   return await res.json();
 }
+

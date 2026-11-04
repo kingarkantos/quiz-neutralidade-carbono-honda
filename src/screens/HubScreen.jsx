@@ -124,11 +124,15 @@ export default function HubScreen() {
             />
 
             {/* Left Thumbnail Illustration */}
-            <div className="relative w-15 h-15 xs:w-16 xs:h-16 sm:w-18 sm:h-18 rounded-2xl bg-[#EBE0CC]/60 flex items-center justify-center p-1.5 flex-shrink-0 overflow-hidden shadow-inner border border-white/60">
+            <div 
+              className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#EBE0CC]/60 flex items-center justify-center p-1.5 flex-shrink-0 overflow-hidden shadow-inner border border-white/60"
+              style={{ width: '68px', height: '68px', minWidth: '68px', minHeight: '68px', maxWidth: '68px', maxHeight: '68px' }}
+            >
               <img
                 src={g.image}
                 alt={g.title}
-                className="w-full h-full object-contain drop-shadow-md group-hover:scale-108 transition-transform duration-300 pointer-events-none"
+                className="w-full h-full max-w-full max-h-full object-contain drop-shadow-md group-hover:scale-108 transition-transform duration-300 pointer-events-none"
+                style={{ width: '100%', height: '100%', maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
               />
             </div>
 
