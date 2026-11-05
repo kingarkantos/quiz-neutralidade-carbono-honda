@@ -72,24 +72,6 @@ export const DEFAULT_MUDAS = [
     totalInicial: 500,
     estoque: 500,
     saidas: 0
-  },
-  {
-    id: 'graviola',
-    nome: 'GRAVIOLA',
-    cientifico: 'Annona muricata',
-    origem: 'América Tropical / Brasil',
-    tipo: 'Frutífera',
-    clima: 'Quente e úmido',
-    crescimento: 'Médio',
-    alturaAdulta: '4 a 8 m',
-    floracao: 'Quase todo o ano',
-    caracteristica: 'Polpa branca aveludada, sabor agridoce',
-    imagemMuda: '/assets/plantando-futuro/mudas/graviola/muda.png',
-    imagemDetalhe: '/assets/plantando-futuro/mudas/graviola/detalhe.png',
-    imagemArvore: '/assets/plantando-futuro/mudas/graviola/arvore.png',
-    totalInicial: 500,
-    estoque: 500,
-    saidas: 0
   }
 ];
 
@@ -97,17 +79,19 @@ const LOCAL_STORAGE_KEY = 'plantando_futuro_mudas_cache';
 
 function sanitizeMudas(list) {
   if (!Array.isArray(list)) return DEFAULT_MUDAS;
-  return list.map(m => {
-    if (m.id === 'acai') {
-      return {
-        ...m,
-        imagemMuda: '/assets/plantando-futuro/mudas/acai/muda-acai.png?v=3',
-        imagemDetalhe: '/assets/plantando-futuro/mudas/acai/detalhe-acai.png?v=3',
-        imagemArvore: '/assets/plantando-futuro/mudas/acai/arvore-acai.png?v=3'
-      };
-    }
-    return m;
-  });
+  return list
+    .filter(m => m.id !== 'graviola')
+    .map(m => {
+      if (m.id === 'acai') {
+        return {
+          ...m,
+          imagemMuda: '/assets/plantando-futuro/mudas/acai/muda-acai.png?v=3',
+          imagemDetalhe: '/assets/plantando-futuro/mudas/acai/detalhe-acai.png?v=3',
+          imagemArvore: '/assets/plantando-futuro/mudas/acai/arvore-acai.png?v=3'
+        };
+      }
+      return m;
+    });
 }
 
 export async function getMudas() {

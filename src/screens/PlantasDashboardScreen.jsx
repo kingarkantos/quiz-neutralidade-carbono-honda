@@ -67,11 +67,11 @@ export default function PlantasDashboardScreen() {
   const mudas = data?.mudas || [];
   const orders = data?.orders || [];
   const summary = data?.summary || {
-    totalEstoque: 2500,
+    totalEstoque: 2000,
     totalSaidas: 0,
-    totalInicial: 2500,
+    totalInicial: 2000,
     percentualDistribuido: 0,
-    disponiveisCount: 5,
+    disponiveisCount: 4,
     esgotadasCount: 0
   };
 

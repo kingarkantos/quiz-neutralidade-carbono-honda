@@ -156,24 +156,6 @@ const DEFAULT_MUDAS = [
     totalInicial: 500,
     estoque: 500,
     saidas: 0
-  },
-  {
-    id: 'graviola',
-    nome: 'GRAVIOLA',
-    cientifico: 'Annona muricata',
-    origem: 'América Tropical / Brasil',
-    tipo: 'Frutífera',
-    clima: 'Quente e úmido',
-    crescimento: 'Médio',
-    alturaAdulta: '4 a 8 m',
-    floracao: 'Quase todo o ano',
-    caracteristica: 'Polpa branca aveludada, sabor agridoce',
-    imagemMuda: '/assets/plantando-futuro/mudas/graviola/muda.png',
-    imagemDetalhe: '/assets/plantando-futuro/mudas/graviola/detalhe.png',
-    imagemArvore: '/assets/plantando-futuro/mudas/graviola/arvore.png',
-    totalInicial: 500,
-    estoque: 500,
-    saidas: 0
   }
 ];
 
@@ -220,9 +202,11 @@ export default async function handler(req, res) {
         mudas = DEFAULT_MUDAS;
       }
 
-      // Keep fixed ordering
-      const order = ['ipe-amarelo', 'ipe-roxo', 'cupuacu', 'acai', 'graviola'];
-      mudas.sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
+      // Keep fixed ordering & filter out removed species
+      const order = ['ipe-amarelo', 'ipe-roxo', 'cupuacu', 'acai'];
+      mudas = mudas
+        .filter(m => m.id !== 'graviola')
+        .sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
 
       if (isDashboard) {
         // Fetch recent orders
