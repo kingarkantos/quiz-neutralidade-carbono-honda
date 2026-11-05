@@ -2,37 +2,15 @@
 
 export const DEFAULT_MUDAS = [
   {
-    id: 'ipe-amarelo',
-    nome: 'IPÊ-AMARELO',
-    cientifico: 'Handroanthus albus',
-    origem: 'Nativa do Brasil',
-    tipo: 'Florestal',
-    clima: 'Tropical',
-    crescimento: 'Médio a lento',
-    alturaAdulta: '20 a 30 m',
-    floracao: 'Julho a setembro',
-    caracteristica: 'Flores amarelas',
-    imagemMuda: '/assets/plantando-futuro/mudas/ipe-amarelo/muda.png',
-    imagemDetalhe: '/assets/plantando-futuro/mudas/ipe-amarelo/detalhe.png',
-    imagemArvore: '/assets/plantando-futuro/mudas/ipe-amarelo/arvore.png',
-    totalInicial: 500,
-    estoque: 500,
-    saidas: 0
-  },
-  {
-    id: 'ipe-roxo',
-    nome: 'IPÊ-ROXO',
-    cientifico: 'Handroanthus impetiginosus',
-    origem: 'Nativa do Brasil',
-    tipo: 'Florestal',
-    clima: 'Tropical',
-    crescimento: 'Médio a lento',
-    alturaAdulta: '20 a 30 m',
-    floracao: 'Julho a setembro',
-    caracteristica: 'Flores roxas',
-    imagemMuda: '/assets/plantando-futuro/mudas/ipe-roxo/muda.png',
-    imagemDetalhe: '/assets/plantando-futuro/mudas/ipe-roxo/detalhe.png',
-    imagemArvore: '/assets/plantando-futuro/mudas/ipe-roxo/arvore.png',
+    id: 'acai',
+    nome: 'AÇAÍ',
+    cientifico: 'Euterpe oleracea',
+    origem: 'Amazônia',
+    porte: '15–20 m (até 25 m)',
+    floracao: 'setembro a dezembro',
+    imagemMuda: '/assets/plantando-futuro/mudas/acai/muda-acai.png?v=4',
+    imagemDetalhe: '/assets/plantando-futuro/mudas/acai/detalhe-acai.png?v=4',
+    imagemArvore: '/assets/plantando-futuro/mudas/acai/arvore.png?v=4',
     totalInicial: 500,
     estoque: 500,
     saidas: 0
@@ -42,33 +20,39 @@ export const DEFAULT_MUDAS = [
     nome: 'CUPUAÇU',
     cientifico: 'Theobroma grandiflorum',
     origem: 'Amazônia',
-    tipo: 'Frutífera',
-    clima: 'Quente e úmido',
-    crescimento: 'Médio',
-    alturaAdulta: '10 a 15 m',
-    floracao: 'Dezembro a fevereiro',
-    caracteristica: 'Fruto com polpa cremosa e aromática',
-    imagemMuda: '/assets/plantando-futuro/mudas/cupuacu/muda.png',
-    imagemDetalhe: '/assets/plantando-futuro/mudas/cupuacu/detalhe.png',
-    imagemArvore: '/assets/plantando-futuro/mudas/cupuacu/arvore.png',
+    porte: '8–15 m',
+    floracao: 'setembro a dezembro',
+    imagemMuda: '/assets/plantando-futuro/mudas/cupuacu/muda.png?v=4',
+    imagemDetalhe: '/assets/plantando-futuro/mudas/cupuacu/detalhe.png?v=4',
+    imagemArvore: '/assets/plantando-futuro/mudas/cupuacu/arvore.png?v=4',
     totalInicial: 500,
     estoque: 500,
     saidas: 0
   },
   {
-    id: 'acai',
-    nome: 'AÇAÍ',
-    cientifico: 'Euterpe oleracea',
+    id: 'ipe-roxo',
+    nome: 'IPÊ ROXO',
+    cientifico: 'Handroanthus impetiginosus',
     origem: 'Amazônia',
-    tipo: 'Frutífera',
-    clima: 'Quente e úmido',
-    crescimento: 'Rápido',
-    alturaAdulta: '15 a 25 m',
-    floracao: 'Setembro a dezembro',
-    caracteristica: 'Frutos roxos em cachos ricos em antioxidantes',
-    imagemMuda: '/assets/plantando-futuro/mudas/acai/muda-acai.png?v=3',
-    imagemDetalhe: '/assets/plantando-futuro/mudas/acai/detalhe-acai.png?v=3',
-    imagemArvore: '/assets/plantando-futuro/mudas/acai/arvore-acai.png?v=3',
+    porte: '8–20 m (até 30 m)',
+    floracao: 'julho a setembro',
+    imagemMuda: '/assets/plantando-futuro/mudas/ipe-roxo/muda.png?v=4',
+    imagemDetalhe: '/assets/plantando-futuro/mudas/ipe-roxo/detalhe.png?v=4',
+    imagemArvore: '/assets/plantando-futuro/mudas/ipe-roxo/arvore.png?v=4',
+    totalInicial: 500,
+    estoque: 500,
+    saidas: 0
+  },
+  {
+    id: 'ipe-amarelo',
+    nome: 'IPÊ AMARELO',
+    cientifico: 'Handroanthus chrysotrichus',
+    origem: 'Amazônia',
+    porte: '8–20 m (até 30 m)',
+    floracao: 'julho a setembro',
+    imagemMuda: '/assets/plantando-futuro/mudas/ipe-amarelo/muda.png?v=4',
+    imagemDetalhe: '/assets/plantando-futuro/mudas/ipe-amarelo/detalhe.png?v=4',
+    imagemArvore: '/assets/plantando-futuro/mudas/ipe-amarelo/arvore.png?v=4',
     totalInicial: 500,
     estoque: 500,
     saidas: 0
@@ -79,19 +63,27 @@ const LOCAL_STORAGE_KEY = 'plantando_futuro_mudas_cache';
 
 function sanitizeMudas(list) {
   if (!Array.isArray(list)) return DEFAULT_MUDAS;
+  const defaultsMap = new Map(DEFAULT_MUDAS.map(m => [m.id, m]));
+  const order = ['acai', 'cupuacu', 'ipe-roxo', 'ipe-amarelo'];
   return list
     .filter(m => m.id !== 'graviola')
     .map(m => {
-      if (m.id === 'acai') {
-        return {
-          ...m,
-          imagemMuda: '/assets/plantando-futuro/mudas/acai/muda-acai.png?v=3',
-          imagemDetalhe: '/assets/plantando-futuro/mudas/acai/detalhe-acai.png?v=3',
-          imagemArvore: '/assets/plantando-futuro/mudas/acai/arvore-acai.png?v=3'
-        };
-      }
-      return m;
-    });
+      const def = defaultsMap.get(m.id);
+      if (!def) return m;
+      return {
+        ...def,
+        ...m,
+        nome: def.nome,
+        cientifico: def.cientifico,
+        origem: def.origem,
+        porte: def.porte,
+        floracao: def.floracao,
+        imagemMuda: def.imagemMuda,
+        imagemDetalhe: def.imagemDetalhe,
+        imagemArvore: def.imagemArvore
+      };
+    })
+    .sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
 }
 
 export async function getMudas() {

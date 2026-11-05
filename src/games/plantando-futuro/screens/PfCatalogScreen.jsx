@@ -164,22 +164,15 @@ export default function PfCatalogScreen({ onBack, colaboradorInfo, onResgateSucc
                     </span>
                   </div>
 
-                  {/* Spec Sheet Table */}
-                  <div className="space-y-0.5 text-[8.5px] xs:text-[9.5px] sm:text-[10px] text-[#2c3b2d] leading-tight">
+                  {/* Spec Sheet Table - Extracted directly from official voucher PDF */}
+                  <div className="space-y-1 text-[9.5px] xs:text-[10px] sm:text-[11px] text-[#2c3b2d] leading-snug py-0.5">
                     <p><strong className="text-[#1A2E1A]">Origem:</strong> {muda.origem}</p>
-                    <p><strong className="text-[#1A2E1A]">Tipo:</strong> {muda.tipo}</p>
-                    <p><strong className="text-[#1A2E1A]">Clima:</strong> {muda.clima}</p>
-                    <p><strong className="text-[#1A2E1A]">Crescimento:</strong> {muda.crescimento}</p>
-                    <p><strong className="text-[#1A2E1A]">Altura adulta:</strong> {muda.alturaAdulta}</p>
+                    <p><strong className="text-[#1A2E1A]">Porte:</strong> {muda.porte || muda.alturaAdulta}</p>
                     <p><strong className="text-[#1A2E1A]">Floração:</strong> {muda.floracao}</p>
-                    {muda.frutificacao && (
-                      <p><strong className="text-[#1A2E1A]">Frutificação:</strong> {muda.frutificacao}</p>
-                    )}
-                    <p><strong className="text-[#1A2E1A]">Característica:</strong> {muda.caracteristica}</p>
                   </div>
 
                   {/* Live Stock Indicator */}
-                  <div className="mt-2 flex items-center space-x-2">
+                  <div className="mt-1.5 flex items-center space-x-2">
                     {isAvailable ? (
                       <span className="inline-flex items-center space-x-1 bg-[#2EB85C]/15 text-[#1C3B24] font-black text-[9.5px] xs:text-[10px] px-2.5 py-0.5 rounded-full border border-[#2EB85C]/30">
                         <span>🌱</span>
@@ -194,15 +187,15 @@ export default function PfCatalogScreen({ onBack, colaboradorInfo, onResgateSucc
                   </div>
                 </div>
 
-                {/* 3. Right Column: Blooming Tree Artwork with subtle vignette blend */}
-                <div className="w-24 xs:w-28 sm:w-32 h-28 xs:h-32 sm:h-36 flex-shrink-0 rounded-2xl overflow-hidden shadow-inner relative flex items-center justify-center bg-[#E5D7BF]/60">
+                {/* 3. Right Column: Blooming Tree Artwork from official voucher */}
+                <div className="w-24 xs:w-28 sm:w-32 h-28 xs:h-32 sm:h-36 flex-shrink-0 rounded-2xl overflow-hidden shadow-inner relative flex items-center justify-center bg-[#E5D7BF]/35">
                   <img 
                     src={muda.imagemArvore} 
                     alt={`Árvore ${muda.nome}`} 
-                    className="w-full h-full object-cover pointer-events-none"
+                    className="w-full h-full object-contain p-1.5 pointer-events-none drop-shadow-sm"
                   />
                   {/* Subtle fade overlay into background on the left */}
-                  <div className="absolute inset-y-0 left-0 w-6 bg-gradient-to-r from-[#FAF5EC] to-transparent pointer-events-none" />
+                  <div className="absolute inset-y-0 left-0 w-4 bg-gradient-to-r from-[#FAF5EC]/60 to-transparent pointer-events-none" />
                 </div>
               </div>
 
