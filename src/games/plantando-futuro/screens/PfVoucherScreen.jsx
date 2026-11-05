@@ -4,7 +4,6 @@ import { Check, Sparkles, Home, Ticket, Calendar, User, Clock } from 'lucide-rea
 import confetti from 'canvas-confetti';
 import { useNavigate } from 'react-router-dom';
 import CornerFoliage from '../../../components/CornerFoliage';
-import AnimatedPlantandoFuturoTree from '../../../components/AnimatedPlantandoFuturoTree';
 
 export default function PfVoucherScreen({ resgateData, colaboradorInfo, onFinish }) {
   const navigate = useNavigate();
@@ -39,9 +38,12 @@ export default function PfVoucherScreen({ resgateData, colaboradorInfo, onFinish
 
       {/* Top Header */}
       <div className="relative z-30 w-full flex items-center justify-between px-5 pt-3 pb-1">
-        <div className="flex items-center space-x-2">
-          <AnimatedPlantandoFuturoTree size={34} interactive={false} animate={true} />
-          <span className="font-serif font-black text-sm text-[#1A2E1A]">Plantando o futuro</span>
+        <div className="flex items-center">
+          <img 
+            src="/assets/plantando-futuro/logo-plantando-futuro.png" 
+            alt="Plantando o futuro" 
+            className="h-9 w-auto object-contain"
+          />
         </div>
 
         <img 
