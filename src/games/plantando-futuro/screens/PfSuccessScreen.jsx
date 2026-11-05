@@ -74,52 +74,26 @@ export default function PfSuccessScreen({ resgateData, onFinish }) {
           initial={{ opacity: 0, scale: 0.88, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 300, damping: 24 }}
-          className="w-full bg-[#FAF5EC]/98 backdrop-blur-md rounded-[28px] p-5 sm:p-6 shadow-2xl border-2 border-white flex flex-col items-center text-center relative overflow-hidden"
+          className="w-full bg-[#FAF5EC]/98 backdrop-blur-md rounded-[28px] p-6 sm:p-8 shadow-2xl border-2 border-white flex flex-col items-center text-center relative overflow-hidden"
         >
           {/* 1. Official Plantando o Futuro Logo Brand Lockup */}
-          <div className="mb-2">
-            <PfHeaderBrand compact={false} showSubtitle={true} treeSize={56} />
+          <div className="mb-3">
+            <PfHeaderBrand compact={false} showSubtitle={true} treeSize={60} />
           </div>
 
-          {/* 2. Muda Chosen Card Preview */}
-          <div className="w-full flex flex-col items-center mt-1 mb-2">
-            <h2 className="text-[#1A2E1A] font-black text-xl sm:text-2xl uppercase tracking-tight font-serif">
-              {muda?.nome || 'Muda Nativa'}
-            </h2>
-            {muda?.cientifico && (
-              <div className="inline-flex items-center my-1 bg-[#A9D39C] px-3.5 py-0.5 rounded-full shadow-[0_2px_4px_rgba(25,60,20,0.14)]">
-                <span className="text-[#153B18] font-bold text-[11px] sm:text-xs tracking-normal font-sans whitespace-nowrap">
-                  {muda.cientifico}
-                </span>
-              </div>
-            )}
-          </div>
+          {/* Celebratory Eco Badge */}
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 20, delay: 0.15 }}
+            className="w-16 h-16 rounded-full bg-gradient-to-br from-[#2EB85C] to-[#1C3B24] flex items-center justify-center shadow-lg shadow-[#2EB85C]/25 my-3 border-2 border-white"
+          >
+            <Check className="w-8 h-8 text-white stroke-[3]" />
+          </motion.div>
 
-          {/* Seedling & Grown Tree visual display */}
-          <div className="relative w-full max-w-[260px] h-32 my-1 bg-gradient-to-b from-white to-[#F4ECE1] rounded-2xl p-2.5 shadow-inner border border-[#2EB85C]/25 flex items-center justify-around overflow-hidden">
-            {muda?.imagemMuda && (
-              <div className="h-full w-24 flex items-center justify-center">
-                <img 
-                  src={muda.imagemMuda} 
-                  alt={muda.nome} 
-                  className="max-h-full max-w-full object-contain drop-shadow-md"
-                />
-              </div>
-            )}
-            {muda?.arvore && (
-              <div className="h-full w-28 flex items-center justify-center">
-                <img 
-                  src={muda.arvore} 
-                  alt={`${muda.nome} adulta`} 
-                  className="max-h-full max-w-full object-contain drop-shadow-md rounded-xl"
-                />
-              </div>
-            )}
-          </div>
-
-          {/* 3. Official Campaign Contribution Message */}
-          <div className="w-full my-3 p-3.5 sm:p-4 bg-gradient-to-r from-[#2EB85C]/12 via-[#7FD03F]/18 to-[#2EB85C]/12 rounded-2xl border border-[#2EB85C]/35 text-center shadow-xs">
-            <p className="text-[#122D16] font-black text-sm sm:text-base leading-snug">
+          {/* 2. Official Campaign Contribution Message */}
+          <div className="w-full my-3 p-4 sm:p-5 bg-gradient-to-r from-[#2EB85C]/12 via-[#7FD03F]/18 to-[#2EB85C]/12 rounded-2xl border border-[#2EB85C]/35 text-center shadow-xs">
+            <p className="text-[#122D16] font-black text-base sm:text-lg leading-relaxed">
               Você contribuiu para a neutralização das emissões de CO2 desse evento.
             </p>
           </div>
@@ -129,13 +103,13 @@ export default function PfSuccessScreen({ resgateData, onFinish }) {
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             onClick={handleReturn}
-            className="w-full py-3.5 px-6 rounded-full btn-tactile-green anim-shimmer text-white font-black text-sm uppercase tracking-wider shadow-lg flex items-center justify-center space-x-2"
+            className="w-full py-4 px-6 rounded-full btn-tactile-green anim-shimmer text-white font-black text-sm uppercase tracking-wider shadow-lg flex items-center justify-center space-x-2 mt-2"
           >
             <Home className="w-4 h-4 stroke-[2.5]" />
             <span>VOLTAR AO INÍCIO</span>
           </motion.button>
 
-          <p className="text-[11px] text-gray-500 font-semibold mt-2.5">
+          <p className="text-[11px] text-gray-500 font-semibold mt-3">
             Voltando automaticamente ao catálogo em {countdown}s
           </p>
         </motion.div>
