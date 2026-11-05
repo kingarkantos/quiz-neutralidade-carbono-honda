@@ -124,11 +124,6 @@ export default function PfSuccessScreen({ resgateData, onFinish }) {
             </p>
           </div>
 
-          {/* Pickup direction */}
-          <p className="text-[#3F5441] text-xs font-semibold mb-3">
-            🌱 Retire sua muda com a nossa equipe no local.
-          </p>
-
           {/* Action button */}
           <motion.button
             whileHover={{ scale: 1.03 }}

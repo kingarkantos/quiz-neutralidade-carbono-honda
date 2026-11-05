@@ -110,7 +110,7 @@ export default function PfCatalogScreen({ onBack, colaboradorInfo, onResgateSucc
       <div className="relative z-20 flex-1 overflow-y-auto px-3 sm:px-4 py-3 space-y-3 sm:space-y-4 max-w-lg mx-auto w-full">
         <div className="text-center pb-1">
           <p className="text-[#1A2E1A] font-black text-xs uppercase tracking-wider bg-white/60 inline-block px-4 py-1 rounded-full shadow-xs">
-            Toque na muda desejada para retirá-la
+            Toque na muda desejada para selecioná-la
           </p>
         </div>
 
