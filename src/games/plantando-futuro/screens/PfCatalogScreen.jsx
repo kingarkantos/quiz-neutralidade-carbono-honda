@@ -62,6 +62,17 @@ export default function PfCatalogScreen({ onBack, colaboradorInfo, onResgateSucc
     }
   };
 
+  // Calculate total emissions reduced (each plant removes 17.33 kgCO2e/ano)
+  const totalSaidas = mudas.reduce((acc, m) => {
+    const saidas = typeof m.saidas === 'number' ? m.saidas : Math.max(0, (m.totalInicial || 500) - (m.estoque || 500));
+    return acc + saidas;
+  }, 0);
+  const totalReduzidoKg = totalSaidas * 17.33;
+  const formattedTotalReduzido = totalReduzidoKg.toLocaleString('pt-BR', {
+    minimumFractionDigits: totalReduzidoKg % 1 === 0 ? 0 : 2,
+    maximumFractionDigits: 2
+  });
+
   return (
     <div className="relative w-full h-full flex flex-col justify-between overflow-hidden bg-[#e9decb] select-none">
       {/* Background with Nature Foliage Texture */}
@@ -108,11 +119,51 @@ export default function PfCatalogScreen({ onBack, colaboradorInfo, onResgateSucc
 
       {/* Catalog List (Exact Reference Layout from media_1793821012842_65b7afe3.jpg) */}
       <div className="relative z-20 flex-1 overflow-y-auto px-3 sm:px-4 py-3 space-y-3 sm:space-y-4 max-w-lg mx-auto w-full">
-        <div className="text-center pb-1">
-          <p className="text-[#1A2E1A] font-black text-xs uppercase tracking-wider bg-white/60 inline-block px-4 py-1 rounded-full shadow-xs">
-            Toque na muda desejada para selecioná-la
-          </p>
-        </div>
+        {/* Calculadora de Carbono - Estimativa das emissões neutralizadas */}
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35 }}
+          className="relative overflow-hidden rounded-[24px] sm:rounded-[28px] border-2 border-white bg-gradient-to-r from-[#143D1A] via-[#21612A] to-[#143D1A] p-2.5 xs:p-3 sm:p-3.5 shadow-md flex items-center select-none"
+        >
+          {/* Left Decorative Leaves SVG */}
+          <svg className="absolute -bottom-1 -left-1 w-12 h-12 text-[#2E8B3C]/45 pointer-events-none -z-0" viewBox="0 0 100 100" fill="currentColor">
+            <path d="M0,100 C20,70 50,60 80,75 C70,95 40,100 0,100 Z" opacity="0.7" />
+            <path d="M0,100 C10,50 40,30 70,45 C60,75 30,90 0,100 Z" opacity="0.9" fill="#38A147" />
+          </svg>
+
+          {/* Right Decorative Leaves SVG */}
+          <svg className="absolute -right-2 top-1/2 -translate-y-1/2 w-16 h-24 text-[#2E8B3C]/50 pointer-events-none -z-0" viewBox="0 0 100 140" fill="currentColor">
+            <path d="M100,70 C70,50 50,60 40,80 C60,100 80,95 100,70 Z" opacity="0.8" fill="#3CA84C" />
+            <path d="M100,50 C65,30 45,35 30,50 C50,75 80,70 100,50 Z" opacity="0.9" fill="#4AC25B" />
+            <path d="M100,90 C75,80 60,95 50,115 C70,125 90,115 100,90 Z" opacity="0.7" fill="#2E8B3C" />
+          </svg>
+
+          {/* Left: Cloud + CO2 + Calculator Icon */}
+          <div className="relative z-10 pl-1 sm:pl-2 flex-shrink-0 flex items-center justify-center">
+            <img 
+              src="/assets/plantando-futuro/icone-calculadora-co2.png" 
+              alt="Calculadora CO2" 
+              className="w-12 h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 object-contain drop-shadow-sm"
+            />
+          </div>
+
+          {/* Vertical Separator */}
+          <div className="relative z-10 w-[1.5px] bg-white/40 h-11 xs:h-12 mx-2.5 xs:mx-3.5 sm:mx-4 flex-shrink-0" />
+
+          {/* Right: Text and Pill Badge */}
+          <div className="relative z-10 flex-1 flex flex-col justify-center text-left min-w-0 pr-1">
+            <h4 className="text-white font-black text-xs xs:text-sm sm:text-base leading-tight tracking-tight">
+              Calculadora de Carbono
+            </h4>
+            <p className="text-white/85 font-medium text-[9px] xs:text-[10.5px] sm:text-xs leading-tight mt-0.5">
+              Estimativa das emissões neutralizadas
+            </p>
+            <div className="mt-1 sm:mt-1.5 inline-flex items-center self-start bg-[#C6E992] text-[#0E3316] font-black text-xs xs:text-sm sm:text-base px-3.5 xs:px-4 py-0.5 rounded-full shadow-inner tracking-tight">
+              <span>{formattedTotalReduzido} kgCO₂e/ano</span>
+            </div>
+          </div>
+        </motion.div>
 
         {mudas.map((muda, idx) => {
           const isAvailable = muda.estoque > 0;

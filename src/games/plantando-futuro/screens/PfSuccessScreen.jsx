@@ -77,22 +77,26 @@ export default function PfSuccessScreen({ resgateData, onFinish }) {
           className="w-full bg-[#FAF5EC]/98 backdrop-blur-md rounded-[28px] p-6 sm:p-8 shadow-2xl border-2 border-white flex flex-col items-center text-center relative overflow-hidden"
         >
           {/* 1. Official Plantando o Futuro Logo Brand Lockup */}
-          <div className="mb-3">
-            <PfHeaderBrand compact={false} showSubtitle={true} treeSize={60} />
+          <div className="mb-2">
+            <PfHeaderBrand compact={false} showSubtitle={true} treeSize={56} />
           </div>
 
-          {/* Celebratory Eco Badge */}
+          {/* 2. Official Carbon Reduction Pill Card (-17,33 kgCO2e/ano) */}
           <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 20, delay: 0.15 }}
-            className="w-16 h-16 rounded-full bg-gradient-to-br from-[#2EB85C] to-[#1C3B24] flex items-center justify-center shadow-lg shadow-[#2EB85C]/25 my-3 border-2 border-white"
+            initial={{ scale: 0.88, opacity: 0, y: 10 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            transition={{ type: 'spring', stiffness: 350, damping: 22, delay: 0.12 }}
+            className="w-full max-w-[340px] xs:max-w-[370px] sm:max-w-[390px] my-3 drop-shadow-md select-none"
           >
-            <Check className="w-8 h-8 text-white stroke-[3]" />
+            <img 
+              src="/assets/plantando-futuro/card-reducao-emissao.png" 
+              alt="-17,33 kgCO2e/ano de emissões reduzidas" 
+              className="w-full h-auto object-contain pointer-events-none"
+            />
           </motion.div>
 
-          {/* 2. Official Campaign Contribution Message */}
-          <div className="w-full my-3 p-4 sm:p-5 bg-gradient-to-r from-[#2EB85C]/12 via-[#7FD03F]/18 to-[#2EB85C]/12 rounded-2xl border border-[#2EB85C]/35 text-center shadow-xs">
+          {/* 3. Official Campaign Contribution Message */}
+          <div className="w-full my-2.5 p-4 sm:p-5 bg-gradient-to-r from-[#2EB85C]/12 via-[#7FD03F]/18 to-[#2EB85C]/12 rounded-2xl border border-[#2EB85C]/35 text-center shadow-xs">
             <p className="text-[#122D16] font-black text-base sm:text-lg leading-relaxed">
               Você contribuiu para a neutralização das emissões de CO2 desse evento.
             </p>
