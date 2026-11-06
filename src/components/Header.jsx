@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export default function Header({ 
   className = '', 
-  showTriplaAcao = true 
+  showTriplaAcao = false 
 }) {
   return (
     <header className={`relative w-full flex items-center justify-between px-5 sm:px-6 pt-4 pb-2 z-40 ${className}`}>

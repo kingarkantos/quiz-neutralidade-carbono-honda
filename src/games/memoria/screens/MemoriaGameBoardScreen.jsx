@@ -43,9 +43,9 @@ export default function MemoriaGameBoardScreen({ onFinish }) {
   const [matchedPairIds, setMatchedPairIds] = useState(new Set()); // set of item.id that are solved
   const [activeModalCard, setActiveModalCard] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(120); // 2 minutos (120s)
+  const [timeLeft, setTimeLeft] = useState(90); // 1:30s (90 segundos)
 
-  // Cronômetro regressivo: 2 minutos para o Jogo da Memória
+  // Cronômetro regressivo: 1:30s (90s) para o Jogo da Memória
   // Pausa durante a exibição do modal explicativo (activeModalCard)
   useEffect(() => {
     if (activeModalCard !== null || matchedPairIds.size === 5) return;

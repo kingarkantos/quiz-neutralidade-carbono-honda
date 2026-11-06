@@ -85,9 +85,9 @@ export default function LpGameBoardScreen({ onFinish }) {
   const [matchedIds, setMatchedIds] = useState(new Set()); // set of action ids matched
   const [activeModalItem, setActiveModalItem] = useState(null);
   const [showWrongModal, setShowWrongModal] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(60); // 1 minuto (60s)
+  const [timeLeft, setTimeLeft] = useState(90); // 1:30s (90 segundos)
 
-  // Cronômetro regressivo: 1 minuto para o Ligue os Pontos
+  // Cronômetro regressivo: 1:30s (90s) para o Ligue os Pontos
   // Pausa durante modais explicativos ou modal de erro
   useEffect(() => {
     if (activeModalItem !== null || showWrongModal || matchedIds.size === actions.length) return;

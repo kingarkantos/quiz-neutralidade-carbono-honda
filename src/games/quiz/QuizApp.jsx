@@ -14,9 +14,9 @@ export default function QuizApp() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [lastSelectedOption, setLastSelectedOption] = useState(null);
-  const [timeLeft, setTimeLeft] = useState(60); // 1 minuto (60s)
+  const [timeLeft, setTimeLeft] = useState(90); // 1:30s (90 segundos)
 
-  // Cronômetro regressivo: 1 minuto para o Quiz
+  // Cronômetro regressivo: 1:30s (90s) para o Quiz
   // Só roda durante a tela de pergunta ('question'). Fica pausado em feedbacks e transições.
   useEffect(() => {
     if (screen !== 'question') return;
@@ -75,7 +75,7 @@ export default function QuizApp() {
     setQuestions(getRandomQuizQuestions());
     setCurrentQuestionIndex(0);
     setAnswers([]);
-    setTimeLeft(60);
+    setTimeLeft(90);
     setScreen('question');
   };
 
@@ -126,7 +126,7 @@ export default function QuizApp() {
     setCurrentQuestionIndex(0);
     setAnswers([]);
     setLastSelectedOption(null);
-    setTimeLeft(60);
+    setTimeLeft(90);
     setScreen('home');
   };
 
