@@ -29,8 +29,8 @@ export const ALL_QUESTIONS = [
       }
     ],
     correctOptionId: "B",
-    explanationCorrect: "Neutralidade de carbono significa alcançar emissões líquidas de CO₂ iguais a zero. Para isso, é necessário reduzir ao máximo as emissões e equilibrar as que restarem com remoções de carbono.",
-    explanationIncorrect: "Neutralidade de carbono não significa parar de fabricar produtos. O objetivo é reduzir as emissões e equilibrar as que restarem com remoções de carbono."
+    explanationCorrect: "Neutralidade de carbono significa alcançar emissões líquidas de CO₂ iguais a zero.",
+    explanationIncorrect: "Neutralidade de carbono significa alcançar emissões líquidas de CO₂ iguais a zero."
   },
   {
     id: 2,

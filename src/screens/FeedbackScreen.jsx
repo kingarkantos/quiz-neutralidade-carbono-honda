@@ -272,11 +272,11 @@ export default function FeedbackScreen({
           )}
 
           {!isCorrect && (
-            <p className="text-[#15803d] font-black text-xs sm:text-sm uppercase tracking-wider mb-1">
+            <p className="text-[#15803d] font-black text-xs sm:text-sm uppercase tracking-wider mb-1.5">
               ✓ A resposta correta é a alternativa {question.correctOptionId}
             </p>
           )}
-          <p className="text-[#1A2E1A] font-medium text-xs sm:text-sm md:text-base leading-relaxed">
+          <p className="text-[#1A2E1A] font-semibold text-sm sm:text-base md:text-lg leading-relaxed">
             {isCorrect ? question.explanationCorrect : question.explanationIncorrect}
           </p>
         </motion.div>
