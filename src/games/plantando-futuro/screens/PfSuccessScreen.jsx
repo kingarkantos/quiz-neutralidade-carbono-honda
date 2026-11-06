@@ -51,11 +51,11 @@ export default function PfSuccessScreen({ resgateData, onFinish }) {
       />
       <CornerFoliage corners={['top-left', 'top-right', 'bottom-left', 'bottom-right']} />
 
-      {/* Top Bar with Honda Logo */}
-      <div className="relative z-30 w-full flex items-center justify-between px-5 pt-3 pb-1">
+      {/* Top Bar with Honda Logo Centered */}
+      <div className="relative z-30 w-full flex items-center justify-center px-5 pt-3 pb-1 min-h-[44px]">
         <button
           onClick={handleReturn}
-          className="flex items-center space-x-1.5 bg-[#FAF5EC]/90 backdrop-blur-sm px-3.5 py-1.5 rounded-full shadow-sm border border-[#2EB85C]/30 text-[#1C3B24] font-black text-xs hover:bg-white"
+          className="absolute left-5 top-3 flex items-center space-x-1.5 bg-[#FAF5EC]/90 backdrop-blur-sm px-3.5 py-1.5 rounded-full shadow-sm border border-[#2EB85C]/30 text-[#1C3B24] font-black text-xs hover:bg-white z-10"
         >
           <Home className="w-3.5 h-3.5 text-[#2EB85C]" />
           <span>INÍCIO</span>

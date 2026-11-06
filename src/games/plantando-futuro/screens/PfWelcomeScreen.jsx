@@ -48,12 +48,12 @@ export default function PfWelcomeScreen({ onStart }) {
 
       {/* Top Header */}
       <div className="relative z-30 w-full flex flex-col">
-        <div className="w-full flex items-center justify-between px-4 pt-3 pb-1">
+        <div className="relative w-full flex items-center justify-center px-4 pt-3 pb-1 min-h-[44px]">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => navigate('/')}
-            className="flex items-center space-x-1.5 bg-[#FAF5EC]/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm border border-[#2EB85C]/30 text-[#1C3B24] font-bold text-xs hover:bg-white"
+            className="absolute left-4 top-3 flex items-center space-x-1.5 bg-[#FAF5EC]/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm border border-[#2EB85C]/30 text-[#1C3B24] font-bold text-xs hover:bg-white z-10"
           >
             <ArrowLeft className="w-4 h-4 text-[#2EB85C]" />
             <span>INÍCIO</span>

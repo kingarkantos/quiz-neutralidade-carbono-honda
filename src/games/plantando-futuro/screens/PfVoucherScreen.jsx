@@ -37,12 +37,12 @@ export default function PfVoucherScreen({ resgateData, colaboradorInfo, onFinish
       <CornerFoliage corners={['top-left', 'top-right', 'bottom-left', 'bottom-right']} />
 
       {/* Top Header */}
-      <div className="relative z-30 w-full flex items-center justify-between px-5 pt-3 pb-1">
-        <div className="flex items-center">
+      <div className="relative z-30 w-full flex items-center justify-center px-5 pt-3 pb-1 min-h-[44px]">
+        <div className="absolute left-5 top-3 flex items-center">
           <img 
             src="/assets/plantando-futuro/logo-plantando-futuro.png" 
             alt="Plantando o futuro" 
-            className="h-9 w-auto object-contain"
+            className="h-8 w-auto object-contain"
           />
         </div>
 
