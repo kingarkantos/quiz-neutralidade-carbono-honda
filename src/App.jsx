@@ -7,30 +7,32 @@ import MemoriaApp from './games/memoria/MemoriaApp';
 import PlantandoFuturoApp from './games/plantando-futuro/PlantandoFuturoApp';
 import PlantasDashboardScreen from './screens/PlantasDashboardScreen';
 import FullscreenButton from './components/FullscreenButton';
-import AnimationToggleButton from './components/AnimationToggleButton';
+import BottomControls from './components/BottomControls';
 import { AnimationProvider } from './context/AnimationContext';
+import { ZoomProvider } from './context/ZoomContext';
 
 export default function App() {
   return (
     <AnimationProvider>
-      <BrowserRouter>
-        <Routes>
-          {/* Dedicated Full-Width Responsive Dashboard Route for /plantas */}
-          <Route path="/plantas" element={<PlantasDashboardScreen />} />
+      <ZoomProvider>
+        <BrowserRouter>
+          <Routes>
+            {/* Dedicated Full-Width Responsive Dashboard Route for /plantas */}
+            <Route path="/plantas" element={<PlantasDashboardScreen />} />
 
-          {/* Full-Width Edge-to-Edge Responsive Games & Screens (No phone-frame borders) */}
-          <Route
-            path="/*"
-            element={
-              <div className="w-full h-full min-h-[100dvh] max-h-[100dvh] bg-[#ecdcc1] overflow-hidden flex flex-col">
-                <main className="relative w-full h-full min-h-[100dvh] max-h-[100dvh] overflow-hidden bg-[#ecdcc1] flex flex-col flex-1">
-                  {/* Discreet Fullscreen Toggle in Top-Right Corner */}
-                  <FullscreenButton />
+            {/* Full-Width Edge-to-Edge Responsive Games & Screens (No phone-frame borders) */}
+            <Route
+              path="/*"
+              element={
+                <div className="w-full h-full min-h-[100dvh] max-h-[100dvh] bg-[#ecdcc1] overflow-hidden flex flex-col">
+                  <main className="relative w-full h-full min-h-[100dvh] max-h-[100dvh] overflow-hidden bg-[#ecdcc1] flex flex-col flex-1">
+                    {/* Discreet Fullscreen Toggle in Top-Right Corner */}
+                    <FullscreenButton />
 
-                  {/* Discreet Animation Pause Toggle in Bottom-Right Corner */}
-                  <AnimationToggleButton />
+                    {/* Discreet Zoom (+ / -) & Animation Controls in Bottom-Right Corner */}
+                    <BottomControls />
 
-                  <Routes>
+                    <Routes>
                     {/* Main Portal / Hub Screen */}
                     <Route path="/" element={<HubScreen />} />
 
@@ -56,6 +58,7 @@ export default function App() {
           />
         </Routes>
       </BrowserRouter>
-    </AnimationProvider>
+    </ZoomProvider>
+  </AnimationProvider>
   );
 }

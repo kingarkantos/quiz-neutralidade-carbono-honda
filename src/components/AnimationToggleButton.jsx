@@ -11,7 +11,7 @@ export default function AnimationToggleButton({ className = '' }) {
       onClick={toggleAnimations}
       title={animationsEnabled ? 'Pausar todas as animações' : 'Ativar animações'}
       aria-label={animationsEnabled ? 'Pausar todas as animações' : 'Ativar animações'}
-      className={`fixed sm:absolute bottom-3 right-3 z-50 w-8 h-8 sm:w-9 sm:h-9 rounded-full backdrop-blur-md border flex items-center justify-center transition-all duration-200 shadow-md active:scale-90 focus:outline-none ${
+      className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full backdrop-blur-md border flex items-center justify-center transition-all duration-200 shadow-md active:scale-90 focus:outline-none ${
         animationsEnabled
           ? 'bg-black/25 hover:bg-black/45 text-white/75 hover:text-white border-white/15'
           : 'bg-[#d97706]/85 hover:bg-[#b45309] text-white border-amber-300/40 ring-2 ring-amber-400/30'
@@ -25,4 +25,3 @@ export default function AnimationToggleButton({ className = '' }) {
     </button>
   );
 }
-
