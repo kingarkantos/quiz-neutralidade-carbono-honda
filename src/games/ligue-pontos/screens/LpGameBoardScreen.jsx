@@ -174,7 +174,7 @@ export default function LpGameBoardScreen({ onFinish }) {
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center pointer-events-none z-0 opacity-70"
-        style={{ backgroundImage: `url('/assets/bg/slice-quiz.png')` }}
+        style={{ backgroundImage: `url('/assets/bg/slice-quiz.webp')` }}
       />
 
       <CornerFoliage corners={['top-left', 'top-right']} />
@@ -260,7 +260,7 @@ export default function LpGameBoardScreen({ onFinish }) {
             >
               <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-dashed border-[#2EB85C]/45 flex items-center justify-center bg-[#FAF5EC]/70 mb-1.5 shadow-sm">
                 <img
-                  src="/assets/jogo2/ELEMENTOS/TELA INICIAL/ciclo-sustentavel-entre-maquina-e-natureza-1.png"
+                  src="/assets/jogo2/ELEMENTOS/TELA INICIAL/ciclo-sustentavel-entre-maquina-e-natureza-1.webp"
                   alt=""
                   className="w-9 h-9 sm:w-11 sm:h-11 object-contain opacity-75 pointer-events-none"
                 />
@@ -370,7 +370,7 @@ export default function LpGameBoardScreen({ onFinish }) {
                 <div className="flex-1 px-1.5 xs:px-2 text-left min-w-0">
                   <div className="flex items-center space-x-1 mb-0.5">
                     <img 
-                      src="/assets/elements/folha.png" 
+                      src="/assets/elements/folha.webp" 
                       alt="Folha" 
                       className="w-3 h-3 object-contain" 
                     />

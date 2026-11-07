@@ -9,7 +9,7 @@ export default function FinalMessageScreen({ onRestart }) {
       {/* Background Image: Motorcycle + Scenic road (Slice 2 / slice-home.png) */}
       <div
         className="absolute inset-0 bg-cover bg-center pointer-events-none z-0"
-        style={{ backgroundImage: `url('/assets/bg/slice-home.png')` }}
+        style={{ backgroundImage: `url('/assets/bg/slice-home.webp')` }}
       />
 
       {/* Bush Foliage in Bottom Corners */}
@@ -62,7 +62,7 @@ export default function FinalMessageScreen({ onRestart }) {
               duration: 4.0,
               ease: "easeInOut"
             }}
-            src="/assets/logos/tripla-acao.png"
+            src="/assets/logos/tripla-acao.webp"
             alt="Tripla Ação Para o Zero"
             className="h-28 xs:h-36 sm:h-44 max-w-[280px] xs:max-w-[320px] sm:max-w-[380px] w-auto object-contain drop-shadow-xl select-none pointer-events-none"
           />

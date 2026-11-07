@@ -30,7 +30,7 @@ export default function Header({
           className="absolute right-5 sm:right-6 top-4 z-40 flex items-center"
         >
           <img
-            src="/assets/logos/tripla-acao.png"
+            src="/assets/logos/tripla-acao.webp"
             alt="Tripla Ação Para o Zero"
             className="h-10 sm:h-12 w-auto object-contain drop-shadow-md select-none pointer-events-none"
           />

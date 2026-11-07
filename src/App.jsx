@@ -6,6 +6,7 @@ import LiguePontosApp from './games/ligue-pontos/LiguePontosApp';
 import MemoriaApp from './games/memoria/MemoriaApp';
 import PlantandoFuturoApp from './games/plantando-futuro/PlantandoFuturoApp';
 import PlantasDashboardScreen from './screens/PlantasDashboardScreen';
+import FullscreenButton from './components/FullscreenButton';
 
 export default function App() {
   return (
@@ -24,6 +25,9 @@ export default function App() {
                 Fills screen vertically on desktop, fits full screen on kiosk totens and mobile devices
               */}
               <main className="relative w-full h-full max-w-[540px] max-h-[100dvh] sm:max-h-[960px] sm:rounded-[36px] overflow-hidden shadow-2xl bg-[#ecdcc1] flex flex-col">
+                {/* Discreet Fullscreen Toggle in Top-Right Corner */}
+                <FullscreenButton />
+
                 <Routes>
                   {/* Main Portal / Hub Screen */}
                   <Route path="/" element={<HubScreen />} />

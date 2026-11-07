@@ -22,7 +22,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
             style={{ transformOrigin: '50% 100%' }}
           >
             <motion.img
-              src="/assets/elements/folha.png"
+              src="/assets/elements/folha.webp"
               alt="Folha leque"
               animate={{
                 scale: [0.93, 0.98, 0.93],
@@ -40,7 +40,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
             style={{ transformOrigin: '50% 100%' }}
           >
             <motion.img
-              src="/assets/elements/folha.png"
+              src="/assets/elements/folha.webp"
               alt="Folha leque"
               animate={{
                 scale: [0.93, 0.98, 0.93],
@@ -58,7 +58,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
             style={{ transformOrigin: '50% 100%' }}
           >
             <motion.img
-              src="/assets/elements/folha.png"
+              src="/assets/elements/folha.webp"
               alt="Folha leque"
               animate={{
                 scale: [1.02, 1.08, 1.02],
@@ -83,7 +83,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
             style={{ transform: 'scaleX(-1)', transformOrigin: '50% 100%' }}
           >
             <motion.img
-              src="/assets/elements/folha.png"
+              src="/assets/elements/folha.webp"
               alt="Folha leque"
               animate={{
                 scale: [0.93, 0.98, 0.93],
@@ -101,7 +101,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
             style={{ transform: 'scaleX(-1)', transformOrigin: '50% 100%' }}
           >
             <motion.img
-              src="/assets/elements/folha.png"
+              src="/assets/elements/folha.webp"
               alt="Folha leque"
               animate={{
                 scale: [0.93, 0.98, 0.93],
@@ -119,7 +119,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
             style={{ transform: 'scaleX(-1)', transformOrigin: '50% 100%' }}
           >
             <motion.img
-              src="/assets/elements/folha.png"
+              src="/assets/elements/folha.webp"
               alt="Folha leque"
               animate={{
                 scale: [1.02, 1.08, 1.02],
@@ -144,7 +144,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
             style={{ transformOrigin: '50% 100%' }}
           >
             <motion.img
-              src="/assets/elements/folha.png"
+              src="/assets/elements/folha.webp"
               alt="Folha leque"
               animate={{
                 scale: [0.92, 0.98, 0.92],
@@ -162,7 +162,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
             style={{ transformOrigin: '50% 100%' }}
           >
             <motion.img
-              src="/assets/elements/folha.png"
+              src="/assets/elements/folha.webp"
               alt="Folha leque"
               animate={{
                 scale: [0.92, 0.98, 0.92],
@@ -180,7 +180,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
             style={{ transformOrigin: '50% 100%' }}
           >
             <motion.img
-              src="/assets/elements/folha.png"
+              src="/assets/elements/folha.webp"
               alt="Folha leque"
               animate={{
                 scale: [1.02, 1.08, 1.02],
@@ -205,7 +205,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
             style={{ transform: 'scaleX(-1)', transformOrigin: '50% 100%' }}
           >
             <motion.img
-              src="/assets/elements/folha.png"
+              src="/assets/elements/folha.webp"
               alt="Folha leque"
               animate={{
                 scale: [0.92, 0.98, 0.92],
@@ -223,7 +223,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
             style={{ transform: 'scaleX(-1)', transformOrigin: '50% 100%' }}
           >
             <motion.img
-              src="/assets/elements/folha.png"
+              src="/assets/elements/folha.webp"
               alt="Folha leque"
               animate={{
                 scale: [0.92, 0.98, 0.92],
@@ -241,7 +241,7 @@ export default function CornerFoliage({ corners = ['top-left', 'top-right'] }) {
             style={{ transform: 'scaleX(-1)', transformOrigin: '50% 100%' }}
           >
             <motion.img
-              src="/assets/elements/folha.png"
+              src="/assets/elements/folha.webp"
               alt="Folha leque"
               animate={{
                 scale: [1.02, 1.08, 1.02],

@@ -269,8 +269,8 @@
     transparent 75%
   );
   background-size: 260% 100%;
-  -webkit-mask-image: url('/assets/logos/quiz-logo.png');
-  mask-image: url('/assets/logos/quiz-logo.png');
+  -webkit-mask-image: url('/assets/logos/quiz-logo.webp');
+  mask-image: url('/assets/logos/quiz-logo.webp');
   -webkit-mask-size: contain;
   mask-size: contain;
   -webkit-mask-repeat: no-repeat;

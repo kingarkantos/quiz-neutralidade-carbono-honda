@@ -59,7 +59,7 @@ export default function ScoreScreen({ correctCount, totalQuestions, onContinue }
       {/* Background Image: Foliage (Slice 1 / slice-quiz.png) */}
       <div 
         className="absolute inset-0 bg-cover bg-center pointer-events-none z-0"
-        style={{ backgroundImage: `url('/assets/bg/slice-quiz.png')` }}
+        style={{ backgroundImage: `url('/assets/bg/slice-quiz.webp')` }}
       />
 
       {/* Top Corner Leaves Fan */}
@@ -127,7 +127,7 @@ export default function ScoreScreen({ correctCount, totalQuestions, onContinue }
               <motion.img
                 animate={{ rotate: [-4, 4, -4], scale: [1, 1.06, 1] }}
                 transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
-                src="/assets/elements/folha.png"
+                src="/assets/elements/folha.webp"
                 alt="Folha"
                 className="w-7 h-7 sm:w-10 sm:h-10 object-contain drop-shadow-sm mb-0.5 sm:mb-1"
               />

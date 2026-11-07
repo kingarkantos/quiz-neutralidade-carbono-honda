@@ -54,7 +54,7 @@ export default function QuestionScreen({
       {/* Background Image: Foliage */}
       <div 
         className="absolute inset-0 bg-cover bg-center pointer-events-none z-0"
-        style={{ backgroundImage: `url('/assets/bg/slice-quiz.png')` }}
+        style={{ backgroundImage: `url('/assets/bg/slice-quiz.webp')` }}
       />
 
       {/* Animated Foliage in Top Corners */}

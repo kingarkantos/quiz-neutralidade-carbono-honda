@@ -8,19 +8,19 @@ export default function LpHowToPlayScreen({ onStart }) {
   const steps = [
     {
       num: 1,
-      icon: "/assets/jogo2/ELEMENTOS/TELA INICIAL/mao-tocando-alvo-circular-3.png",
+      icon: "/assets/jogo2/ELEMENTOS/TELA INICIAL/mao-tocando-alvo-circular-3.webp",
       title: "Selecione a ação",
       desc: "Toque em uma das ações industriais sustentáveis na coluna da esquerda."
     },
     {
       num: 2,
-      icon: "/assets/jogo2/ELEMENTOS/TELA INICIAL/nos-circulares-conectados-por-linha-tracejada-2.png",
+      icon: "/assets/jogo2/ELEMENTOS/TELA INICIAL/nos-circulares-conectados-por-linha-tracejada-2.webp",
       title: "Conecte ao benefício",
       desc: "Toque no benefício ambiental correspondente na coluna da direita."
     },
     {
       num: 3,
-      icon: "/assets/jogo2/ELEMENTOS/TELA INICIAL/circulo-aberto-com-marca-de-verificacao-1.png",
+      icon: "/assets/jogo2/ELEMENTOS/TELA INICIAL/circulo-aberto-com-marca-de-verificacao-1.webp",
       title: "Descubra o impacto",
       desc: "Cada par correto revela detalhes de como a indústria protege o planeta."
     }
@@ -31,7 +31,7 @@ export default function LpHowToPlayScreen({ onStart }) {
       {/* Background */}
       <div 
         className="absolute inset-0 bg-cover bg-center pointer-events-none z-0 opacity-70"
-        style={{ backgroundImage: `url('/assets/bg/slice-quiz.png')` }}
+        style={{ backgroundImage: `url('/assets/bg/slice-quiz.webp')` }}
       />
 
       <CornerFoliage corners={['top-left', 'top-right']} />

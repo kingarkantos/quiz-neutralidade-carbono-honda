@@ -136,7 +136,7 @@ export default function LpInteractiveTutorial({ className = '' }) {
             >
               <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#eadecc]/70 p-0.5 flex-shrink-0 flex items-center justify-center overflow-hidden">
                 <img
-                  src="/assets/jogo2/ELEMENTOS/ELEMENTOS AÇÕES/tres-caixas-plasticas-industriais-empilhadas-1.png"
+                  src="/assets/jogo2/ELEMENTOS/ELEMENTOS AÇÕES/tres-caixas-plasticas-industriais-empilhadas-1.webp"
                   alt=""
                   className="w-full h-full object-contain"
                 />
@@ -161,7 +161,7 @@ export default function LpInteractiveTutorial({ className = '' }) {
             <div className="relative flex items-center justify-between p-1 sm:p-1.5 rounded-xl border bg-white/80 border-white/90 shadow-xs opacity-75">
               <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#eadecc]/70 p-0.5 flex-shrink-0 flex items-center justify-center overflow-hidden">
                 <img
-                  src="/assets/jogo2/ELEMENTOS/ELEMENTOS AÇÕES/logistica-reversa-thumb.png"
+                  src="/assets/jogo2/ELEMENTOS/ELEMENTOS AÇÕES/logistica-reversa-thumb.webp"
                   alt=""
                   className="w-full h-full object-contain"
                 />
@@ -262,7 +262,7 @@ export default function LpInteractiveTutorial({ className = '' }) {
             {/* Hand Pointer Icon */}
             <div className="relative">
               <img
-                src="/assets/jogo2/ELEMENTOS/TELA INICIAL/mao-tocando-alvo-circular-3.png"
+                src="/assets/jogo2/ELEMENTOS/TELA INICIAL/mao-tocando-alvo-circular-3.webp"
                 alt="Toque"
                 className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-[0_4px_8px_rgba(0,0,0,0.3)] select-none pointer-events-none -rotate-12"
               />

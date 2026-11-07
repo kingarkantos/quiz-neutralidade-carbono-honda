@@ -6,25 +6,25 @@ export const ALL_QUESTIONS = [
       {
         id: "A",
         text: "Parar de fabricar produtos",
-        image: "/assets/q1/a.png",
+        image: "/assets/q1/a.webp",
         isCorrect: false
       },
       {
         id: "B",
         text: "Equilibrar o CO₂ emitido com CO₂ removido da atmosfera.",
-        image: "/assets/q1/b.png",
+        image: "/assets/q1/b.webp",
         isCorrect: true
       },
       {
         id: "C",
         text: "Utilizar somente materiais reciclados",
-        image: "/assets/q1/c.png",
+        image: "/assets/q1/c.webp",
         isCorrect: false
       },
       {
         id: "D",
         text: "Eliminar o uso de eletricidade",
-        image: "/assets/q1/d.png",
+        image: "/assets/q1/d.webp",
         isCorrect: false
       }
     ],
@@ -39,25 +39,25 @@ export const ALL_QUESTIONS = [
       {
         id: "A",
         text: "2030",
-        image: "/assets/q2/a.png",
+        image: "/assets/q2/a.webp",
         isCorrect: false
       },
       {
         id: "B",
         text: "2040",
-        image: "/assets/q2/b.png",
+        image: "/assets/q2/b.webp",
         isCorrect: false
       },
       {
         id: "C",
         text: "2050",
-        image: "/assets/q2/c.png",
+        image: "/assets/q2/c.webp",
         isCorrect: true
       },
       {
         id: "D",
         text: "2070",
-        image: "/assets/q2/d.png",
+        image: "/assets/q2/d.webp",
         isCorrect: false
       }
     ],
@@ -72,25 +72,25 @@ export const ALL_QUESTIONS = [
       {
         id: "A",
         text: "Aumentando o desperdício de energia",
-        image: "/assets/q3/a.png",
+        image: "/assets/q3/a.webp",
         isCorrect: false
       },
       {
         id: "B",
         text: "Mantendo equipamentos ligados sem necessidade.",
-        image: "/assets/q3/b.png",
+        image: "/assets/q3/b.webp",
         isCorrect: false
       },
       {
         id: "C",
         text: "Consumindo mais combustíveis fósseis",
-        image: "/assets/q3/c.png",
+        image: "/assets/q3/c.webp",
         isCorrect: false
       },
       {
         id: "D",
         text: "Melhorando a eficiência energética e utilizando energia renováveis",
-        image: "/assets/q3/d.png",
+        image: "/assets/q3/d.webp",
         isCorrect: true
       }
     ],
@@ -105,25 +105,25 @@ export const ALL_QUESTIONS = [
       {
         id: "A",
         text: "Mobilidade elétrica e tecnologias de alta eficiência",
-        image: "/assets/q4/a.png",
+        image: "/assets/q4/a.webp",
         isCorrect: true
       },
       {
         id: "B",
         text: "Manter motores antigos e desregulados",
-        image: "/assets/q4/b.png",
+        image: "/assets/q4/b.webp",
         isCorrect: false
       },
       {
         id: "C",
         text: "Priorizar consumo acelerado de combustível",
-        image: "/assets/q4/c.png",
+        image: "/assets/q4/c.webp",
         isCorrect: false
       },
       {
         id: "D",
         text: "Desperdiçar energia e recursos operacionais",
-        image: "/assets/q4/d.png",
+        image: "/assets/q4/d.webp",
         isCorrect: false
       }
     ],
@@ -138,25 +138,25 @@ export const ALL_QUESTIONS = [
       {
         id: "A",
         text: "Apagar as luzes e economizar energia elétrica",
-        image: "/assets/q5/a.png",
+        image: "/assets/q5/a.webp",
         isCorrect: true
       },
       {
         id: "B",
         text: "Deixar luzes acesas em ambientes desocupados",
-        image: "/assets/q3/a.png",
+        image: "/assets/q3/a.webp",
         isCorrect: false
       },
       {
         id: "C",
         text: "Consumir energia em excesso nos horários de pico",
-        image: "/assets/q4/d.png",
+        image: "/assets/q4/d.webp",
         isCorrect: false
       },
       {
         id: "D",
         text: "Descartar resíduos recicláveis sem separação",
-        image: "/assets/q1/c.png",
+        image: "/assets/q1/c.webp",
         isCorrect: false
       }
     ],

@@ -36,7 +36,7 @@ export default function FeedbackScreen({
       {/* Background Image: Foliage (Slice 1 / slice-quiz.png) */}
       <div 
         className="absolute inset-0 bg-cover bg-center pointer-events-none z-0"
-        style={{ backgroundImage: `url('/assets/bg/slice-quiz.png')` }}
+        style={{ backgroundImage: `url('/assets/bg/slice-quiz.webp')` }}
       />
 
       {/* Top Corner Leaves Fan */}
@@ -82,7 +82,7 @@ export default function FeedbackScreen({
                 className="absolute top-1 left-1 sm:top-2 sm:left-2 z-10 pointer-events-none"
               >
                 <motion.img
-                  src="/assets/elements/folha.png"
+                  src="/assets/elements/folha.webp"
                   alt="Folha Verde"
                   animate={{
                     rotate: [-30, -20, -30],
@@ -101,7 +101,7 @@ export default function FeedbackScreen({
                 className="absolute top-1 right-1 sm:top-2 sm:right-2 z-10 pointer-events-none"
               >
                 <motion.img
-                  src="/assets/elements/folha.png"
+                  src="/assets/elements/folha.webp"
                   alt="Folha Verde"
                   animate={{
                     rotate: [30, 40, 30],
@@ -120,7 +120,7 @@ export default function FeedbackScreen({
                 className="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 z-10 pointer-events-none"
               >
                 <motion.img
-                  src="/assets/elements/folha.png"
+                  src="/assets/elements/folha.webp"
                   alt="Folha Verde"
                   animate={{
                     rotate: [-65, -55, -65],
@@ -139,7 +139,7 @@ export default function FeedbackScreen({
                 className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 z-10 pointer-events-none"
               >
                 <motion.img
-                  src="/assets/elements/folha.png"
+                  src="/assets/elements/folha.webp"
                   alt="Folha Verde"
                   animate={{
                     rotate: [65, 75, 65],
@@ -165,7 +165,7 @@ export default function FeedbackScreen({
                   opacity: { duration: 0.3 },
                   y: { repeat: Infinity, duration: 3.5, ease: 'easeInOut', delay: 0.4 }
                 }}
-                src="/assets/elements/earth-happy.png"
+                src="/assets/elements/earth-happy.webp"
                 alt="Terra Feliz"
                 className="w-36 h-36 sm:w-48 sm:h-48 object-contain drop-shadow-[0_16px_28px_rgba(0,0,0,0.3)] z-20 select-none pointer-events-none"
               />
@@ -188,14 +188,14 @@ export default function FeedbackScreen({
                   y: { repeat: Infinity, duration: 3.8, ease: 'easeInOut' },
                   rotate: { repeat: Infinity, duration: 4.2, ease: 'easeInOut' }
                 }}
-                src="/assets/elements/earth-sad.png"
+                src="/assets/elements/earth-sad.webp"
                 alt="Terra Triste"
                 className="w-32 h-32 sm:w-42 sm:h-42 object-contain drop-shadow-[0_16px_28px_rgba(0,0,0,0.3)] z-20 select-none pointer-events-none"
               />
 
               {/* CO2 Cloud Left - No canto superior esquerdo do planeta */}
               <motion.img
-                src="/assets/elements/co2-cloud.png"
+                src="/assets/elements/co2-cloud.webp"
                 alt="Nuvem de CO2"
                 animate={{
                   y: [0, -7, 0],
@@ -209,7 +209,7 @@ export default function FeedbackScreen({
 
               {/* CO2 Cloud Right - No canto superior direito do planeta */}
               <motion.img
-                src="/assets/elements/co2-cloud.png"
+                src="/assets/elements/co2-cloud.webp"
                 alt="Nuvem de CO2"
                 animate={{
                   y: [0, -8, 0],

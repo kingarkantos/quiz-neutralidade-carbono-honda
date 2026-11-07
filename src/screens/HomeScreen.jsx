@@ -10,7 +10,7 @@ export default function HomeScreen({ onStart }) {
       {/* Background Image: Motorcycle + scenic bridge (slice-home.png) */}
       <div 
         className="absolute inset-0 bg-cover bg-center pointer-events-none z-0"
-        style={{ backgroundImage: `url('/assets/bg/slice-home.png')` }}
+        style={{ backgroundImage: `url('/assets/bg/slice-home.webp')` }}
       />
 
       {/* Falling Vector Leaves (Matrix effect falling from sky, passing behind the logo) */}
@@ -82,7 +82,7 @@ export default function HomeScreen({ onStart }) {
               className="relative logo-shine-wrapper"
             >
               <img
-                src="/assets/logos/quiz-logo.png"
+                src="/assets/logos/quiz-logo.webp"
                 alt="Quiz Neutralidade de Carbono"
                 className="w-full max-w-[340px] sm:max-w-[380px] drop-shadow-[0_16px_24px_rgba(0,0,0,0.22)] select-none pointer-events-none"
               />

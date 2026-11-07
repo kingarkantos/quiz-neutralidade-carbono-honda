@@ -148,7 +148,7 @@ export default function WindLeavesStream({
         >
           {p.isImage ? (
             <img 
-              src="/assets/elements/folha.png" 
+              src="/assets/elements/folha.webp" 
               alt="" 
               className="w-full h-full object-contain pointer-events-none select-none"
             />

@@ -93,7 +93,7 @@ export default function PfSignatureScreen({ onBack, onConfirm }) {
     <div className="relative w-full h-full flex flex-col justify-between overflow-hidden bg-[#e9decb] select-none">
       <div 
         className="absolute inset-0 bg-cover bg-center pointer-events-none z-0 opacity-70"
-        style={{ backgroundImage: `url('/assets/bg/slice-quiz.png')` }}
+        style={{ backgroundImage: `url('/assets/bg/slice-quiz.webp')` }}
       />
       <CornerFoliage corners={['top-left', 'top-right', 'bottom-left', 'bottom-right']} />
 

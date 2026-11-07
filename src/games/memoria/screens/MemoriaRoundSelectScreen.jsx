@@ -13,7 +13,7 @@ export default function MemoriaRoundSelectScreen({ onSelectRound }) {
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center pointer-events-none z-0 opacity-70"
-        style={{ backgroundImage: `url('/assets/bg/slice-quiz.png')` }}
+        style={{ backgroundImage: `url('/assets/bg/slice-quiz.webp')` }}
       />
 
       <CornerFoliage corners={['top-left', 'top-right']} />

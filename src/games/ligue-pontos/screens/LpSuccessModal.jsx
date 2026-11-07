@@ -50,7 +50,7 @@ export default function LpSuccessModal({ item, onClose, isLast }) {
           {/* Benefit Badge */}
           <div className="my-2 inline-flex items-center justify-center space-x-2 bg-[#2EB85C]/15 px-3.5 py-1.5 rounded-2xl border border-[#2EB85C]/30 max-w-full">
             <img 
-              src="/assets/elements/folha.png" 
+              src="/assets/elements/folha.webp" 
               alt="Folha" 
               className="w-4 h-4 object-contain flex-shrink-0" 
             />

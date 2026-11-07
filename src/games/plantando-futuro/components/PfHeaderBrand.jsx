@@ -21,7 +21,7 @@ export default function PfHeaderBrand({
     <div className={`relative inline-flex items-center select-none ${className}`}>
       {/* 1. Official Transparent Logo */}
       <motion.img
-        src="/assets/plantando-futuro/logo-plantando-futuro.png"
+        src="/assets/plantando-futuro/logo-plantando-futuro.webp"
         alt="Plantando o futuro"
         style={{ height: `${currentHeight}px` }}
         className="w-auto object-contain flex-shrink-0 drop-shadow-xs"

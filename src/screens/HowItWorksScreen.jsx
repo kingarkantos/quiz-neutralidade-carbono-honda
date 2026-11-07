@@ -27,7 +27,7 @@ export default function HowItWorksScreen({ onStart }) {
       {/* Background Image: Foliage texture */}
       <div 
         className="absolute inset-0 bg-cover bg-center pointer-events-none z-0"
-        style={{ backgroundImage: `url('/assets/bg/slice-quiz.png')` }}
+        style={{ backgroundImage: `url('/assets/bg/slice-quiz.webp')` }}
       />
 
       {/* Top Corner Leaves Fan */}

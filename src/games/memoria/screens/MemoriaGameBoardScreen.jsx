@@ -123,7 +123,7 @@ export default function MemoriaGameBoardScreen({ onFinish }) {
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-bottom pointer-events-none z-0 opacity-70"
-        style={{ backgroundImage: `url('/assets/jogo3/FUNDOS/slice-1-1.png')` }}
+        style={{ backgroundImage: `url('/assets/jogo3/FUNDOS/slice-1-1.webp')` }}
       />
 
       <CornerFoliage corners={['top-left', 'top-right']} />
@@ -265,7 +265,7 @@ function MemoryCard({ card, isFlipped, isMatched, onClick }) {
           style={{ backfaceVisibility: 'hidden' }}
         >
           <img
-            src="/assets/jogo3/FUNDOS/cartao-verde-com-folha-em-relevo.png"
+            src="/assets/jogo3/FUNDOS/cartao-verde-com-folha-em-relevo.webp"
             alt="Carta Honda"
             className="w-full h-full object-cover pointer-events-none select-none"
           />

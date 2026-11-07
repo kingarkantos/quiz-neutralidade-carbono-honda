@@ -20,7 +20,7 @@ export default function LpFinishScreen({ onRestart }) {
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center pointer-events-none z-0 opacity-75"
-        style={{ backgroundImage: `url('/assets/bg/slice-home.png')` }}
+        style={{ backgroundImage: `url('/assets/bg/slice-home.webp')` }}
       />
 
       <CornerFoliage corners={['bottom-left', 'bottom-right']} />
@@ -47,7 +47,7 @@ export default function LpFinishScreen({ onRestart }) {
               scale: [1, 1.025, 1]
             }}
             transition={{ repeat: Infinity, duration: 4.2, ease: 'easeInOut' }}
-            src="/assets/logos/tripla-acao.png"
+            src="/assets/logos/tripla-acao.webp"
             alt="Tripla Ação Para o Zero"
             className="w-full h-full object-contain drop-shadow-[0_16px_30px_rgba(0,0,0,0.18)] pointer-events-none select-none z-20"
           />

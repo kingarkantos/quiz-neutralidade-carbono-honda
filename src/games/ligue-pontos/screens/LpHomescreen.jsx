@@ -10,7 +10,7 @@ export default function LpHomescreen({ onStart }) {
       {/* Background */}
       <div 
         className="absolute inset-0 bg-cover bg-center pointer-events-none z-0 opacity-85"
-        style={{ backgroundImage: `url('/assets/bg/slice-home.png')` }}
+        style={{ backgroundImage: `url('/assets/bg/slice-home.webp')` }}
       />
 
       {/* Falling Vector Leaves */}
@@ -41,7 +41,7 @@ export default function LpHomescreen({ onStart }) {
                 scale: [1, 1.02, 1]
               }}
               transition={{ repeat: Infinity, duration: 4.6, ease: 'easeInOut' }}
-              src="/assets/jogo2/ELEMENTOS/TELA INICIAL/logo-3d-de-circulacao-de-recursos-4.png"
+              src="/assets/jogo2/ELEMENTOS/TELA INICIAL/logo-3d-de-circulacao-de-recursos-4.webp"
               alt="Circulação de Recursos - Ligue os Pontos"
               className="w-full max-w-[290px] sm:max-w-[340px] object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.18)] pointer-events-none select-none"
             />
@@ -72,7 +72,7 @@ export default function LpHomescreen({ onStart }) {
           <div className="absolute w-44 h-44 sm:w-54 sm:h-54 rounded-full bg-[#3cd426]/35 blur-3xl -z-10 pointer-events-none" />
           
           <img
-            src="/assets/jogo2/ELEMENTOS/TELA INICIAL/ciclo-sustentavel-entre-maquina-e-natureza-1.png"
+            src="/assets/jogo2/ELEMENTOS/TELA INICIAL/ciclo-sustentavel-entre-maquina-e-natureza-1.webp"
             alt="Circulação de Recursos"
             className="w-full h-full object-contain drop-shadow-[0_18px_32px_rgba(0,0,0,0.25)] select-none pointer-events-none"
           />

@@ -47,7 +47,7 @@ export default function PfSuccessScreen({ resgateData, onFinish }) {
       {/* Background with Nature Foliage Texture */}
       <div 
         className="absolute inset-0 bg-cover bg-center pointer-events-none z-0 opacity-70"
-        style={{ backgroundImage: `url('/assets/bg/slice-quiz.png')` }}
+        style={{ backgroundImage: `url('/assets/bg/slice-quiz.webp')` }}
       />
       <CornerFoliage corners={['top-left', 'top-right', 'bottom-left', 'bottom-right']} />
 
@@ -89,7 +89,7 @@ export default function PfSuccessScreen({ resgateData, onFinish }) {
             className="w-full max-w-[340px] xs:max-w-[370px] sm:max-w-[390px] my-3 drop-shadow-md select-none"
           >
             <img 
-              src="/assets/plantando-futuro/card-reducao-emissao.png" 
+              src="/assets/plantando-futuro/card-reducao-emissao.webp" 
               alt="-17,33 kgCO2e/ano de emissões reduzidas" 
               className="w-full h-auto object-contain pointer-events-none"
             />

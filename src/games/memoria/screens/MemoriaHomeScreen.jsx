@@ -11,7 +11,7 @@ export default function MemoriaHomeScreen({ onStart }) {
       {/* Background with wind turbines and hills */}
       <div 
         className="absolute inset-0 bg-cover bg-bottom pointer-events-none z-0 opacity-85"
-        style={{ backgroundImage: `url('/assets/jogo3/FUNDOS/slice-1-1.png')` }}
+        style={{ backgroundImage: `url('/assets/jogo3/FUNDOS/slice-1-1.webp')` }}
       />
 
       {/* Falling Vector Leaves Matrix Animation in Top Zone */}
@@ -55,7 +55,7 @@ export default function MemoriaHomeScreen({ onStart }) {
                 scale: [1, 1.02, 1]
               }}
               transition={{ repeat: Infinity, duration: 4.6, ease: 'easeInOut' }}
-              src="/assets/jogo3/TELA INICIAL/logo-energia-limpa-jogo-da-memoria.png"
+              src="/assets/jogo3/TELA INICIAL/logo-energia-limpa-jogo-da-memoria.webp"
               alt="Energia Limpa - Jogo da Memória"
               className="w-full max-w-[320px] sm:max-w-[360px] drop-shadow-[0_16px_28px_rgba(0,0,0,0.22)] pointer-events-none select-none"
             />

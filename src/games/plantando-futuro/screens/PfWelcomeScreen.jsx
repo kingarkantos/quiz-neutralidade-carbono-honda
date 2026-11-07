@@ -12,17 +12,17 @@ export default function PfWelcomeScreen({ onStart }) {
   const steps = [
     {
       id: 1,
-      icon: '/assets/plantando-futuro/icones/tablet-assinatura.png',
+      icon: '/assets/plantando-futuro/icones/tablet-assinatura.webp',
       text: 'Assine digitalmente.'
     },
     {
       id: 2,
-      icon: '/assets/plantando-futuro/icones/cupom-voucher.png',
+      icon: '/assets/plantando-futuro/icones/cupom-voucher.webp',
       text: 'Retire seu voucher'
     },
     {
       id: 3,
-      icon: '/assets/plantando-futuro/icones/muda-kraft.png',
+      icon: '/assets/plantando-futuro/icones/muda-kraft.webp',
       text: 'Ganhe uma muda de árvore'
     }
   ];
@@ -32,13 +32,13 @@ export default function PfWelcomeScreen({ onStart }) {
       {/* Background with Nature Foliage Texture */}
       <div 
         className="absolute inset-0 bg-cover bg-center pointer-events-none z-0 opacity-70"
-        style={{ backgroundImage: `url('/assets/bg/slice-quiz.png')` }}
+        style={{ backgroundImage: `url('/assets/bg/slice-quiz.webp')` }}
       />
 
       {/* Decorative Tree Trunk Hand Watermark in background */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.06] -z-0">
         <img 
-          src="/assets/plantando-futuro/icones/muda-kraft.png" 
+          src="/assets/plantando-futuro/icones/muda-kraft.webp" 
           alt="" 
           className="w-96 h-96 object-contain"
         />

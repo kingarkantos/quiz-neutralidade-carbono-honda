@@ -78,7 +78,7 @@ export default function PfCatalogScreen({ onBack, colaboradorInfo, onResgateSucc
       {/* Background with Nature Foliage Texture */}
       <div 
         className="absolute inset-0 bg-cover bg-center pointer-events-none z-0 opacity-70"
-        style={{ backgroundImage: `url('/assets/bg/slice-quiz.png')` }}
+        style={{ backgroundImage: `url('/assets/bg/slice-quiz.webp')` }}
       />
       <CornerFoliage corners={['top-left', 'top-right']} />
 
@@ -142,7 +142,7 @@ export default function PfCatalogScreen({ onBack, colaboradorInfo, onResgateSucc
           {/* Left: Cloud + CO2 + Calculator Icon */}
           <div className="relative z-10 pl-1 sm:pl-2 flex-shrink-0 flex items-center justify-center">
             <img 
-              src="/assets/plantando-futuro/icone-calculadora-co2.png" 
+              src="/assets/plantando-futuro/icone-calculadora-co2.webp" 
               alt="Calculadora CO2" 
               className="w-12 h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 object-contain drop-shadow-sm"
             />

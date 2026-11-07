@@ -16,7 +16,7 @@ export default function HubScreen() {
       badge: 'JOGO 1 • CONSCIENTIZAÇÃO',
       title: 'Quiz Neutralidade de Carbono',
       desc: 'Descubra atitudes individuais e coletivas rumo ao zero de emissões.',
-      image: '/assets/logos/quiz-logo.png',
+      image: '/assets/logos/quiz-logo.webp',
       btnText: 'JOGAR QUIZ',
       btnColor: 'btn-tactile-green',
       icon: HelpCircle,
@@ -28,7 +28,7 @@ export default function HubScreen() {
       badge: 'JOGO 2 • LIGUE OS PONTOS',
       title: 'Circulação de Recursos',
       desc: 'Conecte as ações da fábrica aos seus benefícios sustentáveis.',
-      image: '/assets/jogo2/ELEMENTOS/TELA INICIAL/ciclo-sustentavel-entre-maquina-e-natureza-1.png',
+      image: '/assets/jogo2/ELEMENTOS/TELA INICIAL/ciclo-sustentavel-entre-maquina-e-natureza-1.webp',
       btnText: 'LIGAR PONTOS',
       btnColor: 'btn-tactile-green',
       icon: GitFork,
@@ -40,7 +40,7 @@ export default function HubScreen() {
       badge: 'JOGO 3 • JOGO DA MEMÓRIA',
       title: 'Energia Limpa',
       desc: 'Encontre os pares de fontes de energia renováveis e de transição.',
-      image: '/assets/jogo3/TELA INICIAL/turbinas-eolicas-nas-colinas-verdes-1.png',
+      image: '/assets/jogo3/TELA INICIAL/turbinas-eolicas-nas-colinas-verdes-1.webp',
       btnText: 'JOGAR MEMÓRIA',
       btnColor: 'btn-tactile-green',
       icon: Sparkles,
@@ -52,7 +52,7 @@ export default function HubScreen() {
       badge: 'AÇÃO SOCIAL • MEIO AMBIENTE',
       title: 'Plantando o Futuro',
       desc: 'Conheça as espécies nativas e escolha a sua muda de árvore.',
-      image: '/assets/plantando-futuro/icones/muda-kraft.png',
+      image: '/assets/plantando-futuro/icones/muda-kraft.webp',
       btnText: 'ESCOLHER MUDA',
       btnColor: 'btn-tactile-green',
       icon: Sprout,
@@ -65,7 +65,7 @@ export default function HubScreen() {
       {/* Background Image: Foliage / Nature texture */}
       <div 
         className="absolute inset-0 bg-cover bg-center pointer-events-none z-0 opacity-80"
-        style={{ backgroundImage: `url('/assets/bg/slice-quiz.png')` }}
+        style={{ backgroundImage: `url('/assets/bg/slice-quiz.webp')` }}
       />
 
       {/* Falling Vector Leaves (Matrix effect flowing in the background) */}
