@@ -9,10 +9,11 @@ import { useZoom } from '../context/ZoomContext';
  */
 export default function ZoomContent({ children, className = '', style = {} }) {
   const { zoom } = useZoom();
+  const hasJustify = /justify-(start|center|end|between|around|evenly)/.test(className);
 
   return (
     <div
-      className={`relative z-10 w-full h-full flex flex-col justify-between overflow-y-auto no-scrollbar ${className}`}
+      className={`relative z-10 w-full h-full flex flex-col ${hasJustify ? '' : 'justify-between'} overflow-y-auto no-scrollbar ${className}`}
       style={{
         zoom: zoom,
         ...style

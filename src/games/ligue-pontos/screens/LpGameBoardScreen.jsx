@@ -181,103 +181,105 @@ export default function LpGameBoardScreen({ onFinish }) {
       <CornerFoliage corners={['top-left', 'top-right']} />
 
       {/* Scalable Content Layer (Zoom only applies to elements, never the background) */}
-      <ZoomContent className="pt-2 px-3 sm:px-4">
+      <ZoomContent className="pt-2 px-3 sm:px-4 justify-start">
         {/* Top Header */}
         <Header className="pt-2 pb-1" />
 
-      {/* Stepper & Instructions */}
-      <div className="relative z-10 w-full px-4 flex flex-col items-center text-center select-none pt-1">
-        {/* Stepper Dots & Timer */}
-        <div className="flex items-center justify-center space-x-2 mb-1.5">
-          <div className="flex items-center space-x-2 bg-[#FAF5EC]/90 px-3.5 py-1.5 rounded-full shadow-sm border border-white">
-            <span className="text-[#1A2E1A] font-extrabold text-xs uppercase tracking-wider">
-              Conexões: {matchedIds.size} de {actions.length}
-            </span>
-            <div className="flex items-center space-x-1.5">
-              {actions.map((act, i) => {
-                const isActMatched = matchedIds.has(act.id);
-                const actColor = PAIR_COLORS[act.id] || PAIR_COLORS[1];
-                return (
-                  <div
-                    key={i}
-                    className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${
-                      isActMatched ? actColor.bgDot : 'bg-[#cfc3a7]'
-                    }`}
-                  />
-                );
-              })}
-            </div>
-          </div>
-          <GameTimer secondsLeft={timeLeft} />
-        </div>
-
-        <p className="text-[#1A2E1A] font-bold text-xs sm:text-sm">
-          Toque em uma ação e depois no benefício correspondente.
-        </p>
-      </div>
-
-      {/* Spotlight 3D Preview - Moved higher */}
-      <div className="relative z-10 flex-1 min-h-[130px] xs:min-h-[150px] sm:min-h-[175px] w-full px-4 flex flex-col items-center justify-start pt-1 sm:pt-2 select-none">
-        <AnimatePresence mode="wait">
-          {activeItem ? (
-            <motion.div
-              key={activeItem.id}
-              initial={{ scale: 0.7, opacity: 0, y: 12 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.8, opacity: 0, y: -8 }}
-              transition={{ type: 'spring', stiffness: 340, damping: 22 }}
-              className="relative flex flex-col items-center justify-center select-none"
-            >
-              {/* Radial Eco Aura */}
-              <motion.div
-                animate={{ scale: [0.95, 1.25, 0.95], opacity: [0.35, 0.7, 0.35] }}
-                transition={{ repeat: Infinity, duration: 3.2, ease: 'easeInOut' }}
-                className="absolute w-36 h-36 xs:w-44 xs:h-44 sm:w-56 sm:h-56 rounded-full bg-[#3cd426]/35 blur-2xl -z-10 pointer-events-none"
-              />
-
-              {/* 3D Highlighted Illustration - Much larger, perfectly centered, no distortion */}
-              <motion.img
-                animate={{ y: [0, -6, 0] }}
-                transition={{ repeat: Infinity, duration: 3.4, ease: 'easeInOut' }}
-                src={activeItem.actionThumb}
-                alt={activeItem.actionTitle}
-                className="h-24 xs:h-30 sm:h-38 max-h-[35vh] w-auto object-contain drop-shadow-[0_16px_28px_rgba(0,0,0,0.32)] pointer-events-none"
-              />
-
-              {/* Active Item Title Pill */}
-              <motion.span 
-                initial={{ opacity: 0, y: 4 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mt-2 bg-white/95 backdrop-blur-sm text-[#1C3B24] font-black text-xs sm:text-sm uppercase px-4 py-1 rounded-full shadow-md border border-[#2EB85C]/35"
-              >
-                {activeItem.actionTitle}
-              </motion.span>
-            </motion.div>
-          ) : (
-            <motion.div
-              key="placeholder"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.65 }}
-              exit={{ opacity: 0 }}
-              className="flex flex-col items-center justify-center text-center select-none py-2"
-            >
-              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-dashed border-[#2EB85C]/45 flex items-center justify-center bg-[#FAF5EC]/70 mb-1.5 shadow-sm">
-                <img
-                  src="/assets/jogo2/ELEMENTOS/TELA INICIAL/ciclo-sustentavel-entre-maquina-e-natureza-1.webp"
-                  alt=""
-                  className="w-9 h-9 sm:w-11 sm:h-11 object-contain opacity-75 pointer-events-none"
-                />
+        {/* Unified Centralized Game Board Area */}
+        <div className="w-full max-w-xl mx-auto flex-1 flex flex-col items-center justify-center min-h-0 py-1">
+          {/* Stepper & Instructions */}
+          <div className="relative z-10 w-full px-4 flex flex-col items-center text-center select-none mb-1 sm:mb-2 flex-shrink-0">
+            {/* Stepper Dots & Timer */}
+            <div className="flex items-center justify-center space-x-2 mb-1.5">
+              <div className="flex items-center space-x-2 bg-[#FAF5EC]/90 px-3.5 py-1.5 rounded-full shadow-sm border border-white">
+                <span className="text-[#1A2E1A] font-extrabold text-xs uppercase tracking-wider">
+                  Conexões: {matchedIds.size} de {actions.length}
+                </span>
+                <div className="flex items-center space-x-1.5">
+                  {actions.map((act, i) => {
+                    const isActMatched = matchedIds.has(act.id);
+                    const actColor = PAIR_COLORS[act.id] || PAIR_COLORS[1];
+                    return (
+                      <div
+                        key={i}
+                        className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${
+                          isActMatched ? actColor.bgDot : 'bg-[#cfc3a7]'
+                        }`}
+                      />
+                    );
+                  })}
+                </div>
               </div>
-              <span className="text-[#3b4f3c] font-bold text-[11px] sm:text-xs">
-                Toque em uma opção para destacar
-              </span>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+              <GameTimer secondsLeft={timeLeft} />
+            </div>
 
-      {/* Main Board: 2 Columns - Anchored comfortably at the lower zone */}
-      <div className="relative z-10 flex-shrink-0 px-2 xs:px-3 sm:px-4 pt-1 pb-2 sm:pb-3 max-w-xl mx-auto w-full flex items-center justify-between gap-2 xs:gap-3 sm:gap-4">
+            <p className="text-[#1A2E1A] font-bold text-xs sm:text-sm">
+              Toque em uma ação e depois no benefício correspondente.
+            </p>
+          </div>
+
+          {/* Spotlight 3D Preview - Compact and directly above the options */}
+          <div className="relative z-10 flex-shrink-0 min-h-[85px] xs:min-h-[105px] sm:min-h-[120px] w-full px-4 flex flex-col items-center justify-center py-1 select-none">
+            <AnimatePresence mode="wait">
+              {activeItem ? (
+                <motion.div
+                  key={activeItem.id}
+                  initial={{ scale: 0.7, opacity: 0, y: 12 }}
+                  animate={{ scale: 1, opacity: 1, y: 0 }}
+                  exit={{ scale: 0.8, opacity: 0, y: -8 }}
+                  transition={{ type: 'spring', stiffness: 340, damping: 22 }}
+                  className="relative flex flex-col items-center justify-center select-none"
+                >
+                  {/* Radial Eco Aura */}
+                  <motion.div
+                    animate={{ scale: [0.95, 1.25, 0.95], opacity: [0.35, 0.7, 0.35] }}
+                    transition={{ repeat: Infinity, duration: 3.2, ease: 'easeInOut' }}
+                    className="absolute w-28 h-28 xs:w-36 xs:h-36 sm:w-44 sm:h-44 rounded-full bg-[#3cd426]/35 blur-2xl -z-10 pointer-events-none"
+                  />
+
+                  {/* 3D Highlighted Illustration */}
+                  <motion.img
+                    animate={{ y: [0, -4, 0] }}
+                    transition={{ repeat: Infinity, duration: 3.4, ease: 'easeInOut' }}
+                    src={activeItem.actionThumb}
+                    alt={activeItem.actionTitle}
+                    className="h-16 xs:h-20 sm:h-24 max-h-[16vh] w-auto object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.32)] pointer-events-none"
+                  />
+
+                  {/* Active Item Title Pill */}
+                  <motion.span 
+                    initial={{ opacity: 0, y: 4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-1.5 bg-white/95 backdrop-blur-sm text-[#1C3B24] font-black text-[11px] sm:text-xs uppercase px-3.5 py-0.5 rounded-full shadow-md border border-[#2EB85C]/35"
+                  >
+                    {activeItem.actionTitle}
+                  </motion.span>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="placeholder"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.65 }}
+                  exit={{ opacity: 0 }}
+                  className="flex flex-col items-center justify-center text-center select-none py-1"
+                >
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-dashed border-[#2EB85C]/45 flex items-center justify-center bg-[#FAF5EC]/70 mb-1 shadow-sm">
+                    <img
+                      src="/assets/jogo2/ELEMENTOS/TELA INICIAL/ciclo-sustentavel-entre-maquina-e-natureza-1.webp"
+                      alt=""
+                      className="w-6 h-6 sm:w-8 sm:h-8 object-contain opacity-75 pointer-events-none"
+                    />
+                  </div>
+                  <span className="text-[#3b4f3c] font-bold text-[10.5px] sm:text-xs">
+                    Toque em uma opção para destacar
+                  </span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Main Board: 2 Columns - Immediately below the spotlight */}
+          <div className="relative z-10 flex-shrink-0 px-2 xs:px-3 sm:px-4 pt-1 pb-1 max-w-xl mx-auto w-full flex items-center justify-between gap-2 xs:gap-3 sm:gap-4">
         {/* Left Column: AÇÕES */}
         <div className="flex-1 flex flex-col space-y-2 sm:space-y-2.5 min-w-0">
           <div className="text-center font-black text-xs sm:text-sm text-[#1C3B24] uppercase tracking-wider pb-0.5">
@@ -392,14 +394,15 @@ export default function LpGameBoardScreen({ onFinish }) {
       </div>
 
         {/* Footer status / helper */}
-        <div className="w-full px-6 pb-6 sm:pb-8 pt-1 flex justify-center text-center select-none flex-shrink-0">
+        <div className="w-full px-6 pt-2 pb-3 flex justify-center text-center select-none flex-shrink-0">
           <p className="text-[#4b5d4c] font-medium text-[11px] sm:text-xs">
             {matchedIds.size === actions.length 
               ? "Todas as conexões completas! Toque para finalizar."
               : "Toque em um item de cada lado para formar o par sustentável."}
           </p>
         </div>
-      </ZoomContent>
+      </div>
+    </ZoomContent>
 
       {/* Modals */}
       <AnimatePresence>
