@@ -22,3 +22,4 @@ export default function ZoomContent({ children, className = '', style = {} }) {
     </div>
   );
 }
+

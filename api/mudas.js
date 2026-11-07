@@ -331,25 +331,46 @@ export default async function handler(req, res) {
         });
       }
 
-      // ACTION: RESET (admin testing)
+      // ACTION: RESET (admin / stock reset with custom values)
       if (action === 'reset') {
-        const targetMudas = mudaId ? [DEFAULT_MUDAS.find(m => m.id === mudaId)].filter(Boolean) : DEFAULT_MUDAS;
+        const { valores = {}, valor, valorPadrao = 500, zerarSaidas = true, mudaId: targetMudaId } = body;
+        const targetMudas = targetMudaId 
+          ? [DEFAULT_MUDAS.find(m => m.id === targetMudaId)].filter(Boolean) 
+          : DEFAULT_MUDAS;
 
         for (const m of targetMudas) {
-          const patchUrl = `https://firestore.googleapis.com/v1/projects/${SA.project_id}/databases/(default)/documents/plantando_futuro_mudas/${m.id}?updateMask.fieldPaths=estoque&updateMask.fieldPaths=saidas&updateMask.fieldPaths=totalInicial`;
+          let chosenVal = 500;
+          if (valores && valores[m.id] !== undefined && valores[m.id] !== null) {
+            chosenVal = parseInt(valores[m.id], 10);
+          } else if (valor !== undefined && valor !== null) {
+            chosenVal = parseInt(valor, 10);
+          } else if (valorPadrao !== undefined && valorPadrao !== null) {
+            chosenVal = parseInt(valorPadrao, 10);
+          }
+          if (isNaN(chosenVal) || chosenVal < 0) chosenVal = 0;
+
+          const fields = {
+            estoque: { integerValue: String(chosenVal) },
+            totalInicial: { integerValue: String(chosenVal) }
+          };
+          let updateMask = 'updateMask.fieldPaths=estoque&updateMask.fieldPaths=totalInicial';
+
+          if (zerarSaidas) {
+            fields.saidas = { integerValue: '0' };
+            updateMask += '&updateMask.fieldPaths=saidas';
+          }
+
+          const patchUrl = `https://firestore.googleapis.com/v1/projects/${SA.project_id}/databases/(default)/documents/plantando_futuro_mudas/${m.id}?${updateMask}`;
           await doRequest(patchUrl, 'PATCH', {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
-          }, JSON.stringify({
-            fields: {
-              estoque: { integerValue: '500' },
-              totalInicial: { integerValue: '500' },
-              saidas: { integerValue: '0' }
-            }
-          }));
+          }, JSON.stringify({ fields }));
         }
 
-        return res.status(200).json({ success: true, message: 'Estoque reinicializado com sucesso.' });
+        return res.status(200).json({ 
+          success: true, 
+          message: 'Estoque reinicializado com sucesso com os valores definidos.' 
+        });
       }
 
       return res.status(400).json({ success: false, error: 'Ação não reconhecida.' });

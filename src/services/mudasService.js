@@ -179,12 +179,60 @@ export async function getDashboardData() {
   }
 }
 
-export async function resetEstoque(mudaId = null) {
-  const res = await fetch('/api/mudas', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ action: 'reset', mudaId })
-  });
-  return await res.json();
+export async function resetEstoque(options = {}) {
+  const payload = typeof options === 'string' 
+    ? { action: 'reset', mudaId: options }
+    : { action: 'reset', ...options };
+
+  try {
+    const res = await fetch('/api/mudas', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const json = await res.json();
+
+    // Synchronize local cache as well so totens and offline modes update immediately
+    try {
+      const cached = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]');
+      if (Array.isArray(cached) && cached.length > 0) {
+        const updated = cached.map(m => {
+          if (payload.mudaId && payload.mudaId !== m.id) return m;
+          const val = payload.valores?.[m.id] ?? payload.valor ?? payload.valorPadrao;
+          const newStock = val !== undefined ? Math.max(0, parseInt(val, 10)) : 500;
+          return {
+            ...m,
+            estoque: newStock,
+            totalInicial: newStock,
+            saidas: payload.zerarSaidas !== false ? 0 : m.saidas
+          };
+        });
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updated));
+      }
+    } catch {}
+
+    return json;
+  } catch (err) {
+    console.error('Erro ao resetar estoque:', err);
+    // Offline local fallback
+    try {
+      const cached = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || JSON.stringify(DEFAULT_MUDAS));
+      const updated = cached.map(m => {
+        if (payload.mudaId && payload.mudaId !== m.id) return m;
+        const val = payload.valores?.[m.id] ?? payload.valor ?? payload.valorPadrao;
+        const newStock = val !== undefined ? Math.max(0, parseInt(val, 10)) : 500;
+        return {
+          ...m,
+          estoque: newStock,
+          totalInicial: newStock,
+          saidas: payload.zerarSaidas !== false ? 0 : m.saidas
+        };
+      });
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updated));
+      return { success: true, offline: true, message: 'Estoque atualizado localmente.' };
+    } catch (e) {
+      throw err;
+    }
+  }
 }
 
