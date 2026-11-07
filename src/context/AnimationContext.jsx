@@ -45,3 +45,4 @@ export function AnimationProvider({ children }) {
 export function useAnimation() {
   return useContext(AnimationContext);
 }
+
