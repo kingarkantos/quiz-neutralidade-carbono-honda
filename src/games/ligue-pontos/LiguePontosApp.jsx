@@ -24,7 +24,7 @@ export default function LiguePontosApp() {
 
   const handleRestart = () => {
     setGameKey(prev => prev + 1);
-    setScreen('board');
+    setScreen('home');
   };
 
   return (

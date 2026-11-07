@@ -73,11 +73,26 @@ export default function MemoriaHomeScreen({ onStart }) {
             >
               Descubra diferentes fontes de energia e aprenda sobre suas características e impactos no ambiente.
             </motion.p>
+
+            {/* Quick Rules / Instructions */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.25 }}
+              className="mt-2.5 sm:mt-3 w-full max-w-sm bg-[#FAF5EC]/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3 border border-white/80 shadow-sm"
+            >
+              <span className="text-[9.5px] sm:text-[10px] font-black uppercase text-[#1C3B24] tracking-wider block mb-1">
+                COMO JOGAR
+              </span>
+              <p className="text-[#2A402B] font-bold text-[11px] sm:text-xs leading-tight">
+                Toque nas cartas para virar e encontre os 5 pares de fontes de energia antes de 1:30s acabar!
+              </p>
+            </motion.div>
           </div>
         </div>
 
-        {/* Action Button - Directly below subtitle! */}
-        <div className="w-full px-2 sm:px-4 mt-6 sm:mt-8 pb-6 flex justify-center max-w-md mx-auto flex-shrink-0">
+        {/* Action Button - Directly below instructions! */}
+        <div className="w-full px-2 sm:px-4 mt-4 sm:mt-6 pb-6 flex justify-center max-w-md mx-auto flex-shrink-0">
           <motion.button
             initial={{ scale: 0.9, opacity: 0, y: 30 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}

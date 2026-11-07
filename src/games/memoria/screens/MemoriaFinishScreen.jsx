@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Header from '../../../components/Header';
 import CornerFoliage from '../../../components/CornerFoliage';
@@ -7,6 +7,8 @@ import confetti from 'canvas-confetti';
 import { RotateCcw } from 'lucide-react';
 
 export default function MemoriaFinishScreen({ onRestart, isTimeUp = false, pairsFound = 5 }) {
+  const [countdown, setCountdown] = useState(15);
+
   useEffect(() => {
     if (!isTimeUp) {
       confetti({
@@ -16,7 +18,20 @@ export default function MemoriaFinishScreen({ onRestart, isTimeUp = false, pairs
         colors: ['#2EB85C', '#7FD03F', '#1C3B24', '#FAF5EC']
       });
     }
-  }, [isTimeUp]);
+
+    const timer = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          if (onRestart) onRestart();
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [isTimeUp, onRestart]);
 
   return (
     <div className="relative w-full h-full flex flex-col justify-between overflow-hidden bg-[#ecdcc1]">
@@ -99,7 +114,7 @@ export default function MemoriaFinishScreen({ onRestart, isTimeUp = false, pairs
           </motion.div>
 
           {/* Action Button - Directly below feedback card! */}
-          <div className="w-full mt-4 sm:mt-6 pb-6 flex justify-center max-w-lg mx-auto flex-shrink-0">
+          <div className="w-full mt-4 sm:mt-6 pb-6 flex flex-col items-center justify-center max-w-lg mx-auto flex-shrink-0">
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
@@ -109,6 +124,9 @@ export default function MemoriaFinishScreen({ onRestart, isTimeUp = false, pairs
               <RotateCcw className="w-5 h-5 stroke-[2.5]" />
               <span>JOGAR NOVAMENTE</span>
             </motion.button>
+            <p className="text-[11px] text-[#2A402B]/75 font-bold mt-2">
+              Voltando ao início em {countdown}s
+            </p>
           </div>
         </div>
       </ZoomContent>

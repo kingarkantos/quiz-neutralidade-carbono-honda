@@ -21,7 +21,7 @@ export default function MemoriaApp() {
 
   const handleRestart = () => {
     setGameKey(prev => prev + 1);
-    setScreen('board');
+    setScreen('home');
   };
 
   return (

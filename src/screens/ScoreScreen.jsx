@@ -29,8 +29,16 @@ export default function ScoreScreen({ correctCount, totalQuestions, onContinue }
       });
     }
 
-    return () => unsubscribe();
-  }, [scorePercent]);
+    // Auto-advance to final institutional screen after 25s if untouched
+    const autoTimer = setTimeout(() => {
+      if (onContinue) onContinue();
+    }, 25000);
+
+    return () => {
+      unsubscribe();
+      clearTimeout(autoTimer);
+    };
+  }, [scorePercent, onContinue]);
 
   // Messages based on score
   let feedbackTitle = "Muito bem!";

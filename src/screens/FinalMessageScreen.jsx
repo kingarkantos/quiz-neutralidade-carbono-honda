@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import CornerFoliage from '../components/CornerFoliage';
 import ZoomContent from '../components/ZoomContent';
 import { RotateCcw } from 'lucide-react';
 
 export default function FinalMessageScreen({ onRestart }) {
+  const [countdown, setCountdown] = useState(15);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          if (onRestart) onRestart();
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [onRestart]);
+
   return (
     <div className="relative w-full h-full flex flex-col justify-between overflow-hidden bg-[#ecdcc1]">
       {/* Background Image: Motorcycle + Scenic road (Slice 2 / slice-home.png) */}
@@ -93,7 +110,7 @@ export default function FinalMessageScreen({ onRestart }) {
         </motion.div>
 
         {/* Action Button - Directly below slogan! */}
-        <div className="w-full mt-4 sm:mt-6 pb-6 flex justify-center max-w-lg mx-auto flex-shrink-0">
+        <div className="w-full mt-4 sm:mt-6 pb-6 flex flex-col items-center justify-center max-w-lg mx-auto flex-shrink-0">
           <motion.button
             initial={{ scale: 0.9, opacity: 0, y: 30 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -106,6 +123,9 @@ export default function FinalMessageScreen({ onRestart }) {
             <RotateCcw className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3]" />
             <span>JOGAR NOVAMENTE</span>
           </motion.button>
+          <p className="text-[11px] text-[#2A402B]/75 font-bold mt-2">
+            Voltando ao início em {countdown}s
+          </p>
         </div>
       </div>
     </ZoomContent>
