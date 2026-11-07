@@ -161,8 +161,8 @@ export default function ScoreScreen({ correctCount, totalQuestions, onContinue }
         </motion.div>
       </div>
 
-      {/* Bottom Continue Area with Shimmer - Lifted higher from bottom edge */}
-      <div className="relative z-10 w-full px-6 sm:px-8 pb-9 sm:pb-12 pt-2 flex justify-center max-w-lg mx-auto flex-shrink-0">
+      {/* Bottom Continue Area with Shimmer - Elevated high from bottom edge */}
+      <div className="relative z-10 w-full px-6 sm:px-8 mb-14 sm:mb-20 pb-4 pt-2 flex justify-center max-w-lg mx-auto flex-shrink-0">
         <motion.button
           initial={{ scale: 0.9, opacity: 0, y: 20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}

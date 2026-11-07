@@ -338,3 +338,30 @@
   animation: leafSwayRight 2.8s ease-in-out infinite;
 }
 
+/* =========================================================
+   Global Animation Pause (State persisted in localStorage)
+   ========================================================= */
+html.animations-paused *,
+html.animations-paused *::before,
+html.animations-paused *::after,
+body.animations-paused *,
+body.animations-paused *::before,
+body.animations-paused *::after {
+  animation-play-state: paused !important;
+  transition-duration: 0.0001s !important;
+}
+
+html.animations-paused .anim-shimmer::after,
+html.animations-paused .logo-shine-sweep,
+body.animations-paused .anim-shimmer::after,
+body.animations-paused .logo-shine-sweep {
+  display: none !important;
+  animation: none !important;
+}
+
+html.animations-paused canvas,
+body.animations-paused canvas {
+  display: none !important;
+}
+
+

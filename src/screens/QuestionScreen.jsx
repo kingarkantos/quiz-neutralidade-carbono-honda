@@ -201,8 +201,8 @@ export default function QuestionScreen({
         </div>
       </div>
 
-      {/* Bottom Navigation Buttons - Lifted higher from bottom edge */}
-      <div className="relative z-10 w-full px-5 sm:px-6 pb-9 sm:pb-12 pt-2 max-w-xl mx-auto flex items-center justify-between space-x-3 sm:space-x-4 flex-shrink-0">
+      {/* Bottom Navigation Buttons - Elevated high from bottom edge */}
+      <div className="relative z-10 w-full px-5 sm:px-6 mb-12 sm:mb-16 pb-4 pt-2 max-w-xl mx-auto flex items-center justify-between space-x-3 sm:space-x-4 flex-shrink-0">
         {/* Back Button */}
         <motion.button
           whileHover={!evaluationState ? { scale: 1.03 } : {}}

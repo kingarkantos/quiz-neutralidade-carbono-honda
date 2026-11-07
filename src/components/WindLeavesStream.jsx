@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
+import { useAnimation } from '../context/AnimationContext';
 
 // SVG Leaf Variation 1 (Broad green leaf)
 const LeafSvg1 = ({ className = "", style = {} }) => (
@@ -32,6 +33,11 @@ export default function WindLeavesStream({
   className = "absolute inset-0 pointer-events-none overflow-hidden z-20",
   leafCount = 18
 }) {
+  const { animationsEnabled } = useAnimation();
+
+  // If animations are paused on this device, don't render active wind particles
+  if (!animationsEnabled) return null;
+
   // Deterministic leaves so re-renders don't cause sudden jumps
   const particles = useMemo(() => {
     return Array.from({ length: leafCount }, (_, i) => {

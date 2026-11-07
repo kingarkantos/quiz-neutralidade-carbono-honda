@@ -96,8 +96,8 @@ export default function MemoriaFinishScreen({ onRestart, isTimeUp = false, pairs
         </motion.div>
       </div>
 
-      {/* Bottom Buttons - Lifted higher from bottom edge */}
-      <div className="relative z-10 w-full px-6 sm:px-8 pb-10 sm:pb-14 pt-2 flex justify-center max-w-lg mx-auto flex-shrink-0">
+      {/* Bottom Buttons - Elevated high from bottom edge */}
+      <div className="relative z-10 w-full px-6 sm:px-8 mb-16 sm:mb-24 pb-4 pt-2 flex justify-center max-w-lg mx-auto flex-shrink-0">
         <motion.button
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}

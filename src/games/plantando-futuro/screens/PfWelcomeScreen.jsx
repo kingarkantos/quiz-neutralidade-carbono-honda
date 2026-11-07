@@ -127,12 +127,12 @@ export default function PfWelcomeScreen({ onStart }) {
         </div>
       </div>
 
-      {/* Bottom CTA Button - Lifted higher from bottom edge */}
+      {/* Bottom CTA Button - Elevated high from bottom edge */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.55 }}
-        className="relative z-30 px-6 sm:px-8 pb-10 sm:pb-14 pt-2 w-full max-w-md mx-auto"
+        className="relative z-30 px-6 sm:px-8 mb-16 sm:mb-24 pb-4 pt-2 w-full max-w-md mx-auto"
       >
         <motion.button
           whileHover={{ scale: 1.03 }}

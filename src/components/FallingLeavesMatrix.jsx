@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
+import { useAnimation } from '../context/AnimationContext';
 
 // SVG Path for a clean botanical leaf
 const LeafSvg = ({ className = "", style = {} }) => (
@@ -17,6 +18,11 @@ export default function FallingLeavesMatrix({
   count = 20, 
   className = "absolute top-0 left-0 right-0 h-[55%] overflow-hidden pointer-events-none z-10" 
 }) {
+  const { animationsEnabled } = useAnimation();
+
+  // If animations are paused on this device, don't render active falling particles
+  if (!animationsEnabled) return null;
+
   // Generate deterministic particles so re-renders don't cause sudden jumps
   const leaves = useMemo(() => {
     return Array.from({ length: count }, (_, i) => {
