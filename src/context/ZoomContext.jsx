@@ -68,3 +68,4 @@ export function ZoomProvider({ children }) {
 export function useZoom() {
   return useContext(ZoomContext);
 }
+

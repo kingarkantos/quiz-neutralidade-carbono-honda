@@ -15,3 +15,4 @@ export default function BottomControls({ className = '' }) {
     </div>
   );
 }
+
