@@ -159,8 +159,8 @@ export default function HubScreen() {
         ))}
       </div>
 
-      {/* Footer Info & Link to /plantas Dashboard */}
-      <div className="relative z-30 w-full px-5 pb-3 pt-1 text-center select-none flex-shrink-0 flex items-center justify-between max-w-lg mx-auto text-[10.5px] sm:text-xs text-[#1A2E1A]/70">
+      {/* Footer Info & Link to /plantas Dashboard - Lifted higher */}
+      <div className="relative z-30 w-full px-5 pb-6 sm:pb-8 pt-1 text-center select-none flex-shrink-0 flex items-center justify-between max-w-lg mx-auto text-[10.5px] sm:text-xs text-[#1A2E1A]/70">
         <span>Honda • 50 Anos no Brasil</span>
         <button 
           onClick={() => navigate('/plantas')}

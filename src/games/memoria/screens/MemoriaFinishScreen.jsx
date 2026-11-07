@@ -96,8 +96,8 @@ export default function MemoriaFinishScreen({ onRestart, isTimeUp = false, pairs
         </motion.div>
       </div>
 
-      {/* Bottom Buttons - Isolated In-Game Flow */}
-      <div className="relative z-10 w-full px-6 sm:px-8 pb-5 sm:pb-8 pt-1 flex justify-center max-w-lg mx-auto flex-shrink-0">
+      {/* Bottom Buttons - Lifted higher from bottom edge */}
+      <div className="relative z-10 w-full px-6 sm:px-8 pb-10 sm:pb-14 pt-2 flex justify-center max-w-lg mx-auto flex-shrink-0">
         <motion.button
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}

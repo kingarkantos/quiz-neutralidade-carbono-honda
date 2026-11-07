@@ -81,8 +81,8 @@ export default function LpFinishScreen({ onRestart }) {
         </motion.div>
       </div>
 
-      {/* Bottom Button Area - Only In-Game Restart */}
-      <div className="relative z-10 w-full px-6 sm:px-8 pb-5 sm:pb-8 pt-1 flex justify-center max-w-lg mx-auto flex-shrink-0">
+      {/* Bottom Button Area - Lifted higher from bottom edge */}
+      <div className="relative z-10 w-full px-6 sm:px-8 pb-10 sm:pb-14 pt-2 flex justify-center max-w-lg mx-auto flex-shrink-0">
         <motion.button
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}

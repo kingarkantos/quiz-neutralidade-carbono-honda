@@ -70,8 +70,8 @@ export default function QuestionScreen({
         />
       </div>
 
-      {/* Main Question & Cards Area */}
-      <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-center px-3.5 sm:px-4 max-w-xl mx-auto w-full my-auto">
+      {/* Main Question & Cards Area - Moved higher */}
+      <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-start pt-2 sm:pt-4 px-3.5 sm:px-4 max-w-xl mx-auto w-full">
         {/* Question Heading */}
         <motion.h2
           key={question.id}
@@ -201,8 +201,8 @@ export default function QuestionScreen({
         </div>
       </div>
 
-      {/* Bottom Navigation Buttons */}
-      <div className="relative z-10 w-full px-5 sm:px-6 pb-5 sm:pb-8 pt-2 max-w-xl mx-auto flex items-center justify-between space-x-3 sm:space-x-4 flex-shrink-0">
+      {/* Bottom Navigation Buttons - Lifted higher from bottom edge */}
+      <div className="relative z-10 w-full px-5 sm:px-6 pb-9 sm:pb-12 pt-2 max-w-xl mx-auto flex items-center justify-between space-x-3 sm:space-x-4 flex-shrink-0">
         {/* Back Button */}
         <motion.button
           whileHover={!evaluationState ? { scale: 1.03 } : {}}

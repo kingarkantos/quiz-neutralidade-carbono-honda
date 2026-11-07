@@ -158,8 +158,8 @@ export default function MemoriaGameBoardScreen({ onFinish }) {
         </div>
       </div>
 
-      {/* Main Board: 3-4-3 Card Layout */}
-      <div className="relative z-10 flex-1 min-h-0 px-2 xs:px-3 sm:px-4 py-1 max-w-lg mx-auto w-full flex flex-col justify-center items-center space-y-2.5 xs:space-y-3 sm:space-y-4 my-auto">
+      {/* Main Board: 3-4-3 Card Layout - Moved higher */}
+      <div className="relative z-10 flex-1 min-h-0 px-2 xs:px-3 sm:px-4 py-1 max-w-lg mx-auto w-full flex flex-col justify-start items-center space-y-2.5 xs:space-y-3 sm:space-y-4 pt-2 xs:pt-4">
         {/* Row 1 (3 cards) */}
         <div className="flex items-center justify-center gap-1.5 xs:gap-2.5 sm:gap-3.5 w-full">
           {row1.map((c) => (
@@ -200,8 +200,8 @@ export default function MemoriaGameBoardScreen({ onFinish }) {
         </div>
       </div>
 
-      {/* Footer Info */}
-      <div className="relative z-10 w-full px-6 pb-4 pt-1 text-center select-none flex-shrink-0">
+      {/* Footer Info - Lifted higher from bottom */}
+      <div className="relative z-10 w-full px-6 pb-8 sm:pb-10 pt-2 text-center select-none flex-shrink-0">
         <p className="text-[#4b5d4c] font-semibold text-[11px] sm:text-xs">
           Toque nas cartas para encontrar as fontes correspondentes.
         </p>

@@ -213,8 +213,8 @@ export default function LpGameBoardScreen({ onFinish }) {
         </p>
       </div>
 
-      {/* Spotlight 3D Preview - Perfectly centered in the entire upper space */}
-      <div className="relative z-10 flex-1 min-h-[140px] xs:min-h-[160px] sm:min-h-[190px] w-full px-4 flex flex-col items-center justify-center my-auto select-none">
+      {/* Spotlight 3D Preview - Moved higher */}
+      <div className="relative z-10 flex-1 min-h-[130px] xs:min-h-[150px] sm:min-h-[175px] w-full px-4 flex flex-col items-center justify-start pt-1 sm:pt-2 select-none">
         <AnimatePresence mode="wait">
           {activeItem ? (
             <motion.div
@@ -388,8 +388,8 @@ export default function LpGameBoardScreen({ onFinish }) {
         </div>
       </div>
 
-      {/* Footer status / helper */}
-      <div className="relative z-10 w-full px-6 pb-4 pt-1 flex justify-center text-center select-none flex-shrink-0">
+      {/* Footer status / helper - Lifted higher */}
+      <div className="relative z-10 w-full px-6 pb-6 sm:pb-8 pt-1 flex justify-center text-center select-none flex-shrink-0">
         <p className="text-[#4b5d4c] font-medium text-[11px] sm:text-xs">
           {matchedIds.size === actions.length 
             ? "Todas as conexões completas! Toque para finalizar."

@@ -70,8 +70,8 @@ export default function ScoreScreen({ correctCount, totalQuestions, onContinue }
         <ResultBanner type="result" text="RESULTADO FINAL" />
       </div>
 
-      {/* Gauge / Velocímetro Area */}
-      <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-center px-5 sm:px-6 max-w-lg mx-auto w-full my-auto">
+      {/* Gauge / Velocímetro Area - Moved higher */}
+      <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-start pt-2 sm:pt-4 px-5 sm:px-6 max-w-lg mx-auto w-full">
         {/* Gauge Container */}
         <motion.div
           initial={{ scale: 0.7, opacity: 0 }}
@@ -161,8 +161,8 @@ export default function ScoreScreen({ correctCount, totalQuestions, onContinue }
         </motion.div>
       </div>
 
-      {/* Bottom Continue Area with Shimmer */}
-      <div className="relative z-10 w-full px-6 sm:px-8 pb-5 sm:pb-8 pt-1 flex justify-center max-w-lg mx-auto flex-shrink-0">
+      {/* Bottom Continue Area with Shimmer - Lifted higher from bottom edge */}
+      <div className="relative z-10 w-full px-6 sm:px-8 pb-9 sm:pb-12 pt-2 flex justify-center max-w-lg mx-auto flex-shrink-0">
         <motion.button
           initial={{ scale: 0.9, opacity: 0, y: 20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}

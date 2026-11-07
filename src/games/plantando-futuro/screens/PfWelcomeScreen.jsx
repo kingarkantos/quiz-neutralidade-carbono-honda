@@ -78,8 +78,8 @@ export default function PfWelcomeScreen({ onStart }) {
         </motion.div>
       </div>
 
-      {/* Center Section: Commitment Steps */}
-      <div className="relative z-20 flex-1 flex flex-col items-center justify-center px-5 sm:px-8 py-2 max-w-md mx-auto w-full">
+      {/* Center Section: Commitment Steps - Moved higher */}
+      <div className="relative z-20 flex-1 flex flex-col items-center justify-start pt-2 sm:pt-4 px-5 sm:px-8 py-2 max-w-md mx-auto w-full">
         {/* Headline */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -127,12 +127,12 @@ export default function PfWelcomeScreen({ onStart }) {
         </div>
       </div>
 
-      {/* Bottom CTA Button */}
+      {/* Bottom CTA Button - Lifted higher from bottom edge */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.55 }}
-        className="relative z-30 px-6 sm:px-8 pb-6 sm:pb-8 pt-2 w-full max-w-md mx-auto"
+        className="relative z-30 px-6 sm:px-8 pb-10 sm:pb-14 pt-2 w-full max-w-md mx-auto"
       >
         <motion.button
           whileHover={{ scale: 1.03 }}

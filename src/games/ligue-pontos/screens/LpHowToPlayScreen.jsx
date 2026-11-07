@@ -39,8 +39,8 @@ export default function LpHowToPlayScreen({ onStart }) {
       {/* Top Header */}
       <Header className="pt-3 pb-1" />
 
-      {/* Center Content */}
-      <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-center px-4 sm:px-6 max-w-lg mx-auto w-full my-auto">
+      {/* Center Content - Moved higher */}
+      <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-start pt-1 sm:pt-3 px-4 sm:px-6 max-w-lg mx-auto w-full">
         {/* Animated Tutorial Demonstration (Mostrando como jogar com animação de mãozinha e cliques) */}
         <div className="w-full mb-2.5 sm:mb-3">
           <LpInteractiveTutorial />
@@ -102,8 +102,8 @@ export default function LpHowToPlayScreen({ onStart }) {
         </div>
       </div>
 
-      {/* Bottom Button */}
-      <div className="relative z-10 w-full px-6 sm:px-8 pb-5 sm:pb-8 pt-1 flex justify-center flex-shrink-0">
+      {/* Bottom Button - Lifted higher from bottom edge */}
+      <div className="relative z-10 w-full px-6 sm:px-8 pb-10 sm:pb-14 pt-2 flex justify-center flex-shrink-0">
         <motion.button
           initial={{ scale: 0.9, opacity: 0, y: 30 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}

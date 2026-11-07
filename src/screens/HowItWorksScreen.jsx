@@ -36,20 +36,20 @@ export default function HowItWorksScreen({ onStart }) {
       {/* Top Header */}
       <Header />
 
-      {/* Center Content */}
-      <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-center px-5 sm:px-6 max-w-lg mx-auto w-full my-auto">
+      {/* Center Content - Moved high into the upper area */}
+      <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-start pt-3 sm:pt-6 px-5 sm:px-6 max-w-lg mx-auto w-full">
         {/* "COMO FUNCIONA" Badge */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0, y: -20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 350, damping: 22 }}
-          className="bg-[#1C3B24] text-white font-extrabold text-lg sm:text-xl tracking-wider px-6 sm:px-8 py-2.5 sm:py-3 rounded-full shadow-lg mb-4 sm:mb-8 uppercase select-none"
+          className="bg-[#1C3B24] text-white font-extrabold text-lg sm:text-xl tracking-wider px-6 sm:px-8 py-2.5 sm:py-3 rounded-full shadow-lg mb-4 sm:mb-6 uppercase select-none"
         >
           COMO FUNCIONA
         </motion.div>
 
         {/* 3 Step Cards with Staggered Bounce Animation */}
-        <div className="w-full space-y-2.5 sm:space-y-4">
+        <div className="w-full space-y-3 sm:space-y-4">
           {steps.map((step, idx) => (
             <motion.div
               key={step.number}
@@ -83,8 +83,8 @@ export default function HowItWorksScreen({ onStart }) {
         </div>
       </div>
 
-      {/* Bottom Button Area */}
-      <div className="relative z-10 w-full px-6 sm:px-8 pb-5 sm:pb-8 pt-2 flex justify-center flex-shrink-0">
+      {/* Bottom Button Area - Lifted higher from bottom edge */}
+      <div className="relative z-10 w-full px-6 sm:px-8 pb-10 sm:pb-14 pt-2 flex justify-center flex-shrink-0">
         <motion.button
           initial={{ scale: 0.9, opacity: 0, y: 30 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}

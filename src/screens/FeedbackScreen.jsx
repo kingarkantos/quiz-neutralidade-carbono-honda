@@ -51,8 +51,8 @@ export default function FeedbackScreen({
         />
       </div>
 
-      {/* Center Feedback Area */}
-      <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-center px-5 sm:px-6 max-w-lg mx-auto w-full my-auto">
+      {/* Center Feedback Area - Moved higher */}
+      <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-start pt-2 sm:pt-4 px-5 sm:px-6 max-w-lg mx-auto w-full">
         {/* Animated Planet with Floating Leaves Behind */}
         <div className={`relative flex items-center justify-center my-1 sm:my-2 flex-shrink-0 ${
           isCorrect ? 'w-44 h-44 sm:w-60 sm:h-60' : 'w-36 h-36 sm:w-48 sm:h-48'
@@ -282,8 +282,8 @@ export default function FeedbackScreen({
         </motion.div>
       </div>
 
-      {/* Bottom Button Area with Shimmer */}
-      <div className="relative z-10 w-full px-6 sm:px-8 pb-5 sm:pb-8 pt-1 flex justify-center max-w-lg mx-auto flex-shrink-0">
+      {/* Bottom Button Area with Shimmer - Lifted higher from bottom edge */}
+      <div className="relative z-10 w-full px-6 sm:px-8 pb-9 sm:pb-12 pt-2 flex justify-center max-w-lg mx-auto flex-shrink-0">
         <motion.button
           initial={{ scale: 0.9, opacity: 0, y: 20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
