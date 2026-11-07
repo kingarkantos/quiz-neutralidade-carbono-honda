@@ -185,12 +185,12 @@ export default function LpGameBoardScreen({ onFinish }) {
         {/* Top Header */}
         <Header className="pt-2 pb-1" />
 
-        {/* Unified Centralized Game Board Area */}
-        <div className="w-full max-w-xl mx-auto flex-1 flex flex-col items-center justify-center min-h-0 py-1">
+        {/* Game Board Container - Aligned to top just like other games (No huge top gap) */}
+        <div className="w-full max-w-xl mx-auto flex-1 min-h-0 flex flex-col items-center justify-start pt-1">
           {/* Stepper & Instructions */}
-          <div className="relative z-10 w-full px-4 flex flex-col items-center text-center select-none mb-1 sm:mb-2 flex-shrink-0">
+          <div className="relative z-10 w-full px-4 flex flex-col items-center text-center select-none mb-1 flex-shrink-0">
             {/* Stepper Dots & Timer */}
-            <div className="flex items-center justify-center space-x-2 mb-1.5">
+            <div className="flex items-center justify-center space-x-2 mb-1">
               <div className="flex items-center space-x-2 bg-[#FAF5EC]/90 px-3.5 py-1.5 rounded-full shadow-sm border border-white">
                 <span className="text-[#1A2E1A] font-extrabold text-xs uppercase tracking-wider">
                   Conexões: {matchedIds.size} de {actions.length}
@@ -219,7 +219,7 @@ export default function LpGameBoardScreen({ onFinish }) {
           </div>
 
           {/* Spotlight 3D Preview - Compact and directly above the options */}
-          <div className="relative z-10 flex-shrink-0 min-h-[85px] xs:min-h-[105px] sm:min-h-[120px] w-full px-4 flex flex-col items-center justify-center py-1 select-none">
+          <div className="relative z-10 flex-shrink-0 min-h-[75px] xs:min-h-[90px] sm:min-h-[105px] w-full px-4 flex flex-col items-center justify-center py-0.5 sm:py-1 select-none">
             <AnimatePresence mode="wait">
               {activeItem ? (
                 <motion.div
@@ -234,7 +234,7 @@ export default function LpGameBoardScreen({ onFinish }) {
                   <motion.div
                     animate={{ scale: [0.95, 1.25, 0.95], opacity: [0.35, 0.7, 0.35] }}
                     transition={{ repeat: Infinity, duration: 3.2, ease: 'easeInOut' }}
-                    className="absolute w-28 h-28 xs:w-36 xs:h-36 sm:w-44 sm:h-44 rounded-full bg-[#3cd426]/35 blur-2xl -z-10 pointer-events-none"
+                    className="absolute w-24 h-24 xs:w-32 xs:h-32 sm:w-40 sm:h-40 rounded-full bg-[#3cd426]/35 blur-2xl -z-10 pointer-events-none"
                   />
 
                   {/* 3D Highlighted Illustration */}
@@ -243,14 +243,14 @@ export default function LpGameBoardScreen({ onFinish }) {
                     transition={{ repeat: Infinity, duration: 3.4, ease: 'easeInOut' }}
                     src={activeItem.actionThumb}
                     alt={activeItem.actionTitle}
-                    className="h-16 xs:h-20 sm:h-24 max-h-[16vh] w-auto object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.32)] pointer-events-none"
+                    className="h-14 xs:h-18 sm:h-22 max-h-[15vh] w-auto object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.32)] pointer-events-none"
                   />
 
                   {/* Active Item Title Pill */}
                   <motion.span 
                     initial={{ opacity: 0, y: 4 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mt-1.5 bg-white/95 backdrop-blur-sm text-[#1C3B24] font-black text-[11px] sm:text-xs uppercase px-3.5 py-0.5 rounded-full shadow-md border border-[#2EB85C]/35"
+                    className="mt-1 bg-white/95 backdrop-blur-sm text-[#1C3B24] font-black text-[10.5px] sm:text-xs uppercase px-3 py-0.5 rounded-full shadow-md border border-[#2EB85C]/35"
                   >
                     {activeItem.actionTitle}
                   </motion.span>
@@ -261,16 +261,16 @@ export default function LpGameBoardScreen({ onFinish }) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 0.65 }}
                   exit={{ opacity: 0 }}
-                  className="flex flex-col items-center justify-center text-center select-none py-1"
+                  className="flex flex-col items-center justify-center text-center select-none py-0.5"
                 >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-dashed border-[#2EB85C]/45 flex items-center justify-center bg-[#FAF5EC]/70 mb-1 shadow-sm">
+                  <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full border-2 border-dashed border-[#2EB85C]/45 flex items-center justify-center bg-[#FAF5EC]/70 mb-0.5 shadow-sm">
                     <img
                       src="/assets/jogo2/ELEMENTOS/TELA INICIAL/ciclo-sustentavel-entre-maquina-e-natureza-1.webp"
                       alt=""
-                      className="w-6 h-6 sm:w-8 sm:h-8 object-contain opacity-75 pointer-events-none"
+                      className="w-5 h-5 sm:w-7 sm:h-7 object-contain opacity-75 pointer-events-none"
                     />
                   </div>
-                  <span className="text-[#3b4f3c] font-bold text-[10.5px] sm:text-xs">
+                  <span className="text-[#3b4f3c] font-bold text-[10px] sm:text-[11px]">
                     Toque em uma opção para destacar
                   </span>
                 </motion.div>
@@ -278,7 +278,7 @@ export default function LpGameBoardScreen({ onFinish }) {
             </AnimatePresence>
           </div>
 
-          {/* Main Board: 2 Columns - Immediately below the spotlight */}
+          {/* Main Board: 2 Columns - Positioned directly below the spotlight */}
           <div className="relative z-10 flex-shrink-0 px-2 xs:px-3 sm:px-4 pt-1 pb-1 max-w-xl mx-auto w-full flex items-center justify-between gap-2 xs:gap-3 sm:gap-4">
         {/* Left Column: AÇÕES */}
         <div className="flex-1 flex flex-col space-y-2 sm:space-y-2.5 min-w-0">
