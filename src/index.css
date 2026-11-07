@@ -5,6 +5,13 @@
 :root {
   font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
   color-scheme: light;
+  --app-zoom: 1;
+}
+
+/* Zoomable content layer - only inner elements scale, background stays 100% fixed */
+.zoom-content,
+.zoomable-content {
+  zoom: var(--app-zoom, 1);
 }
 
 /* Custom 3D Text Effects */

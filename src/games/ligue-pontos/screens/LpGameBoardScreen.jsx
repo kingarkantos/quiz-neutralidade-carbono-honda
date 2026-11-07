@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Header from '../../../components/Header';
 import CornerFoliage from '../../../components/CornerFoliage';
+import ZoomContent from '../../../components/ZoomContent';
 import GameTimer from '../../../components/GameTimer';
 import { LIGUE_PONTOS_ITEMS } from '../data/liguePontosData';
 import LpSuccessModal from './LpSuccessModal';
@@ -179,8 +180,10 @@ export default function LpGameBoardScreen({ onFinish }) {
 
       <CornerFoliage corners={['top-left', 'top-right']} />
 
-      {/* Top Header */}
-      <Header className="pt-3 pb-1" />
+      {/* Scalable Content Layer (Zoom only applies to elements, never the background) */}
+      <ZoomContent className="pt-2 px-3 sm:px-4">
+        {/* Top Header */}
+        <Header className="pt-2 pb-1" />
 
       {/* Stepper & Instructions */}
       <div className="relative z-10 w-full px-4 flex flex-col items-center text-center select-none pt-1">
@@ -388,14 +391,15 @@ export default function LpGameBoardScreen({ onFinish }) {
         </div>
       </div>
 
-      {/* Footer status / helper - Lifted higher */}
-      <div className="relative z-10 w-full px-6 pb-6 sm:pb-8 pt-1 flex justify-center text-center select-none flex-shrink-0">
-        <p className="text-[#4b5d4c] font-medium text-[11px] sm:text-xs">
-          {matchedIds.size === actions.length 
-            ? "Todas as conexões completas! Toque para finalizar."
-            : "Toque em um item de cada lado para formar o par sustentável."}
-        </p>
-      </div>
+        {/* Footer status / helper */}
+        <div className="w-full px-6 pb-6 sm:pb-8 pt-1 flex justify-center text-center select-none flex-shrink-0">
+          <p className="text-[#4b5d4c] font-medium text-[11px] sm:text-xs">
+            {matchedIds.size === actions.length 
+              ? "Todas as conexões completas! Toque para finalizar."
+              : "Toque em um item de cada lado para formar o par sustentável."}
+          </p>
+        </div>
+      </ZoomContent>
 
       {/* Modals */}
       <AnimatePresence>

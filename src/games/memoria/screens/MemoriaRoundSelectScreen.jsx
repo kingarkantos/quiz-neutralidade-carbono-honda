@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Header from '../../../components/Header';
 import CornerFoliage from '../../../components/CornerFoliage';
+import ZoomContent from '../../../components/ZoomContent';
 import { MEMORIA_ROUNDS } from '../data/memoriaData';
 
 export default function MemoriaRoundSelectScreen({ onSelectRound }) {
@@ -18,11 +19,13 @@ export default function MemoriaRoundSelectScreen({ onSelectRound }) {
 
       <CornerFoliage corners={['top-left', 'top-right']} />
 
-      {/* Header */}
-      <Header className="pt-3 pb-1" />
+      {/* Scalable Content Layer (Zoom only applies to elements, never the background) */}
+      <ZoomContent className="pt-2 px-5 sm:px-6">
+        {/* Header */}
+        <Header className="pt-2 pb-1" />
 
-      {/* Main Content - Anchored higher up */}
-      <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-start pt-4 sm:pt-8 px-5 sm:px-6 max-w-lg mx-auto w-full">
+        {/* Main Content */}
+        <div className="flex-1 min-h-0 flex flex-col items-center justify-start pt-3 sm:pt-6 px-2 max-w-lg mx-auto w-full">
         {/* Badge & Instruction Card */}
         <div className="flex flex-col items-center text-center select-none w-full max-w-sm px-2 mb-4 sm:mb-6">
           <motion.div
@@ -109,12 +112,13 @@ export default function MemoriaRoundSelectScreen({ onSelectRound }) {
         </div>
       </div>
 
-      {/* Footer Info */}
-      <div className="relative z-10 w-full px-6 pb-5 pt-1 text-center select-none flex-shrink-0">
-        <p className="text-[#455A46] font-semibold text-xs">
-          Toque em uma rodada para iniciar o desafio da memória.
-        </p>
-      </div>
+        {/* Footer Info */}
+        <div className="w-full px-6 pb-6 pt-1 text-center select-none flex-shrink-0">
+          <p className="text-[#455A46] font-semibold text-xs">
+            Toque em uma rodada para iniciar o desafio da memória.
+          </p>
+        </div>
+      </ZoomContent>
     </div>
   );
 }

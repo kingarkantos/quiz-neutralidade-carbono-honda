@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, RotateCcw, Check, Sparkles, User, PenTool } from 'lucide-react';
 import CornerFoliage from '../../../components/CornerFoliage';
+import ZoomContent from '../../../components/ZoomContent';
 
 export default function PfSignatureScreen({ onBack, onConfirm }) {
   const canvasRef = useRef(null);
@@ -97,8 +98,10 @@ export default function PfSignatureScreen({ onBack, onConfirm }) {
       />
       <CornerFoliage corners={['top-left', 'top-right', 'bottom-left', 'bottom-right']} />
 
-      {/* Top Header */}
-      <div className="relative z-30 w-full flex items-center justify-center px-4 pt-3 pb-1 min-h-[44px]">
+      {/* Scalable Content Layer (Zoom only applies to elements, never the background) */}
+      <ZoomContent className="pt-2 px-4">
+        {/* Top Header */}
+        <div className="relative w-full flex items-center justify-center px-4 pt-2 pb-1 min-h-[44px]">
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -193,19 +196,21 @@ export default function PfSignatureScreen({ onBack, onConfirm }) {
         </div>
       </div>
 
-      {/* Bottom CTA */}
-      <div className="relative z-30 px-6 sm:px-8 pb-6 sm:pb-8 pt-2 w-full max-w-md mx-auto">
-        <motion.button
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
-          onClick={handleProceed}
-          className="w-full py-4 rounded-full btn-tactile-green anim-shimmer text-white font-black text-base sm:text-lg tracking-wider uppercase flex items-center justify-center space-x-2 shadow-xl"
-        >
-          <span>ESCOLHER MINHA MUDA</span>
-          <Check className="w-5 h-5 stroke-[3]" />
-        </motion.button>
+        {/* Action Button - Directly below signature! */}
+        <div className="w-full max-w-md mx-auto mt-4 sm:mt-5 pb-6">
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={handleProceed}
+            className="w-full py-4 rounded-full btn-tactile-green anim-shimmer text-white font-black text-base sm:text-lg tracking-wider uppercase flex items-center justify-center space-x-2 shadow-xl"
+          >
+            <span>ESCOLHER MINHA MUDA</span>
+            <Check className="w-5 h-5 stroke-[3]" />
+          </motion.button>
+        </div>
       </div>
-    </div>
-  );
+    </ZoomContent>
+  </div>
+);
 }
 

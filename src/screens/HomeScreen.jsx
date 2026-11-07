@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Header from '../components/Header';
 import CornerFoliage from '../components/CornerFoliage';
 import FallingLeavesMatrix from '../components/FallingLeavesMatrix';
+import ZoomContent from '../components/ZoomContent';
 
 export default function HomeScreen({ onStart }) {
   return (
@@ -19,10 +20,12 @@ export default function HomeScreen({ onStart }) {
       {/* Discreet Bush Foliage in Bottom Corners */}
       <CornerFoliage corners={['bottom-left', 'bottom-right']} />
 
-      {/* Top Area: Header + 3D Logo + Subtitle (Moved high into the solid beige sky) */}
-      <div className="relative z-30 w-full flex flex-col items-center">
-        {/* Top Header */}
-        <Header className="pt-3 pb-0" />
+      {/* Scalable Content Layer (Zoom only applies to elements, never the background) */}
+      <ZoomContent className="pt-2 px-6">
+        {/* Top Area: Header + 3D Logo + Subtitle */}
+        <div className="w-full flex flex-col items-center">
+          {/* Top Header */}
+          <Header className="pt-3 pb-0" />
 
         {/* Title and Subtitle - Anchored comfortably in the upper beige sky */}
         <div className="w-full flex flex-col items-center text-center px-6 pt-0 max-w-lg mx-auto">
@@ -103,25 +106,26 @@ export default function HomeScreen({ onStart }) {
         </div>
       </div>
 
-      {/* Bottom Button Area - Elevated high from bottom edge */}
-      <div className="relative z-10 w-full px-6 sm:px-8 mb-16 sm:mb-24 pb-4 pt-2 flex justify-center max-w-md mx-auto flex-shrink-0">
-        <motion.button
-          initial={{ scale: 0.9, opacity: 0, y: 30 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          transition={{ 
-            type: 'spring', 
-            stiffness: 300, 
-            damping: 20, 
-            delay: 0.45 
-          }}
-          whileHover={{ scale: 1.04 }}
-          whileTap={{ scale: 0.96 }}
-          onClick={onStart}
-          className="w-full py-4 sm:py-5 rounded-full btn-tactile-green anim-shimmer text-white font-black text-lg sm:text-2xl tracking-wider select-none uppercase shadow-2xl"
-        >
-          INICIAR QUIZ
-        </motion.button>
-      </div>
+      {/* Action Button - Directly below subtitle! */}
+        <div className="w-full px-2 sm:px-4 mt-6 sm:mt-8 pb-6 flex justify-center max-w-md mx-auto flex-shrink-0">
+          <motion.button
+            initial={{ scale: 0.9, opacity: 0, y: 30 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            transition={{ 
+              type: 'spring', 
+              stiffness: 300, 
+              damping: 20, 
+              delay: 0.45 
+            }}
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
+            onClick={onStart}
+            className="w-full py-4 sm:py-5 rounded-full btn-tactile-green anim-shimmer text-white font-black text-lg sm:text-2xl tracking-wider select-none uppercase shadow-2xl"
+          >
+            INICIAR QUIZ
+          </motion.button>
+        </div>
+      </ZoomContent>
     </div>
   );
 }

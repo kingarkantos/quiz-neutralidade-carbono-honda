@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import CornerFoliage from '../components/CornerFoliage';
+import ZoomContent from '../components/ZoomContent';
 import { RotateCcw } from 'lucide-react';
 
 export default function FinalMessageScreen({ onRestart }) {
@@ -15,24 +16,26 @@ export default function FinalMessageScreen({ onRestart }) {
       {/* Bush Foliage in Bottom Corners */}
       <CornerFoliage corners={['bottom-left', 'bottom-right']} />
 
-      {/* Top Header - Honda Logo Centered */}
-      <header className="relative w-full flex items-center justify-center px-5 sm:px-6 pt-4 pb-1 z-40">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="relative z-40 flex items-center justify-center p-0.5"
-        >
-          <img
-            src="/assets/logos/honda.svg"
-            alt="Honda"
-            className="h-9 sm:h-11 w-auto max-w-[120px] object-contain drop-shadow-sm select-none pointer-events-none"
-          />
-        </motion.div>
-      </header>
+      {/* Scalable Content Layer (Zoom only applies to elements, never the background) */}
+      <ZoomContent className="pt-2 px-5 sm:px-6">
+        {/* Top Header - Honda Logo Centered */}
+        <header className="relative w-full flex items-center justify-center pt-3 pb-1 z-40">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="relative z-40 flex items-center justify-center p-0.5"
+          >
+            <img
+              src="/assets/logos/honda.svg"
+              alt="Honda"
+              className="h-9 sm:h-11 w-auto max-w-[120px] object-contain drop-shadow-sm select-none pointer-events-none"
+            />
+          </motion.div>
+        </header>
 
-      {/* Main Content Area - Anchored in the Solid Upper Beige Zone */}
-      <div className="relative z-30 flex-1 min-h-0 flex flex-col items-center justify-start px-5 sm:px-6 max-w-lg mx-auto w-full text-center pt-1 sm:pt-3">
+        {/* Main Content Area - Anchored in the Solid Upper Beige Zone */}
+        <div className="flex-1 min-h-0 flex flex-col items-center justify-start px-2 max-w-lg mx-auto w-full text-center pt-1 sm:pt-3">
         {/* 1. HERO TRIPLA AÇÃO PARA O ZERO LOGO (Bem maior e destacado) */}
         <motion.div
           initial={{ scale: 0.6, opacity: 0, y: -20 }}
@@ -88,23 +91,24 @@ export default function FinalMessageScreen({ onRestart }) {
             ATITUDES.
           </h1>
         </motion.div>
-      </div>
 
-      {/* Bottom Button Area with Shimmer - Elevated high from bottom edge */}
-      <div className="relative z-10 w-full px-6 sm:px-8 mb-16 sm:mb-24 pb-4 pt-2 flex justify-center max-w-lg mx-auto flex-shrink-0">
-        <motion.button
-          initial={{ scale: 0.9, opacity: 0, y: 30 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          transition={{ type: 'spring', stiffness: 320, damping: 20, delay: 0.55 }}
-          whileHover={{ scale: 1.04 }}
-          whileTap={{ scale: 0.96 }}
-          onClick={onRestart}
-          className="w-full py-3.5 sm:py-4.5 rounded-full btn-tactile-green anim-shimmer text-white font-black text-base sm:text-2xl tracking-wider select-none uppercase flex items-center justify-center space-x-3 shadow-xl"
-        >
-          <RotateCcw className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3]" />
-          <span>JOGAR NOVAMENTE</span>
-        </motion.button>
+        {/* Action Button - Directly below slogan! */}
+        <div className="w-full mt-4 sm:mt-6 pb-6 flex justify-center max-w-lg mx-auto flex-shrink-0">
+          <motion.button
+            initial={{ scale: 0.9, opacity: 0, y: 30 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            transition={{ type: 'spring', stiffness: 320, damping: 20, delay: 0.55 }}
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
+            onClick={onRestart}
+            className="w-full py-3.5 sm:py-4.5 rounded-full btn-tactile-green anim-shimmer text-white font-black text-base sm:text-2xl tracking-wider select-none uppercase flex items-center justify-center space-x-3 shadow-xl"
+          >
+            <RotateCcw className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3]" />
+            <span>JOGAR NOVAMENTE</span>
+          </motion.button>
+        </div>
       </div>
-    </div>
-  );
+    </ZoomContent>
+  </div>
+);
 }

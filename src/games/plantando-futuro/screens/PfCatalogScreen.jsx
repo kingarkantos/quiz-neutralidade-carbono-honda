@@ -4,6 +4,7 @@ import { ArrowLeft, Check, AlertCircle, Sparkles, RefreshCw, X, ChevronRight } f
 import { getMudas, resgatarMuda } from '../../../services/mudasService';
 import CornerFoliage from '../../../components/CornerFoliage';
 import PfHeaderBrand from '../components/PfHeaderBrand';
+import ZoomContent from '../../../components/ZoomContent';
 
 export default function PfCatalogScreen({ onBack, colaboradorInfo, onResgateSuccess }) {
   const [mudas, setMudas] = useState([]);
@@ -82,8 +83,10 @@ export default function PfCatalogScreen({ onBack, colaboradorInfo, onResgateSucc
       />
       <CornerFoliage corners={['top-left', 'top-right']} />
 
-      {/* Top Header */}
-      <div className="relative z-30 w-full flex flex-col bg-[#e9decb]/90 backdrop-blur-md border-b border-[#2EB85C]/20 shadow-xs">
+      {/* Scalable Content Layer (Zoom only applies to elements, never the background) */}
+      <ZoomContent className="pt-0 px-0">
+        {/* Top Header */}
+        <div className="w-full flex flex-col bg-[#e9decb]/90 backdrop-blur-md border-b border-[#2EB85C]/20 shadow-xs">
         <div className="relative w-full flex items-center justify-center px-4 pt-3 pb-1 min-h-[44px]">
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -262,6 +265,7 @@ export default function PfCatalogScreen({ onBack, colaboradorInfo, onResgateSucc
           );
         })}
       </div>
+      </ZoomContent>
 
       {/* Confirmation Modal */}
       <AnimatePresence>

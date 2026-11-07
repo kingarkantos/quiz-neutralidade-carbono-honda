@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Header from '../../../components/Header';
 import CornerFoliage from '../../../components/CornerFoliage';
+import ZoomContent from '../../../components/ZoomContent';
 import GameTimer from '../../../components/GameTimer';
 import { getMixedMemoriaCards } from '../data/memoriaData';
 import MemoriaMatchModal from './MemoriaMatchModal';
@@ -128,8 +129,10 @@ export default function MemoriaGameBoardScreen({ onFinish }) {
 
       <CornerFoliage corners={['top-left', 'top-right']} />
 
-      {/* Header */}
-      <Header className="pt-3 pb-1" />
+      {/* Scalable Content Layer (Zoom only applies to elements, never the background) */}
+      <ZoomContent className="pt-2 px-3 sm:px-4">
+        {/* Header */}
+        <Header className="pt-2 pb-1" />
 
       {/* Stepper */}
       <div className="relative z-10 w-full px-4 flex flex-col items-center select-none pt-1">
@@ -200,12 +203,13 @@ export default function MemoriaGameBoardScreen({ onFinish }) {
         </div>
       </div>
 
-      {/* Footer Info - Lifted higher from bottom */}
-      <div className="relative z-10 w-full px-6 pb-8 sm:pb-10 pt-2 text-center select-none flex-shrink-0">
-        <p className="text-[#4b5d4c] font-semibold text-[11px] sm:text-xs">
-          Toque nas cartas para encontrar as fontes correspondentes.
-        </p>
-      </div>
+        {/* Footer Info */}
+        <div className="w-full px-6 pb-8 sm:pb-10 pt-2 text-center select-none flex-shrink-0">
+          <p className="text-[#4b5d4c] font-semibold text-[11px] sm:text-xs">
+            Toque nas cartas para encontrar as fontes correspondentes.
+          </p>
+        </div>
+      </ZoomContent>
 
       {/* Success Modal */}
       <AnimatePresence>

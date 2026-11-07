@@ -4,6 +4,7 @@ import { ArrowLeft, Sparkles } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../../components/Header';
 import CornerFoliage from '../../../components/CornerFoliage';
+import ZoomContent from '../../../components/ZoomContent';
 import PfHeaderBrand from '../components/PfHeaderBrand';
 
 export default function PfWelcomeScreen({ onStart }) {
@@ -46,9 +47,11 @@ export default function PfWelcomeScreen({ onStart }) {
 
       <CornerFoliage corners={['top-left', 'top-right', 'bottom-left', 'bottom-right']} />
 
-      {/* Top Header */}
-      <div className="relative z-30 w-full flex flex-col">
-        <div className="relative w-full flex items-center justify-center px-4 pt-3 pb-1 min-h-[44px]">
+      {/* Scalable Content Layer (Zoom only applies to elements, never the background) */}
+      <ZoomContent className="pt-2 px-4">
+        {/* Top Header */}
+        <div className="w-full flex flex-col">
+          <div className="relative w-full flex items-center justify-center px-4 pt-2 pb-1 min-h-[44px]">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -125,26 +128,27 @@ export default function PfWelcomeScreen({ onStart }) {
             </motion.div>
           ))}
         </div>
-      </div>
 
-      {/* Bottom CTA Button - Elevated high from bottom edge */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.55 }}
-        className="relative z-30 px-6 sm:px-8 mb-16 sm:mb-24 pb-4 pt-2 w-full max-w-md mx-auto"
-      >
-        <motion.button
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
-          onClick={onStart}
-          className="w-full py-4 sm:py-4.5 rounded-full btn-tactile-green anim-shimmer text-white font-black text-base sm:text-lg tracking-wider uppercase flex items-center justify-center space-x-2 shadow-xl"
+        {/* Action Button - Directly below steps! */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.55 }}
+          className="w-full max-w-md mx-auto mt-4 sm:mt-6 pb-6 px-4"
         >
-          <span>ASSINAR AGORA</span>
-          <Sparkles className="w-5 h-5 text-white/90" />
-        </motion.button>
-      </motion.div>
-    </div>
-  );
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={onStart}
+            className="w-full py-4 sm:py-4.5 rounded-full btn-tactile-green anim-shimmer text-white font-black text-base sm:text-lg tracking-wider uppercase flex items-center justify-center space-x-2 shadow-xl"
+          >
+            <span>ASSINAR AGORA</span>
+            <Sparkles className="w-5 h-5 text-white/90" />
+          </motion.button>
+        </motion.div>
+      </div>
+    </ZoomContent>
+  </div>
+);
 }
 

@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Stepper from '../components/Stepper';
 import CornerFoliage from '../components/CornerFoliage';
+import ZoomContent from '../components/ZoomContent';
 import { ChevronLeft, ChevronRight, X, Check } from 'lucide-react';
 
 export default function QuestionScreen({
@@ -51,206 +52,209 @@ export default function QuestionScreen({
 
   return (
     <div className="relative w-full h-full flex flex-col justify-between overflow-hidden bg-[#ecdcc1]">
-      {/* Background Image: Foliage */}
+      {/* Background Image: Foliage - Stays fixed and unscaled */}
       <div 
         className="absolute inset-0 bg-cover bg-center pointer-events-none z-0"
         style={{ backgroundImage: `url('/assets/bg/slice-quiz.webp')` }}
       />
 
-      {/* Animated Foliage in Top Corners */}
+      {/* Animated Foliage in Top Corners - Stays fixed at corners */}
       <CornerFoliage corners={['top-left', 'top-right']} />
 
-      {/* Top Stepper Area */}
-      <div className="relative z-10 pt-4 px-4">
-        <Stepper 
-          currentStep={questionIndex + 1} 
-          totalSteps={totalQuestions} 
-          answers={answers}
-          timeLeft={timeLeft}
-        />
-      </div>
+      {/* Scalable Content Layer (Zoom only applies to elements, never the background) */}
+      <ZoomContent className="pt-4 px-3.5 sm:px-4">
+        {/* Top Stepper Area */}
+        <div className="w-full max-w-xl mx-auto flex-shrink-0">
+          <Stepper 
+            currentStep={questionIndex + 1} 
+            totalSteps={totalQuestions} 
+            answers={answers}
+            timeLeft={timeLeft}
+          />
+        </div>
 
-      {/* Main Question & Cards Area - Moved higher */}
-      <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-start pt-2 sm:pt-4 px-3.5 sm:px-4 max-w-xl mx-auto w-full">
-        {/* Question Heading */}
-        <motion.h2
-          key={question.id}
-          initial={{ opacity: 0, y: -15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="text-[#1A2E1A] font-extrabold text-lg sm:text-2xl text-center leading-snug mb-3 sm:mb-5 px-2 select-none"
-        >
-          {question.question}
-        </motion.h2>
+        {/* Main Question & Cards Area + Action Buttons directly below */}
+        <div className="flex-1 min-h-0 flex flex-col items-center justify-start pt-2 sm:pt-4 max-w-xl mx-auto w-full">
+          {/* Question Heading */}
+          <motion.h2
+            key={question.id}
+            initial={{ opacity: 0, y: -15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="text-[#1A2E1A] font-extrabold text-lg sm:text-2xl text-center leading-snug mb-3 sm:mb-4 px-2 select-none"
+          >
+            {question.question}
+          </motion.h2>
 
-        {/* 2x2 Option Grid with Stagger Animation */}
-        <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5 w-full">
-          {question.options.map((opt, idx) => {
-            const isSelected = selectedOptionId === opt.id;
-            const isThisWrong = isSelected && evaluationState === 'wrong';
-            const isThisCorrect = isSelected && evaluationState === 'correct';
+          {/* 2x2 Option Grid with Stagger Animation */}
+          <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5 w-full">
+            {question.options.map((opt, idx) => {
+              const isSelected = selectedOptionId === opt.id;
+              const isThisWrong = isSelected && evaluationState === 'wrong';
+              const isThisCorrect = isSelected && evaluationState === 'correct';
 
-            return (
-              <motion.div
-                key={opt.id}
-                initial={{ opacity: 0, scale: 0.88, y: 20 }}
-                animate={
-                  isThisWrong
-                    ? {
-                        opacity: 1,
-                        scale: 1.02,
-                        y: -4,
-                        x: [-6, 6, -5, 5, -2, 2, 0]
-                      }
-                    : isThisCorrect
-                    ? {
-                        opacity: 1,
-                        scale: [1, 1.04, 1.02],
-                        y: -4,
-                        x: 0
-                      }
-                    : {
-                        opacity: 1,
-                        scale: isSelected ? 1.02 : 1,
-                        y: isSelected ? -4 : 0,
-                        x: 0
-                      }
-                }
-                transition={
-                  isThisWrong
-                    ? { x: { duration: 0.45, ease: 'easeInOut' } }
-                    : isThisCorrect
-                    ? { scale: { duration: 0.3 } }
-                    : { 
-                        type: 'spring', 
-                        stiffness: 320, 
-                        damping: 24, 
-                        delay: evaluationState ? 0 : 0.05 + idx * 0.08 
-                      }
-                }
-                whileHover={!evaluationState ? { scale: 1.02 } : {}}
-                whileTap={!evaluationState ? { scale: 0.97 } : {}}
-                onClick={() => {
-                  if (!evaluationState) {
-                    setSelectedOptionId(opt.id);
+              return (
+                <motion.div
+                  key={opt.id}
+                  initial={{ opacity: 0, scale: 0.88, y: 20 }}
+                  animate={
+                    isThisWrong
+                      ? {
+                          opacity: 1,
+                          scale: 1.02,
+                          y: -4,
+                          x: [-6, 6, -5, 5, -2, 2, 0]
+                        }
+                      : isThisCorrect
+                      ? {
+                          opacity: 1,
+                          scale: [1, 1.04, 1.02],
+                          y: -4,
+                          x: 0
+                        }
+                      : {
+                          opacity: 1,
+                          scale: isSelected ? 1.02 : 1,
+                          y: isSelected ? -4 : 0,
+                          x: 0
+                        }
                   }
-                }}
-                className={`card-quiz rounded-[18px] sm:rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between select-none transition-all duration-200 h-[185px] xs:h-[205px] sm:h-[245px] ${
-                  evaluationState ? 'cursor-default' : 'cursor-pointer'
-                } ${
-                  isThisWrong
-                    ? 'wrong'
-                    : isThisCorrect
-                    ? 'correct'
-                    : isSelected
-                    ? 'selected'
-                    : ''
-                }`}
-              >
-                {/* Header of Card: Letter Badge + Text */}
-                <div className="flex items-start space-x-1.5 sm:space-x-2">
-                  <div
-                    className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex-shrink-0 flex items-center justify-center font-black text-[11px] sm:text-xs shadow-sm transition-all duration-200 ${
-                      isThisWrong
-                        ? 'bg-red-600 text-white shadow-[0_0_12px_rgba(220,38,38,0.5)] scale-105'
-                        : isThisCorrect
-                        ? 'bg-[#2EB85C] text-white shadow-[0_0_12px_rgba(46,184,92,0.5)] scale-105'
-                        : isSelected
-                        ? 'bg-[#2EB85C] text-white'
-                        : 'bg-[#1C3B24] text-white'
-                    }`}
-                  >
-                    {isThisWrong ? (
-                      <X className="w-3.5 h-3.5 stroke-[3]" />
-                    ) : isThisCorrect ? (
-                      <Check className="w-3.5 h-3.5 stroke-[3]" />
-                    ) : (
-                      opt.id
-                    )}
-                  </div>
-                  <p
-                    className={`font-semibold leading-tight pt-0.5 break-words transition-colors ${
-                      opt.text.length > 50
-                        ? 'text-[10px] xs:text-[11px] sm:text-xs leading-[1.18]'
-                        : opt.text.length > 32
-                        ? 'text-[11.5px] xs:text-xs sm:text-sm leading-tight'
-                        : 'text-xs sm:text-sm leading-tight'
-                    } ${
-                      isThisWrong ? 'text-red-900 font-bold' : 'text-[#1A2E1A]'
-                    }`}
-                  >
-                    {opt.text}
-                  </p>
-                </div>
-
-                {/* 3D Image inside Card */}
-                <div
-                  className={`relative w-full flex-1 min-h-0 flex items-center justify-center overflow-hidden rounded-xl mt-1 sm:mt-1.5 transition-colors ${
-                    isThisWrong ? 'bg-red-100/50' : isThisCorrect ? 'bg-green-100/50' : 'bg-[#f4ece1]/50'
+                  transition={
+                    isThisWrong
+                      ? { x: { duration: 0.45, ease: 'easeInOut' } }
+                      : isThisCorrect
+                      ? { scale: { duration: 0.3 } }
+                      : { 
+                          type: 'spring', 
+                          stiffness: 320, 
+                          damping: 24, 
+                          delay: evaluationState ? 0 : 0.05 + idx * 0.08 
+                        }
+                  }
+                  whileHover={!evaluationState ? { scale: 1.02 } : {}}
+                  whileTap={!evaluationState ? { scale: 0.97 } : {}}
+                  onClick={() => {
+                    if (!evaluationState) {
+                      setSelectedOptionId(opt.id);
+                    }
+                  }}
+                  className={`card-quiz rounded-[18px] sm:rounded-[22px] p-2.5 sm:p-3 flex flex-col justify-between select-none transition-all duration-200 h-[185px] xs:h-[205px] sm:h-[245px] ${
+                    evaluationState ? 'cursor-default' : 'cursor-pointer'
+                  } ${
+                    isThisWrong
+                      ? 'wrong'
+                      : isThisCorrect
+                      ? 'correct'
+                      : isSelected
+                      ? 'selected'
+                      : ''
                   }`}
                 >
-                  <img
-                    src={opt.image}
-                    alt={opt.text}
-                    className="w-full h-full object-contain max-h-[100px] xs:max-h-[115px] sm:max-h-[135px] drop-shadow-sm pointer-events-none transition-transform duration-300"
-                  />
-                </div>
-              </motion.div>
-            );
-          })}
+                  {/* Header of Card: Letter Badge + Text */}
+                  <div className="flex items-start space-x-1.5 sm:space-x-2">
+                    <div
+                      className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex-shrink-0 flex items-center justify-center font-black text-[11px] sm:text-xs shadow-sm transition-all duration-200 ${
+                        isThisWrong
+                          ? 'bg-red-600 text-white shadow-[0_0_12px_rgba(220,38,38,0.5)] scale-105'
+                          : isThisCorrect
+                          ? 'bg-[#2EB85C] text-white shadow-[0_0_12px_rgba(46,184,92,0.5)] scale-105'
+                          : isSelected
+                          ? 'bg-[#2EB85C] text-white'
+                          : 'bg-[#1C3B24] text-white'
+                      }`}
+                    >
+                      {isThisWrong ? (
+                        <X className="w-3.5 h-3.5 stroke-[3]" />
+                      ) : isThisCorrect ? (
+                        <Check className="w-3.5 h-3.5 stroke-[3]" />
+                      ) : (
+                        opt.id
+                      )}
+                    </div>
+                    <p
+                      className={`font-semibold leading-tight pt-0.5 break-words transition-colors ${
+                        opt.text.length > 50
+                          ? 'text-[10px] xs:text-[11px] sm:text-xs leading-[1.18]'
+                          : opt.text.length > 32
+                          ? 'text-[11.5px] xs:text-xs sm:text-sm leading-tight'
+                          : 'text-xs sm:text-sm leading-tight'
+                      } ${
+                        isThisWrong ? 'text-red-900 font-bold' : 'text-[#1A2E1A]'
+                      }`}
+                    >
+                      {opt.text}
+                    </p>
+                  </div>
+
+                  {/* 3D Image inside Card */}
+                  <div
+                    className={`relative w-full flex-1 min-h-0 flex items-center justify-center overflow-hidden rounded-xl mt-1 sm:mt-1.5 transition-colors ${
+                      isThisWrong ? 'bg-red-100/50' : isThisCorrect ? 'bg-green-100/50' : 'bg-[#f4ece1]/50'
+                    }`}
+                  >
+                    <img
+                      src={opt.image}
+                      alt={opt.text}
+                      className="w-full h-full object-contain max-h-[100px] xs:max-h-[115px] sm:max-h-[135px] drop-shadow-sm pointer-events-none transition-transform duration-300"
+                    />
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Action Buttons - Directly below the options! */}
+          <div className="w-full flex items-center justify-between space-x-3 sm:space-x-4 mt-3 sm:mt-4 pb-4 flex-shrink-0">
+            {/* Back Button */}
+            <motion.button
+              whileHover={!evaluationState ? { scale: 1.03 } : {}}
+              whileTap={!evaluationState ? { scale: 0.96 } : {}}
+              onClick={onBack}
+              disabled={Boolean(evaluationState)}
+              className={`flex-1 py-3 sm:py-3.5 px-3 sm:px-4 rounded-2xl btn-tactile-brown text-white font-bold text-sm sm:text-base flex items-center justify-center space-x-1.5 uppercase select-none tracking-wide transition-opacity duration-200 ${
+                evaluationState ? 'opacity-40 cursor-not-allowed' : ''
+              }`}
+            >
+              <ChevronLeft className="w-5 h-5" />
+              <span>VOLTAR</span>
+            </motion.button>
+
+            {/* Continue Button */}
+            <motion.button
+              whileHover={selectedOptionId && !evaluationState ? { scale: 1.03 } : {}}
+              whileTap={selectedOptionId && !evaluationState ? { scale: 0.96 } : {}}
+              onClick={handleContinue}
+              disabled={!selectedOptionId || Boolean(evaluationState)}
+              className={`flex-[1.4] py-3 sm:py-3.5 px-3 sm:px-4 rounded-2xl text-white font-black text-sm sm:text-base flex items-center justify-center space-x-1.5 uppercase select-none tracking-wider transition-all duration-200 ${
+                evaluationState === 'wrong'
+                  ? 'bg-red-600 shadow-[0_6px_0_#991b1b,0_12px_24px_rgba(220,38,38,0.4)] cursor-wait'
+                  : evaluationState === 'correct'
+                  ? 'bg-[#2EB85C] shadow-[0_6px_0_#1e7e34,0_12px_24px_rgba(46,184,92,0.4)] cursor-wait'
+                  : selectedOptionId 
+                  ? 'btn-tactile-green anim-shimmer cursor-pointer' 
+                  : 'bg-[#1C3B24]/40 cursor-not-allowed opacity-60'
+              }`}
+            >
+              {evaluationState === 'wrong' ? (
+                <>
+                  <X className="w-5 h-5 stroke-[3]" />
+                  <span>INCORRETO</span>
+                </>
+              ) : evaluationState === 'correct' ? (
+                <>
+                  <Check className="w-5 h-5 stroke-[3]" />
+                  <span>CORRETO!</span>
+                </>
+              ) : (
+                <>
+                  <span>CONTINUAR</span>
+                  <ChevronRight className="w-5 h-5" />
+                </>
+              )}
+            </motion.button>
+          </div>
         </div>
-      </div>
-
-      {/* Bottom Navigation Buttons - Elevated high from bottom edge */}
-      <div className="relative z-10 w-full px-5 sm:px-6 mb-12 sm:mb-16 pb-4 pt-2 max-w-xl mx-auto flex items-center justify-between space-x-3 sm:space-x-4 flex-shrink-0">
-        {/* Back Button */}
-        <motion.button
-          whileHover={!evaluationState ? { scale: 1.03 } : {}}
-          whileTap={!evaluationState ? { scale: 0.96 } : {}}
-          onClick={onBack}
-          disabled={Boolean(evaluationState)}
-          className={`flex-1 py-3.5 sm:py-4 px-3 sm:px-4 rounded-2xl btn-tactile-brown text-white font-bold text-sm sm:text-lg flex items-center justify-center space-x-1.5 uppercase select-none tracking-wide transition-opacity duration-200 ${
-            evaluationState ? 'opacity-40 cursor-not-allowed' : ''
-          }`}
-        >
-          <ChevronLeft className="w-5 h-5" />
-          <span>VOLTAR</span>
-        </motion.button>
-
-        {/* Continue Button */}
-        <motion.button
-          whileHover={selectedOptionId && !evaluationState ? { scale: 1.03 } : {}}
-          whileTap={selectedOptionId && !evaluationState ? { scale: 0.96 } : {}}
-          onClick={handleContinue}
-          disabled={!selectedOptionId || Boolean(evaluationState)}
-          className={`flex-[1.4] py-3.5 sm:py-4 px-3 sm:px-4 rounded-2xl text-white font-black text-sm sm:text-lg flex items-center justify-center space-x-1.5 uppercase select-none tracking-wider transition-all duration-200 ${
-            evaluationState === 'wrong'
-              ? 'bg-red-600 shadow-[0_6px_0_#991b1b,0_12px_24px_rgba(220,38,38,0.4)] cursor-wait'
-              : evaluationState === 'correct'
-              ? 'bg-[#2EB85C] shadow-[0_6px_0_#1e7e34,0_12px_24px_rgba(46,184,92,0.4)] cursor-wait'
-              : selectedOptionId 
-              ? 'btn-tactile-green anim-shimmer cursor-pointer' 
-              : 'bg-[#1C3B24]/40 cursor-not-allowed opacity-60'
-          }`}
-        >
-          {evaluationState === 'wrong' ? (
-            <>
-              <X className="w-5 h-5 stroke-[3]" />
-              <span>INCORRETO</span>
-            </>
-          ) : evaluationState === 'correct' ? (
-            <>
-              <Check className="w-5 h-5 stroke-[3]" />
-              <span>CORRETO!</span>
-            </>
-          ) : (
-            <>
-              <span>CONTINUAR</span>
-              <ChevronRight className="w-5 h-5" />
-            </>
-          )}
-        </motion.button>
-      </div>
+      </ZoomContent>
     </div>
   );
 }

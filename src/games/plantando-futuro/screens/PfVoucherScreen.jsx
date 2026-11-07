@@ -4,6 +4,7 @@ import { Check, Sparkles, Home, Ticket, Calendar, User, Clock } from 'lucide-rea
 import confetti from 'canvas-confetti';
 import { useNavigate } from 'react-router-dom';
 import CornerFoliage from '../../../components/CornerFoliage';
+import ZoomContent from '../../../components/ZoomContent';
 
 export default function PfVoucherScreen({ resgateData, colaboradorInfo, onFinish }) {
   const navigate = useNavigate();
@@ -36,8 +37,10 @@ export default function PfVoucherScreen({ resgateData, colaboradorInfo, onFinish
       />
       <CornerFoliage corners={['top-left', 'top-right', 'bottom-left', 'bottom-right']} />
 
-      {/* Top Header */}
-      <div className="relative z-30 w-full flex items-center justify-center px-5 pt-3 pb-1 min-h-[44px]">
+      {/* Scalable Content Layer (Zoom only applies to elements, never the background) */}
+      <ZoomContent className="pt-2 px-4">
+        {/* Top Header */}
+        <div className="relative w-full flex items-center justify-center px-4 pt-2 pb-1 min-h-[44px]">
         <div className="absolute left-5 top-3 flex items-center">
           <img 
             src="/assets/plantando-futuro/logo-plantando-futuro.webp" 
@@ -144,24 +147,25 @@ export default function PfVoucherScreen({ resgateData, colaboradorInfo, onFinish
             </p>
           </div>
         </motion.div>
-      </div>
 
-      {/* Bottom Finish Button */}
-      <div className="relative z-30 px-6 sm:px-8 pb-6 sm:pb-8 pt-2 w-full max-w-md mx-auto">
-        <motion.button
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
-          onClick={() => {
-            onFinish();
-            navigate('/');
-          }}
-          className="w-full py-4 rounded-full btn-tactile-green anim-shimmer text-white font-black text-base sm:text-lg tracking-wider uppercase flex items-center justify-center space-x-2 shadow-xl"
-        >
-          <Home className="w-5 h-5" />
-          <span>CONCLUIR E VOLTAR</span>
-        </motion.button>
+        {/* Action Button - Directly below voucher! */}
+        <div className="w-full max-w-md mx-auto mt-4 sm:mt-5 pb-6">
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={() => {
+              onFinish();
+              navigate('/');
+            }}
+            className="w-full py-4 rounded-full btn-tactile-green anim-shimmer text-white font-black text-base sm:text-lg tracking-wider uppercase flex items-center justify-center space-x-2 shadow-xl"
+          >
+            <Home className="w-5 h-5" />
+            <span>CONCLUIR E VOLTAR</span>
+          </motion.button>
+        </div>
       </div>
-    </div>
-  );
+    </ZoomContent>
+  </div>
+);
 }
 

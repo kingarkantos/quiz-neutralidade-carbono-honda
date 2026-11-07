@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import CornerFoliage from '../components/CornerFoliage';
 import FallingLeavesMatrix from '../components/FallingLeavesMatrix';
+import ZoomContent from '../components/ZoomContent';
 import { ChevronRight, HelpCircle, GitFork, Sparkles, Sprout, BarChart3 } from 'lucide-react';
 
 export default function HubScreen() {
@@ -74,9 +75,11 @@ export default function HubScreen() {
       {/* Foliage corner accents */}
       <CornerFoliage corners={['top-left', 'top-right', 'bottom-left', 'bottom-right']} />
 
-      {/* Header */}
-      <div className="relative z-30 w-full flex flex-col items-center">
-        <Header className="pt-2 sm:pt-3 pb-0" showMenuButton={false} />
+      {/* Scalable Content Layer (Zoom only applies to elements, never the background) */}
+      <ZoomContent className="pt-2 px-4">
+        {/* Header */}
+        <div className="w-full flex flex-col items-center">
+          <Header className="pt-2 sm:pt-3 pb-0" showMenuButton={false} />
 
         {/* Portal Headline */}
         <div className="w-full flex flex-col items-center text-center px-4 pt-1 max-w-lg mx-auto select-none">
@@ -159,17 +162,18 @@ export default function HubScreen() {
         ))}
       </div>
 
-      {/* Footer Info & Link to /plantas Dashboard - Lifted higher */}
-      <div className="relative z-30 w-full px-5 pb-6 sm:pb-8 pt-1 text-center select-none flex-shrink-0 flex items-center justify-between max-w-lg mx-auto text-[10.5px] sm:text-xs text-[#1A2E1A]/70">
-        <span>Honda • 50 Anos no Brasil</span>
-        <button 
-          onClick={() => navigate('/plantas')}
-          className="flex items-center space-x-1 font-bold text-[#2EB85C] hover:underline"
-        >
-          <BarChart3 className="w-3.5 h-3.5" />
-          <span>Painel /plantas</span>
-        </button>
-      </div>
+        {/* Footer Info & Link to /plantas Dashboard */}
+        <div className="w-full px-5 pb-6 sm:pb-8 pt-1 text-center select-none flex-shrink-0 flex items-center justify-between max-w-lg mx-auto text-[10.5px] sm:text-xs text-[#1A2E1A]/70">
+          <span>Honda • 50 Anos no Brasil</span>
+          <button 
+            onClick={() => navigate('/plantas')}
+            className="flex items-center space-x-1 font-bold text-[#2EB85C] hover:underline"
+          >
+            <BarChart3 className="w-3.5 h-3.5" />
+            <span>Painel /plantas</span>
+          </button>
+        </div>
+      </ZoomContent>
     </div>
   );
 }

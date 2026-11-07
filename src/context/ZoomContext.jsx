@@ -34,15 +34,15 @@ export function ZoomProvider({ children }) {
       console.warn('LocalStorage zoom error:', e);
     }
 
-    // Apply zoom to document.documentElement for entire screen scaling
-    document.documentElement.style.zoom = zoom;
+    // Set CSS custom property so elements can scale relative to --app-zoom
+    document.documentElement.style.setProperty('--app-zoom', zoom.toString());
 
-    // Fallback for browsers that don't support CSS zoom
-    if (!('zoom' in document.documentElement.style)) {
-      document.body.style.transform = `scale(${zoom})`;
-      document.body.style.transformOrigin = 'top center';
-      document.body.style.width = `${100 / zoom}%`;
-      document.body.style.height = `${100 / zoom}%`;
+    // Explicitly remove root/body zoom so the page background NEVER changes size
+    document.documentElement.style.removeProperty('zoom');
+    if (document.body.style.transform) {
+      document.body.style.transform = '';
+      document.body.style.width = '';
+      document.body.style.height = '';
     }
   }, [zoom]);
 

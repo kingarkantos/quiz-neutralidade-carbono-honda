@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion, useSpring } from 'framer-motion';
 import ResultBanner from '../components/ResultBanner';
 import CornerFoliage from '../components/CornerFoliage';
+import ZoomContent from '../components/ZoomContent';
 import { ChevronRight } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -65,13 +66,15 @@ export default function ScoreScreen({ correctCount, totalQuestions, onContinue }
       {/* Top Corner Leaves Fan */}
       <CornerFoliage corners={['top-left', 'top-right']} />
 
-      {/* Top Banner Area */}
-      <div className="pt-6 sm:pt-8 px-6 z-10 w-full flex justify-center">
-        <ResultBanner type="result" text="RESULTADO FINAL" />
-      </div>
+      {/* Scalable Content Layer (Zoom only applies to elements, never the background) */}
+      <ZoomContent className="pt-6 sm:pt-8 px-5 sm:px-6">
+        {/* Top Banner Area */}
+        <div className="w-full flex justify-center flex-shrink-0">
+          <ResultBanner type="result" text="RESULTADO FINAL" />
+        </div>
 
-      {/* Gauge / Velocímetro Area - Moved higher */}
-      <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center justify-start pt-2 sm:pt-4 px-5 sm:px-6 max-w-lg mx-auto w-full">
+        {/* Gauge / Velocímetro Area */}
+        <div className="flex-1 min-h-0 flex flex-col items-center justify-start pt-2 sm:pt-4 px-5 sm:px-6 max-w-lg mx-auto w-full">
         {/* Gauge Container */}
         <motion.div
           initial={{ scale: 0.7, opacity: 0 }}
@@ -159,23 +162,24 @@ export default function ScoreScreen({ correctCount, totalQuestions, onContinue }
             {feedbackText}
           </p>
         </motion.div>
-      </div>
 
-      {/* Bottom Continue Area with Shimmer - Elevated high from bottom edge */}
-      <div className="relative z-10 w-full px-6 sm:px-8 mb-14 sm:mb-20 pb-4 pt-2 flex justify-center max-w-lg mx-auto flex-shrink-0">
-        <motion.button
-          initial={{ scale: 0.9, opacity: 0, y: 20 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          transition={{ type: 'spring', stiffness: 320, damping: 20, delay: 0.5 }}
-          whileHover={{ scale: 1.04 }}
-          whileTap={{ scale: 0.96 }}
-          onClick={onContinue}
-          className="w-full py-3.5 sm:py-4.5 rounded-full btn-tactile-green anim-shimmer text-white font-black text-base sm:text-xl tracking-wider select-none uppercase flex items-center justify-center space-x-2 shadow-xl"
-        >
-          <span>CONTINUAR</span>
-          <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3]" />
-        </motion.button>
+        {/* Action Button - Directly below card! */}
+        <div className="w-full mt-3 sm:mt-4 pb-4 flex justify-center max-w-lg mx-auto flex-shrink-0">
+          <motion.button
+            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            transition={{ type: 'spring', stiffness: 320, damping: 20, delay: 0.4 }}
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
+            onClick={onContinue}
+            className="w-full py-3.5 sm:py-4 rounded-full btn-tactile-green anim-shimmer text-white font-black text-base sm:text-lg tracking-wider select-none uppercase flex items-center justify-center space-x-2 shadow-xl"
+          >
+            <span>CONTINUAR</span>
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3]" />
+          </motion.button>
+        </div>
       </div>
-    </div>
-  );
+    </ZoomContent>
+  </div>
+);
 }
