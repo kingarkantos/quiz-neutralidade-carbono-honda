@@ -92,7 +92,9 @@ export default function QuizApp() {
   // When user picks an option and presses CONTINUAR
   const handleAnswer = (option) => {
     const currentQ = questions[currentQuestionIndex];
-    const isCorrect = option.id === currentQ.correctOptionId;
+    if (!currentQ || !option) return;
+
+    const isCorrect = option.id === currentQ.correctOptionId || option.isCorrect;
     
     const newAnswer = {
       questionId: currentQ.id,
@@ -105,14 +107,18 @@ export default function QuizApp() {
     setScreen('feedback');
   };
 
-  // Next from feedback
+  // Next from feedback with atomic clamped state updater
   const handleNextFromFeedback = () => {
-    if (currentQuestionIndex + 1 < questions.length) {
-      setCurrentQuestionIndex(prev => prev + 1);
-      setScreen('question');
-    } else {
-      setScreen('score');
-    }
+    setCurrentQuestionIndex(prev => {
+      const next = prev + 1;
+      if (next < questions.length) {
+        setScreen('question');
+        return next;
+      } else {
+        setScreen('score');
+        return prev;
+      }
+    });
   };
 
   // Continue from Score to Final Institutional Screen
@@ -172,7 +178,7 @@ export default function QuizApp() {
             className="w-full h-full flex flex-col min-h-0"
           >
             <QuestionScreen
-              question={questions[currentQuestionIndex]}
+              question={questions[currentQuestionIndex] || questions[0]}
               questionIndex={currentQuestionIndex}
               totalQuestions={questions.length}
               answers={answers}
@@ -194,7 +200,7 @@ export default function QuizApp() {
           >
             <FeedbackScreen
               isCorrect={answers[answers.length - 1]?.isCorrect}
-              question={questions[currentQuestionIndex]}
+              question={questions[currentQuestionIndex] || questions[0]}
               selectedOption={lastSelectedOption}
               questionIndex={currentQuestionIndex}
               totalQuestions={questions.length}

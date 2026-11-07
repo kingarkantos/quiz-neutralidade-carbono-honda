@@ -29,9 +29,14 @@ export default function QuestionScreen({
     };
   }, [question?.id]);
 
+  // Guard against missing question data during unmount or transition
+  if (!question || !question.options) {
+    return null;
+  }
+
   const handleContinue = () => {
     if (!selectedOptionId || evaluationState) return;
-    const option = question.options.find(o => o.id === selectedOptionId);
+    const option = question?.options?.find(o => o.id === selectedOptionId);
     if (!option) return;
 
     const isCorrect = option.id === question.correctOptionId || option.isCorrect;
@@ -40,12 +45,12 @@ export default function QuestionScreen({
       setEvaluationState('wrong');
       // Espera 2 segundos com o card em vermelho antes de ir para FeedbackScreen
       timerRef.current = setTimeout(() => {
-        onAnswer(option);
+        if (onAnswer) onAnswer(option);
       }, 2000);
     } else {
       setEvaluationState('correct');
       timerRef.current = setTimeout(() => {
-        onAnswer(option);
+        if (onAnswer) onAnswer(option);
       }, 700);
     }
   };
@@ -77,18 +82,18 @@ export default function QuestionScreen({
         <div className="flex-1 min-h-0 flex flex-col items-center justify-start pt-2 sm:pt-4 max-w-xl mx-auto w-full">
           {/* Question Heading */}
           <motion.h2
-            key={question.id}
+            key={question?.id || questionIndex}
             initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
             className="text-[#1A2E1A] font-extrabold text-lg sm:text-2xl text-center leading-snug mb-3 sm:mb-4 px-2 select-none"
           >
-            {question.question}
+            {question?.question}
           </motion.h2>
 
           {/* 2x2 Option Grid with Stagger Animation */}
           <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5 w-full">
-            {question.options.map((opt, idx) => {
+            {(question?.options || []).map((opt, idx) => {
               const isSelected = selectedOptionId === opt.id;
               const isThisWrong = isSelected && evaluationState === 'wrong';
               const isThisCorrect = isSelected && evaluationState === 'correct';

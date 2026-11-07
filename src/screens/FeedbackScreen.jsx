@@ -16,8 +16,21 @@ export default function FeedbackScreen({
   answers,
   onNext
 }) {
+  const [isAdvancing, setIsAdvancing] = useState(false);
+
+  // Early guard if question is somehow undefined during unmount/transition
+  if (!question) {
+    return null;
+  }
+
   const isLastQuestion = questionIndex + 1 >= totalQuestions;
   const userOption = selectedOption || answers[answers.length - 1]?.selectedOption;
+
+  const handleNextClick = () => {
+    if (isAdvancing) return;
+    setIsAdvancing(true);
+    if (onNext) onNext();
+  };
 
   // Trigger eco confetti when correct
   useEffect(() => {
@@ -276,11 +289,11 @@ export default function FeedbackScreen({
 
           {!isCorrect && (
             <p className="text-[#15803d] font-black text-xs sm:text-sm uppercase tracking-wider mb-1.5">
-              ✓ A resposta correta é a alternativa {question.correctOptionId}
+              ✓ A resposta correta é a alternativa {question?.correctOptionId}
             </p>
           )}
           <p className="text-[#1A2E1A] font-semibold text-sm sm:text-base md:text-lg leading-relaxed">
-            {isCorrect ? question.explanationCorrect : question.explanationIncorrect}
+            {isCorrect ? question?.explanationCorrect : question?.explanationIncorrect}
           </p>
         </motion.div>
 
@@ -290,10 +303,13 @@ export default function FeedbackScreen({
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             transition={{ type: 'spring', stiffness: 320, damping: 20, delay: 0.3 }}
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.96 }}
-            onClick={onNext}
-            className="w-full py-3.5 sm:py-4 rounded-full btn-tactile-green anim-shimmer text-white font-black text-base sm:text-lg tracking-wider select-none uppercase flex items-center justify-center space-x-2 shadow-xl"
+            whileHover={!isAdvancing ? { scale: 1.04 } : {}}
+            whileTap={!isAdvancing ? { scale: 0.96 } : {}}
+            onClick={handleNextClick}
+            disabled={isAdvancing}
+            className={`w-full py-3.5 sm:py-4 rounded-full btn-tactile-green anim-shimmer text-white font-black text-base sm:text-lg tracking-wider select-none uppercase flex items-center justify-center space-x-2 shadow-xl ${
+              isAdvancing ? 'opacity-70 pointer-events-none' : ''
+            }`}
           >
             <span>{isLastQuestion ? 'VER RESULTADO' : 'PRÓXIMA PERGUNTA'}</span>
             <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3]" />

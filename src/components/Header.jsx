@@ -5,8 +5,15 @@ export default function Header({
   className = '', 
   showTriplaAcao = false 
 }) {
+  const hasPt = /(^|\s)pt-/.test(className);
+  const hasPb = /(^|\s)pb-/.test(className);
+
   return (
-    <header className={`relative w-full flex items-center justify-center px-5 sm:px-6 pt-4 pb-2 z-40 ${className}`}>
+    <header
+      className={`relative w-full flex items-center justify-center px-5 sm:px-6 ${
+        hasPt ? '' : 'pt-3 sm:pt-4'
+      } ${hasPb ? '' : 'pb-1.5'} z-40 ${className}`}
+    >
       {/* Center: Honda Logo */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}

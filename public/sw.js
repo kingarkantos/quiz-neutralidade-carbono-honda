@@ -113,16 +113,29 @@ self.addEventListener('fetch', (event) => {
   // Fallback padrão para outros recursos GET
   event.respondWith(
     caches.match(request).then((cachedResponse) => {
-      return (
-        cachedResponse ||
-        fetch(request).then((networkResponse) => {
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+      return fetch(request)
+        .then((networkResponse) => {
           if (networkResponse && networkResponse.status === 200) {
             const copy = networkResponse.clone();
             caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
           }
           return networkResponse;
         })
-      );
+        .catch(async () => {
+          // Fallback seguro caso falhe a rede (evita Uncaught TypeError: Failed to fetch)
+          const cache = await caches.open(CACHE_NAME);
+          const fallback =
+            (await cache.match(request)) ||
+            (await cache.match('/index.html')) ||
+            (await cache.match('/'));
+          return (
+            fallback ||
+            new Response('', { status: 408, statusText: 'Request timed out or offline' })
+          );
+        });
     })
   );
 });
