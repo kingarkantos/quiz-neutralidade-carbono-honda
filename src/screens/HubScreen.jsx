@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
@@ -6,9 +6,14 @@ import CornerFoliage from '../components/CornerFoliage';
 import FallingLeavesMatrix from '../components/FallingLeavesMatrix';
 import ZoomContent from '../components/ZoomContent';
 import { ChevronRight, HelpCircle, GitFork, Sparkles, Sprout, BarChart3 } from 'lucide-react';
+import { preloadCriticalAssets } from '../utils/assetPreloader';
 
 export default function HubScreen() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    preloadCriticalAssets();
+  }, []);
 
   const games = [
     {
